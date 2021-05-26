@@ -5,8 +5,8 @@ import { pageview } from "@lib/gtag";
 import { META } from "config";
 import Head from "next/head";
 import { useRouter } from "next/router";
-import { useEffect } from "react";
-import { ChakraProvider } from "@chakra-ui/react";
+import React, { useEffect } from "react";
+import { ChakraProvider, Box, Flex, Container } from "@chakra-ui/react";
 import type { AppProps } from "next/app";
 import theme from "@styles/theme";
 // eslint-disable-next-line import/no-default-export
@@ -23,16 +23,14 @@ export default function MyApp({ Component, pageProps }: AppProps): JSX.Element {
 	}, [router.events]);
 	return (
 		<>
+			<Head>
+				<title>{META.title}</title>
+				<link rel="icon" href="/favicon.ico" />
+			</Head>
 			<ChakraProvider resetCSS theme={theme}>
-				<Head>
-					<title>{META.title}</title>
-					<link rel="icon" href="/favicon.ico" />
-				</Head>
-
 				<Header />
 				<Component {...pageProps} />
-
-				<Footer />
+				<Footer />{" "}
 			</ChakraProvider>
 		</>
 	);

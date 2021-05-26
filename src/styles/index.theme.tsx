@@ -33,4 +33,9 @@ const Span = styled.span`
 	color: var(--highlight);
 	font-family: var(--title);
 `;
-export { StyledButton, Span };
+
+const Container = styled.div`
+	max-width: 1200px;
+	width: 100%;
+`;
+export { StyledButton, Span, Container };
