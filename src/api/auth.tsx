@@ -4,6 +4,21 @@ import axios from "axios";
 
 import { DB_URL } from "../config";
 
+async function createUser(mail: string, user: string, pass: string) {
+	const sendData = {
+		password: pass,
+		username: user,
+		email: mail,
+	};
+
+	const { data } = await axios.put(`${DB_URL}/users`, sendData);
+
+	if (data.data.sessionid) {
+		setCookie("sessionid", String(data.data.sessionid), 7);
+		window.location.href = "/dashboard";
+	}
+	return data;
+}
 
 async function login(user: string, pass: string) {
 	const sendData = {
@@ -13,10 +28,10 @@ async function login(user: string, pass: string) {
 
 	const { data } = await axios.post(`${DB_URL}/users/login`, sendData);
 
-	if (!data.data.sessionid) {
-			setCookie("sessionid", String(data.data.sessionid), 7);
-			window.location.href = "/dashboard";
-		}
+	if (data.data.sessionid) {
+		setCookie("sessionid", String(data.data.sessionid), 7);
+		window.location.href = "/dashboard";
+	}
 
 	return data;
 }
@@ -31,4 +46,4 @@ async function logout() {
 	return data;
 }
 
-export { login, logout };
+export { login, logout, createUser };
