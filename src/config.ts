@@ -14,6 +14,7 @@ type MetaType = {
 	image: string;
 	url: string;
 };
+
 const META: MetaType = {
 	title: "",
 	lang: "en-us",
@@ -21,4 +22,5 @@ const META: MetaType = {
 	image: "/logo.png",
 	url: "",
 };
+
 export { META, DB_URL };
