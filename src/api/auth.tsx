@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 import { eraseCookie, getCookie, setCookie } from "@lib/cookie";
-import { DB_URL } from "@src/config";
+import { DB_URL } from "../config";
 import axios from "axios";
 
 async function createKey() {
