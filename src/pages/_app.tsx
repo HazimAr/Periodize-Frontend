@@ -24,7 +24,6 @@ export default function MyApp({ Component, pageProps }: AppProps): JSX.Element {
 	return (
 		<>
 			<Head>
-				npm i --save-dev @types/next
 				<title>{META.title}</title>
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
