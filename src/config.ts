@@ -4,6 +4,9 @@ const IS_PRODUCTION = process.env.NODE_ENV === "production";
 const IS_TEST = process.env.NODE_ENV === "test";
 const IS_BROWSER = typeof window !== "undefined";
 export { GA_TRACKING_ID, IS_PRODUCTION, IS_TEST, IS_BROWSER };
+	
+const DB_URL = "https://google.com"
+
 type MetaType = {
 	title: string;
 	lang: string;
@@ -18,4 +21,4 @@ const META: MetaType = {
 	image: "/logo.png",
 	url: "",
 };
-export { META };
+export { META, DB_URL };
