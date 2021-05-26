@@ -59,7 +59,6 @@ export default function Home(): JSX.Element {
 					</p>
 				</Box>
 				<Box>
-					
 					<h2>NextJS</h2>
 					<p>
 						This template uses NextJS, Jest, Eslint-Config-Galex,
@@ -105,12 +104,7 @@ export default function Home(): JSX.Element {
 					<h2>React Icons</h2>
 					<p>
 						Icons from popular packages.{" "}
-						<a
-							style={{ color: "#00ffaa" }}
-							
-						>
-							All Icons
-						</a>{" "}
+						<a style={{ color: "#00ffaa" }}>All Icons</a>{" "}
 					</p>
 				</Box>
 			</FlexContainer>
