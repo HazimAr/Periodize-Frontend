@@ -14,7 +14,7 @@ const Container = styled.main`
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	min-height: 600px;
+	min-height: 300px;
 `;
 const FlexContainer = styled.div`
 	display: flex;
