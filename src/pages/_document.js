@@ -31,17 +31,32 @@ export default class MyDocument extends Document {
 	}
 	render() {
 		return (
-			<Html lang="en-us">
+			<Html lang='en-us'>
 				<Head>
-					<meta name="description" content={META.description} />
+					<meta
+						name="description"
+						content={META.description}
+					/>
 
-					<meta itemProp="name" content={META.title} />
-					<meta itemProp="description" content={META.description} />
+					<meta
+						itemProp="name"
+						content={META.title}
+					/>
+					<meta
+						itemProp="description"
+						content={META.description}
+					/>
 					<meta itemProp="image" content={META.image} />
 
-					<meta property="og:url" content={META.url} />
+					<meta
+						property="og:url"
+						content={META.url}
+					/>
 					<meta property="og:type" content="website" />
-					<meta property="og:title" content={META.title} />
+					<meta
+						property="og:title"
+						content={META.title}
+					/>
 					<meta
 						property="og:description"
 						content={META.description}
@@ -49,7 +64,10 @@ export default class MyDocument extends Document {
 					<meta property="og:image" content={META.image} />
 
 					<meta name="twitter:card" content="summary_large_image" />
-					<meta name="twitter:title" content={META.title} />
+					<meta
+						name="twitter:title"
+						content={META.title}
+					/>
 					<meta
 						name="twitter:description"
 						content={META.description}
