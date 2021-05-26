@@ -27,10 +27,6 @@ export default function MyApp({ Component, pageProps }: AppProps): JSX.Element {
 				npm i --save-dev @types/next
 				<title>{META.title}</title>
 				<link rel="icon" href="/favicon.ico" />
-				<meta
-					name="google-site-verification"
-					content="tbqolPb6n_mDbYE1TUl7I_AMzMp-jdSB1E7khOmABA8"
-				/>
 			</Head>
 
 			<Header />
