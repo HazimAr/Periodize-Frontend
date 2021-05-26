@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-floating-promises */
 import { createUser } from "@api/auth";
 import { StyledButton } from "@styles/index.theme";
 import { useState } from "react";
@@ -31,12 +32,10 @@ const Button = styled(StyledButton)`
 // 	margin: 0;
 // `;
 
-// eslint-disable-next-line import/no-default-export
 export default function LoginPage(): JSX.Element {
 	const [username, setUsername] = useState("");
 	const [password, setPassword] = useState("");
 	const [email, setEmail] = useState("");
-
 
 	return (
 		<>

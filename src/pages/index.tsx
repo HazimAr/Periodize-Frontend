@@ -41,7 +41,6 @@ const Box = styled.div`
 		color: #52baff;
 	}
 `;
-// eslint-disable-next-line import/no-default-export
 export default function Home(): JSX.Element {
 	return (
 		<Container>

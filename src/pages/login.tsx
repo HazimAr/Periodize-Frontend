@@ -1,13 +1,9 @@
-import { getCookie } from "@lib/cookie";
-import { login, getProfileData } from "@api/auth";
-import { useEffect, useState } from "react";
-import styled from "styled-components";
+/* eslint-disable @typescript-eslint/no-floating-promises */
+import { login } from "@api/auth";
 import { StyledButton } from "@styles/index.theme";
+import { useState } from "react";
+import styled from "styled-components";
 
-const Forgot = styled.a`
-	color: #4141ff;
-	text-align: center;
-`;
 const Login = styled.div`
 	min-width: 300px;
 	max-width: 800px;
@@ -31,27 +27,9 @@ const Button = styled(StyledButton)`
 	width: 100%;
 `;
 
-const Error = styled.p`
-	color: red;
-	margin: 0;
-`;
-
-// eslint-disable-next-line import/no-default-export
-export default function loginPage(): JSX.Element {
+export default function LoginPage(): JSX.Element {
 	const [username, setUsername] = useState("");
 	const [password, setPassword] = useState("");
-	const [error, setError] = useState("");
-
-	useEffect(() => {
-		const sess = getCookie("sessionid");
-		if (sess !== null && sess !== "" && sess !== undefined) {
-			getProfileData().then((data2) => {
-				if (data2.blacklisted) {
-					window.location.href = "/blacklisted";
-				}
-			});
-		}
-	}, []);
 
 	return (
 		<>
@@ -63,6 +41,7 @@ export default function loginPage(): JSX.Element {
 						name="username"
 						id="username"
 						placeholder="Username"
+						aria-label="username"
 						value={username}
 						onChange={(e) => {
 							setUsername(e.target.value);
@@ -73,25 +52,22 @@ export default function loginPage(): JSX.Element {
 						type="password"
 						name="password"
 						id="password"
+						placeholder="Password"
+						aria-label="password"
 						value={password}
 						onChange={(e) => {
 							setPassword(e.target.value);
 						}}
-						placeholder="Password"
 						required
 					/>
-					<Error>{error}</Error>
 					<Button
 						onClick={(e) => {
 							e.preventDefault();
-							login(username, password).then((e) => {
-								setError(e.message)
-							});
+							login(username, password);
 						}}
 					>
 						Login
 					</Button>
-					<Forgot href="/forgot">Forgot password?</Forgot>
 				</Login>
 			</LoginOutside>
 		</>
