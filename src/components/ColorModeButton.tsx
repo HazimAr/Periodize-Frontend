@@ -14,7 +14,7 @@ export const ColorModeButton: React.FC<ColorModeButtonProps> = ({}) => {
 				aria-label="toggle darkmode"
 				variant="ghost"
 				icon={colorMode == "light" ? <MoonIcon /> : <SunIcon />}
-				mb={{ base: 6, sm: 0 }}
+				// mb={{ base: 6, sm: 0 }}
 				mr={{ base: 0, sm: 8 }}
 				_focus={{ outline: "none" }}
 				color="text.200"

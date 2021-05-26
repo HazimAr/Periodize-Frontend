@@ -1,11 +1,13 @@
-/* eslint-disable no-console */
-/* eslint-disable @typescript-eslint/no-floating-promises */
-import { login } from "@api/auth";
+// import { login } from "@api/auth";
+
+// import { login, getProfileData } from "@api/auth";
+
+import styled from "styled-components";
+
 import { StyledButton } from "@styles/index.theme";
 import { CLIENT_ID } from "config";
 import { useState } from "react";
 import { GoogleLogin } from "react-google-login";
-import styled from "styled-components";
 
 const Login = styled.div`
 	min-width: 300px;
@@ -76,10 +78,10 @@ export default function LoginPage(): JSX.Element {
 					clientId={CLIENT_ID}
 					buttonText="Login"
 					onSuccess={(response) => {
-						console.log(response)
+						console.log(response);
 					}}
 					onFailure={(response) => {
-						console.log(response)
+						console.log(response);
 					}}
 					cookiePolicy="single_host_origin"
 				/>

@@ -34,8 +34,6 @@ const theme = extendTheme({
 
 				color: props.colorMode === "dark" ? "text.200" : "black",
 				bg: mode("white", "bg.100")(props),
-
-				// bg: props.colorMode === "dark" ? "white" : "red.500"
 				lineHeight: "base",
 			},
 			a: {

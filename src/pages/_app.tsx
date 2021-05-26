@@ -6,9 +6,9 @@ import { META } from "config";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
-
+import { ChakraProvider } from "@chakra-ui/react";
 import type { AppProps } from "next/app";
-
+import theme from "../theme";
 // eslint-disable-next-line import/no-default-export
 export default function MyApp({ Component, pageProps }: AppProps): JSX.Element {
 	const router = useRouter();
@@ -23,17 +23,18 @@ export default function MyApp({ Component, pageProps }: AppProps): JSX.Element {
 	}, [router.events]);
 	return (
 		<>
-			<Head>
-				npm i --save-dev @types/next
-				<title>{META.title}</title>
-				<link rel="icon" href="/favicon.ico" />
-			</Head>
+			<ChakraProvider resetCSS theme={theme}>
+				<Head>
+					npm i --save-dev @types/next
+					<title>{META.title}</title>
+					<link rel="icon" href="/favicon.ico" />
+				</Head>
 
-			<Header />
+				<Header />
+				<Component {...pageProps} />
 
-			<Component {...pageProps} />
-
-			<Footer />
+				<Footer />
+			</ChakraProvider>
 		</>
 	);
 }

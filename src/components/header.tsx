@@ -1,5 +1,8 @@
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import styled from "styled-components";
+import Link from "@components/Link";
+import { Flex } from "@chakra-ui/layout";
+import { ColorModeButton } from "./ColorModeButton";
 
 const Header = styled.header`
 	background-color: #1a202c;
@@ -17,15 +20,18 @@ const StyledLink = styled.a`
 export default function Main(): JSX.Element {
 	return (
 		<Header>
-			<h2>NextJS Boilerplate</h2>
-			<div>
+			<h2>Periodize</h2>
+			<Flex>
+				<ColorModeButton />
+				<Link url="/login" name="login" />
+				<Link url="/register" name="register" />
 				<StyledLink aria-label="Github">
 					<FaGithub size="30px" />
 				</StyledLink>
 				<StyledLink aria-label="LinkedIn">
 					<FaLinkedin size="30px" />
 				</StyledLink>
-			</div>
+			</Flex>
 		</Header>
 	);
 }
