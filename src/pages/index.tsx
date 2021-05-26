@@ -9,8 +9,6 @@ import {
 } from "react-icons/si";
 import styled from "styled-components";
 
-import { NextJS } from "../components/icons";
-
 const Container = styled.main`
 	display: flex;
 	flex-direction: column;
@@ -61,7 +59,7 @@ export default function Home(): JSX.Element {
 					</p>
 				</Box>
 				<Box>
-					<NextJS />
+					
 					<h2>NextJS</h2>
 					<p>
 						This template uses NextJS, Jest, Eslint-Config-Galex,
