@@ -1,7 +1,10 @@
+/* eslint-disable no-console */
 /* eslint-disable @typescript-eslint/no-floating-promises */
 import { login } from "@api/auth";
 import { StyledButton } from "@styles/index.theme";
+import { CLIENT_ID } from "config";
 import { useState } from "react";
+import { GoogleLogin } from "react-google-login";
 import styled from "styled-components";
 
 const Login = styled.div`
@@ -69,6 +72,17 @@ export default function LoginPage(): JSX.Element {
 						Login
 					</Button>
 				</Login>
+				<GoogleLogin
+					clientId={CLIENT_ID}
+					buttonText="Login"
+					onSuccess={(response) => {
+						console.log(response)
+					}}
+					onFailure={(response) => {
+						console.log(response)
+					}}
+					cookiePolicy="single_host_origin"
+				/>
 			</LoginOutside>
 		</>
 	);

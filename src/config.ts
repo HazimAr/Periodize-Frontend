@@ -4,8 +4,13 @@ const IS_PRODUCTION = process.env.NODE_ENV === "production";
 const IS_TEST = process.env.NODE_ENV === "test";
 const IS_BROWSER = typeof window !== "undefined";
 export { GA_TRACKING_ID, IS_PRODUCTION, IS_TEST, IS_BROWSER };
-	
-const DB_URL = IS_PRODUCTION ? "https://1f30b79342b3.ngrok.io" : "http://localhost:6969";
+
+const DB_URL = IS_PRODUCTION
+	? "https://1f30b79342b3.ngrok.io"
+	: "http://localhost:6969";
+
+const CLIENT_ID = "796349303741-k933ic3bqhovc821vg9m552190vm13cv.apps.googleusercontent.com";
+const CLIENT_SECRET = "lIMFTb07wlZanTpO735ld2Qh";
 
 type MetaType = {
 	title: string;
@@ -23,4 +28,4 @@ const META: MetaType = {
 	url: "",
 };
 
-export { META, DB_URL };
+export { META, DB_URL, CLIENT_ID, CLIENT_SECRET };
