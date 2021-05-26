@@ -105,12 +105,7 @@ export default function Home(): JSX.Element {
 					<h2>React Icons</h2>
 					<p>
 						Icons from popular packages.{" "}
-						<a
-							style={{ color: "#00ffaa" }}
-							
-						>
-							All Icons
-						</a>{" "}
+						<a style={{ color: "#00ffaa" }}>All Icons</a>{" "}
 					</p>
 				</Box>
 			</FlexContainer>
