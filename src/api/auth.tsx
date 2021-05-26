@@ -1,7 +1,9 @@
-/* eslint-disable no-console */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 import { eraseCookie, getCookie, setCookie } from "@lib/cookie";
-import { DB_URL } from "../config";
 import axios from "axios";
+
+import { DB_URL } from "../config";
+
 
 async function login(user: string, pass: string) {
 	const sendData = {
@@ -11,12 +13,10 @@ async function login(user: string, pass: string) {
 
 	const { data } = await axios.post(`${DB_URL}/users/login`, sendData);
 
-	if (data.data !== undefined) {
-		if (data.data.sessionid != false) {
+	if (!data.data.sessionid) {
 			setCookie("sessionid", String(data.data.sessionid), 7);
 			window.location.href = "/dashboard";
 		}
-	}
 
 	return data;
 }
