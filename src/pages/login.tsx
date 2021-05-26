@@ -1,7 +1,4 @@
-// import { login } from "@api/auth";
-
-// import { login, getProfileData } from "@api/auth";
-
+import { login } from "@api/auth";
 import styled from "styled-components";
 
 import { StyledButton } from "@styles/index.theme";

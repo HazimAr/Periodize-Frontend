@@ -8,7 +8,7 @@ import { useRouter } from "next/router";
 import { useEffect } from "react";
 import { ChakraProvider } from "@chakra-ui/react";
 import type { AppProps } from "next/app";
-import theme from "../theme";
+import theme from "@styles/theme";
 // eslint-disable-next-line import/no-default-export
 export default function MyApp({ Component, pageProps }: AppProps): JSX.Element {
 	const router = useRouter();

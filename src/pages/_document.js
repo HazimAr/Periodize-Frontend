@@ -1,7 +1,7 @@
 import Document, { Html, Head, Main, NextScript } from "next/document";
 import { ServerStyleSheet } from "styled-components";
 
-import { GA_TRACKING_ID, META } from "../config.ts";
+import { GA_TRACKING_ID, META } from "@src/config";
 // eslint-disable-next-line import/no-default-export
 export default class MyDocument extends Document {
 	static async getInitialProps(ctx) {
@@ -61,7 +61,7 @@ export default class MyDocument extends Document {
 						src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`}
 					/>
 					<script
-						// eslint-disable-next-line react/no-danger
+						
 						dangerouslySetInnerHTML={{
 							__html: `
             window.dataLayer = window.dataLayer || [];
