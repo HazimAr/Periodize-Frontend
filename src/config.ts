@@ -5,7 +5,7 @@ const IS_TEST = process.env.NODE_ENV === "test";
 const IS_BROWSER = typeof window !== "undefined";
 export { GA_TRACKING_ID, IS_PRODUCTION, IS_TEST, IS_BROWSER };
 	
-const DB_URL = "https://google.com"
+const DB_URL = "https://1f30b79342b3.ngrok.io";
 
 type MetaType = {
 	title: string;
