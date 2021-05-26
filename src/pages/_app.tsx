@@ -6,8 +6,8 @@ import { META } from "config";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import React, { useEffect } from "react";
-import { ChakraProvider, Box, Flex, Container } from "@chakra-ui/react";
-import type { AppProps } from "next/app";
+import { ChakraProvider } from "@chakra-ui/react";
+import { AppProps, Container } from "next/app";
 import theme from "@styles/theme";
 // eslint-disable-next-line import/no-default-export
 export default function MyApp({ Component, pageProps }: AppProps): JSX.Element {
@@ -29,8 +29,10 @@ export default function MyApp({ Component, pageProps }: AppProps): JSX.Element {
 			</Head>
 			<ChakraProvider resetCSS theme={theme}>
 				<Header />
-				<Component {...pageProps} />
-				<Footer />{" "}
+				<Container>
+					<Component {...pageProps} />
+				</Container>
+				<Footer />
 			</ChakraProvider>
 		</>
 	);
