@@ -1,5 +1,6 @@
-import { useState, useEffect } from "react";
-
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+/* eslint-disable import/no-default-export */
+import { CopyIcon } from "@chakra-ui/icons";
 import {
   IconButton,
   Popover,
@@ -10,10 +11,10 @@ import {
   PopoverHeader,
   useClipboard,
 } from "@chakra-ui/react";
-import { CopyIcon } from "@chakra-ui/icons";
+import { useState } from "react";
 
-export const Copy = ({ url }) => {
-  const [value, setValue] = useState(url);
+export default function Copy(url: string ):JSX.Element {
+  const [value] = useState(url);
   const { hasCopied, onCopy } = useClipboard(value);
 
   return (
@@ -33,7 +34,7 @@ export const Copy = ({ url }) => {
           <PopoverCloseButton />
         </PopoverContent>
       ) : (
-        <></>
+        <div/>
       )}
     </Popover>
   );

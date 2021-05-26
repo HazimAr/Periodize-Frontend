@@ -1,6 +1,7 @@
+/* eslint-disable import/no-default-export */
 import { useColorMode, Switch } from '@chakra-ui/react'
 
-export const DarkModeSwitch = () => {
+export default function DarkModeSwitch(): JSX.Element {
   const { colorMode, toggleColorMode } = useColorMode()
   const isDark = colorMode === 'dark'
   return (
