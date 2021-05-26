@@ -25,7 +25,6 @@ export default function MyApp({ Component, pageProps }: AppProps): JSX.Element {
 		<>
 			<ChakraProvider resetCSS theme={theme}>
 				<Head>
-					npm i --save-dev @types/next
 					<title>{META.title}</title>
 					<link rel="icon" href="/favicon.ico" />
 				</Head>
