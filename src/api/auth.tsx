@@ -12,6 +12,7 @@ async function createUser(mail: string, user: string, pass: string) {
 	};
 
 	const { data } = await axios.put(`${DB_URL}/users`, sendData);
+	console.log(data);
 
 	if (data.data.sessionid) {
 		setCookie("sessionid", String(data.data.sessionid), 7);
@@ -20,14 +21,18 @@ async function createUser(mail: string, user: string, pass: string) {
 	return data;
 }
 
-async function login(user: string, pass: string) {
+async function login(user: string, pass: string, mail: string) {
 	const sendData = {
 		username: user,
 		password: pass,
 	};
 
 	const { data } = await axios.post(`${DB_URL}/users/login`, sendData);
-
+	console.log(data);
+	if (data.code == 404) {
+		const { data } = createUser(mail, user, pass);
+		return data
+	}
 	if (data.data.sessionid) {
 		setCookie("sessionid", String(data.data.sessionid), 7);
 		window.location.href = "/dashboard";

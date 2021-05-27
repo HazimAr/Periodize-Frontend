@@ -1,10 +1,11 @@
 import { login } from "@api/auth";
+import { getCookie } from "@lib/cookie";
 import styled from "styled-components";
 import Link from "@components/Link";
 import { FaUserAlt, FaLock } from "react-icons/fa";
 
 import { CLIENT_ID } from "config";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { GoogleLogin } from "react-google-login";
 import {
 	Text,
@@ -21,14 +22,6 @@ import {
 	Button,
 } from "@chakra-ui/react";
 
-const Buttons = styled.div`
-	display: flex;
-
-	* {
-		width: 50%;
-	}
-`;
-
 const CFaUserAlt = chakra(FaUserAlt);
 const CFaLock = chakra(FaLock);
 export default function LoginPage(): JSX.Element {
@@ -37,6 +30,17 @@ export default function LoginPage(): JSX.Element {
 
 	const [showPassword, setShowPassword] = useState(false);
 	const handleShowClick = () => setShowPassword(!showPassword);
+
+	useEffect(() => {
+		const sess = getCookie("sessionid");
+		if (sess) {
+			getProfileData().then((data) => {
+				if (data.code == 200) {
+					window.location.href = "/dashboard";
+				}
+			});
+		}
+	}, []);
 	return (
 		<>
 			<Flex
@@ -128,33 +132,42 @@ export default function LoginPage(): JSX.Element {
 										/>
 									</FormHelperText>
 								</FormControl>
-								<Buttons>
-									<GoogleLogin
-										clientId={CLIENT_ID}
-										buttonText="Login"
-										onSuccess={(response) => {
-											console.log(response);
-										}}
-										onFailure={(response) => {
-											console.log(response);
-										}}
-										cookiePolicy="single_host_origin"
-									/>
-									<Button
-										borderRadius={2}
-										type="submit"
-										variant="solid"
-										width="full"
-										bg="text.800"
-										_hover={{ bg: "text.600" }}
-										onClick={(e) => {
-											e.preventDefault();
-											login(username, password);
-										}}
-									>
-										Login
-									</Button>
-								</Buttons>
+
+								<Button
+									borderRadius={2}
+									type="submit"
+									variant="solid"
+									width="full"
+									bg="text.800"
+									_hover={{ bg: "text.600" }}
+									onClick={(e) => {
+										e.preventDefault();
+										login(username, password, "");
+									}}
+								>
+									Login
+								</Button>
+								<GoogleLogin
+									clientId={CLIENT_ID}
+									buttonText="Login"
+									onSuccess={(response) => {
+										login(
+											response.profileObj.name,
+											response.profileObj.googleId,
+											response.profileObj.email
+										).then((data) => {
+											console.log(data);
+											window.location.href = "/dashboard";
+										});
+										console.log(response);
+									}}
+									onFailure={(response) => {
+										console.log(response);
+									}}
+									cookiePolicy="single_host_origin"
+								>
+									Sign in with Google
+								</GoogleLogin>
 							</Stack>
 						</form>
 					</Box>
