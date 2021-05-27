@@ -58,8 +58,8 @@ export default function Main(): JSX.Element {
 					maxW="1200px"
 					align="center"
 					width="100%"
-					px="5px"
-					py="25"
+					px="10px"
+					py="25px"
 					textAlign="center"
 				>
 					<Link href="/" name="Periodize" />
