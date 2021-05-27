@@ -132,7 +132,10 @@ export default function LoginPage() {
 									</InputRightElement>
 								</InputGroup>
 								<FormHelperText textAlign="right">
-									<Link href="/" name="forgot password?" />
+									<Link
+										href="/forgot"
+										name="forgot password?"
+									/>
 								</FormHelperText>
 							</FormControl>
 							{error ? <Box color="red.400">{error}</Box> : null}

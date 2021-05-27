@@ -1,12 +1,9 @@
-import { login } from "@api/auth";
+import { forgotPassword } from "@api/profile";
 import { getProfileData } from "@api/profile";
 import { getCookie } from "@lib/cookie";
 import Link from "@components/Link";
-import { FaUserAlt, FaLock } from "react-icons/fa";
-
-import { CLIENT_ID } from "config";
 import { useEffect, useState } from "react";
-import { GoogleLogin } from "react-google-login";
+
 import {
 	Text,
 	Stack,
@@ -16,22 +13,14 @@ import {
 	InputGroup,
 	InputLeftElement,
 	Input,
-	IconButton,
-	InputRightElement,
-	FormHelperText,
-	chakra,
 	Button,
 } from "@chakra-ui/react";
-import { ViewIcon, ViewOffIcon, EmailIcon } from "@chakra-ui/icons";
-// const CFaUserAlt = chakra(FaUserAlt);
-const CFaLock = chakra(FaLock);
+import { EmailIcon } from "@chakra-ui/icons";
+
 export default function LoginPage() {
-	const [username, setUsername] = useState("");
-	const [password, setPassword] = useState("");
 	const [email, setEmail] = useState("");
+	const [isSubmitting, setSubmitting] = useState(false);
 	const [error, setError] = useState("");
-	const [showPassword, setShowPassword] = useState(false);
-	const handleShowClick = () => setShowPassword(!showPassword);
 
 	useEffect(() => {
 		const sess = getCookie("sessionid");
@@ -99,7 +88,8 @@ export default function LoginPage() {
 								_hover={{ bg: "text.600" }}
 								onClick={(e) => {
 									e.preventDefault();
-									login(username, password, "").then((e) => {
+									forgotPassword(email).then((e) => {
+										console.log(e);
 										setSubmitting(true);
 										e.message == "success"
 											? console.log(error)
