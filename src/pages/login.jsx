@@ -1,7 +1,6 @@
 import { login } from "@api/auth";
 import { getProfileData } from "@api/profile";
 import { getCookie } from "@lib/cookie";
-import styled from "styled-components";
 import Link from "@components/Link";
 import { FaUserAlt, FaLock } from "react-icons/fa";
 
@@ -25,7 +24,7 @@ import {
 
 const CFaUserAlt = chakra(FaUserAlt);
 const CFaLock = chakra(FaLock);
-export default function LoginPage(): JSX.Element {
+export default function LoginPage() {
 	const [username, setUsername] = useState("");
 	const [password, setPassword] = useState("");
 
