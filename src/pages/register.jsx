@@ -17,10 +17,15 @@ import {
 	FormHelperText,
 	chakra,
 	Button,
+<<<<<<< Updated upstream:src/pages/register.jsx
+=======
+	IconButton,
+	FormErrorMessage,
+>>>>>>> Stashed changes:src/pages/register.tsx
 } from "@chakra-ui/react";
 import { FaUserAlt, FaLock } from "react-icons/fa";
 
-import { EmailIcon } from "@chakra-ui/icons";
+import { EmailIcon, ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 const CFaUserAlt = chakra(FaUserAlt);
 const CFaLock = chakra(FaLock);
 
@@ -123,22 +128,31 @@ export default function LoginPage() {
 										required
 									/>
 									<InputRightElement width="4.5rem">
-										<Button
+										<IconButton
 											h="1.75rem"
 											size="sm"
 											onClick={handleShowClick}
-											bg="text.800"
-											_hover={{ bg: "text.600" }}
-										>
-											{showPassword ? "Hide" : "Show"}
-										</Button>
+											bg="transparent"
+											_focus={{ outline: "none" }}
+											outline="none"
+											m={0}
+											_hover={{ bg: "transparent" }}
+											icon={
+												showPassword ? (
+													<ViewOffIcon />
+												) : (
+													<ViewIcon />
+												)
+											}
+										/>
 									</InputRightElement>
 								</InputGroup>
 								<FormHelperText textAlign="right">
 									<Link href="/" name="forgot password?" />
 								</FormHelperText>
 							</FormControl>
-							<Box color="red.400">{error}</Box>
+							{error ? <Box color="red.400">{error}</Box> : null}
+
 							<Button
 								borderRadius={2}
 								type="submit"
