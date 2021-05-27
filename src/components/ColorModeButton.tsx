@@ -15,8 +15,8 @@ export default function ColorModeButton(): JSX.Element {
 				// mb={{ base: 6, sm: 0 }}
 				mr={{ base: 0, sm: 8 }}
 				_focus={{ outline: "none" }}
-				color="text.600"
 				outline="none"
+				color="text.600"
 				_hover={{
 					outline: "none",
 					bg: "transparent",

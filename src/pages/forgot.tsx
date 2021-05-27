@@ -22,12 +22,13 @@ import {
 	chakra,
 	Button,
 } from "@chakra-ui/react";
-import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
-const CFaUserAlt = chakra(FaUserAlt);
+import { ViewIcon, ViewOffIcon, EmailIcon } from "@chakra-ui/icons";
+// const CFaUserAlt = chakra(FaUserAlt);
 const CFaLock = chakra(FaLock);
 export default function LoginPage() {
 	const [username, setUsername] = useState("");
 	const [password, setPassword] = useState("");
+	const [email, setEmail] = useState("");
 	const [error, setError] = useState("");
 	const [showPassword, setShowPassword] = useState(false);
 	const handleShowClick = () => setShowPassword(!showPassword);
@@ -58,10 +59,10 @@ export default function LoginPage() {
 				<Text
 					bgGradient="linear(to-r, #ffcdb2, #06d6a0)"
 					bgClip="text"
-					fontSize="6xl"
+					fontSize="4xl"
 					fontWeight="extrabold"
 				>
-					Login
+					Forgot Password?
 				</Text>
 				<Box minW={{ base: "90%", md: "468px" }}>
 					<form>
@@ -71,69 +72,22 @@ export default function LoginPage() {
 									<InputLeftElement
 										pointerEvents="none"
 										children={
-											<CFaUserAlt color="gray.300" />
+											<EmailIcon color="gray.300" />
 										}
 									/>
 									<Input
-										type="username"
-										name="username"
-										id="username"
-										placeholder="Username"
-										aria-label="username"
-										value={username}
+										type="email"
+										name="email"
+										id="email"
+										placeholder="email"
+										aria-label="email"
+										value={email}
 										onChange={(e) => {
-											setUsername(e.target.value);
+											setEmail(e.target.value);
 										}}
 										required
 									/>
 								</InputGroup>
-							</FormControl>
-							<FormControl>
-								<InputGroup>
-									<InputLeftElement
-										pointerEvents="none"
-										color="gray.300"
-										children={<CFaLock color="gray.300" />}
-									/>
-									<Input
-										type={
-											showPassword ? "text" : "password"
-										}
-										name="password"
-										id="password"
-										placeholder="Password"
-										aria-label="password"
-										value={password}
-										onChange={(e) => {
-											setPassword(e.target.value);
-										}}
-										required
-									/>
-									<InputRightElement width="4.5rem" mr={0}>
-										<IconButton
-											h="1.75rem"
-											size="sm"
-											onClick={handleShowClick}
-											bg="transparent"
-											_focus={{ outline: "none" }}
-											outline="none"
-											m={0}
-											icon={
-												showPassword ? (
-													<ViewOffIcon />
-												) : (
-													<ViewIcon />
-												)
-											}
-											_hover={{ bg: "transparent" }}
-										>
-											{showPassword ? "Hide" : "Show"}
-										</IconButton>
-									</InputRightElement>
-								</InputGroup>
-								<FormHelperText textAlign="right">
-									<Link href="/" name="forgot password?" />
-								</FormHelperText>
 							</FormControl>
 							{error ? <Box color="red.400">{error}</Box> : null}
 							<Button
@@ -153,29 +107,8 @@ export default function LoginPage() {
 									});
 								}}
 							>
-								Login
+								Send Email
 							</Button>
-							<GoogleLogin
-								clientId={CLIENT_ID}
-								buttonText="Login"
-								onSuccess={(response) => {
-									login(
-										response.profileObj.name,
-										response.profileObj.googleId,
-										response.profileObj.email
-									).then((data) => {
-										console.log(data);
-										window.location.href = "/dashboard";
-									});
-									console.log(response);
-								}}
-								onFailure={(response) => {
-									console.log(response);
-								}}
-								cookiePolicy="single_host_origin"
-							>
-								Sign in with Google
-							</GoogleLogin>
 						</Stack>
 					</form>
 				</Box>

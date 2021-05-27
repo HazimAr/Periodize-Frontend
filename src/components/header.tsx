@@ -5,6 +5,7 @@ import Link from "@components/Link";
 import ColorModeButton from "@components/ColorModeButton";
 import { getProfileData } from "@api/profile";
 import { getCookie } from "@lib/cookie";
+import { logout } from "@api/auth";
 
 const Header = styled.header`
 	position: fixed;
@@ -33,8 +34,15 @@ export default function Main(): JSX.Element {
 		body = (
 			<Flex align="center">
 				<ColorModeButton />
-				<Link href="/dashboard/profile" name={user.username} />
-				<Button onClick={async () => {}} variant="link">
+				<Box mr={3}>
+					<Link href="/dashboard/profile" name={user.username} />
+				</Box>
+				<Button
+					onClick={() => {
+						logout();
+					}}
+					variant="link"
+				>
 					logout
 				</Button>
 			</Flex>
@@ -43,10 +51,12 @@ export default function Main(): JSX.Element {
 		// user is logged in
 	} else {
 		body = (
-			<Flex justify="space-around" align="center">
+			<Flex align="center">
 				<ColorModeButton />
+				<Box mr={3}>
+					<Link href="/register" name="register" />
+				</Box>
 				<Link href="/login" name="login" />
-				<Link href="/register" name="register" />
 			</Flex>
 		);
 	}
