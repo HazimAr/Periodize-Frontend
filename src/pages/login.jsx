@@ -165,7 +165,7 @@ export default function LoginPage() {
 				</Box>
 			</Stack>
 			<Box>
-				<Link href="/" name="	New to us? Sign Up" />
+				<Link href="/" name="New to us? Sign Up" />
 			</Box>
 		</Flex>
 	);
