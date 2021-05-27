@@ -17,20 +17,6 @@ export default function Main(): JSX.Element {
 	return (
 		<Box h="110px">
 			<Header>
-				{/* <HeaderInside>
-				<Link href="/">
-					<a>
-						<h2>Revival</h2>
-					</a>
-				</Link>
-				<Nav>
-					<ul>
-						<li>
-							<Link href="/dashboard">login</Link>
-						</li>
-					</ul>
-				</Nav>
-			</HeaderInside> */}
 				<Flex
 					maxW="1200px"
 					align="center"

@@ -1,8 +1,8 @@
 import { login } from "@api/auth";
 import styled from "styled-components";
 import Link from "@components/Link";
+import { FaUserAlt, FaLock } from "react-icons/fa";
 
-import { StyledButton } from "@styles/index.theme";
 import { CLIENT_ID } from "config";
 import { useState } from "react";
 import { GoogleLogin } from "react-google-login";
@@ -10,7 +10,6 @@ import {
 	Text,
 	Stack,
 	Flex,
-	Heading,
 	Box,
 	FormControl,
 	InputGroup,
@@ -21,29 +20,14 @@ import {
 	chakra,
 	Button,
 } from "@chakra-ui/react";
-const Login = styled.div`
-	min-width: 300px;
-	max-width: 800px;
+
+const Buttons = styled.div`
 	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-	margin: 0;
-	input {
-		margin: 10px 0;
+
+	* {
+		width: 50%;
 	}
 `;
-
-const LoginOutside = styled.div`
-	display: flex;
-	justify-content: center;
-	align-items: center;
-`;
-
-// const Button = styled(StyledButton)`
-// 	width: 100%;
-// `;
-import { FaUserAlt, FaLock } from "react-icons/fa";
 
 const CFaUserAlt = chakra(FaUserAlt);
 const CFaLock = chakra(FaLock);
@@ -58,7 +42,6 @@ export default function LoginPage(): JSX.Element {
 			<Flex
 				flexDirection="column"
 				width="100wh"
-				// height="100vh"
 				justifyContent="center"
 				alignItems="center"
 			>
@@ -88,8 +71,16 @@ export default function LoginPage(): JSX.Element {
 											}
 										/>
 										<Input
-											type="email"
-											placeholder="email address"
+											type="username"
+											name="username"
+											id="username"
+											placeholder="Username"
+											aria-label="username"
+											value={username}
+											onChange={(e) => {
+												setUsername(e.target.value);
+											}}
+											required
 										/>
 									</InputGroup>
 								</FormControl>
@@ -108,7 +99,15 @@ export default function LoginPage(): JSX.Element {
 													? "text"
 													: "password"
 											}
+											name="password"
+											id="password"
 											placeholder="Password"
+											aria-label="password"
+											value={password}
+											onChange={(e) => {
+												setPassword(e.target.value);
+											}}
+											required
 										/>
 										<InputRightElement width="4.5rem">
 											<Button
@@ -129,16 +128,33 @@ export default function LoginPage(): JSX.Element {
 										/>
 									</FormHelperText>
 								</FormControl>
-								<Button
-									borderRadius={6}
-									type="submit"
-									variant="solid"
-									width="full"
-									bg="text.800"
-									_hover={{ bg: "text.600" }}
-								>
-									Login
-								</Button>
+								<Buttons>
+									<GoogleLogin
+										clientId={CLIENT_ID}
+										buttonText="Login"
+										onSuccess={(response) => {
+											console.log(response);
+										}}
+										onFailure={(response) => {
+											console.log(response);
+										}}
+										cookiePolicy="single_host_origin"
+									/>
+									<Button
+										borderRadius={2}
+										type="submit"
+										variant="solid"
+										width="full"
+										bg="text.800"
+										_hover={{ bg: "text.600" }}
+										onClick={(e) => {
+											e.preventDefault();
+											login(username, password);
+										}}
+									>
+										Login
+									</Button>
+								</Buttons>
 							</Stack>
 						</form>
 					</Box>
@@ -147,53 +163,6 @@ export default function LoginPage(): JSX.Element {
 					<Link href="/" name="	New to us? Sign Up" />
 				</Box>
 			</Flex>
-			{/* <LoginOutside>
-				<Login>
-					<input
-						type="username"
-						name="username"
-						id="username"
-						placeholder="Username"
-						aria-label="username"
-						value={username}
-						onChange={(e) => {
-							setUsername(e.target.value);
-						}}
-						required
-					/>
-					<input
-						type="password"
-						name="password"
-						id="password"
-						placeholder="Password"
-						aria-label="password"
-						value={password}
-						onChange={(e) => {
-							setPassword(e.target.value);
-						}}
-						required
-					/>
-					<Button
-						onClick={(e) => {
-							e.preventDefault();
-							login(username, password);
-						}}
-					>
-						Login
-					</Button>
-				</Login>
-				<GoogleLogin
-					clientId={CLIENT_ID}
-					buttonText="Login"
-					onSuccess={(response) => {
-						console.log(response);
-					}}
-					onFailure={(response) => {
-						console.log(response);
-					}}
-					cookiePolicy="single_host_origin"
-				/>
-			</LoginOutside> */}
 		</>
 	);
 }
