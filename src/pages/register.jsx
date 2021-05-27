@@ -160,7 +160,7 @@ export default function LoginPage() {
 								onClick={(e) => {
 									e.preventDefault();
 									if (Filter.isProfane(username)) {
-										//tell user username is bad
+										setError("That username is not allowed");
 										return;
 									}
 									createUser(email, username, password).then(
