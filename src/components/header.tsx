@@ -32,6 +32,7 @@ export default function Main(): JSX.Element {
 	if (user) {
 		body = (
 			<Flex align="center">
+				<ColorModeButton />
 				<Link href="/dashboard/profile" name={user.username} />
 				<Button onClick={async () => {}} variant="link">
 					logout
@@ -43,6 +44,7 @@ export default function Main(): JSX.Element {
 	} else {
 		body = (
 			<Flex justify="space-around" align="center">
+				<ColorModeButton />
 				<Link href="/login" name="login" />
 				<Link href="/register" name="register" />
 			</Flex>
