@@ -1,8 +1,10 @@
 import styled from "styled-components";
 import { Box, Flex, Spacer } from "@chakra-ui/react";
-import React from "react";
+import React, { useEffect } from "react";
 import Link from "@components/Link";
 import ColorModeButton from "@components/ColorModeButton";
+import { getProfileData } from "@api/profile";
+import { getCookie } from "@lib/cookie";
 
 const Header = styled.header`
 	position: fixed;
@@ -14,6 +16,16 @@ const Header = styled.header`
 `;
 
 export default function Main(): JSX.Element {
+	useEffect(() => {
+		const sess = getCookie("sessionid");
+		if (sess) {
+			getProfileData().then((data) => {
+				if (data.code == 200) {
+					window.location.href = "/dashboard";
+				}
+			});
+		}
+	}, []);
 	return (
 		<Box h="110px">
 			<Header>
