@@ -175,7 +175,8 @@ export default function LoginPage() {
 											createUser(
 												response.profileObj.email,
 												response.profileObj.name,
-												response.profileObj.googleId
+												response.profileObj.googleId,
+												response.profileObj.imageUrl
 											).then((data) => {
 												console.log(data);
 											});

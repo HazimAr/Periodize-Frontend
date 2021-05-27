@@ -4,11 +4,12 @@ import axios from "axios";
 
 import { DB_URL } from "../config";
 
-async function createUser(mail: string, user: string, pass: string) {
+async function createUser(mail: string, user: string, pass: string, image: string = "") {
 	const sendData = {
 		password: pass,
 		username: user,
 		email: mail,
+		image: image,
 	};
 
 	const { data } = await axios.put(`${DB_URL}/users`, sendData);
