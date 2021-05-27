@@ -39,6 +39,7 @@
 		"@babel/preset-typescript": "^7.13.0",
 		"@types/babel__core": "^7.1.14",
 		"@types/jest": "^26.0.23",
+		"@types/mailgun-js": "^0.22.11",
 		"@types/next": "^9.0.0",
 		"@types/node": "^15.6.1",
 		"@types/react": "^17.0.8",

@@ -28,6 +28,7 @@ const CFaLock = chakra(FaLock);
 export default function LoginPage() {
 	const [username, setUsername] = useState("");
 	const [password, setPassword] = useState("");
+	const [isSubmitting, setSubmitting] = useState(false);
 	const [error, setError] = useState("");
 	const [showPassword, setShowPassword] = useState(false);
 	const handleShowClick = () => setShowPassword(!showPassword);
@@ -111,6 +112,7 @@ export default function LoginPage() {
 									/>
 									<InputRightElement width="4.5rem" mr={0}>
 										<IconButton
+											aria-label="Show Password"
 											h="1.75rem"
 											size="sm"
 											onClick={handleShowClick}
@@ -146,6 +148,7 @@ export default function LoginPage() {
 								width="full"
 								bg="text.800"
 								_hover={{ bg: "text.600" }}
+								isLoading={isSubmitting}
 								onClick={(e) => {
 									e.preventDefault();
 									login(username, password, "").then((e) => {

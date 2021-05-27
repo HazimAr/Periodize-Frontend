@@ -1,18 +1,16 @@
 import mailgun from "mailgun-js";
 import type { NextApiRequest, NextApiResponse } from "next";
 
-
 const DOMAIN = "mail.periodize.org";
 
 const API_KEY = process.env.API_KEY || "";
 const mg = mailgun({ apiKey: API_KEY, domain: DOMAIN });
 
 type Data = {
-	name: string;
-	phone: string;
 	email: string;
 	subject: string;
 	message: string;
+	link: string;
 };
 
 export default function Email(
@@ -21,25 +19,17 @@ export default function Email(
 ): NextApiResponse {
 	if (req.method === "POST") {
 		const body: Data = {
-			name: req.body.name,
-			phone: req.body.phone,
 			email: req.body.email,
 			subject: req.body.subject,
 			message: req.body.message,
+			link: req.body.link,
 		};
 
 		const data = {
-			from: `${body.name} <${body.email}>`,
-			to: `USERS EMAIL GOES HERE,`,
+			from: `forgot@periodize.org`,
+			to: `${body.email}`,
 			subject: `${body.subject}`,
 			text: `
-            name: ${body.name}
-            phone: ${body.phone}
-            email: ${body.email}
-            subject: ${body.subject}
-
-            message: 
-
             ${body.message}
             `,
 		};
