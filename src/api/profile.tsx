@@ -2,7 +2,7 @@
 import { getCookie } from "@lib/cookie";
 import axios from "axios";
 
-import { DB_URL } from "@src/config";
+import { DB_URL } from "../config";
 
 async function getProfileData() {
 	const sendData = {
