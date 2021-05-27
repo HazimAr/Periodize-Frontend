@@ -21,7 +21,7 @@ async function createUser(mail: string, user: string, pass: string) {
 	return data;
 }
 
-async function login(user: string, pass: string, mail: string) {
+async function login(user: string, pass: string) {
 	const sendData = {
 		username: user,
 		password: pass,
@@ -29,10 +29,6 @@ async function login(user: string, pass: string, mail: string) {
 
 	const { data } = await axios.post(`${DB_URL}/users/login`, sendData);
 	console.log(data);
-	if (data.code == 404) {
-		const data = createUser(mail, user, pass);
-		return data;
-	}
 	if (data.data) {
 		setCookie("sessionid", String(data.data.sessionid), 7);
 		window.location.href = "/dashboard";

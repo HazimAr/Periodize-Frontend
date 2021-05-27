@@ -176,10 +176,18 @@ export default function LoginPage() {
 								onSuccess={(response) => {
 									login(
 										response.profileObj.name,
-										response.profileObj.googleId,
-										response.profileObj.email
+										response.profileObj.googleId
 									).then((data) => {
 										console.log(data);
+										if (data.code == 404) {
+											createUser(
+												response.profileObj.email,
+												response.profileObj.name,
+												response.profileObj.googleId
+											).then((data) => {
+												console.log(data);
+											});
+										}
 										window.location.href = "/dashboard";
 									});
 									console.log(response);

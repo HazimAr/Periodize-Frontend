@@ -1,4 +1,4 @@
-import { login } from "@api/auth";
+import { createUser, login } from "@api/auth";
 import { getProfileData } from "@api/profile";
 import { getCookie } from "@lib/cookie";
 import Link from "@components/Link";
@@ -151,7 +151,7 @@ export default function LoginPage() {
 								isLoading={isSubmitting}
 								onClick={(e) => {
 									e.preventDefault();
-									login(username, password, "").then((e) => {
+									login(username, password).then((e) => {
 										setSubmitting(true);
 										e.message == "success"
 											? console.log(error)
@@ -165,12 +165,21 @@ export default function LoginPage() {
 								clientId={CLIENT_ID}
 								buttonText="Login"
 								onSuccess={(response) => {
+									console.log(response)
 									login(
 										response.profileObj.name,
-										response.profileObj.googleId,
-										response.profileObj.email
+										response.profileObj.googleId
 									).then((data) => {
 										console.log(data);
+										if (data.code == 404) {
+											createUser(
+												response.profileObj.email,
+												response.profileObj.name,
+												response.profileObj.googleId
+											).then((data) => {
+												console.log(data);
+											});
+										}
 										window.location.href = "/dashboard";
 									});
 									console.log(response);
