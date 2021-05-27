@@ -23,18 +23,18 @@ async function forgotPassword(email: string) {
 }
 
 async function verifyEmail(email: string) {
-	const VAL_API_KEY = process.env.VAL_API_KEY || "";
+	// const VAL_API_KEY = process.env.VAL_API_KEY || "";
 
 	const sendData = {
 		address: email,
 	};
-	const sendHeaders = {
-		Authorization: VAL_API_KEY,
-	};
+	// const sendHeaders = {
+	// 	Authorization: VAL_API_KEY,
+	// };
 	const { data } = await axios.post(
 		"https://api.mailgun.net/v4/address/validate",
 		sendData,
-		sendHeaders
+		// sendHeaders
 	);
 	console.log(data);
 	return data;
