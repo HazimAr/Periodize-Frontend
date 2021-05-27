@@ -20,6 +20,7 @@ import {
 	IconButton,
 } from "@chakra-ui/react";
 import { FaUserAlt, FaLock } from "react-icons/fa";
+import Filter from "bad-words";
 
 import { EmailIcon, ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 const CFaUserAlt = chakra(FaUserAlt);
@@ -158,6 +159,10 @@ export default function LoginPage() {
 								isLoading={isSubmitting}
 								onClick={(e) => {
 									e.preventDefault();
+									if (Filter.isProfane(username)) {
+										//tell user username is bad
+										return;
+									}
 									createUser(email, username, password).then(
 										(e) => {
 											setSubmitting(true);
