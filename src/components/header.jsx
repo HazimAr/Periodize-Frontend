@@ -16,7 +16,7 @@ const Header = styled.header`
 	z-index: 100;
 `;
 
-export default function Main(): JSX.Element {
+export default function Main() {
 	const [user, setUser] = useState();
 	useEffect(() => {
 		const sess = getCookie("sessionid");

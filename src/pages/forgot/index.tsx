@@ -97,7 +97,7 @@ export default function LoginPage() {
 									});
 								}}
 							>
-								Send Email
+								Send Email{isSubmitting}
 							</Button>
 						</Stack>
 					</form>

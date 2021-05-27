@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-floating-promises */
-import { createUser } from "@api/auth";
+import { createUser, login } from "@api/auth";
 import { useState } from "react";
 import Link from "@components/Link";
 import { GoogleLogin } from "react-google-login";
@@ -17,7 +17,6 @@ import {
 	FormHelperText,
 	chakra,
 	Button,
-	FormErrorMessage,
 } from "@chakra-ui/react";
 import { FaUserAlt, FaLock } from "react-icons/fa";
 
@@ -25,7 +24,7 @@ import { EmailIcon } from "@chakra-ui/icons";
 const CFaUserAlt = chakra(FaUserAlt);
 const CFaLock = chakra(FaLock);
 
-export default function LoginPage(): JSX.Element {
+export default function LoginPage() {
 	const [username, setUsername] = useState("");
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");

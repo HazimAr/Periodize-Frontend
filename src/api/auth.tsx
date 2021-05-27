@@ -45,7 +45,7 @@ async function logout() {
 	const sendData = {
 		sessionid: getCookie("sessionid"),
 	};
-	const { data } = await axios.delete(`${DB_URL}/users/logout`, sendData);
+	const { data } = await axios.post(`${DB_URL}/users/logout`, sendData);
 	eraseCookie("sessionid");
 	window.location.href = "/";
 	return data;
