@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import { Box, Flex, Spacer } from "@chakra-ui/react";
-import React, { useEffect } from "react";
+import { Box, Flex, Spacer, Button } from "@chakra-ui/react";
+import React, { useEffect, useState } from "react";
 import Link from "@components/Link";
 import ColorModeButton from "@components/ColorModeButton";
 import { getProfileData } from "@api/profile";
@@ -16,16 +16,39 @@ const Header = styled.header`
 `;
 
 export default function Main(): JSX.Element {
+	const [user, setUser] = useState();
 	useEffect(() => {
 		const sess = getCookie("sessionid");
 		if (sess) {
 			getProfileData().then((data) => {
 				if (data.code == 200) {
-					window.location.href = "/dashboard";
+					setUser(data.data);
 				}
 			});
 		}
 	}, []);
+
+	let body = null;
+	if (user) {
+		body = (
+			<Flex align="center">
+				<Link href="/dashboard/profile" name={user.username} />
+				<Button onClick={async () => {}} variant="link">
+					logout
+				</Button>
+			</Flex>
+		);
+
+		// user is logged in
+	} else {
+		body = (
+			<Flex justify="space-around" align="center">
+				<Link href="/login" name="login" />
+				<Link href="/register" name="register" />
+			</Flex>
+		);
+	}
+
 	return (
 		<Box h="110px">
 			<Header>
@@ -39,10 +62,8 @@ export default function Main(): JSX.Element {
 				>
 					<Link href="/" name="Periodize" />
 					<Spacer />
-					<Flex align="center">
-						<ColorModeButton />
-						<Link href="/login" name="login" />
-					</Flex>
+
+					{body}
 				</Flex>
 			</Header>
 		</Box>
