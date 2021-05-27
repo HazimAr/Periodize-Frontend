@@ -20,13 +20,14 @@ import {
 	IconButton,
 } from "@chakra-ui/react";
 import { FaUserAlt, FaLock } from "react-icons/fa";
-import Filter from "bad-words";
-
+// import { Filter } from "bad-words";
 import { EmailIcon, ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 const CFaUserAlt = chakra(FaUserAlt);
 const CFaLock = chakra(FaLock);
 
 export default function LoginPage() {
+	var Filter = require("bad-words"),
+		filter = new Filter();
 	const [username, setUsername] = useState("");
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
@@ -159,8 +160,10 @@ export default function LoginPage() {
 								isLoading={isSubmitting}
 								onClick={(e) => {
 									e.preventDefault();
-									if (Filter.isProfane(username)) {
-										setError("That username is not allowed");
+									if (filter.isProfane(username)) {
+										setError(
+											"That username is not allowed"
+										);
 										return;
 									}
 									createUser(email, username, password).then(
