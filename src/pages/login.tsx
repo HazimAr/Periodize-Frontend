@@ -1,7 +1,6 @@
 import { login } from "@api/auth";
 import { getProfileData } from "@api/profile";
 import { getCookie } from "@lib/cookie";
-import styled from "styled-components";
 import Link from "@components/Link";
 import { FaUserAlt, FaLock } from "react-icons/fa";
 
