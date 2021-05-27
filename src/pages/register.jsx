@@ -26,7 +26,7 @@ const CFaUserAlt = chakra(FaUserAlt);
 const CFaLock = chakra(FaLock);
 
 export default function LoginPage() {
-	var Filter = require("bad-words"),
+	const Filter = require("bad-words"),
 		filter = new Filter();
 	const [username, setUsername] = useState("");
 	const [email, setEmail] = useState("");
