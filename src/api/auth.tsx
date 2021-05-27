@@ -30,8 +30,8 @@ async function login(user: string, pass: string, mail: string) {
 	const { data } = await axios.post(`${DB_URL}/users/login`, sendData);
 	console.log(data);
 	if (data.code == 404) {
-		const { data } = createUser(mail, user, pass);
-		return data
+		const data = createUser(mail, user, pass);
+		return data;
 	}
 	if (data.data.sessionid) {
 		setCookie("sessionid", String(data.data.sessionid), 7);
