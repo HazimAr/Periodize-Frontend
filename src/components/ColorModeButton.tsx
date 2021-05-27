@@ -3,9 +3,7 @@ import { SunIcon, MoonIcon } from "@chakra-ui/icons";
 import { useColorMode, IconButton } from "@chakra-ui/react";
 import React from "react";
 
-type ColorModeButtonProps = {};
-
-export const ColorModeButton: React.FC<ColorModeButtonProps> = ({}) => {
+export default function ColorModeButton(): JSX.Element {
 	const { colorMode, toggleColorMode } = useColorMode();
 	return (
 		<header>
@@ -17,8 +15,14 @@ export const ColorModeButton: React.FC<ColorModeButtonProps> = ({}) => {
 				// mb={{ base: 6, sm: 0 }}
 				mr={{ base: 0, sm: 8 }}
 				_focus={{ outline: "none" }}
-				color="text.200"
+				color="text.600"
+				outline="none"
+				_hover={{
+					outline: "none",
+					bg: "transparent",
+					color: "text.400",
+				}}
 			/>
 		</header>
 	);
-};
+}

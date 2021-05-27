@@ -18,11 +18,27 @@ const theme = extendTheme({
 			200: "#1F2833",
 		},
 		text: {
-			100: "#C5C6C7",
-			200: "#66FCF1",
-			300: "#45A29E",
-			400: "#116466",
+			100: "#06d6a0",
+			200: " #d8f3dcff",
+			300: "#b7e4c7ff",
+			400: "#95d5b2ff",
+			500: "#74c69dff",
+			600: "#52b788ff",
+			700: "#40916cff",
+			800: "#1b4332ff",
+			900: "#081c15ff",
 		},
+
+		///* CSS HEX */
+		// --nyanza: #d8f3dcff;
+		// --turquoise-green: #b7e4c7ff;
+		// --turquoise-green-2: #95d5b2ff;
+		// --ocean-green: #74c69dff;
+		// --ocean-green-2: #52b788ff;
+		// --illuminating-emerald: ;
+		// --bottle-green: #2d6a4fff;
+		// --brunswick-green: #1b4332ff;
+		// --dark-jungle-green: #081c15ff;
 	},
 	styles: {
 		global: (props) => ({
@@ -32,12 +48,12 @@ const theme = extendTheme({
 			body: {
 				fontFamily: "body",
 
-				color: props.colorMode === "dark" ? "text.200" : "black",
+				color: props.colorMode === "dark" ? "text.400" : "black",
 				bg: mode("white", "bg.100")(props),
 				lineHeight: "base",
 			},
 			a: {
-				color: props.colorMode === "dark" ? "text.200" : "black",
+				color: props.colorMode === "dark" ? "text.400" : "black",
 			},
 		}),
 	},
