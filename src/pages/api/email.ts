@@ -28,7 +28,7 @@ export default function ForgotPassword(
 			template: "password",
 			"h:X-Mailgun-Variables": JSON.stringify({ link: body.link }),
 		};
-		// eslint-disable-next-line no-void
+		
 		void mg.messages().send(data, (_error, body) => {
 			res.status(200).json({ detail: body.message });
 		});
