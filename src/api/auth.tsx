@@ -4,7 +4,7 @@ import axios from "axios";
 
 import { DB_URL } from "../config";
 
-async function createUser(mail: string, user: string, pass: string, image: string = "") {
+async function createUser(mail: string, user: string, pass: string, image: any = null) {
 	const sendData = {
 		password: pass,
 		username: user,
