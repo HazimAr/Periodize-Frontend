@@ -11,7 +11,7 @@ export const linkStyles = {
 	sizes: {},
 	// styles for different visual variants ("outline", "solid")
 	variants: {
-		primary: (props: any) => ({
+		primary: () => ({
 			_hover: {
 				color: mode(darken("primary", 40), whiten("primary", 40)),
 			},

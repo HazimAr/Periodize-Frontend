@@ -2,8 +2,7 @@ import { extendTheme } from "@chakra-ui/react";
 import {
 	createBreakpoints,
 	mode,
-	whiten,
-	darken,
+
 } from "@chakra-ui/theme-tools";
 import { linkStyles as Link } from "@styles/linkstyles";
 const fonts = { mono: `'Menlo', monospace` };
