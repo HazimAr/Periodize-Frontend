@@ -9,11 +9,10 @@ const mg = mailgun({ apiKey: API_KEY, domain: DOMAIN });
 type Data = {
 	email: string;
 	subject: string;
-	message: string;
 	link: string;
 };
 
-export default function Email(
+export default function ForgotPassword(
 	req: NextApiRequest,
 	res: NextApiResponse
 ): NextApiResponse {
@@ -21,7 +20,6 @@ export default function Email(
 		const body: Data = {
 			email: req.body.email,
 			subject: "Periodize Account Password Reset",
-			message: req.body.message,
 			link: req.body.link,
 		};
 
