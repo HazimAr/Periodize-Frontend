@@ -1,4 +1,4 @@
-import { Flex, Box } from "@chakra-ui/react";
+import { Flex, Box, Text } from "@chakra-ui/react";
 
 export default function Hero(props: any): JSX.Element {
 	return (
@@ -10,7 +10,16 @@ export default function Hero(props: any): JSX.Element {
 			width="100%"
 			{...props}
 		>
-			<Flex width="100%" bg="tomato"></Flex>
+			<Flex width="100%" height="50vh" bg="tomato">
+				<Flex flexDir="column" width="100%">
+					<Text>Who We Are</Text>
+					<Text>Periodize is the next generation way of </Text>
+				</Flex>
+				<Flex flexDir="column" width="100%">
+					<Text>Who We Are</Text>
+					<Text>Who We Are</Text>
+				</Flex>
+			</Flex>
 		</Flex>
 	);
 }
