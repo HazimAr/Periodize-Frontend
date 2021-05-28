@@ -1,6 +1,5 @@
 import "@styles/global.css";
-import Footer from "@components/home/foot";
-import Header from "@components/header";
+
 import { pageview } from "@lib/gtag";
 import { META } from "config";
 import Head from "next/head";
