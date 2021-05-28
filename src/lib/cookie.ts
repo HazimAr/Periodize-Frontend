@@ -27,4 +27,14 @@ function eraseCookie(name: string) {
 	document.cookie = `${name}=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;`;
 }
 
-export { setCookie, getCookie, eraseCookie };
+function getParameterByName(name: string) {
+	const url = window.location.href;
+	name = name.replace(/[\[\]]/g, "\\$&");
+	var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+		results = regex.exec(url);
+	if (!results) return null;
+	if (!results[2]) return "";
+	return decodeURIComponent(results[2].replace(/\+/g, " "));
+}
+
+export { setCookie, getCookie, eraseCookie, getParameterByName };

@@ -1,5 +1,6 @@
 import mailgun from "mailgun-js";
 import type { NextApiRequest, NextApiResponse } from "next";
+import { forgotPassword } from "@api/profile";
 
 const DOMAIN = "mail.periodize.org";
 
@@ -16,16 +17,18 @@ export default function ForgotPassword(
 	res: NextApiResponse
 ): NextApiResponse {
 	if (req.method === "POST") {
-		const body: Data = {
-			email: req.body.email,
-			link: req.body.link,
-		};
+		forgotPassword(req.body.email).then((user) => {
+			const uuid = user.uuid;
+			const body: Data = {
+				email: req.body.email,
+				link: `https://periodize.org/forgot?id=${uuid}`,
+			};
 
-		const data = {
-			from: `Periodize <accounts@periodize.org>`,
-			to: `${body.email}`,
-			subject: `Periodize Account Password Reset`,
-			html: `<html
+			const data = {
+				from: `Periodize <accounts@periodize.org>`,
+				to: `${body.email}`,
+				subject: `Periodize Account Password Reset`,
+				html: `<html
   xmlns="http://www.w3.org/1999/xhtml"
   xmlns:v="urn:schemas-microsoft-com:vml"
   xmlns:o="urn:schemas-microsoft-com:office:office"
@@ -901,14 +904,15 @@ export default function ForgotPassword(
   </body>
 </html>
 `,
-			// template: "password",
-			// "h:X-Mailgun-Variables": JSON.stringify({ link: body.link }),
-		};
+				// template: "password",
+				// "h:X-Mailgun-Variables": JSON.stringify({ link: body.link }),
+			};
 
-		void mg.messages().send(data, (_error, body) => {
-			res.status(200).json({ detail: body.message });
+			void mg.messages().send(data, (_error, body) => {
+				res.status(200).json({ detail: body.message });
+			});
+			return res;
 		});
-		return res;
 	}
 	res.setHeader("Content-Type", "application/json");
 	res.statusCode = 200;
