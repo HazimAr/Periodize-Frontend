@@ -7,6 +7,8 @@ import { GoogleLogin } from "react-google-login";
 import { CLIENT_ID } from "config";
 import Head from "@components/home/head";
 import Foot from "@components/home/foot";
+import axios from "axios";
+import * as EmailValidator from "email-validator";
 import {
 	Text,
 	Stack,
@@ -180,24 +182,38 @@ export default function LoginPage() {
 											);
 											return;
 										}
-										verifyEmail(email).then((e) => {
-											e.result == "deliverable"
-												? createUser(
+										EmailValidator.validate(email) == true
+											? void axios
+													.post("/api/validate", {
 														email,
-														username,
-														password
-												  ).then((e) => {
-														setSubmitting(true);
-														e.message == "success"
-															? console.log(error)
+													})
+													.then((e) => {
+														e.result ==
+														"deliverable"
+															? createUser(
+																	email,
+																	username,
+																	password
+															  ).then((e) => {
+																	setSubmitting(
+																		true
+																	);
+																	e.message ==
+																	"success"
+																		? console.log(
+																				error
+																		  )
+																		: setError(
+																				e.message
+																		  );
+															  })
 															: setError(
-																	e.message
+																	"That is not a valid email address"
 															  );
-												  })
-												: setError(
-														"That is not a valid email address"
-												  );
-										});
+													})
+											: setError(
+													"That is not a valid email address"
+											  );
 									}}
 								>
 									Register

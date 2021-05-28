@@ -32,17 +32,13 @@ async function changePassword(password: string, id: string) {
 	return data;
 }
 
-async function verifyEmail(email: string) {
-	// const API_KEY = (await process.env.API_KEY) || "";
-	const API_KEY = "key-323c227f99f660185359e132e4025d98";
-	console.log(API_KEY);
-
+async function verifyEmail(email: string, key: string) {
 	const { data } = await axios.get(
 		`https://api.mailgun.net/v4/address/validate?address=${email}`,
 		{
 			auth: {
 				username: "api",
-				password: API_KEY,
+				password: key,
 			},
 		}
 	);
