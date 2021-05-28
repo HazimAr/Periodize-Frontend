@@ -8,7 +8,6 @@ const mg = mailgun({ apiKey: API_KEY, domain: DOMAIN });
 
 type Data = {
 	email: string;
-	subject: string;
 	link: string;
 };
 
@@ -19,14 +18,13 @@ export default function ForgotPassword(
 	if (req.method === "POST") {
 		const body: Data = {
 			email: req.body.email,
-			subject: "Periodize Account Password Reset",
 			link: req.body.link,
 		};
 
 		const data = {
 			from: `Periodize <accounts@periodize.org>`,
 			to: `${body.email}`,
-			subject: `${body.subject}`,
+			subject: `Periodize Account Password Reset`,
 			template: "password",
 			"h:X-Mailgun-Variables": { link: body.link },
 		};

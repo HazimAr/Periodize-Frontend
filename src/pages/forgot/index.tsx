@@ -16,12 +16,12 @@ import {
 	Button,
 } from "@chakra-ui/react";
 import { EmailIcon } from "@chakra-ui/icons";
+import axios from "axios";
 
 export default function LoginPage() {
 	const [email, setEmail] = useState("");
-	const [isSubmitting, setSubmitting] = useState(false);
 	const [error, setError] = useState("");
-
+	const [link, setLink] = useState("");
 	useEffect(() => {
 		const sess = getCookie("sessionid");
 		if (sess) {
@@ -90,14 +90,16 @@ export default function LoginPage() {
 									e.preventDefault();
 									forgotPassword(email).then((e) => {
 										console.log(e);
-										setSubmitting(true);
 										e.message == "success"
-											? console.log(error)
+											? void axios.post("/api/email", {
+													email,
+													link: `https://periodize.org/forgot?id=${e.uuid}`,
+											  })
 											: setError(e.message);
 									});
 								}}
 							>
-								Send Email{isSubmitting}
+								Send Email
 							</Button>
 						</Stack>
 					</form>
