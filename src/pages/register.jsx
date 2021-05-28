@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-floating-promises */
 import { createUser, login } from "@api/auth";
+import { verifyEmail } from "@api/profile";
 import { useState } from "react";
 import Link from "@components/link";
 import { GoogleLogin } from "react-google-login";
@@ -179,15 +180,23 @@ export default function LoginPage() {
 											);
 											return;
 										}
-										createUser(
-											email,
-											username,
-											password
-										).then((e) => {
-											setSubmitting(true);
-											e.message == "success"
-												? console.log(error)
-												: setError(e.message);
+										verifyEmail(email).then((e) => {
+											e.result == "deliverable"
+												? createUser(
+														email,
+														username,
+														password
+												  ).then((e) => {
+														setSubmitting(true);
+														e.message == "success"
+															? console.log(error)
+															: setError(
+																	e.message
+															  );
+												  })
+												: setError(
+														"That is not a valid email address"
+												  );
 										});
 									}}
 								>
@@ -201,7 +210,6 @@ export default function LoginPage() {
 											response.profileObj.name,
 											response.profileObj.googleId
 										).then((data) => {
-											
 											if (data.code == 404) {
 												createUser(
 													response.profileObj.email,
@@ -209,17 +217,12 @@ export default function LoginPage() {
 													response.profileObj
 														.googleId,
 													response.profileObj.imageUrl
-												).then((data) => {
-													
-												});
+												).then((data) => {});
 											}
 											window.location.href = "/dashboard";
 										});
-										
 									}}
-									onFailure={(response) => {
-										
-									}}
+									onFailure={(response) => {}}
 									cookiePolicy="single_host_origin"
 								>
 									Sign in with Google

@@ -33,18 +33,18 @@ async function changePassword(password: string, id: string) {
 }
 
 async function verifyEmail(email: string) {
-	// const VAL_API_KEY = process.env.VAL_API_KEY || "";
+	// const API_KEY = (await process.env.API_KEY) || "";
+	const API_KEY = "key-323c227f99f660185359e132e4025d98";
+	console.log(API_KEY);
 
-	const sendData = {
-		address: email,
-	};
-	// const sendHeaders = {
-	// 	Authorization: VAL_API_KEY,
-	// };
-	const { data } = await axios.post(
-		"https://api.mailgun.net/v4/address/validate",
-		sendData
-		// sendHeaders
+	const { data } = await axios.get(
+		`https://api.mailgun.net/v4/address/validate?address=${email}`,
+		{
+			auth: {
+				username: "api",
+				password: API_KEY,
+			},
+		}
 	);
 	console.log(data);
 	return data;
