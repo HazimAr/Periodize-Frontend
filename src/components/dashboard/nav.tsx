@@ -276,7 +276,7 @@ export default function Main(): JSX.Element {
 						<Logo>
 							<Link href="/">
 								<a>
-									<StyledText>Dashboard</StyledText>
+									<StyledText>Periodize</StyledText>
 								</a>
 							</Link>
 

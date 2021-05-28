@@ -3,7 +3,7 @@ import { getParameterByName } from "@lib/cookie";
 import Link from "@components/link";
 import { FaLock } from "react-icons/fa";
 import { useEffect, useState } from "react";
-
+import * as EmailValidator from "email-validator";
 import {
 	Text,
 	Stack,
@@ -215,15 +215,22 @@ export default function LoginPage() {
 											_hover={{ bg: "text.600" }}
 											onClick={(e) => {
 												e.preventDefault();
-												forgotPassword(email).then(
-													(e) => {
-														e.message == "success"
-															? handleSubmit()
-															: setError(
-																	e.message
-															  );
-													}
-												);
+												EmailValidator.validate(
+													email
+												) == true
+													? forgotPassword(
+															email
+													  ).then((e) => {
+															e.message ==
+															"success"
+																? handleSubmit()
+																: setError(
+																		e.message
+																  );
+													  })
+													: setError(
+															"That is not a valid email address"
+													  );
 											}}
 										>
 											Send Email

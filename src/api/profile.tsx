@@ -42,7 +42,6 @@ async function verifyEmail(email: string, key: string) {
 			},
 		}
 	);
-	console.log(data);
 	return data;
 }
 

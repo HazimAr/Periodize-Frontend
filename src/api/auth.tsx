@@ -21,9 +21,9 @@ async function createUser(mail: string, user: string, pass: string, image: any =
 	return data;
 }
 
-async function login(user: string, pass: string) {
+async function login(email: string, pass: string) {
 	const sendData = {
-		username: user,
+		email: email,
 		password: pass,
 	};
 
