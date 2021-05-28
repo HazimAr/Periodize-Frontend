@@ -17,6 +17,7 @@ const theme = extendTheme({
 			100: "#0B0C10",
 			200: "#1F2833",
 		},
+
 		text: {
 			100: "#C5C6C7",
 			200: "#66FCF1",
@@ -33,7 +34,7 @@ const theme = extendTheme({
 				fontFamily: "body",
 
 				color: props.colorMode === "dark" ? "text.200" : "black",
-				bg: mode("white", "bg.100")(props),
+				bg: mode("white", "bg.200")(props),
 				lineHeight: "base",
 			},
 			a: {
