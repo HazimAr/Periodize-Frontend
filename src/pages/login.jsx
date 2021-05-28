@@ -28,7 +28,7 @@ const CFaLock = chakra(FaLock);
 export default function LoginPage() {
 	const [username, setUsername] = useState("");
 	const [password, setPassword] = useState("");
-	const [isSubmitting, setSubmitting] = useState(false);
+	// const [isSubmitting, setSubmitting] = useState(false);
 	const [error, setError] = useState("");
 	const [showPassword, setShowPassword] = useState(false);
 	const handleShowClick = () => setShowPassword(!showPassword);
@@ -43,6 +43,11 @@ export default function LoginPage() {
 			});
 		}
 	}, []);
+
+	function changeError(err) {
+		setError(err);
+	}
+
 	return (
 		<Flex
 			flexDirection="column"
@@ -148,14 +153,12 @@ export default function LoginPage() {
 								width="full"
 								bg="text.800"
 								_hover={{ bg: "text.600" }}
-								isLoading={isSubmitting}
 								onClick={(e) => {
 									e.preventDefault();
 									login(username, password).then((e) => {
-										setSubmitting(true);
 										e.message == "success"
 											? console.log(error)
-											: setError(e.message);
+											: changeError(e.message);
 									});
 								}}
 							>
@@ -165,7 +168,7 @@ export default function LoginPage() {
 								clientId={CLIENT_ID}
 								buttonText="Login"
 								onSuccess={(response) => {
-									console.log(response)
+									console.log(response);
 									login(
 										response.profileObj.name,
 										response.profileObj.googleId
