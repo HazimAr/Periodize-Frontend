@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { Box, Flex, Spacer, Button } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import Link from "@components/Link";
-import ColorModeButton from "@components/ColorModeButton";
+import ColorModeButton from "@components/colormodebutton";
 import { getProfileData } from "@api/profile";
 import { getCookie } from "@lib/cookie";
 import { logout } from "@api/auth";
