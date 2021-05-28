@@ -5,7 +5,7 @@ const IS_TEST = process.env.NODE_ENV === "test";
 const IS_BROWSER = typeof window !== "undefined";
 export { GA_TRACKING_ID, IS_PRODUCTION, IS_TEST, IS_BROWSER };
 
-const DB_URL = "https://b140d34cdef2.ngrok.io";
+const DB_URL = "https://35a94d98c04b.ngrok.io";
 
 const CLIENT_ID =
 	"796349303741-k933ic3bqhovc821vg9m552190vm13cv.apps.googleusercontent.com";
