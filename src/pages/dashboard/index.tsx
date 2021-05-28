@@ -1,5 +1,10 @@
 import React from "react";
+import Layout from "@components/dashboard/layout";
 
 export default function index(): JSX.Element {
-	return <h1>Congrats </h1>;
+	return (
+		<Layout>
+			<h1>Congrats You are Home</h1>
+		</Layout>
+	);
 }

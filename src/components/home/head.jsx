@@ -6,7 +6,7 @@ import { getProfileData } from "@api/profile";
 import { getCookie } from "@lib/cookie";
 import { logout } from "@api/auth";
 import ColorModeButton from "@components/colormodebutton";
-import AvatarBadge from "./avatar";
+import AvatarBadge from "../avatar";
 
 const Header = styled.header`
 	position: fixed;
@@ -16,8 +16,66 @@ const Header = styled.header`
 	align-items: center;
 	z-index: 100;
 `;
-
-export default function Main() {
+const StyledLink = styled.li`
+	margin: 10px auto;
+	position: relative;
+	transition: all ease-in-out 0.3s;
+	&:hover {
+		cursor: pointer;
+		color: var(--highlight);
+	}
+	&::before {
+		content: "";
+		position: absolute;
+		border-width: 1px;
+		width: 0;
+		left: 50%;
+		transform: translateX(-50%);
+		height: 2px;
+		bottom: 1px;
+		background-color: var(--highlight);
+		visibility: hidden;
+		transition: all 0.2s ease-in-out;
+	}
+	&:hover::before {
+		visibility: visible;
+		width: 100%;
+	}
+`;
+const StyledMenuContainer = styled.div`
+	display: none;
+	height: 100vh;
+	width: 60vw;
+	position: fixed;
+	right: -100vw;
+	top: 0;
+	z-index: 100;
+	background-color: white;
+	@media (max-width: 800px) {
+		display: block;
+	}
+`;
+const DeselectMenu = styled.button`
+	height: 100vh;
+	left: -40vw;
+	top: 0;
+	width: 40vw;
+	position: absolute;
+`;
+const StyledMenuList = styled.ul`
+	display: flex;
+	flex-direction: column;
+	height: 60%;
+	justify-content: center;
+	& li {
+		font-size: 20px;
+		line-height: 18px;
+		padding: 15px 0;
+		text-align: left;
+		margin: 0;
+	}
+`;
+export default function Head() {
 	const [user, setUser] = useState();
 	useEffect(() => {
 		const sess = getCookie("sessionid");
@@ -82,3 +140,4 @@ export default function Main() {
 		</Box>
 	);
 }
+export { StyledLink, StyledMenuContainer, StyledMenuList, DeselectMenu };

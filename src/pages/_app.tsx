@@ -1,5 +1,5 @@
 import "@styles/global.css";
-import Footer from "@components/footer";
+import Footer from "@components/home/foot";
 import Header from "@components/header";
 import { pageview } from "@lib/gtag";
 import { META } from "config";
@@ -28,11 +28,7 @@ export default function MyApp({ Component, pageProps }: AppProps): JSX.Element {
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
 			<ChakraProvider resetCSS theme={theme}>
-				<Header />
-
 				<Component {...pageProps} />
-
-				<Footer />
 			</ChakraProvider>
 		</>
 	);

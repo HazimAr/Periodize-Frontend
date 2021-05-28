@@ -8,6 +8,8 @@ import {
 	SiStyleshare,
 } from "react-icons/si";
 import styled from "styled-components";
+import Head from "@components/home/head";
+import Foot from "@components/home/foot";
 
 const Container = styled.main`
 	display: flex;
@@ -43,70 +45,76 @@ const Box = styled.div`
 `;
 export default function Home(): JSX.Element {
 	return (
-		<Container>
+		<>
+			<Head />
 			<Container>
-				<h1>Hello, World</h1>
+				<Container>
+					<h1>Hello, World</h1>
+				</Container>
+				<h2>Stack</h2>
+				<FlexContainer>
+					<Box>
+						<SiTypescript size="40px" color="#007acd" />
+						<h2>Typescript</h2>
+						<p>
+							Built to ensure long-term usabilty and a cleaner
+							codebase, We use 100% Typescript
+						</p>
+					</Box>
+					<Box>
+						<h2>NextJS</h2>
+						<p>
+							This template uses NextJS, Jest,
+							Eslint-Config-Galex, Google Analytics
+						</p>
+					</Box>
+					<Box>
+						<SiStyleshare size="40px" />
+						<h2>Styled Components</h2>
+						<p>
+							Using Styled Components to keep a modular code style
+						</p>
+					</Box>
+					<Box>
+						<GiFeather size="40px" color="white" />
+						<h2>Lightweight</h2>
+						<p>
+							Setting the baseline configurations to provide an
+							accelerated development enviroment
+						</p>
+					</Box>
+					<Box>
+						<SiGoogleanalytics size="40px" color="#f0ae33" />
+						<h2>Google Analytics</h2>
+						<p>
+							You can set a tracking Id in src/config.ts to track
+							analytics
+						</p>
+					</Box>
+					<Box>
+						<SiEslint size="40px" color="purple" />
+						<h2>ESLint</h2>
+						<p>
+							Using a package of 30+ Eslint Plugins to ensure
+							clean code quality and acessibility
+						</p>
+					</Box>
+					<Box>
+						<SiJest size="40px" color="red" />
+						<h2>Jest</h2>
+						<p>All tests, integration and unit run throught jest</p>
+					</Box>
+					<Box>
+						<FaReact size="40px" color="green" />
+						<h2>React Icons</h2>
+						<p>
+							Icons from popular packages.{" "}
+							<a style={{ color: "#00ffaa" }}>All Icons</a>{" "}
+						</p>
+					</Box>
+				</FlexContainer>
 			</Container>
-			<h2>Stack</h2>
-			<FlexContainer>
-				<Box>
-					<SiTypescript size="40px" color="#007acd" />
-					<h2>Typescript</h2>
-					<p>
-						Built to ensure long-term usabilty and a cleaner
-						codebase, We use 100% Typescript
-					</p>
-				</Box>
-				<Box>
-					<h2>NextJS</h2>
-					<p>
-						This template uses NextJS, Jest, Eslint-Config-Galex,
-						Google Analytics
-					</p>
-				</Box>
-				<Box>
-					<SiStyleshare size="40px" />
-					<h2>Styled Components</h2>
-					<p>Using Styled Components to keep a modular code style</p>
-				</Box>
-				<Box>
-					<GiFeather size="40px" color="white" />
-					<h2>Lightweight</h2>
-					<p>
-						Setting the baseline configurations to provide an
-						accelerated development enviroment
-					</p>
-				</Box>
-				<Box>
-					<SiGoogleanalytics size="40px" color="#f0ae33" />
-					<h2>Google Analytics</h2>
-					<p>
-						You can set a tracking Id in src/config.ts to track
-						analytics
-					</p>
-				</Box>
-				<Box>
-					<SiEslint size="40px" color="purple" />
-					<h2>ESLint</h2>
-					<p>
-						Using a package of 30+ Eslint Plugins to ensure clean
-						code quality and acessibility
-					</p>
-				</Box>
-				<Box>
-					<SiJest size="40px" color="red" />
-					<h2>Jest</h2>
-					<p>All tests, integration and unit run throught jest</p>
-				</Box>
-				<Box>
-					<FaReact size="40px" color="green" />
-					<h2>React Icons</h2>
-					<p>
-						Icons from popular packages.{" "}
-						<a style={{ color: "#00ffaa" }}>All Icons</a>{" "}
-					</p>
-				</Box>
-			</FlexContainer>
-		</Container>
+			<Foot />
+		</>
 	);
 }
