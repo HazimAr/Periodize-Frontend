@@ -13,7 +13,6 @@ async function createUser(mail: string, user: string, pass: string, image: any =
 	};
 
 	const { data } = await axios.put(`${DB_URL}/users`, sendData);
-	console.log(data);
 
 	if (data.data) {
 		setCookie("sessionid", String(data.data.sessionid), 7);
@@ -29,7 +28,7 @@ async function login(user: string, pass: string) {
 	};
 
 	const { data } = await axios.post(`${DB_URL}/users/login`, sendData);
-	console.log(data);
+
 	if (data.data) {
 		setCookie("sessionid", String(data.data.sessionid), 7);
 		window.location.href = "/dashboard";

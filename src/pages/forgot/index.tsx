@@ -35,7 +35,7 @@ export default function LoginPage() {
 	const handleShowClick = () => setShowPassword(!showPassword);
 	useEffect(() => {
 		const id = getParameterByName("id");
-		console.log(id);
+
 		if (id) {
 			setId(id);
 			setFromEmail(true);
@@ -149,19 +149,14 @@ export default function LoginPage() {
 											_hover={{ bg: "text.600" }}
 											onClick={(e) => {
 												e.preventDefault();
-												forgotPassword(email).then(
-													(e) => {
-														console.log(e);
-														e.message == "success"
-															? changePassword(
-																	password,
-																	id
-															  )
-															: setError(
-																	e.message
-															  );
-													}
-												);
+												changePassword(
+													password,
+													id
+												).then((e) => {
+													e.message == "success"
+														? console.log(e.message)
+														: setError(e.message);
+												});
 											}}
 										>
 											Set New Password
@@ -221,7 +216,6 @@ export default function LoginPage() {
 												e.preventDefault();
 												forgotPassword(email).then(
 													(e) => {
-														console.log(e);
 														e.message == "success"
 															? handleSubmit()
 															: setError(

@@ -181,12 +181,12 @@ export default function LoginPage() {
 									clientId={CLIENT_ID}
 									buttonText="Login"
 									onSuccess={(response) => {
-										console.log(response);
+										
 										login(
 											response.profileObj.name,
 											response.profileObj.googleId
 										).then((data) => {
-											console.log(data);
+											
 											if (data.code == 404) {
 												createUser(
 													response.profileObj.email,
@@ -195,15 +195,15 @@ export default function LoginPage() {
 														.googleId,
 													response.profileObj.imageUrl
 												).then((data) => {
-													console.log(data);
+													
 												});
 											}
 											window.location.href = "/dashboard";
 										});
-										console.log(response);
+										
 									}}
 									onFailure={(response) => {
-										console.log(response);
+										
 									}}
 									cookiePolicy="single_host_origin"
 								>
