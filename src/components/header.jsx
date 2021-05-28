@@ -6,6 +6,7 @@ import { getProfileData } from "@api/profile";
 import { getCookie } from "@lib/cookie";
 import { logout } from "@api/auth";
 import ColorModeButton from "@components/colormodebutton";
+import AvatarBadge from "./avatar";
 
 const Header = styled.header`
 	position: fixed;
@@ -34,17 +35,17 @@ export default function Main() {
 		body = (
 			<Flex align="center">
 				<ColorModeButton />
-				<Box mr={3}>
-					<Link href="/dashboard/profile" name={user.username} />
+				<Box mr={1}>
+					<AvatarBadge
+						name={user.username}
+						src={
+							user.image
+								? user.image
+								: "https://bit.ly/broken-link"
+						}
+						size="sm"
+					/>
 				</Box>
-				<Button
-					onClick={() => {
-						logout();
-					}}
-					variant="link"
-				>
-					logout
-				</Button>
 			</Flex>
 		);
 
