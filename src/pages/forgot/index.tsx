@@ -33,6 +33,12 @@ export default function LoginPage() {
 			});
 		}
 	}, []);
+	function handleSubmit() {
+		void axios.post("/api/email", {
+			email,
+		});
+		window.location.href = "/forgot/email";
+	}
 	return (
 		<>
 			<Head />
@@ -96,16 +102,7 @@ export default function LoginPage() {
 										forgotPassword(email).then((e) => {
 											console.log(e);
 											e.message == "success"
-												? () => {
-														void axios.post(
-															"/api/email",
-															{
-																email
-															}
-														);
-														window.location.href =
-															"/forgot/email";
-												  }
+												? handleSubmit()
 												: setError(e.message);
 										});
 									}}
