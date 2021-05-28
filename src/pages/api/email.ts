@@ -26,7 +26,7 @@ export default function ForgotPassword(
 			to: `${body.email}`,
 			subject: `Periodize Account Password Reset`,
 			template: "password",
-			"h:X-Mailgun-Variables": { link: body.link },
+			"h:X-Mailgun-Variables": JSON.stringify({ link: body.link }),
 		};
 		// eslint-disable-next-line no-void
 		void mg.messages().send(data, (_error, body) => {
