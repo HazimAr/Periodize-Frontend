@@ -1,4 +1,4 @@
-import { Flex, Box } from "@chakra-ui/react";
+import { Flex } from "@chakra-ui/react";
 
 export default function Hero(props: any): JSX.Element {
 	return (
@@ -6,11 +6,8 @@ export default function Hero(props: any): JSX.Element {
 			direction="column"
 			alignItems="center"
 			justifyContent="flex-start"
-			// maxW="1200px"
-			width="100%"
+			maxW="1200px"
 			{...props}
-		>
-			<Flex width="100%" bg="tomato"></Flex>
-		</Flex>
+		/>
 	);
 }

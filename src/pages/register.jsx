@@ -23,7 +23,6 @@ import {
 	chakra,
 	Button,
 	IconButton,
-	useColorMode,
 } from "@chakra-ui/react";
 import { FaUserAlt, FaLock } from "react-icons/fa";
 // import { Filter } from "bad-words";
@@ -32,7 +31,6 @@ const CFaUserAlt = chakra(FaUserAlt);
 const CFaLock = chakra(FaLock);
 
 export default function LoginPage() {
-	const { colorMode } = useColorMode();
 	const Filter = require("bad-words"),
 		filter = new Filter();
 	const [username, setUsername] = useState("");
@@ -59,11 +57,7 @@ export default function LoginPage() {
 					alignItems="center"
 				>
 					<Text
-						bgGradient={
-							colorMode === "dark"
-								? "linear(to-r, #ffcdb2, #06d6a0)"
-								: "linear(to-r,primary, darkPrimary)"
-						}
+						bgGradient="linear(to-r, #ffcdb2, #06d6a0)"
 						bgClip="text"
 						fontSize="6xl"
 						fontWeight="extrabold"
@@ -72,7 +66,14 @@ export default function LoginPage() {
 					</Text>
 					<Box minW={{ base: "90%", md: "468px" }}>
 						<form>
-							<Stack spacing={4} p="1rem" boxShadow="md">
+							<Stack
+								spacing={4}
+								p="1rem"
+								boxShadow="md"
+								borderColor="primary"
+								border="2px"
+								borderRadius={2}
+							>
 								<FormControl>
 									<InputGroup>
 										<InputLeftElement
