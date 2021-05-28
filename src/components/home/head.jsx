@@ -132,10 +132,10 @@ export default function Head() {
 					<Link href="/contact" name="contact" />
 				</Box>
 				<Box mr={3} px={2} py={1}>
-					{/* <NextLink href="/register">
+					<NextLink href="/register">
 						<Register>register</Register>
-					</NextLink> */}
-					<Link href="/register" name="register" />
+					</NextLink>
+					{/* <Link href="/register" name="register" /> */}
 				</Box>
 				<Link href="/login" name="login" />
 			</Flex>
