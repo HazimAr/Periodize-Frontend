@@ -154,7 +154,8 @@ export default function LoginPage() {
 													id
 												).then((e) => {
 													e.message == "success"
-														? console.log(e.message)
+														? (window.location.href =
+																"/forgot/success")
 														: setError(e.message);
 												});
 											}}
