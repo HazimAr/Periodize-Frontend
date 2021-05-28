@@ -1,7 +1,7 @@
 import { forgotPassword } from "@api/profile";
 import { getProfileData } from "@api/profile";
 import { getCookie } from "@lib/cookie";
-import Link from "@components/Link";
+import Link from "@components/link";
 import { useEffect, useState } from "react";
 
 import {

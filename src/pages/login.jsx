@@ -1,7 +1,7 @@
 import { createUser, login } from "@api/auth";
 import { getProfileData } from "@api/profile";
 import { getCookie } from "@lib/cookie";
-import Link from "@components/Link";
+import Link from "@components/link";
 import { FaUserAlt, FaLock } from "react-icons/fa";
 
 import { CLIENT_ID } from "config";

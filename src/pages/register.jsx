@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-floating-promises */
 import { createUser, login } from "@api/auth";
 import { useState } from "react";
-import Link from "@components/Link";
+import Link from "@components/link";
 import { GoogleLogin } from "react-google-login";
 import { CLIENT_ID } from "config";
 import {
