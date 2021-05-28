@@ -59,7 +59,7 @@ const theme = extendTheme({
 			},
 			body: {
 				fontFamily: "body",
-				color: mode("text.700", "secondary")(props),
+				color: mode("primary", "secondary")(props),
 				bg: mode("lightBase", "bg.100")(props),
 				lineHeight: "base",
 			},
