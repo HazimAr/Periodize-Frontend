@@ -22,6 +22,16 @@ async function forgotPassword(email: string) {
 	return data;
 }
 
+async function changePassword(password: string, id: string) {
+	const sendData = {
+		newPassword: password,
+		uuid: id,
+	};
+	const { data } = await axios.patch(`${DB_URL}/users/forgot`, sendData);
+
+	return data;
+}
+
 async function verifyEmail(email: string) {
 	// const VAL_API_KEY = process.env.VAL_API_KEY || "";
 
@@ -33,11 +43,11 @@ async function verifyEmail(email: string) {
 	// };
 	const { data } = await axios.post(
 		"https://api.mailgun.net/v4/address/validate",
-		sendData,
+		sendData
 		// sendHeaders
 	);
 	console.log(data);
 	return data;
 }
 
-export { getProfileData, forgotPassword, verifyEmail };
+export { getProfileData, forgotPassword, verifyEmail, changePassword };
