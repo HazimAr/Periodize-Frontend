@@ -7,7 +7,7 @@ import { getCookie } from "@lib/cookie";
 import { logout } from "@api/auth";
 import ColorModeButton from "@components/colormodebutton";
 import AvatarBadge from "../avatar";
-
+import NextLink from "next/link";
 const Header = styled.header`
 	position: fixed;
 	width: 100%;
@@ -62,6 +62,13 @@ const DeselectMenu = styled.button`
 	width: 40vw;
 	position: absolute;
 `;
+
+const Register = styled.a`
+	color: "#ffff";
+	background-color: "#123634";
+	padding: 5px 5px;
+	border-radius: 2px;
+`;
 const StyledMenuList = styled.ul`
 	display: flex;
 	flex-direction: column;
@@ -93,6 +100,12 @@ export default function Head() {
 		body = (
 			<Flex align="center">
 				<ColorModeButton />
+				<Box mr={3}>
+					<Link href="/about" name="about" />
+				</Box>
+				<Box mr={3}>
+					<Link href="/contact" name="contact" />
+				</Box>
 				<Box mr={1}>
 					<AvatarBadge
 						name={user.username}
@@ -113,7 +126,16 @@ export default function Head() {
 			<Flex align="center">
 				<ColorModeButton />
 				<Box mr={3}>
-					<Link href="/register" name="register" />
+					<Link href="/about" name="about" />
+				</Box>
+				<Box mr={3}>
+					<Link href="/contact" name="contact" />
+				</Box>
+				<Box mr={3} px={2} py={1}>
+					<NextLink href="/register">
+						<Register>register</Register>
+					</NextLink>
+					{/* <Link href="/register" name="register" /> */}
 				</Box>
 				<Link href="/login" name="login" />
 			</Flex>

@@ -1,6 +1,11 @@
 import { extendTheme } from "@chakra-ui/react";
-import { createBreakpoints, mode } from "@chakra-ui/theme-tools";
-
+import {
+	createBreakpoints,
+	mode,
+	whiten,
+	darken,
+} from "@chakra-ui/theme-tools";
+import { linkStyles as Link } from "@styles/linkstyles";
 const fonts = { mono: `'Menlo', monospace` };
 
 const breakpoints = createBreakpoints({
@@ -12,6 +17,10 @@ const breakpoints = createBreakpoints({
 
 const theme = extendTheme({
 	colors: {
+		primary: "#40916cff",
+		secondary: "#b7e4c7ff",
+		lightBase: "#dde2ec",
+		darkPrimary: "#072f21",
 		black: "#16161D",
 		bg: {
 			100: "#0B0C10",
@@ -19,7 +28,7 @@ const theme = extendTheme({
 		},
 		text: {
 			100: "#06d6a0",
-			200: " #d8f3dcff",
+			200: "#d8f3dcff",
 			300: "#b7e4c7ff",
 			400: "#95d5b2ff",
 			500: "#74c69dff",
@@ -40,6 +49,9 @@ const theme = extendTheme({
 		// --brunswick-green: #1b4332ff;
 		// --dark-jungle-green: #081c15ff;
 	},
+	components: {
+		Link,
+	},
 	styles: {
 		global: (props) => ({
 			html: {
@@ -47,43 +59,14 @@ const theme = extendTheme({
 			},
 			body: {
 				fontFamily: "body",
-
-				color: props.colorMode === "dark" ? "text.400" : "black",
-				bg: mode("white", "bg.100")(props),
+				color: mode("primary", "secondary")(props),
+				bg: mode("lightBase", "bg.100")(props),
 				lineHeight: "base",
 			},
 			a: {
-				color: props.colorMode === "dark" ? "text.400" : "black",
+				color: mode("primary", "secondary")(props),
 			},
 		}),
-	},
-	components: {
-		Button: {
-			// 1. We can update the base styles
-			baseStyle: {
-				fontWeight: "bold", // Normally, it is "semibold"
-			},
-			// 2. We can add a new button size or extend existing
-			sizes: {
-				xl: {
-					h: "56px",
-					fontSize: "lg",
-					px: "32px",
-				},
-			},
-			// 3. We can add a new visual variant
-			variants: {
-				"with-shadow": {
-					bg: "red.400",
-					boxShadow: "0 0 2px 2px #efdfde",
-				},
-				// 4. We can override existing variants
-				solid: (props) => ({
-					bg: props.colorMode === "dark" ? "bg.200" : "black",
-					color: props.colorMode === "dark" ? "text.200" : "white",
-				}),
-			},
-		},
 	},
 	initialColorMode: "dark",
 	useSystemColorMode: false,

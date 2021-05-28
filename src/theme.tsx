@@ -20,9 +20,10 @@ const theme = extendTheme({
 
 		text: {
 			100: "#C5C6C7",
-			200: "#66FCF1",
-			300: "#45A29E",
-			400: "#116466",
+			200: "#61a19e",
+			300: "#377572",
+			400: "#0d4041",
+			500: "#072020",
 		},
 	},
 	styles: {
@@ -33,7 +34,7 @@ const theme = extendTheme({
 			body: {
 				fontFamily: "body",
 
-				color: props.colorMode === "dark" ? "text.200" : "black",
+				color: props.colorMode === "dark" ? "text.400" : "black",
 				bg: mode("white", "bg.200")(props),
 				lineHeight: "base",
 			},

@@ -23,14 +23,15 @@ import {
 	FormHelperText,
 	chakra,
 	Button,
+	useColorMode,
 } from "@chakra-ui/react";
-import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
+import { ViewIcon, ViewOffIcon, EmailIcon } from "@chakra-ui/icons";
 const CFaUserAlt = chakra(FaUserAlt);
 const CFaLock = chakra(FaLock);
 export default function LoginPage() {
-	const [username, setUsername] = useState("");
+	const { colorMode } = useColorMode();
+	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
-	// const [isSubmitting, setSubmitting] = useState(false);
 	const [error, setError] = useState("");
 	const [showPassword, setShowPassword] = useState(false);
 	const handleShowClick = () => setShowPassword(!showPassword);
@@ -66,7 +67,11 @@ export default function LoginPage() {
 					alignItems="center"
 				>
 					<Text
-						bgGradient="linear(to-r, #ffcdb2, #06d6a0)"
+						bgGradient={
+							colorMode === "dark"
+								? "linear(to-r, #ffcdb2, #06d6a0)"
+								: "linear(to-r,primary, darkPrimary)"
+						}
 						bgClip="text"
 						fontSize="6xl"
 						fontWeight="extrabold"
@@ -81,20 +86,25 @@ export default function LoginPage() {
 										<InputLeftElement
 											pointerEvents="none"
 											children={
-												<CFaUserAlt color="gray.300" />
+												<EmailIcon color="primary" />
 											}
 										/>
 										<Input
-											type="username"
-											name="username"
-											id="username"
-											placeholder="Username"
-											aria-label="username"
-											value={username}
+											type="email"
+											name="email"
+											id="email"
+											placeholder="email"
+											aria-label="email"
+											value={email}
 											onChange={(e) => {
-												setUsername(e.target.value);
+												setEmail(e.target.value);
 											}}
 											required
+											color={
+												colorMode === "dark"
+													? "secondary"
+													: "primary"
+											}
 										/>
 									</InputGroup>
 								</FormControl>
@@ -104,7 +114,7 @@ export default function LoginPage() {
 											pointerEvents="none"
 											color="gray.300"
 											children={
-												<CFaLock color="gray.300" />
+												<CFaLock color="primary" />
 											}
 										/>
 										<Input
@@ -136,6 +146,7 @@ export default function LoginPage() {
 												_focus={{ outline: "none" }}
 												outline="none"
 												m={0}
+												color="primary"
 												icon={
 													showPassword ? (
 														<ViewOffIcon />
@@ -168,7 +179,7 @@ export default function LoginPage() {
 									_hover={{ bg: "text.600" }}
 									onClick={(e) => {
 										e.preventDefault();
-										login(username, password).then((e) => {
+										login(email, password).then((e) => {
 											e.message == "success"
 												? console.log(error)
 												: changeError(e.message);
@@ -181,12 +192,10 @@ export default function LoginPage() {
 									clientId={CLIENT_ID}
 									buttonText="Login"
 									onSuccess={(response) => {
-										
 										login(
 											response.profileObj.name,
 											response.profileObj.googleId
 										).then((data) => {
-											
 											if (data.code == 404) {
 												createUser(
 													response.profileObj.email,
@@ -194,17 +203,12 @@ export default function LoginPage() {
 													response.profileObj
 														.googleId,
 													response.profileObj.imageUrl
-												).then((data) => {
-													
-												});
+												).then((data) => {});
 											}
 											window.location.href = "/dashboard";
 										});
-										
 									}}
-									onFailure={(response) => {
-										
-									}}
+									onFailure={(response) => {}}
 									cookiePolicy="single_host_origin"
 								>
 									Sign in with Google

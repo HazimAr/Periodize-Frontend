@@ -35,6 +35,10 @@
 		"src/pages/_document.js",
 		"src/pages/_error.js",
 		"src/lib/gtag.js",
-		"src/pages/login.jsx"
-, "src/components/home/header.jsx", "src/components/LoginForm.jsx", "src/pages/register.jsx"	]
+		"src/pages/login.jsx",
+		"src/components/home/header.jsx",
+		"src/components/LoginForm.jsx",
+		"src/pages/register.jsx",
+		"src/styles/linkstyles."
+	]
 }

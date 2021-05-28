@@ -66,13 +66,20 @@ export default function LoginPage() {
 					</Text>
 					<Box minW={{ base: "90%", md: "468px" }}>
 						<form>
-							<Stack spacing={4} p="1rem" boxShadow="md">
+							<Stack
+								spacing={4}
+								p="1rem"
+								boxShadow="md"
+								borderColor="primary"
+								border="2px"
+								borderRadius={2}
+							>
 								<FormControl>
 									<InputGroup>
 										<InputLeftElement
 											pointerEvents="none"
 											children={
-												<CFaUserAlt color="gray.300" />
+												<CFaUserAlt color="primary" />
 											}
 										/>
 										<Input
@@ -94,7 +101,7 @@ export default function LoginPage() {
 										<InputLeftElement
 											pointerEvents="none"
 											children={
-												<EmailIcon color="gray.300" />
+												<EmailIcon color="primary" />
 											}
 										/>
 										<Input
@@ -117,7 +124,7 @@ export default function LoginPage() {
 											pointerEvents="none"
 											color="gray.300"
 											children={
-												<CFaLock color="gray.300" />
+												<CFaLock color="primary" />
 											}
 										/>
 										<Input
@@ -171,7 +178,8 @@ export default function LoginPage() {
 									type="submit"
 									variant="solid"
 									width="full"
-									bg="text.800"
+									bg="primary"
+									color="secondary"
 									_hover={{ bg: "text.600" }}
 									isLoading={isSubmitting}
 									onClick={(e) => {
