@@ -20,18 +20,17 @@ export default function Email(
 	if (req.method === "POST") {
 		const body: Data = {
 			email: req.body.email,
-			subject: req.body.subject,
+			subject: "Periodize Account Password Reset",
 			message: req.body.message,
 			link: req.body.link,
 		};
 
 		const data = {
-			from: `forgot@periodize.org`,
+			from: `Periodize <accounts@periodize.org>`,
 			to: `${body.email}`,
 			subject: `${body.subject}`,
-			text: `
-            ${body.message}
-            `,
+			template: "password",
+			"h:X-Mailgun-Variables": { link: body.link },
 		};
 		// eslint-disable-next-line no-void
 		void mg.messages().send(data, (_error, body) => {
