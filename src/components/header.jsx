@@ -6,7 +6,7 @@ import ColorModeButton from "@components/ColorModeButton";
 import { getProfileData } from "@api/profile";
 import { getCookie } from "@lib/cookie";
 import { logout } from "@api/auth";
-
+import Avatar from "@components/Avatar";
 const Header = styled.header`
 	position: fixed;
 	width: 100%;
@@ -19,7 +19,7 @@ const Header = styled.header`
 export default function Main() {
 	const [user, setUser] = useState();
 	useEffect(() => {
-		const sess = getCookie("sessionid");
+		const sess = getCookie("me");
 		if (sess) {
 			getProfileData().then((data) => {
 				if (data.code == 200) {
@@ -34,6 +34,7 @@ export default function Main() {
 		body = (
 			<Flex align="center">
 				<ColorModeButton />
+				<Avatar name={user.username} src={user.re}/>
 				<Box mr={3}>
 					<Link href="/dashboard/profile" name={user.username} />
 				</Box>

@@ -4,7 +4,12 @@ import axios from "axios";
 
 import { DB_URL } from "../config";
 
-async function createUser(mail: string, user: string, pass: string, image: string = "") {
+async function createUser(
+	mail: string,
+	user: string,
+	pass: string,
+	image: string = ""
+) {
 	const sendData = {
 		password: pass,
 		username: user,
@@ -16,7 +21,8 @@ async function createUser(mail: string, user: string, pass: string, image: strin
 	console.log(data);
 
 	if (data.data) {
-		setCookie("sessionid", String(data.data.sessionid), 7);
+		setCookie("me", data.data, 7);
+		// setCookie("sessionid", String(data.data.sessionid), 7);
 		window.location.href = "/dashboard";
 	}
 	return data;
@@ -31,7 +37,8 @@ async function login(user: string, pass: string) {
 	const { data } = await axios.post(`${DB_URL}/users/login`, sendData);
 	console.log(data);
 	if (data.data) {
-		setCookie("sessionid", String(data.data.sessionid), 7);
+		setCookie("me", data.data, 7);
+		// setCookie("sessionid", String(data.data.sessionid), 7);
 		window.location.href = "/dashboard";
 	}
 
@@ -39,11 +46,12 @@ async function login(user: string, pass: string) {
 }
 
 async function logout() {
+	const user = getCookie("me");
 	const sendData = {
-		sessionid: getCookie("sessionid"),
+		sessionid: user.sessionid,
 	};
 	const { data } = await axios.post(`${DB_URL}/users/logout`, sendData);
-	eraseCookie("sessionid");
+	eraseCookie("me");
 	window.location.href = "/";
 	return data;
 }
