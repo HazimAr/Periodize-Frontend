@@ -6,7 +6,7 @@ export default function StyledButton(props: any) {
 	return (
 		<Button
 			border="1px solid"
-			_hover={{ borderColor: "primary" }}
+			_hover={{ borderColor: "text.800" }}
 			variant="outline"
 			_focus={{ outline: "none" }}
 			{...props}

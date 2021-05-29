@@ -3,7 +3,7 @@ import Foot from "@components/home/foot";
 import Container from "@components/container";
 import {
 	Heading,
-	Stack,
+	HStack,
 	VStack,
 	Text,
 	useClipboard,
@@ -17,78 +17,103 @@ import {
 	Textarea,
 	IconButton,
 	Tooltip,
+	useColorMode,
+	useColorModeValue,
 } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import StyledButton from "@components/styledbutton";
 import Emoji from "@components/emoji";
 import { CopyIcon } from "@chakra-ui/icons";
+import Bwtest from "@components/bwtext";
 export default function Home(): JSX.Element {
+	const { colorMode } = useColorMode();
 	const [value, setValue] = useState("mail@periodize.org");
 	const { hasCopied, onCopy } = useClipboard(value);
 	const [name, setName] = useState("");
 	const [company, setCompany] = useState("");
 	const [email, setEmail] = useState("");
 	const [message, setMessage] = useState("");
-
+	const placeholderColor = useColorModeValue("black", "white");
+	// const primaryColor = useColorModeValue("primary", "white");
 	return (
 		<>
 			<Head />
 			<Container>
-				<Heading as="h2" size="3xl" mb={[8, 10]} color="white">
+				<Heading
+					as="h2"
+					size="3xl"
+					mb={[8, 10]}
+					color={colorMode == "dark" ? "white" : "black"}
+				>
 					Contact Us
 				</Heading>
-				<Flex flexDir="column" align="flex-start">
+				<Flex
+					flexDir="column"
+					align="flex-start"
+					width={{ base: "90%", sm: "50%" }}
+				>
 					<Flex
 						flexDir={{ base: "column", sm: "row" }}
 						align="flex-start"
 						justify={{ base: "", sm: "space-between" }}
-						width={{ base: "90%", sm: "70%" }}
 						margin="auto"
 					>
 						<Flex
 							flexDir="column"
 							align={{ base: "flex-start", sm: "space-between" }}
 							mr={{ base: "", sm: "20px" }}
+							m="0"
 						>
-							<Heading as="h2" size="l" pt={2} color="white">
+							<Heading
+								as="h2"
+								size="md"
+								pt={2}
+								color={colorMode == "dark" ? "white" : "black"}
+							>
 								Email us:
 							</Heading>
-							<Text
-								mb={6}
-								bgGradient="linear(to-r,#42CAF7, white)"
-								bgClip="text"
-								fontWeight="extrabold"
-								pt={2}
-							>
-								mail@periodize.org
-								<span>
-									<Tooltip
-										label="Copied!"
-										aria-label="A tooltip"
-										placement="top"
-										hasArrow
-										isOpen={hasCopied}
-									>
-										<IconButton
-											aria-label="copy"
-											icon={<CopyIcon />}
-											color="primary"
-											variant="ghost"
-											_focus={{ outline: "none" }}
-											_hover={{
-												bg: "transparent",
-												color: "secondary",
-											}}
-											onClick={onCopy}
-										/>
-									</Tooltip>
-								</span>
-							</Text>
+							<Flex wrap="nowrap">
+								<Bwtest
+									mb={6}
+									bgGradient={
+										colorMode == "dark"
+											? "linear(to-r,#42CAF7, white)"
+											: "linear(to-r ,primary, black)"
+									}
+									bgClip="text"
+									fontWeight="extrabold"
+									pt={2}
+								>
+									mail@periodize.org
+								</Bwtest>
+								<Tooltip
+									label="Copied!"
+									aria-label="A tooltip"
+									placement="top"
+									hasArrow
+									isOpen={hasCopied}
+								>
+									<IconButton
+										aria-label="copy"
+										icon={<CopyIcon />}
+										color="primary"
+										variant="ghost"
+										_focus={{ outline: "none" }}
+										_hover={{
+											bg: "transparent",
+											color: "secondary",
+										}}
+										onClick={onCopy}
+										bg="transparent"
+										// p="0px"
+										// margin={0}
+									/>
+								</Tooltip>
+							</Flex>
 						</Flex>
-						<Text
+						<Bwtest
 							maxW={{ base: "90%", sm: "50%" }}
 							textAlign="left"
-							color="white"
 							lineHeight={["tall", "small"]}
 							size="sm"
 							fontSize={["large", "small"]}
@@ -97,23 +122,27 @@ export default function Home(): JSX.Element {
 							needs. Our clients get the superior results when a
 							short-term acquaintance turns into a long-term
 							collaboration.
-						</Text>
+						</Bwtest>
 					</Flex>
-					<Box margin="auto" width={{ base: "90%", sm: "70%" }}>
-						<Text
+					<Flex
+						flexDir="column"
+						w="100%"
+						align="center"
+						justify="center"
+					>
+						<Bwtest
 							maxW={{ base: "90%", md: "50%" }}
 							textAlign="left"
-							color="white"
 							letterSpacing="widest"
 							// margin="auto"
-							mt="50px"
+							mt="40px"
 							mb={2}
 							pl={{ base: "0px", sm: "2px" }}
 						>
 							Hit us up
-						</Text>
+						</Bwtest>
 
-						<form>
+						<form style={{ width: "100%" }}>
 							<FormControl mb={4}>
 								<Input
 									type="name"
@@ -126,6 +155,11 @@ export default function Home(): JSX.Element {
 										setName(e.target.value);
 									}}
 									required
+									_placeholder={{
+										color: placeholderColor,
+									}}
+									border="1px"
+									borderColor="primary"
 									// color={
 									// 	colorMode === "dark"
 									// 		? "secondary"
@@ -144,6 +178,11 @@ export default function Home(): JSX.Element {
 										setCompany(e.target.value);
 									}}
 									required
+									_placeholder={{
+										color: placeholderColor,
+									}}
+									border="1px"
+									borderColor="primary"
 									// color={
 									// 	colorMode === "dark"
 									// 		? "secondary"
@@ -163,6 +202,11 @@ export default function Home(): JSX.Element {
 										setEmail(e.target.value);
 									}}
 									required
+									_placeholder={{
+										color: placeholderColor,
+									}}
+									border="1px"
+									borderColor="primary"
 									// color={
 									// 	colorMode === "dark"
 									// 		? "secondary"
@@ -171,14 +215,13 @@ export default function Home(): JSX.Element {
 								/>
 							</FormControl>
 
-							<Text
-								color="white"
+							<Bwtest
 								letterSpacing="widest"
 								mb={2}
 								textAlign="left"
 							>
 								Message
-							</Text>
+							</Bwtest>
 							<Textarea
 								name="message"
 								id="message"
@@ -188,17 +231,27 @@ export default function Home(): JSX.Element {
 								onChange={(e) => {
 									setMessage(e.target.value);
 								}}
+								border="1px"
+								borderColor="primary"
+								_placeholder={{
+									color: placeholderColor,
+								}}
 							/>
 
-							<StyledButton type="submit" my={4}>
+							<StyledButton
+								type="submit"
+								my={4}
+								border="2px"
+								borderColor="primary"
+							>
 								Submit
 							</StyledButton>
 						</form>
-					</Box>
+					</Flex>
 				</Flex>
-				<Text mt={2}>
+				<Bwtest mt={2}>
 					With Love from
-					<Text
+					<Bwtest
 						as="span"
 						color="primary"
 						bgGradient="linear(to-r,#42CAF7, white)"
@@ -206,12 +259,14 @@ export default function Home(): JSX.Element {
 						ml={1}
 					>
 						Team Periodize
-					</Text>
+					</Bwtest>
 					<Emoji symbol="💪" label="flex" />
 					<Emoji symbol="💖" label="heart" />
-				</Text>
+				</Bwtest>
 			</Container>
 			<Foot />
 		</>
 	);
 }
+
+export { getServerSideProps } from "@styles/chakra";
