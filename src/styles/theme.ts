@@ -1,9 +1,5 @@
 import { extendTheme } from "@chakra-ui/react";
-import {
-	createBreakpoints,
-	mode,
-
-} from "@chakra-ui/theme-tools";
+import { createBreakpoints, mode } from "@chakra-ui/theme-tools";
 import { linkStyles as Link } from "@styles/linkstyles";
 const fonts = { mono: `'Menlo', monospace` };
 

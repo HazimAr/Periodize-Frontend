@@ -15,10 +15,13 @@ import {
 	Input,
 	Box,
 	Textarea,
+	IconButton,
+	Tooltip,
 } from "@chakra-ui/react";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import StyledButton from "@components/styledbutton";
 import Emoji from "@components/emoji";
+import { CopyIcon } from "@chakra-ui/icons";
 export default function Home(): JSX.Element {
 	const [value, setValue] = useState("mail@periodize.org");
 	const { hasCopied, onCopy } = useClipboard(value);
@@ -26,6 +29,7 @@ export default function Home(): JSX.Element {
 	const [company, setCompany] = useState("");
 	const [email, setEmail] = useState("");
 	const [message, setMessage] = useState("");
+
 	return (
 		<>
 			<Head />
@@ -33,11 +37,7 @@ export default function Home(): JSX.Element {
 				<Heading as="h2" size="3xl" mb={[8, 10]} color="white">
 					Contact Us
 				</Heading>
-				<Flex
-					flexDir="column"
-					align="flex-start"
-					// width={{ base: "90%", sm: "80%" }}
-				>
+				<Flex flexDir="column" align="flex-start">
 					<Flex
 						flexDir={{ base: "column", sm: "row" }}
 						align="flex-start"
@@ -55,13 +55,34 @@ export default function Home(): JSX.Element {
 							</Heading>
 							<Text
 								mb={6}
-								onClick={onCopy}
 								bgGradient="linear(to-r,#42CAF7, white)"
 								bgClip="text"
 								fontWeight="extrabold"
 								pt={2}
 							>
 								mail@periodize.org
+								<span>
+									<Tooltip
+										label="Copied!"
+										aria-label="A tooltip"
+										placement="top"
+										hasArrow
+										isOpen={hasCopied}
+									>
+										<IconButton
+											aria-label="copy"
+											icon={<CopyIcon />}
+											color="primary"
+											variant="ghost"
+											_focus={{ outline: "none" }}
+											_hover={{
+												bg: "transparent",
+												color: "secondary",
+											}}
+											onClick={onCopy}
+										/>
+									</Tooltip>
+								</span>
 							</Text>
 						</Flex>
 						<Text
