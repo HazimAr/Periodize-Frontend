@@ -8,6 +8,7 @@ export default function Container(props: any): JSX.Element {
 			justifyContent="flex-start"
 			maxW="1200px"
 			{...props}
+			margin="auto"
 		/>
 	);
 }
