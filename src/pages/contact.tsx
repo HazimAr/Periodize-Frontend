@@ -17,7 +17,8 @@ import {
 	Textarea,
 } from "@chakra-ui/react";
 import React, { useState } from "react";
-
+import StyledButton from "@components/styledbutton";
+import Emoji from "@components/emoji";
 export default function Home(): JSX.Element {
 	const [value, setValue] = useState("mail@periodize.org");
 	const { hasCopied, onCopy } = useClipboard(value);
@@ -29,22 +30,31 @@ export default function Home(): JSX.Element {
 		<>
 			<Head />
 			<Container>
-				<Heading as="h2" size="2xl" mb={4}>
+				<Heading as="h2" size="3xl" mb={[8, 10]} color="white">
 					Contact Us
 				</Heading>
 				<Flex
 					flexDir="column"
 					align="flex-start"
-					width="90%"
-					margin="auto"
+					// width={{ base: "90%", sm: "80%" }}
 				>
-					<Flex flexDir={{ base: "column", lg: "row" }}>
-						<Flex flexDir="column" align="flex-start">
+					<Flex
+						flexDir={{ base: "column", sm: "row" }}
+						align="flex-start"
+						justify={{ base: "", sm: "space-between" }}
+						width={{ base: "90%", sm: "70%" }}
+						margin="auto"
+					>
+						<Flex
+							flexDir="column"
+							align={{ base: "flex-start", sm: "space-between" }}
+							mr={{ base: "", sm: "20px" }}
+						>
 							<Heading as="h2" size="l" pt={2} color="white">
 								Email us:
 							</Heading>
 							<Text
-								mb={4}
+								mb={6}
 								onClick={onCopy}
 								bgGradient="linear(to-r,#42CAF7, white)"
 								bgClip="text"
@@ -55,11 +65,12 @@ export default function Home(): JSX.Element {
 							</Text>
 						</Flex>
 						<Text
-							maxW={{ base: "90%", lg: "50%" }}
+							maxW={{ base: "90%", sm: "50%" }}
 							textAlign="left"
 							color="white"
-							lineHeight="tall"
-							fontSize=""
+							lineHeight={["tall", "small"]}
+							size="sm"
+							fontSize={["large", "small"]}
 						>
 							The team is open for your ideas, questions and
 							needs. Our clients get the superior results when a
@@ -67,21 +78,22 @@ export default function Home(): JSX.Element {
 							collaboration.
 						</Text>
 					</Flex>
+					<Box margin="auto" width={{ base: "90%", sm: "70%" }}>
+						<Text
+							maxW={{ base: "90%", md: "50%" }}
+							textAlign="left"
+							color="white"
+							letterSpacing="widest"
+							// margin="auto"
+							mt="50px"
+							mb={2}
+							pl={{ base: "0px", sm: "2px" }}
+						>
+							Hit us up
+						</Text>
 
-					<Text
-						maxW={{ base: "90%", lg: "50%" }}
-						textAlign="left"
-						color="white"
-						letterSpacing="widest"
-						margin="auto"
-						mt="50px"
-						mb={2}
-					>
-						Hit us up
-					</Text>
-					<Box w="95%" margin="auto">
 						<form>
-							<FormControl mb={2}>
+							<FormControl mb={4}>
 								<Input
 									type="name"
 									name="fullname"
@@ -100,7 +112,7 @@ export default function Home(): JSX.Element {
 									// }
 								/>
 							</FormControl>
-							<FormControl mb={2}>
+							<FormControl mb={4}>
 								<Input
 									name="company"
 									id="company"
@@ -118,7 +130,7 @@ export default function Home(): JSX.Element {
 									// }
 								/>
 							</FormControl>
-							<FormControl mb={2}>
+							<FormControl mb={4}>
 								<Input
 									type="email"
 									name="email"
@@ -138,7 +150,12 @@ export default function Home(): JSX.Element {
 								/>
 							</FormControl>
 
-							<Text color="white" letterSpacing="widest" mb={2}>
+							<Text
+								color="white"
+								letterSpacing="widest"
+								mb={2}
+								textAlign="left"
+							>
 								Message
 							</Text>
 							<Textarea
@@ -151,13 +168,27 @@ export default function Home(): JSX.Element {
 									setMessage(e.target.value);
 								}}
 							/>
-							<Button type="submit" variant="outline" my={2}>
+
+							<StyledButton type="submit" my={4}>
 								Submit
-							</Button>
+							</StyledButton>
 						</form>
 					</Box>
 				</Flex>
-				<Text mt={2}>With Love from Team Periodize </Text>
+				<Text mt={2}>
+					With Love from
+					<Text
+						as="span"
+						color="primary"
+						bgGradient="linear(to-r,#42CAF7, white)"
+						bgClip="text"
+						ml={1}
+					>
+						Team Periodize
+					</Text>
+					<Emoji symbol="💪" label="flex" />
+					<Emoji symbol="💖" label="heart" />
+				</Text>
 			</Container>
 			<Foot />
 		</>
