@@ -6,7 +6,6 @@ export default function About(): JSX.Element {
 		<>
 			<Head />
 			<div>About</div>
-			<Hero />
 			<Foot />
 		</>
 	);
