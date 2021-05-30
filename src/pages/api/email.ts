@@ -18,10 +18,10 @@ export default async function ForgotPassword(
 ): Promise<NextApiResponse> {
 	if (req.method === "POST") {
 		const user = await forgotPassword(req.body.email);
-		const uuid = user.uuid;
+		const token = user.token;
 		const body: Data = {
 			email: req.body.email,
-			link: `https://periodize.org/forgot?id=${uuid}`,
+			link: `https://periodize.org/forgot?id=${token}`,
 		};
 
 		const data = {

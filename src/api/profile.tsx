@@ -25,7 +25,7 @@ async function forgotPassword(email: string) {
 async function changePassword(password: string, id: string) {
 	const sendData = {
 		newPassword: password,
-		uuid: id,
+		token: id,
 	};
 	const { data } = await axios.patch(`${DB_URL}/users/forgot`, sendData);
 
