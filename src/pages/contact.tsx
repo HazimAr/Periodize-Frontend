@@ -3,31 +3,27 @@ import Foot from "@components/home/foot";
 import Container from "@components/container";
 import {
 	Heading,
-	HStack,
-	VStack,
-	Text,
+
 	useClipboard,
 	Flex,
 	FormControl,
-	FormLabel,
-	FormErrorMessage,
-	Button,
+
 	Input,
-	Box,
+
 	Textarea,
 	IconButton,
 	Tooltip,
 	useColorMode,
 	useColorModeValue,
 } from "@chakra-ui/react";
-import React, { useEffect, useState } from "react";
+import React, {  useState } from "react";
 import StyledButton from "@components/styledbutton";
 import Emoji from "@components/emoji";
 import { CopyIcon } from "@chakra-ui/icons";
 import Bwtest from "@components/bwtext";
 export default function Home(): JSX.Element {
 	const { colorMode } = useColorMode();
-	const [value, setValue] = useState("mail@periodize.org");
+	const value = "mail@periodize.org";
 	const { hasCopied, onCopy } = useClipboard(value);
 	const [name, setName] = useState("");
 	const [company, setCompany] = useState("");

@@ -5,9 +5,9 @@ import { META } from "config";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import React, { useEffect } from "react";
-import { ChakraProvider } from "@chakra-ui/react";
+// import { ChakraProvider } from "@chakra-ui/react";
 import { AppProps } from "next/app";
-import theme from "@styles/theme";
+// import theme from "@styles/theme";
 import { Chakra } from "@styles/chakra";
 // eslint-disable-next-line import/no-default-export
 export default function MyApp({ Component, pageProps }: AppProps): JSX.Element {
