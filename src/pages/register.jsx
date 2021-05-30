@@ -232,15 +232,15 @@ export default function LoginPage() {
 										login(
 											response.profileObj.name,
 											response.profileObj.googleId
-										).then((data) => {
+										).then(async (data) => {
 											if (data.code == 404) {
-												createUser(
+												await createUser(
 													response.profileObj.email,
 													response.profileObj.name,
 													response.profileObj
 														.googleId,
 													response.profileObj.imageUrl
-												).then((data) => {});
+												);
 											}
 											window.location.href = "/dashboard";
 										});
