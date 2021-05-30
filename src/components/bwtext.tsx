@@ -1,4 +1,4 @@
-import { Text, useColorMode, useColorModeValue } from "@chakra-ui/react";
+import { Text, useColorMode } from "@chakra-ui/react";
 
 export default function Container(props: any): JSX.Element {
 	// const color = useColorModeValue("black", "white");
