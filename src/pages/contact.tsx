@@ -19,9 +19,11 @@ import {
 } from "@chakra-ui/react";
 import React, { useState } from "react";
 import StyledButton from "@components/styledbutton";
+import * as EmailValidator from "email-validator";
 import Emoji from "@components/emoji";
 import { CopyIcon, EmailIcon } from "@chakra-ui/icons";
 import { FaUserAlt, FaBuilding } from "react-icons/fa";
+import axios from "axios";
 const CFaUserAlt = chakra(FaUserAlt);
 const CFaBuilding = chakra(FaBuilding);
 export default function Home(): JSX.Element {
@@ -147,7 +149,18 @@ export default function Home(): JSX.Element {
 							Hit us up
 						</Text>
 
-						<form style={{ width: "100%" }}>
+						<form
+							style={{ width: "100%" }}
+							onSubmit={() => {
+								void axios.post("/api/contact", {
+									name,
+									email,
+									subject,
+									company,
+									message,
+								});
+							}}
+						>
 							<FormControl mb={4}>
 								<InputGroup>
 									<InputLeftElement
@@ -190,7 +203,13 @@ export default function Home(): JSX.Element {
 										aria-label="email"
 										value={email}
 										onChange={(e) => {
-											setEmail(e.target.value);
+											EmailValidator.validate(
+												e.target.value
+											) == true
+												? setEmail(e.target.value)
+												: setError(
+														"That Email address is not valid"
+												  );
 										}}
 										required
 										_placeholder={{

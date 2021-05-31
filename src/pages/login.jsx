@@ -7,6 +7,7 @@ import { FaUserAlt, FaLock } from "react-icons/fa";
 import { CLIENT_ID } from "config";
 import { useEffect, useState } from "react";
 import Head from "@components/home/head";
+import * as EmailValidator from "email-validator";
 import Foot from "@components/home/foot";
 import { GoogleLogin } from "react-google-login";
 import {
