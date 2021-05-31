@@ -810,7 +810,7 @@ export default async function ForgotPassword(
 		};
 
 		void mg.messages().send(data, (_error, body) => {
-			res.status(200).json({ detail: body.message });
+			res.status(200).json(body.message );
 		});
 		return res;
 	}

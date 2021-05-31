@@ -19,7 +19,7 @@ export default async function Validate(
 		};
 		console.log(body);
 		const response = await verifyEmail(body.email, body.key);
-		res.status(200).json(response);
+		res.status(200).json(response.data);
 		return res;
 	}
 	res.setHeader("Content-Type", "application/json");

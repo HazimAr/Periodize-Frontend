@@ -195,7 +195,7 @@ export default function LoginPage() {
 														email,
 													})
 													.then((e) => {
-														e.data.result ==
+														e.result ==
 														"deliverable"
 															? createUser(
 																	email,
