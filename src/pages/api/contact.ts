@@ -1,7 +1,7 @@
 import mailgun from "mailgun-js";
 import type { NextApiRequest, NextApiResponse } from "next";
 
-const DOMAIN = "mail.periodize.com";
+const DOMAIN = "mail.periodize.org";
 
 const API_KEY = process.env.API_KEY || "";
 const mg = mailgun({ apiKey: API_KEY, domain: DOMAIN });
