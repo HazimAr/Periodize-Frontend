@@ -184,7 +184,7 @@ export default function Home(): JSX.Element {
 											color: placeholderColor,
 										}}
 										border="1px"
-										borderColor="primary"
+										borderColor="gray.600"
 									/>
 								</InputGroup>
 							</FormControl>
@@ -216,7 +216,7 @@ export default function Home(): JSX.Element {
 											color: placeholderColor,
 										}}
 										border="1px"
-										borderColor="primary"
+										borderColor="gray.600"
 									/>
 								</InputGroup>
 							</FormControl>
@@ -241,7 +241,7 @@ export default function Home(): JSX.Element {
 											color: placeholderColor,
 										}}
 										border="1px"
-										borderColor="primary"
+										borderColor="gray.600"
 									/>
 								</InputGroup>
 							</FormControl>
@@ -267,7 +267,7 @@ export default function Home(): JSX.Element {
 										color: placeholderColor,
 									}}
 									border="1px"
-									borderColor="primary"
+									borderColor="gray.600"
 								/>
 							</FormControl>
 							<Text
@@ -288,7 +288,7 @@ export default function Home(): JSX.Element {
 									setMessage(e.target.value);
 								}}
 								border="1px"
-								borderColor="primary"
+								borderColor="gray.600"
 								_placeholder={{
 									color: placeholderColor,
 								}}
