@@ -13,12 +13,17 @@ import {
 	useColorMode,
 	useColorModeValue,
 	Text,
+	chakra,
+	InputLeftElement,
+	InputGroup,
 } from "@chakra-ui/react";
 import React, { useState } from "react";
 import StyledButton from "@components/styledbutton";
 import Emoji from "@components/emoji";
-import { CopyIcon } from "@chakra-ui/icons";
-
+import { CopyIcon, EmailIcon } from "@chakra-ui/icons";
+import { FaUserAlt, FaBuilding } from "react-icons/fa";
+const CFaUserAlt = chakra(FaUserAlt);
+const CFaBuilding = chakra(FaBuilding);
 export default function Home(): JSX.Element {
 	const { colorMode } = useColorMode();
 	const value = "mail@periodize.org";
@@ -26,9 +31,10 @@ export default function Home(): JSX.Element {
 	const [name, setName] = useState("");
 	const [company, setCompany] = useState("");
 	const [email, setEmail] = useState("");
+	const [subject, setSubject] = useState("");
 	const [message, setMessage] = useState("");
 	const placeholderColor = useColorModeValue("black", "white");
-	// const primaryColor = useColorModeValue("primary", "white");
+
 	return (
 		<>
 			<Head />
@@ -37,7 +43,12 @@ export default function Home(): JSX.Element {
 					as="h2"
 					size="3xl"
 					mb={[8, 10]}
-					color={colorMode == "dark" ? "white" : "black"}
+					bgGradient={
+						colorMode === "dark"
+							? "linear(to-r, #ffcdb2, #06d6a0)"
+							: "linear(to-r,primary, darkPrimary)"
+					}
+					bgClip="text"
 				>
 					Contact Us
 				</Heading>
@@ -138,62 +149,108 @@ export default function Home(): JSX.Element {
 
 						<form style={{ width: "100%" }}>
 							<FormControl mb={4}>
-								<Input
-									type="name"
-									name="fullname"
-									id="fullname"
-									placeholder="fullname"
-									aria-label="fullname"
-									value={name}
-									onChange={(e) => {
-										setName(e.target.value);
-									}}
-									required
-									_placeholder={{
-										color: placeholderColor,
-									}}
-									border="1px"
-									borderColor="primary"
-								/>
-							</FormControl>
-							<FormControl mb={4}>
-								<Input
-									name="company"
-									id="company"
-									placeholder="company"
-									aria-label="company"
-									value={company}
-									onChange={(e) => {
-										setCompany(e.target.value);
-									}}
-									required
-									_placeholder={{
-										color: placeholderColor,
-									}}
-									border="1px"
-									borderColor="primary"
-								/>
-							</FormControl>
-							<FormControl mb={4}>
-								<Input
-									type="email"
-									name="email"
-									id="email"
-									placeholder="email"
-									aria-label="email"
-									value={email}
-									onChange={(e) => {
-										setEmail(e.target.value);
-									}}
-									required
-									_placeholder={{
-										color: placeholderColor,
-									}}
-									border="1px"
-									borderColor="primary"
-								/>
+								<InputGroup>
+									<InputLeftElement
+										pointerEvents="none"
+										children={
+											<CFaUserAlt color="primary" />
+										}
+									/>
+									<Input
+										type="name"
+										name="fullname"
+										id="fullname"
+										placeholder="fullname"
+										aria-label="fullname"
+										value={name}
+										onChange={(e) => {
+											setName(e.target.value);
+										}}
+										required
+										_placeholder={{
+											color: placeholderColor,
+										}}
+										border="1px"
+										borderColor="primary"
+									/>
+								</InputGroup>
 							</FormControl>
 
+							<FormControl mb={4}>
+								<InputGroup>
+									<InputLeftElement
+										pointerEvents="none"
+										children={<EmailIcon color="primary" />}
+									/>
+									<Input
+										type="email"
+										name="email"
+										id="email"
+										placeholder="email"
+										aria-label="email"
+										value={email}
+										onChange={(e) => {
+											setEmail(e.target.value);
+										}}
+										required
+										_placeholder={{
+											color: placeholderColor,
+										}}
+										border="1px"
+										borderColor="primary"
+									/>
+								</InputGroup>
+							</FormControl>
+							<FormControl mb={4}>
+								<InputGroup>
+									<InputLeftElement
+										pointerEvents="none"
+										children={
+											<CFaBuilding color="primary" />
+										}
+									/>
+									<Input
+										name="company"
+										id="company"
+										placeholder="company"
+										aria-label="company"
+										value={company}
+										onChange={(e) => {
+											setCompany(e.target.value);
+										}}
+										_placeholder={{
+											color: placeholderColor,
+										}}
+										border="1px"
+										borderColor="primary"
+									/>
+								</InputGroup>
+							</FormControl>
+							<FormControl mb={4}>
+								<Text
+									letterSpacing="widest"
+									mb={2}
+									textAlign="left"
+									variant="bnw"
+								>
+									Subject
+								</Text>
+								<Input
+									name="subject"
+									id="subject"
+									placeholder=""
+									aria-label="subject"
+									value={subject}
+									onChange={(e) => {
+										setSubject(e.target.value);
+									}}
+									_placeholder={{
+										color: placeholderColor,
+									}}
+									border="1px"
+									borderColor="primary"
+								/>
+							</FormControl>
 							<Text
 								letterSpacing="widest"
 								mb={2}
@@ -205,7 +262,7 @@ export default function Home(): JSX.Element {
 							<Textarea
 								name="message"
 								id="message"
-								placeholder="hey"
+								placeholder=""
 								aria-label="message"
 								value={message}
 								onChange={(e) => {
