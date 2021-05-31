@@ -1,6 +1,7 @@
 import { extendTheme } from "@chakra-ui/react";
 import { createBreakpoints, mode } from "@chakra-ui/theme-tools";
 import { linkStyles as Link } from "@styles/linkstyles";
+import Text from "@styles/texttheme";
 const fonts = { mono: `'Menlo', monospace` };
 
 const breakpoints = createBreakpoints({
@@ -17,6 +18,7 @@ const theme = extendTheme({
 		lightBase: "#dde2ec",
 		darkPrimary: "#072f21",
 		black: "#16161D",
+
 		bg: {
 			100: "#0B0C10",
 			200: "#1F2833",
@@ -46,6 +48,7 @@ const theme = extendTheme({
 	},
 	components: {
 		Link,
+		Text,
 	},
 	styles: {
 		global: (props) => ({
@@ -59,7 +62,7 @@ const theme = extendTheme({
 				lineHeight: "base",
 			},
 			a: {
-				color: mode("primary", "secondary")(props),
+				color: mode("text.800", "text.600")(props),
 			},
 		}),
 	},

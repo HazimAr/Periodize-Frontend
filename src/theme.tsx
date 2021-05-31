@@ -34,12 +34,12 @@ const theme = extendTheme({
 			body: {
 				fontFamily: "body",
 
-				color: props.colorMode === "dark" ? "text.400" : "black",
+				color: props.colorMode === "dark" ? "text.500" : "black",
 				bg: mode("white", "bg.200")(props),
 				lineHeight: "base",
 			},
 			a: {
-				color: props.colorMode === "dark" ? "text.200" : "black",
+				color: props.colorMode === "dark" ? "text.400" : "black",
 			},
 		}),
 	},

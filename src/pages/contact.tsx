@@ -3,24 +3,22 @@ import Foot from "@components/home/foot";
 import Container from "@components/container";
 import {
 	Heading,
-
 	useClipboard,
 	Flex,
 	FormControl,
-
 	Input,
-
 	Textarea,
 	IconButton,
 	Tooltip,
 	useColorMode,
 	useColorModeValue,
+	Text,
 } from "@chakra-ui/react";
-import React, {  useState } from "react";
+import React, { useState } from "react";
 import StyledButton from "@components/styledbutton";
 import Emoji from "@components/emoji";
 import { CopyIcon } from "@chakra-ui/icons";
-import Bwtest from "@components/bwtext";
+
 export default function Home(): JSX.Element {
 	const { colorMode } = useColorMode();
 	const value = "mail@periodize.org";
@@ -69,8 +67,9 @@ export default function Home(): JSX.Element {
 								Email us:
 							</Heading>
 							<Flex wrap="nowrap">
-								<Bwtest
+								<Text
 									mb={6}
+									variant="bnw"
 									bgGradient={
 										colorMode == "dark"
 											? "linear(to-r,#42CAF7, white)"
@@ -81,7 +80,7 @@ export default function Home(): JSX.Element {
 									pt={2}
 								>
 									mail@periodize.org
-								</Bwtest>
+								</Text>
 								<Tooltip
 									label="Copied!"
 									aria-label="A tooltip"
@@ -101,24 +100,23 @@ export default function Home(): JSX.Element {
 										}}
 										onClick={onCopy}
 										bg="transparent"
-										// p="0px"
-										// margin={0}
 									/>
 								</Tooltip>
 							</Flex>
 						</Flex>
-						<Bwtest
+						<Text
 							maxW={{ base: "90%", sm: "50%" }}
 							textAlign="left"
 							lineHeight={["tall", "small"]}
 							size="sm"
 							fontSize={["large", "small"]}
+							variant="bnw"
 						>
 							The team is open for your ideas, questions and
 							needs. Our clients get the superior results when a
 							short-term acquaintance turns into a long-term
 							collaboration.
-						</Bwtest>
+						</Text>
 					</Flex>
 					<Flex
 						flexDir="column"
@@ -126,17 +124,17 @@ export default function Home(): JSX.Element {
 						align="center"
 						justify="center"
 					>
-						<Bwtest
+						<Text
 							maxW={{ base: "90%", md: "50%" }}
 							textAlign="left"
 							letterSpacing="widest"
-							// margin="auto"
+							variant="bnw"
 							mt="40px"
 							mb={2}
 							pl={{ base: "0px", sm: "2px" }}
 						>
 							Hit us up
-						</Bwtest>
+						</Text>
 
 						<form style={{ width: "100%" }}>
 							<FormControl mb={4}>
@@ -156,11 +154,6 @@ export default function Home(): JSX.Element {
 									}}
 									border="1px"
 									borderColor="primary"
-									// color={
-									// 	colorMode === "dark"
-									// 		? "secondary"
-									// 		: "primary"
-									// }
 								/>
 							</FormControl>
 							<FormControl mb={4}>
@@ -179,11 +172,6 @@ export default function Home(): JSX.Element {
 									}}
 									border="1px"
 									borderColor="primary"
-									// color={
-									// 	colorMode === "dark"
-									// 		? "secondary"
-									// 		: "primary"
-									// }
 								/>
 							</FormControl>
 							<FormControl mb={4}>
@@ -203,21 +191,17 @@ export default function Home(): JSX.Element {
 									}}
 									border="1px"
 									borderColor="primary"
-									// color={
-									// 	colorMode === "dark"
-									// 		? "secondary"
-									// 		: "primary"
-									// }
 								/>
 							</FormControl>
 
-							<Bwtest
+							<Text
 								letterSpacing="widest"
 								mb={2}
 								textAlign="left"
+								variant="bnw"
 							>
 								Message
-							</Bwtest>
+							</Text>
 							<Textarea
 								name="message"
 								id="message"
@@ -245,9 +229,9 @@ export default function Home(): JSX.Element {
 						</form>
 					</Flex>
 				</Flex>
-				<Bwtest mt={2}>
+				<Text mt={2} variant="bnw">
 					With Love from
-					<Bwtest
+					<Text
 						as="span"
 						color="primary"
 						bgGradient="linear(to-r,#42CAF7, white)"
@@ -255,10 +239,10 @@ export default function Home(): JSX.Element {
 						ml={1}
 					>
 						Team Periodize
-					</Bwtest>
+					</Text>
 					<Emoji symbol="💪" label="flex" />
 					<Emoji symbol="💖" label="heart" />
-				</Bwtest>
+				</Text>
 			</Container>
 			<Foot />
 		</>
