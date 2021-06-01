@@ -203,13 +203,13 @@ export default function Home(): JSX.Element {
 										aria-label="email"
 										value={email}
 										onChange={(e) => {
-											EmailValidator.validate(
-												e.target.value
-											) == true
-												? setEmail(e.target.value)
-												: setError(
-														"That Email address is not valid"
-												  );
+											// EmailValidator.validate(
+											// 	e.target.value
+											// ) == true
+											setEmail(e.target.value);
+											// : setError(
+											// 		"That Email address is not valid"
+											//   );
 										}}
 										required
 										_placeholder={{
