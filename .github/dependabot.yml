@@ -4,8 +4,8 @@ updates:
       directory: "/"
       schedule:
           interval: daily
-          time: "11:00"
-      open-pull-requests-limit: 10
+          time: "2:00"
+      open-pull-requests-limit: 40
       ignore:
           - dependency-name: "@types/node"
             versions:
