@@ -22,10 +22,10 @@ export default function MyApp({ Component, pageProps }: AppProps): JSX.Element {
 			router.events.off("routeChangeComplete", handleRouteChange);
 		};
 	}, [router.events]);
-	useEffect(() => {
-		setCookie("chakra-ui-color-mode", "dark", Number.MAX_SAFE_INTEGER);
-		localStorage.setItem("chakra-ui-color-mode", "dark");
-	}, []);
+	// useEffect(() => {
+	// 	setCookie("chakra-ui-color-mode", "dark", Number.MAX_SAFE_INTEGER);
+	// 	localStorage.setItem("chakra-ui-color-mode", "dark");
+	// }, []);
 	return (
 		<>
 			<Head>
