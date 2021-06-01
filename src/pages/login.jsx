@@ -180,11 +180,14 @@ export default function LoginPage() {
 									_hover={{ bg: "text.600" }}
 									onClick={(e) => {
 										e.preventDefault();
+										EmailValidator.validate(email) == true
+											?
 										login(email, password).then((e) => {
 											e.message == "success"
 												? console.log(error)
 												: changeError(e.message);
-										});
+										}) :
+											changeError("That email is not valid")
 									}}
 								>
 									Login
@@ -210,7 +213,7 @@ export default function LoginPage() {
 											window.location.href = "/dashboard";
 										});
 									}}
-									onFailure={(response) => {}}
+									onFailure={}
 									cookiePolicy="single_host_origin"
 								>
 									Sign in with Google

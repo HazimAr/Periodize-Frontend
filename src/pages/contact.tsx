@@ -19,7 +19,7 @@ import {
 } from "@chakra-ui/react";
 import React, { useState } from "react";
 import StyledButton from "@components/styledbutton";
-import * as EmailValidator from "email-validator";
+// import * as EmailValidator from "email-validator";
 import Emoji from "@components/emoji";
 import { CopyIcon, EmailIcon } from "@chakra-ui/icons";
 import { FaUserAlt, FaBuilding } from "react-icons/fa";

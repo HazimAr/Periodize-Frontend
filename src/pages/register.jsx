@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-floating-promises */
 import { createUser, login } from "@api/auth";
-import { verifyEmail } from "@api/profile";
 import { useState } from "react";
 import Link from "@components/link";
 import { GoogleLogin } from "react-google-login";
@@ -145,6 +144,7 @@ export default function LoginPage() {
 										<InputRightElement width="4.5rem">
 											<IconButton
 												h="1.75rem"
+												aria-label="show-password"
 												size="sm"
 												onClick={handleShowClick}
 												bg="transparent"
