@@ -76,7 +76,7 @@ export default class MyDocument extends Document {
 				</Head>
 				<body>
 					<ColorModeScript
-						initialColorMode={theme.config.initialColorMode}
+						initialColorMode={theme.initialColorMode}
 					/>
 					<Main />
 					<NextScript />

@@ -67,7 +67,7 @@ const theme = extendTheme({
 		}),
 	},
 	initialColorMode: "dark",
-	useSystemColorMode: false,
+	useSystemColorMode: true,
 	fonts,
 	breakpoints,
 });
