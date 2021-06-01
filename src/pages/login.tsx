@@ -172,6 +172,7 @@ export default function LoginPage() {
 									width="full"
 									bg="text.800"
 									_hover={{ bg: "text.700" }}
+									color="white"
 									onClick={(e) => {
 										e.preventDefault();
 										EmailValidator.validate(email) == true

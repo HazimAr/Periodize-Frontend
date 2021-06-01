@@ -178,6 +178,7 @@ export default function LoginPage() {
 									width="full"
 									bg="text.800"
 									_hover={{ bg: "text.700" }}
+									color="white"
 									isLoading={isSubmitting}
 									onClick={(e) => {
 										e.preventDefault();
