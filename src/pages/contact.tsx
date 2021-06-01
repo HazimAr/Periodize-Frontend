@@ -19,7 +19,7 @@ import {
 } from "@chakra-ui/react";
 import React, { useState } from "react";
 import StyledButton from "@components/styledbutton";
-// import * as EmailValidator from "email-validator";
+import * as EmailValidator from "email-validator";
 import Emoji from "@components/emoji";
 import { CopyIcon, EmailIcon } from "@chakra-ui/icons";
 import { FaUserAlt, FaBuilding } from "react-icons/fa";
@@ -36,7 +36,7 @@ export default function Home(): JSX.Element {
 	const [email, setEmail] = useState("");
 	const [subject, setSubject] = useState("");
 	const [message, setMessage] = useState("");
-	// const [error, setError] = useState("");
+	const [error, setError] = useState();
 	const placeholderColor = useColorModeValue("black", "white");
 
 	return (
@@ -190,7 +190,7 @@ export default function Home(): JSX.Element {
 									/>
 								</InputGroup>
 							</FormControl>
-
+							{error ? <Box color="red.400">{error}</Box> : null}
 							<FormControl mb={4}>
 								<InputGroup>
 									<InputLeftElement
@@ -206,13 +206,13 @@ export default function Home(): JSX.Element {
 										value={email}
 										onChange={(e) => {
 											e.preventDefault();
-											// EmailValidator.validate(
-											// 	e.target.value
-											// ) == true ?
-											setEmail(e.target.value);
-											// 	: setError(
-											// 			"That Email address is not valid"
-											// 	  );
+											EmailValidator.validate(
+												e.target.value
+											) == true
+												? setEmail(e.target.value)
+												: setError(
+														"That Email address is not valid"
+												  );
 										}}
 										required
 										_placeholder={{
