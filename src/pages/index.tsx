@@ -5,7 +5,7 @@ export default function Home(): JSX.Element {
 	return (
 		<>
 			<Head />
-			<div>hi</div>
+			<div>Under Construction</div>
 			<Foot />
 		</>
 	);

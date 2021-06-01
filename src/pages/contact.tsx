@@ -24,6 +24,7 @@ import Emoji from "@components/emoji";
 import { CopyIcon, EmailIcon } from "@chakra-ui/icons";
 import { FaUserAlt, FaBuilding } from "react-icons/fa";
 import axios from "axios";
+
 const CFaUserAlt = chakra(FaUserAlt);
 const CFaBuilding = chakra(FaBuilding);
 export default function Home(): JSX.Element {
@@ -35,7 +36,7 @@ export default function Home(): JSX.Element {
 	const [email, setEmail] = useState("");
 	const [subject, setSubject] = useState("");
 	const [message, setMessage] = useState("");
-	const [error, setError] = useState("");
+	// const [error, setError] = useState("");
 	const placeholderColor = useColorModeValue("black", "white");
 
 	return (
@@ -206,17 +207,11 @@ export default function Home(): JSX.Element {
 										onChange={(e) => {
 											// EmailValidator.validate(
 											// 	e.target.value
-											// ) == true
+											// ) == true ?
 											setEmail(e.target.value);
-<<<<<<< Updated upstream
-											// : setError(
-											// 		"That Email address is not valid"
-											//   );
-=======
 											// 	: setError(
 											// 			"That Email address is not valid"
 											// 	  );
->>>>>>> Stashed changes
 										}}
 										required
 										_placeholder={{

@@ -35,10 +35,10 @@
 		"src/pages/_document.js",
 		"src/pages/_error.js",
 		"src/lib/gtag.js",
-		"src/pages/login.jsx",
+		"src/pages/login.tsx",
 		"src/components/home/header.jsx",
 		"src/components/LoginForm.jsx",
-		"src/pages/register.jsx",
+		"src/pages/register.tsx",
 		"src/styles/linkstyles."
-	]
+, "src/components/google.tsx"	]
 }

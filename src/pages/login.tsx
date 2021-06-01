@@ -1,13 +1,13 @@
-/* eslint-disable @typescript-eslint/no-floating-promises */
-import { createUser, login } from "@api/auth";
-import { useState } from "react";
+import { login } from "@api/auth";
+import { getProfileData } from "@api/profile";
+import { getCookie } from "@lib/cookie";
 import Link from "@components/link";
-import { GoogleLogin } from "react-google-login";
-import { CLIENT_ID } from "config";
+import { FaLock } from "react-icons/fa";
+import GoogleButton from "@components/google";
+import { useEffect, useState } from "react";
 import Head from "@components/home/head";
-import Foot from "@components/home/foot";
-import axios from "axios";
 import * as EmailValidator from "email-validator";
+import Foot from "@components/home/foot";
 import {
 	Text,
 	Stack,
@@ -17,30 +17,34 @@ import {
 	InputGroup,
 	InputLeftElement,
 	Input,
+	IconButton,
 	InputRightElement,
 	FormHelperText,
 	chakra,
 	Button,
-	IconButton,
 	useColorMode,
 } from "@chakra-ui/react";
-import { FaUserAlt, FaLock } from "react-icons/fa";
-// import { Filter } from "bad-words";
-import { EmailIcon, ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
-const CFaUserAlt = chakra(FaUserAlt);
+import { ViewIcon, ViewOffIcon, EmailIcon } from "@chakra-ui/icons";
 const CFaLock = chakra(FaLock);
 
 export default function LoginPage() {
 	const { colorMode } = useColorMode();
-	const Filter = require("bad-words"),
-		filter = new Filter();
-	const [username, setUsername] = useState("");
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const [error, setError] = useState("");
-	const [isSubmitting, setSubmitting] = useState(false);
 	const [showPassword, setShowPassword] = useState(false);
 	const handleShowClick = () => setShowPassword(!showPassword);
+
+	useEffect(() => {
+		const sess = getCookie("sessionid");
+		if (sess) {
+			getProfileData().then((data) => {
+				if (data.code == 200) {
+					window.location.href = "/dashboard";
+				}
+			});
+		}
+	}, []);
 
 	return (
 		<>
@@ -67,33 +71,11 @@ export default function LoginPage() {
 						fontSize="6xl"
 						fontWeight="extrabold"
 					>
-						Register
+						Login
 					</Text>
 					<Box minW={{ base: "90%", md: "468px" }}>
 						<form>
 							<Stack spacing={4} p="1rem" boxShadow="md">
-								<FormControl>
-									<InputGroup>
-										<InputLeftElement
-											pointerEvents="none"
-											children={
-												<CFaUserAlt color="primary" />
-											}
-										/>
-										<Input
-											type="username"
-											name="username"
-											id="username"
-											placeholder="Username"
-											aria-label="username"
-											value={username}
-											onChange={(e) => {
-												setUsername(e.target.value);
-											}}
-											required
-										/>
-									</InputGroup>
-								</FormControl>
 								<FormControl>
 									<InputGroup>
 										<InputLeftElement
@@ -113,6 +95,11 @@ export default function LoginPage() {
 												setEmail(e.target.value);
 											}}
 											required
+											color={
+												colorMode === "dark"
+													? "secondary"
+													: "primary"
+											}
 										/>
 									</InputGroup>
 								</FormControl>
@@ -141,17 +128,20 @@ export default function LoginPage() {
 											}}
 											required
 										/>
-										<InputRightElement width="4.5rem">
+										<InputRightElement
+											width="4.5rem"
+											mr={0}
+										>
 											<IconButton
+												aria-label="Show Password"
 												h="1.75rem"
-												aria-label="show-password"
 												size="sm"
 												onClick={handleShowClick}
 												bg="transparent"
 												_focus={{ outline: "none" }}
 												outline="none"
 												m={0}
-												_hover={{ bg: "transparent" }}
+												color="primary"
 												icon={
 													showPassword ? (
 														<ViewOffIcon />
@@ -159,12 +149,15 @@ export default function LoginPage() {
 														<ViewIcon />
 													)
 												}
-											/>
+												_hover={{ bg: "transparent" }}
+											>
+												{showPassword ? "Hide" : "Show"}
+											</IconButton>
 										</InputRightElement>
 									</InputGroup>
 									<FormHelperText textAlign="right">
 										<Link
-											href="/"
+											href="/forgot"
 											name="forgot password?"
 										/>
 									</FormHelperText>
@@ -177,88 +170,34 @@ export default function LoginPage() {
 									type="submit"
 									variant="solid"
 									width="full"
-									bg="primary"
-									color="secondary"
-									_hover={{ bg: "text.600" }}
-									isLoading={isSubmitting}
+									bg="text.800"
+									_hover={{ bg: "text.700" }}
 									onClick={(e) => {
 										e.preventDefault();
-										if (filter.isProfane(username)) {
-											setError(
-												"That username is not allowed"
-											);
-											return;
-										}
 										EmailValidator.validate(email) == true
-											? void axios
-													.post("/api/validate", {
-														email,
-													})
-													.then((e) => {
-														e.result ==
-														"deliverable"
-															? createUser(
-																	email,
-																	username,
-																	password
-															  ).then((e) => {
-																	setSubmitting(
-																		true
-																	);
-																	e.message ==
-																	"success"
-																		? console.log(
-																				error
-																		  )
-																		: setError(
-																				e.message
-																		  );
-															  })
+											? login(email, password).then(
+													(e) => {
+														e.message == "success"
+															? console.log(error)
 															: setError(
-																	"That is not a valid email address"
+																	e.message
 															  );
-													})
+													}
+											  )
 											: setError(
-													"That is not a valid email address"
+													"That email is not valid"
 											  );
 									}}
 								>
-									Register
+									Login
 								</Button>
-								<GoogleLogin
-									clientId={CLIENT_ID}
-									buttonText="Login"
-									onSuccess={(response) => {
-										login(
-											response.profileObj.name,
-											response.profileObj.googleId
-										).then(async (data) => {
-											if (data.code == 404) {
-												await createUser(
-													response.profileObj.email,
-													response.profileObj.name,
-													response.profileObj
-														.googleId,
-													response.profileObj.imageUrl
-												);
-											}
-											window.location.href = "/dashboard";
-										});
-									}}
-									onFailure={(response) => {}}
-									cookiePolicy="single_host_origin"
-								>
-									Sign in with Google
-								</GoogleLogin>
+								<GoogleButton />
 							</Stack>
 						</form>
 					</Box>
 				</Stack>
 				<Box>
-					<Link
-						href="/login"
-						name="Already have an account? Log in"
-					/>
+					<Link href="/" name="New to us? Sign Up" />
 				</Box>
 			</Flex>
 			<Foot />
