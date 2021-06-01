@@ -40,6 +40,17 @@ export default function Home(): JSX.Element {
 	const [error, setError] = useState("");
 	const placeholderColor = useColorModeValue("black", "white");
 
+	async function handleSubmit() {
+		await axios.post("/api/contact", {
+			name,
+			email,
+			subject,
+			company,
+			message,
+		});
+		window.location.href = "/contact/success";
+	}
+
 	return (
 		<>
 			<Head />
@@ -291,20 +302,7 @@ export default function Home(): JSX.Element {
 								}) => {
 									e.preventDefault();
 									EmailValidator.validate(email) == true
-										? async () => {
-												await axios.post(
-													"/api/contact",
-													{
-														name,
-														email,
-														subject,
-														company,
-														message,
-													}
-												);
-												window.location.href =
-													"success";
-										  }
+										? handleSubmit()
 										: setError(
 												"That Email address is not valid"
 										  );
