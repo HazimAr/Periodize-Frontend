@@ -37,7 +37,7 @@ export default function Home(): JSX.Element {
 	const [email, setEmail] = useState("");
 	const [subject, setSubject] = useState("");
 	const [message, setMessage] = useState("");
-	const [error, setError] = useState();
+	const [error, setError] = useState("");
 	const placeholderColor = useColorModeValue("black", "white");
 
 	return (
@@ -152,18 +152,7 @@ export default function Home(): JSX.Element {
 							Hit us up
 						</Text>
 
-						<form
-							style={{ width: "100%" }}
-							onSubmit={() => {
-								void axios.post("/api/contact", {
-									name,
-									email,
-									subject,
-									company,
-									message,
-								});
-							}}
-						>
+						<form style={{ width: "100%" }}>
 							<FormControl mb={4}>
 								<InputGroup>
 									<InputLeftElement
@@ -206,14 +195,7 @@ export default function Home(): JSX.Element {
 										aria-label="email"
 										value={email}
 										onChange={(e) => {
-											e.preventDefault();
-											EmailValidator.validate(
-												e.target.value
-											) == true
-												? setEmail(e.target.value)
-												: setError(
-														"That Email address is not valid"
-												  );
+											setEmail(e.target.value);
 										}}
 										required
 										_placeholder={{
@@ -303,6 +285,24 @@ export default function Home(): JSX.Element {
 								my={4}
 								border="2px"
 								borderColor="primary"
+								onClick={(e: {
+									preventDefault: () => void;
+									target: { value: string };
+								}) => {
+									e.preventDefault();
+									EmailValidator.validate(email) ==
+									true
+										? void axios.post("/api/contact", {
+												name,
+												email,
+												subject,
+												company,
+												message,
+										  })
+										: setError(
+												"That Email address is not valid"
+										  );
+								}}
 							>
 								Submit
 							</StyledButton>
