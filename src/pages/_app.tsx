@@ -9,6 +9,7 @@ import React, { useEffect } from "react";
 import { AppProps } from "next/app";
 // import theme from "@styles/theme";
 import { Chakra } from "@styles/chakra";
+import { setCookie } from "@lib/cookie";
 // eslint-disable-next-line import/no-default-export
 export default function MyApp({ Component, pageProps }: AppProps): JSX.Element {
 	const router = useRouter();
@@ -21,6 +22,9 @@ export default function MyApp({ Component, pageProps }: AppProps): JSX.Element {
 			router.events.off("routeChangeComplete", handleRouteChange);
 		};
 	}, [router.events]);
+	useEffect(() => {
+		setCookie("chakra-ui-color-mode", "dark", Number.MAX_SAFE_INTEGER);
+	}, []);
 	return (
 		<>
 			<Head>
