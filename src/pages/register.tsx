@@ -163,7 +163,7 @@ export default function LoginPage() {
 									</InputGroup>
 									<FormHelperText textAlign="right">
 										<Link
-											href="/"
+											href="/forgot"
 											name="forgot password?"
 										/>
 									</FormHelperText>
