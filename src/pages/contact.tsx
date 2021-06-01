@@ -290,15 +290,21 @@ export default function Home(): JSX.Element {
 									target: { value: string };
 								}) => {
 									e.preventDefault();
-									EmailValidator.validate(email) ==
-									true
-										? void axios.post("/api/contact", {
-												name,
-												email,
-												subject,
-												company,
-												message,
-										  })
+									EmailValidator.validate(email) == true
+										? async () => {
+												await axios.post(
+													"/api/contact",
+													{
+														name,
+														email,
+														subject,
+														company,
+														message,
+													}
+												);
+												window.location.href =
+													"success";
+										  }
 										: setError(
 												"That Email address is not valid"
 										  );
