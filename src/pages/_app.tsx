@@ -24,6 +24,7 @@ export default function MyApp({ Component, pageProps }: AppProps): JSX.Element {
 	}, [router.events]);
 	useEffect(() => {
 		setCookie("chakra-ui-color-mode", "dark", Number.MAX_SAFE_INTEGER);
+		localStorage.setItem("chakra-ui-color-mode", "dark");
 	}, []);
 	return (
 		<>
