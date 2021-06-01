@@ -16,6 +16,7 @@ import {
 	chakra,
 	InputLeftElement,
 	InputGroup,
+	Box,
 } from "@chakra-ui/react";
 import React, { useState } from "react";
 import StyledButton from "@components/styledbutton";
