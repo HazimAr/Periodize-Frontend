@@ -21,6 +21,13 @@ async function createUser(mail: string, user: string, pass: string, image: any =
 	return data;
 }
 
+/**
+ * Documentation
+ * @param {string} pass password of the user
+ * @param {string} email email of the user
+ * @returns {Promise<any>} returns the response from the server
+ */
+
 async function login(email: string, pass: string) {
 	const sendData = {
 		email: email,
