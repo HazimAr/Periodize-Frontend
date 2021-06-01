@@ -23,7 +23,7 @@ const META: MetaType = {
 	title: "",
 	lang: "en-us",
 	description: "",
-	image: "/logo.png",
+	image: "/",
 	url: "",
 };
 
