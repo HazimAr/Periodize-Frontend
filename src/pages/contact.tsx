@@ -205,6 +205,7 @@ export default function Home(): JSX.Element {
 										aria-label="email"
 										value={email}
 										onChange={(e) => {
+											e.preventDefault();
 											// EmailValidator.validate(
 											// 	e.target.value
 											// ) == true ?
