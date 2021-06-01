@@ -7,7 +7,7 @@ export default function About(): JSX.Element {
 		<>
 			<Head />
 			<div>
-				About <Text variant="bnw">Hello testing color</Text>
+				About2 <Text variant="bnw">Hello testing color</Text>
 			</div>
 			<Foot />
 		</>
