@@ -28,7 +28,7 @@ import { ViewIcon, ViewOffIcon, EmailIcon } from "@chakra-ui/icons";
 import { StyledFlex } from "@styles/index.theme";
 const CFaLock = chakra(FaLock);
 
-export default function LoginPage() {
+export default function LoginPage(): JSX.Element {
 	const { colorMode } = useColorMode();
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");

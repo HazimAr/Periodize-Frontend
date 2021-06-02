@@ -15,6 +15,7 @@ const Header = styled.header`
 	justify-content: center;
 	align-items: center;
 	z-index: 100;
+	text-align: center;
 `;
 const StyledLink = styled.li`
 	margin: 10px auto;
@@ -82,6 +83,7 @@ const StyledMenuList = styled.ul`
 		margin: 0;
 	}
 `;
+
 export default function Head() {
 	const [user, setUser] = useState();
 	useEffect(() => {
@@ -106,7 +108,7 @@ export default function Head() {
 				<Box mr={3}>
 					<Link href="/contact" name="contact" />
 				</Box>
-				<Box mr={1}>
+				<Box mr={3}>
 					<AvatarBadge
 						name={user.username}
 						src={
@@ -131,10 +133,7 @@ export default function Head() {
 				<Box mr={3}>
 					<Link href="/contact" name="contact" />
 				</Box>
-				<Box mr={3} px={2} py={1}>
-					{/* <NextLink href="/register">
-						<Register>register</Register>
-					</NextLink> */}
+				<Box mr={3}>
 					<Link href="/register" name="register" />
 				</Box>
 				<Link href="/login" name="login" />
