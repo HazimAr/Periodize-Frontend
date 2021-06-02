@@ -113,10 +113,10 @@ export default function Head(): JSX.Element {
 	} else {
 		body = (
 			<Flex align="center">
-				<Box mr={1.5} ml={1.5}>
+				<Box mr={1.5} ml={-9}>
 					<Link href="/register" name="register" />
 				</Box>
-				<Box mr={1.5} ml={1.5}>
+				<Box ml={1.5}>
 					<Link href="/login" name="login" />
 				</Box>
 			</Flex>
