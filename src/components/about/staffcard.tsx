@@ -32,7 +32,12 @@ export default function StaffCard({
 	linkedIn,
 }: StaffCardProps): JSX.Element {
 	return (
-		<Flex align="center" borderRadius="10px" mb={4}>
+		<Flex
+			align="center"
+			borderRadius="10px"
+			mb={4}
+			bgGradient="linear(to-r, rgba(14,73,27,1),#43a839)"
+		>
 			<Image
 				src={src}
 				alt={name}
