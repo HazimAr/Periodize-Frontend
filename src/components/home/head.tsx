@@ -1,13 +1,12 @@
 import styled from "styled-components";
-import { Box, Flex, Spacer, Button } from "@chakra-ui/react";
+import { Box, Flex, Spacer } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import Link from "@components/link";
 import { getProfileData } from "@api/profile";
 import { getCookie } from "@lib/cookie";
-import { logout } from "@api/auth";
 import ColorModeButton from "@components/colormodebutton";
 import AvatarBadge from "../avatar";
-import NextLink from "next/link";
+
 const Header = styled.header`
 	position: fixed;
 	width: 100%;
@@ -64,12 +63,6 @@ const DeselectMenu = styled.button`
 	position: absolute;
 `;
 
-const Register = styled.a`
-	color: "#ffff";
-	background-color: "#123634";
-	padding: 5px 5px;
-	border-radius: 2px;
-`;
 const StyledMenuList = styled.ul`
 	display: flex;
 	flex-direction: column;
@@ -84,8 +77,8 @@ const StyledMenuList = styled.ul`
 	}
 `;
 
-export default function Head() {
-	const [user, setUser] = useState();
+export default function Head(): JSX.Element {
+	const [user, setUser]: any = useState();
 	useEffect(() => {
 		const sess = getCookie("sessionid");
 		if (sess) {
