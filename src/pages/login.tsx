@@ -200,7 +200,7 @@ export default function LoginPage() {
 				</Stack>
 				<StyledFlex flexDir="column">
 					<Link href="/forgot" name="Forgot password?" />
-					<Link href="/login" name="Already have an account?" />
+					<Link href="/register" name="Don't have an account?" />
 					<Link href="/privacy" name="Privacy Policy" />
 				</StyledFlex>
 			</Flex>
