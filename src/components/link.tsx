@@ -1,15 +1,15 @@
 import NextLink from "next/link";
-import { Link as ChakraLink } from "@chakra-ui/react";
+import { Link } from "@chakra-ui/react";
 
-type LinkProps = {
+interface CLinkProps {
 	href: string;
 	name: string;
-};
+}
 
-export default function Link({ href, name }: LinkProps): JSX.Element {
+export default function CLink({ href, name }: CLinkProps): JSX.Element {
 	return (
-		<ChakraLink as={NextLink} href={href}>
+		<Link as={NextLink} href={href}>
 			{name}
-		</ChakraLink>
+		</Link>
 	);
 }
