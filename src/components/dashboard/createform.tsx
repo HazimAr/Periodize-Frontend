@@ -12,6 +12,11 @@ import { useState, useEffect } from "react";
 export default function CreateForm() {
 	const [name, setName] = useState("");
 	const [desc, setDesc] = useState("");
+
+	useEffect(() => {
+		setName("");
+		setDesc("");
+	}, []);
 	return (
 		<Container>
 			<Box>Create A Program</Box>
@@ -36,7 +41,7 @@ export default function CreateForm() {
 					bg="tomato"
 					borderRadius="10px"
 				>
-					Quick Workout
+					Quick Workout {desc}
 				</Center>
 				<Center
 					w="200px"
