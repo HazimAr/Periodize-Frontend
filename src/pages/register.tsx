@@ -17,7 +17,6 @@ import {
 	InputLeftElement,
 	Input,
 	InputRightElement,
-	FormHelperText,
 	chakra,
 	Button,
 	IconButton,
@@ -26,10 +25,12 @@ import {
 import { FaUserAlt, FaLock } from "react-icons/fa";
 // import { Filter } from "bad-words";
 import { EmailIcon, ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
+import { StyledFlex } from "@styles/index.theme";
+
 const CFaUserAlt = chakra(FaUserAlt);
 const CFaLock = chakra(FaLock);
 
-export default function LoginPage() {
+export default function LoginPage(): JSX.Element {
 	const { colorMode } = useColorMode();
 	const Filter = require("bad-words"),
 		filter = new Filter();
@@ -161,12 +162,6 @@ export default function LoginPage() {
 											/>
 										</InputRightElement>
 									</InputGroup>
-									<FormHelperText textAlign="right">
-										<Link
-											href="/forgot"
-											name="forgot password?"
-										/>
-									</FormHelperText>
 								</FormControl>
 								{error ? (
 									<Box color="red.400">{error}</Box>
@@ -229,12 +224,11 @@ export default function LoginPage() {
 						</form>
 					</Box>
 				</Stack>
-				<Box>
-					<Link
-						href="/login"
-						name="Already have an account? Log in"
-					/>
-				</Box>
+				<StyledFlex flexDir="column">
+					<Link href="/forgot" name="Forgot password?" />
+					<Link href="/register" name="Don't have an account?" />
+					<Link href="/privacy" name="Privacy Policy" />
+				</StyledFlex>
 			</Flex>
 			<Foot />
 		</>

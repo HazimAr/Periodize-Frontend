@@ -25,6 +25,7 @@ import {
 	useColorMode,
 } from "@chakra-ui/react";
 import { ViewIcon, ViewOffIcon, EmailIcon } from "@chakra-ui/icons";
+import { StyledFlex } from "@styles/index.theme";
 const CFaLock = chakra(FaLock);
 
 export default function LoginPage() {
@@ -197,9 +198,11 @@ export default function LoginPage() {
 						</form>
 					</Box>
 				</Stack>
-				<Box>
-					<Link href="/" name="New to us? Sign Up" />
-				</Box>
+				<StyledFlex flexDir="column">
+					<Link href="/forgot" name="Forgot password?" />
+					<Link href="/login" name="Already have an account?" />
+					<Link href="/privacy" name="Privacy Policy" />
+				</StyledFlex>
 			</Flex>
 			<Foot />
 		</>

@@ -1,3 +1,4 @@
+import { Flex } from "@chakra-ui/react";
 import styled from "styled-components";
 
 const StyledButton = styled.button`
@@ -38,4 +39,11 @@ const Container = styled.div`
 	max-width: 1200px;
 	width: 100%;
 `;
-export { StyledButton, Span, Container };
+
+const StyledFlex = styled(Flex)`
+	* {
+		margin: 2.5px 0px;
+	}
+`;
+
+export { StyledButton, Span, Container, StyledFlex };
