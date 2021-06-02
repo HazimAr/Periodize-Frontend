@@ -1,6 +1,5 @@
 import Head from "@components/home/head";
 import Foot from "@components/home/foot";
-import { Text } from "@chakra-ui/react";
 import StaffCard from "@components/about/staffcard";
 import Container from "@components/container";
 export default function About(): JSX.Element {
