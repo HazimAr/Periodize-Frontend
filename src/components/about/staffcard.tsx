@@ -10,7 +10,6 @@ import {
 	VStack,
 } from "@chakra-ui/react";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
-import { nodeModuleNameResolver } from "typescript";
 interface StaffCardProps {
 	src: string;
 	name: string;
