@@ -16,7 +16,7 @@ export default function GoogleButton() {
 			buttonText="Login"
 			onSuccess={(response: any) => {
 				login(
-					response.profileObj.name,
+					response.profileObj.email,
 					response.profileObj.googleId
 				).then(async (data) => {
 					// Check if user is not found then will create one if not found
