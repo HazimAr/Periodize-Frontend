@@ -1,6 +1,7 @@
-import React from "react";
-import Layout from "@components/dashboard/layout";
 import CreateForm from "@components/dashboard/createform";
+import Layout from "@components/dashboard/layout";
+import React from "react";
+
 export default function index(): JSX.Element {
 	return (
 		<Layout>

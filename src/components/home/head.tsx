@@ -1,10 +1,10 @@
-/* eslint-disable @typescript-eslint/no-confusing-void-expression */
+
 import { Box, Flex, Spacer } from "@chakra-ui/react";
 import AvatarBadge from "@components/avatar";
 import Link from "@components/link";
-import NextLink from "next/link";
 import StyledButton from "@components/styledbutton";
 import useProfile from "@hooks/useProfile";
+import NextLink from "next/link";
 import styled from "styled-components";
 
 const Header = styled.header`

@@ -1,3 +1,7 @@
+/* eslint-disable no-void */
+/* eslint-disable promise/prefer-await-to-then */
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable import/no-default-export */
 import { createUser, login } from "@api/auth";
 import { CLIENT_ID } from "config";
 import { GoogleLogin } from "react-google-login";
@@ -10,18 +14,18 @@ const Google = styled(GoogleLogin)`
 
 `;
 
-export default function GoogleButton() {
+export default function GoogleButton():JSX.Element {
 	return (
 		<Google
 			clientId={CLIENT_ID}
 			buttonText="Login"
 			onSuccess={(response: any) => {
-				login(
+				void login(
 					response.profileObj.email,
 					response.profileObj.googleId
 				).then(async (data) => {
 					// Check if user is not found then will create one if not found
-					if (data.code == 404) {
+					if (data.code === 404) {
 						await createUser(
 							response.profileObj.email,
 							response.profileObj.name,

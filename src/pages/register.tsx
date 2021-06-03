@@ -1,12 +1,14 @@
+/* eslint-disable promise/no-nesting */
+/* eslint-disable no-console */
+/* eslint-disable promise/prefer-await-to-then */
+/* eslint-disable @typescript-eslint/no-unused-expressions */
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-require-imports */
+/* eslint-disable sonarjs/cognitive-complexity */
 /* eslint-disable @typescript-eslint/no-floating-promises */
 import { createUser } from "@api/auth";
-import { useState } from "react";
-import Link from "@components/link";
-import Head from "@components/home/head";
-import Foot from "@components/home/foot";
-import GoogleButton from "@components/google";
-import axios from "axios";
-import * as EmailValidator from "email-validator";
+// import { Filter } from "bad-words";
+import { EmailIcon, ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 import {
 	Text,
 	Stack,
@@ -21,26 +23,31 @@ import {
 	IconButton,
 	useColorMode,
 } from "@chakra-ui/react";
-import { FaUserAlt, FaLock } from "react-icons/fa";
-// import { Filter } from "bad-words";
-import { EmailIcon, ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
+import GoogleButton from "@components/google";
+import Foot from "@components/home/foot";
+import Head from "@components/home/head";
+import Link from "@components/link";
 import Button from "@components/styledbutton";
 import { StyledFlex } from "@styles/index.theme";
+import axios from "axios";
+import { validate } from "email-validator";
+import { useState } from "react";
+import { FaUserAlt, FaLock } from "react-icons/fa";
 
 const CFaUserAlt = chakra(FaUserAlt);
 const CFaLock = chakra(FaLock);
 
 export default function LoginPage(): JSX.Element {
 	const { colorMode } = useColorMode();
-	const Filter = require("bad-words"),
-		filter = new Filter();
+	const Filter = require("bad-words");
+	const filter = new Filter();
 	const [username, setUsername] = useState("");
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const [error, setError] = useState("");
 	const [isSubmitting, setSubmitting] = useState(false);
 	const [showPassword, setShowPassword] = useState(false);
-	const handleShowClick = () => setShowPassword(!showPassword);
+	const handleShowClick = () => { setShowPassword(!showPassword); };
 
 	return (
 		<>
@@ -74,12 +81,9 @@ export default function LoginPage(): JSX.Element {
 							<Stack spacing={4} p="1rem" boxShadow="md">
 								<FormControl>
 									<InputGroup>
-										<InputLeftElement
-											pointerEvents="none"
-											children={
-												<CFaUserAlt color="primary" />
-											}
-										/>
+										<InputLeftElement pointerEvents="none">
+											<CFaUserAlt color="primary" />
+										</InputLeftElement>
 										<Input
 											type="username"
 											name="username"
@@ -96,12 +100,9 @@ export default function LoginPage(): JSX.Element {
 								</FormControl>
 								<FormControl>
 									<InputGroup>
-										<InputLeftElement
-											pointerEvents="none"
-											children={
-												<EmailIcon color="primary" />
-											}
-										/>
+										<InputLeftElement pointerEvents="none">
+											<EmailIcon color="primary" />
+										</InputLeftElement>
 										<Input
 											type="email"
 											name="email"
@@ -121,10 +122,9 @@ export default function LoginPage(): JSX.Element {
 										<InputLeftElement
 											pointerEvents="none"
 											color="gray.300"
-											children={
-												<CFaLock color="primary" />
-											}
-										/>
+										>
+											<CFaLock color="primary" />
+										</InputLeftElement>
 										<Input
 											type={
 												showPassword
@@ -169,7 +169,7 @@ export default function LoginPage(): JSX.Element {
 								<Button
 									width="full"
 									isLoading={isSubmitting}
-									onClick={(e:any) => {
+									onClick={(e: any) => {
 										e.preventDefault();
 										if (filter.isProfane(username)) {
 											setError(
@@ -177,13 +177,12 @@ export default function LoginPage(): JSX.Element {
 											);
 											return;
 										}
-										EmailValidator.validate(email) == true
-											? void axios
-													.post("/api/validate", {
+										validate(email)
+											? axios.post("/api/validate", {
 														email,
 													})
 													.then((e: any) => {
-														e.result ==
+														e.result ===
 														"deliverable"
 															? createUser(
 																	email,
@@ -193,7 +192,7 @@ export default function LoginPage(): JSX.Element {
 																	setSubmitting(
 																		true
 																	);
-																	e.message ==
+																	e.message ===
 																	"success"
 																		? console.log(
 																				error

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 import { eraseCookie, getCookie, setCookie } from "@lib/cookie";
 import axios from "axios";
@@ -9,7 +10,7 @@ async function createUser(mail: string, user: string, pass: string, image: any =
 		password: pass,
 		username: user,
 		email: mail,
-		image: image,
+		image,
 	};
 
 	const { data } = await axios.put(`${DB_URL}/users`, sendData);
@@ -30,7 +31,7 @@ async function createUser(mail: string, user: string, pass: string, image: any =
 
 async function login(email: string, pass: string) {
 	const sendData = {
-		email: email,
+		email,
 		password: pass,
 	};
 

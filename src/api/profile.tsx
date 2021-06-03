@@ -15,7 +15,7 @@ async function getProfileData() {
 
 async function forgotPassword(email: string) {
 	const sendData = {
-		email: email,
+		email,
 	};
 	const { data } = await axios.post(`${DB_URL}/users/email`, sendData);
 

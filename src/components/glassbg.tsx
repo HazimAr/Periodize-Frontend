@@ -1,5 +1,9 @@
-import styled from "styled-components";
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable import/no-default-export */
 import { Box } from "@chakra-ui/react";
+import styled from "styled-components";
+
 const Glass = styled(Box)`
 	/* background: white; */
 	background: linear-gradient(

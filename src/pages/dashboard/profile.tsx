@@ -1,11 +1,12 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Box, Flex, Text } from "@chakra-ui/react";
 import AvatarBadge from "@components/avatar";
 import Layout from "@components/dashboard/layout";
 import Button from "@components/styledbutton";
-// import useProfile from "@hooks/useProfile";
+import useProfile from "@hooks/useProfile";
 
-export default function index(): JSX.Element {
-	// const user: any = useProfile();
+export default function Profile(): JSX.Element {
+	const user: any = useProfile();
 
 	return (
 		<Layout>
@@ -39,7 +40,7 @@ export default function index(): JSX.Element {
 							src="https://bit.ly/broken-link"
 							size="lg"
 						/>
-						<Text ml="10px">Username Here</Text>
+						<Text ml="10px">{user.username}</Text>
 						<Button ml="auto"> ... </Button>
 					</Flex>
 					<Box textAlign="left">
@@ -53,14 +54,14 @@ export default function index(): JSX.Element {
 						</Flex>
 
 						<Flex alignItems="center">
-							<Box >
+							<Box>
 								<Text>Email:</Text>
 								<Text>hazimarafa80@gmail.com</Text>
 							</Box>
 							<Button ml="auto"> Edit </Button>
 						</Flex>
 						<Flex alignItems="center">
-							<Box >
+							<Box>
 								<Text>Phone Number:</Text>
 								<Text>707-777-7777</Text>
 							</Box>
