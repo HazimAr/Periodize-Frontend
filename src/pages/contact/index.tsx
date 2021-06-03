@@ -291,8 +291,6 @@ export default function Home(): JSX.Element {
 							<StyledButton
 								type="submit"
 								my={4}
-								border="2px"
-								borderColor="primary"
 								onClick={(e: {
 									preventDefault: () => void;
 									target: { value: string };
