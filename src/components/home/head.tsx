@@ -1,13 +1,11 @@
 import styled from "styled-components";
-import { Box, Flex, Spacer, Button } from "@chakra-ui/react";
+import { Box, Flex, Spacer } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import Link from "@components/link";
 import { getProfileData } from "@api/profile";
 import { getCookie } from "@lib/cookie";
-import { logout } from "@api/auth";
-import ColorModeButton from "@components/colormodebutton";
-import AvatarBadge from "../avatar";
-import NextLink from "next/link";
+import AvatarBadge from "@components/avatar";
+
 const Header = styled.header`
 	position: fixed;
 	width: 100%;
@@ -17,6 +15,7 @@ const Header = styled.header`
 	z-index: 100;
 	text-align: center;
 `;
+
 const StyledLink = styled.li`
 	margin: 10px auto;
 	position: relative;
@@ -43,6 +42,7 @@ const StyledLink = styled.li`
 		width: 100%;
 	}
 `;
+
 const StyledMenuContainer = styled.div`
 	display: none;
 	height: 100vh;
@@ -64,12 +64,6 @@ const DeselectMenu = styled.button`
 	position: absolute;
 `;
 
-const Register = styled.a`
-	color: "#ffff";
-	background-color: "#123634";
-	padding: 5px 5px;
-	border-radius: 2px;
-`;
 const StyledMenuList = styled.ul`
 	display: flex;
 	flex-direction: column;
@@ -84,8 +78,8 @@ const StyledMenuList = styled.ul`
 	}
 `;
 
-export default function Head() {
-	const [user, setUser] = useState();
+export default function Head(): JSX.Element {
+	const [user, setUser]: any = useState();
 	useEffect(() => {
 		const sess = getCookie("sessionid");
 		if (sess) {
@@ -101,14 +95,7 @@ export default function Head() {
 	if (user) {
 		body = (
 			<Flex align="center">
-				<ColorModeButton />
-				<Box mr={3}>
-					<Link href="/about" name="about" />
-				</Box>
-				<Box mr={3}>
-					<Link href="/contact" name="contact" />
-				</Box>
-				<Box mr={3}>
+				<Box ml={8}>
 					<AvatarBadge
 						name={user.username}
 						src={
@@ -126,23 +113,18 @@ export default function Head() {
 	} else {
 		body = (
 			<Flex align="center">
-				<ColorModeButton />
-				<Box mr={3}>
-					<Link href="/about" name="about" />
-				</Box>
-				<Box mr={3}>
-					<Link href="/contact" name="contact" />
-				</Box>
-				<Box mr={3}>
+				<Box mr={1.5} ml={-9}>
 					<Link href="/register" name="register" />
 				</Box>
-				<Link href="/login" name="login" />
+				<Box ml={1.5}>
+					<Link href="/login" name="login" />
+				</Box>
 			</Flex>
 		);
 	}
 
 	return (
-		<Box h="110px">
+		<Box h="100px">
 			<Header>
 				<Flex
 					maxW="1200px"
@@ -153,6 +135,15 @@ export default function Head() {
 					textAlign="center"
 				>
 					<Link href="/" name="Periodize" />
+					<Spacer />
+					<Flex>
+						<Box mr={1.5} ml={1.5}>
+							<Link href="/about" name="About" />
+						</Box>
+						<Box mr={1.5} ml={1.5}>
+							<Link href="/contact" name="Contact" />
+						</Box>
+					</Flex>
 					<Spacer />
 
 					{body}

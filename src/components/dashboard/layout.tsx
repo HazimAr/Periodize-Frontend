@@ -24,6 +24,7 @@ export default function Layout({
 		getProfileData().then((data) => {
 			if (!data.data) {
 				window.location.href = "/login";
+				return;
 			}
 		});
 	}, []);
