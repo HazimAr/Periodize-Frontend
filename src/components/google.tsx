@@ -7,6 +7,7 @@ const Google = styled(GoogleLogin)`
 	display: flex;
 	justify-content: center;
 	align-items: center;
+
 `;
 
 export default function GoogleButton() {

@@ -5,10 +5,13 @@ import { Button } from "@chakra-ui/react";
 export default function StyledButton(props: any) {
 	return (
 		<Button
-			border="1px solid"
-			_hover={{ borderColor: "text.800" }}
-			variant="outline"
-			_focus={{ outline: "none" }}
+			border="1px solid transparent"
+			borderRadius="5px"
+			type="submit"
+			variant="solid"
+			bg="text.800"
+			_hover={{ bg: "text.700" }}
+			color="white"
 			{...props}
 		>
 			{props.children}

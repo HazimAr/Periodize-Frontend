@@ -19,10 +19,10 @@ import {
 	InputRightElement,
 	FormHelperText,
 	chakra,
-	Button,
 	useColorMode,
 } from "@chakra-ui/react";
 import { ViewIcon, ViewOffIcon, EmailIcon } from "@chakra-ui/icons";
+import Button from "@components/styledbutton";
 import { StyledFlex } from "@styles/index.theme";
 import useProfile from "@hooks/useProfile";
 const CFaLock = chakra(FaLock);
@@ -163,14 +163,8 @@ export default function LoginPage(): JSX.Element {
 									<Box color="red.400">{error}</Box>
 								) : null}
 								<Button
-									borderRadius={2}
-									type="submit"
-									variant="solid"
 									width="full"
-									bg="text.800"
-									_hover={{ bg: "text.700" }}
-									color="white"
-									onClick={(e) => {
+									onClick={(e: any) => {
 										e.preventDefault();
 										EmailValidator.validate(email) == true
 											? login(email, password).then(

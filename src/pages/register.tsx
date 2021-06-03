@@ -18,13 +18,13 @@ import {
 	Input,
 	InputRightElement,
 	chakra,
-	Button,
 	IconButton,
 	useColorMode,
 } from "@chakra-ui/react";
 import { FaUserAlt, FaLock } from "react-icons/fa";
 // import { Filter } from "bad-words";
 import { EmailIcon, ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
+import Button from "@components/styledbutton";
 import { StyledFlex } from "@styles/index.theme";
 
 const CFaUserAlt = chakra(FaUserAlt);
@@ -167,15 +167,9 @@ export default function LoginPage(): JSX.Element {
 									<Box color="red.400">{error}</Box>
 								) : null}
 								<Button
-									borderRadius={2}
-									type="submit"
-									variant="solid"
 									width="full"
-									bg="text.800"
-									_hover={{ bg: "text.700" }}
-									color="white"
 									isLoading={isSubmitting}
-									onClick={(e) => {
+									onClick={(e:any) => {
 										e.preventDefault();
 										if (filter.isProfane(username)) {
 											setError(

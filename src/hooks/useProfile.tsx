@@ -6,6 +6,7 @@ export default function useProfile() {
 	const [user, setUser]: any = useState();
 	useEffect(() => {
 		const sess = getCookie("sessionid");
+		console.log(sess);
 		if (sess) {
 			getProfileData().then((data) => {
 				if (data.code == 200) {
@@ -13,6 +14,12 @@ export default function useProfile() {
 				}
 			});
 		}
+
 		return user;
 	}, []);
+	useEffect(() => {
+		if (user) {
+			console.log(user);
+		}
+	}, [user]);
 }

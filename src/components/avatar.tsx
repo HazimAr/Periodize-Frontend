@@ -9,7 +9,7 @@ type AvatarProps = {
 export default function AvatarBadge({
 	name,
 	src,
-	size = "md",
+	size,
 }: AvatarProps): JSX.Element {
 	return (
 		<Box>
