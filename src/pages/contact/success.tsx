@@ -1,6 +1,6 @@
-import Head from "@components/home/head";
-import Foot from "@components/home/foot";
 import { Text } from "@chakra-ui/react";
+import Foot from "@components/home/foot";
+import Head from "@components/home/head";
 
 export default function About(): JSX.Element {
 	return (

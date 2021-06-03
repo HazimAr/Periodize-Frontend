@@ -296,7 +296,7 @@ export default function Home(): JSX.Element {
 									target: { value: string };
 								}) => {
 									e.preventDefault();
-									void validate(email)
+									validate(email)
 										? handleSubmit()
 										: setError(
 												"That Email address is not valid"
