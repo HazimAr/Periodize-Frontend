@@ -1,6 +1,8 @@
-import Head from "@components/home/head";
-import Foot from "@components/home/foot";
-import Container from "@components/container";
+/* eslint-disable no-void */
+/* eslint-disable @typescript-eslint/no-unused-expressions */
+/* eslint-disable no-constant-condition */
+/* eslint-disable @typescript-eslint/no-floating-promises */
+import { CopyIcon, EmailIcon } from "@chakra-ui/icons";
 import {
 	Heading,
 	useClipboard,
@@ -18,13 +20,15 @@ import {
 	InputGroup,
 	Box,
 } from "@chakra-ui/react";
-import React, { useState } from "react";
-import StyledButton from "@components/styledbutton";
-import * as EmailValidator from "email-validator";
+import Container from "@components/container";
 import Emoji from "@components/emoji";
-import { CopyIcon, EmailIcon } from "@chakra-ui/icons";
-import { FaUserAlt, FaBuilding } from "react-icons/fa";
+import Foot from "@components/home/foot";
+import Head from "@components/home/head";
+import StyledButton from "@components/styledbutton";
 import axios from "axios";
+import { validate } from "email-validator";
+import React, { useState } from "react";
+import { FaUserAlt, FaBuilding } from "react-icons/fa";
 
 const CFaUserAlt = chakra(FaUserAlt);
 const CFaBuilding = chakra(FaBuilding);
@@ -89,7 +93,7 @@ export default function Home(): JSX.Element {
 								as="h2"
 								size="md"
 								pt={2}
-								color={colorMode == "dark" ? "white" : "black"}
+								color={colorMode === "dark" ? "white" : "black"}
 							>
 								Email us:
 							</Heading>
@@ -98,7 +102,7 @@ export default function Home(): JSX.Element {
 									mb={6}
 									variant="bnw"
 									bgGradient={
-										colorMode == "dark"
+										colorMode === "dark"
 											? "linear(to-r,#42CAF7, white)"
 											: "linear(to-r ,primary, black)"
 									}
@@ -166,12 +170,9 @@ export default function Home(): JSX.Element {
 						<form style={{ width: "100%" }}>
 							<FormControl mb={4}>
 								<InputGroup>
-									<InputLeftElement
-										pointerEvents="none"
-										children={
-											<CFaUserAlt color="primary" />
-										}
-									/>
+									<InputLeftElement pointerEvents="none">
+										<CFaUserAlt color="primary" />
+									</InputLeftElement>
 									<Input
 										type="name"
 										name="fullname"
@@ -194,10 +195,9 @@ export default function Home(): JSX.Element {
 							{error ? <Box color="red.400">{error}</Box> : null}
 							<FormControl mb={4}>
 								<InputGroup>
-									<InputLeftElement
-										pointerEvents="none"
-										children={<EmailIcon color="primary" />}
-									/>
+									<InputLeftElement pointerEvents="none">
+										<EmailIcon color="primary" />
+									</InputLeftElement>
 									<Input
 										type="email"
 										name="email"
@@ -219,12 +219,9 @@ export default function Home(): JSX.Element {
 							</FormControl>
 							<FormControl mb={4}>
 								<InputGroup>
-									<InputLeftElement
-										pointerEvents="none"
-										children={
-											<CFaBuilding color="primary" />
-										}
-									/>
+									<InputLeftElement pointerEvents="none">
+										<CFaBuilding color="primary" />
+									</InputLeftElement>
 									<Input
 										name="company"
 										id="company"
@@ -301,7 +298,7 @@ export default function Home(): JSX.Element {
 									target: { value: string };
 								}) => {
 									e.preventDefault();
-									EmailValidator.validate(email) == true
+									void validate(email)
 										? handleSubmit()
 										: setError(
 												"That Email address is not valid"

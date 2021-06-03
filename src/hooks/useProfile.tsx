@@ -1,4 +1,4 @@
-/* eslint-disable no-console */
+/* eslint-disable unicorn/no-useless-undefined */
 /* eslint-disable promise/prefer-await-to-then */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable no-void */
@@ -16,11 +16,12 @@ export default function useProfile(): any {
 			void getProfileData().then((data) => {
 				if (data.code === 200) {
 					setUser(data.data);
-					console.log(user);
 				}
 			});
+			return;
 		}
-	}, [user]);
+		setUser(null);
+	}, []);
 
 	return user;
 }

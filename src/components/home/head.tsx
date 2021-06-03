@@ -1,5 +1,6 @@
+/* eslint-disable no-console */
 /* eslint-disable no-negated-condition */
-import { Box, Flex, Spacer, Text } from "@chakra-ui/react";
+import { Box, Flex, Spacer } from "@chakra-ui/react";
 import AvatarBadge from "@components/avatar";
 import Link from "@components/link";
 import StyledButton from "@components/styledbutton";
@@ -84,22 +85,26 @@ const StyledMenuList = styled.ul`
 export default function Head(): JSX.Element {
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	const user: any = useProfile();
-	const [loading, setLoading] = useState(false);
+	const [loading, setLoading] = useState(true);
 
 	useEffect(() => {
-		if (!user) {
-			setLoading(true);
-			return;
+		if (user !== undefined) {
+			setLoading(false);
 		}
-		setLoading(false);
-	}, [loading, user]);
+	}, [user]);
 
 	let body = null;
 	if (loading) {
-		body = <Text>Loading...</Text>;
+		console.log()
 	} else if (!user) {
 		body = (
 			<Flex align="center">
+				<Box mr={1.5} ml={1.5}>
+					<Link href="/about" name="About" />
+				</Box>
+				<Box mr={1.5} ml={1.5}>
+					<Link href="/contact" name="Contact" />
+				</Box>
 				<Box ml={1.5} mr={1.5}>
 					<Link href="/login" name="Login" />
 				</Box>
@@ -115,6 +120,12 @@ export default function Head(): JSX.Element {
 	} else {
 		body = (
 			<Flex align="center">
+				<Box mr={1.5} ml={1.5}>
+					<Link href="/about" name="About" />
+				</Box>
+				<Box mr={1.5} ml={1.5}>
+					<Link href="/contact" name="Contact" />
+				</Box>
 				<Box ml={8}>
 					<AvatarBadge
 						name={user.username}
@@ -143,14 +154,6 @@ export default function Head(): JSX.Element {
 				>
 					<Link href="/" name="Periodize" />
 					<Spacer />
-					<Flex>
-						<Box mr={1.5} ml={1.5}>
-							<Link href="/about" name="About" />
-						</Box>
-						<Box mr={1.5} ml={1.5}>
-							<Link href="/contact" name="Contact" />
-						</Box>
-					</Flex>
 
 					{body}
 				</Flex>
