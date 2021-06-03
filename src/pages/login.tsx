@@ -38,7 +38,9 @@ export default function LoginPage(): JSX.Element {
 	const user: any = useProfile();
 
 	useEffect(() => {
-		window.location.href = "/dashboard";
+		if (user) {
+			window.location.href = "/dashboard";
+		}
 	}, [user]);
 
 	return (
