@@ -13,6 +13,7 @@ import {
 	IconButton,
 	VStack,
 	chakra,
+	Flex,
 } from "@chakra-ui/react";
 
 import { FaDumbbell } from "react-icons/fa";
@@ -22,21 +23,23 @@ import {
 	GiWeightLiftingDown,
 } from "react-icons/gi";
 import { useState, useEffect } from "react";
+import Pop from "@components/pop";
 
 const CWeightlifting = chakra(GiWeightLiftingUp);
 const CPowerlifting = chakra(GiWeightLiftingDown);
 const CBodybuilding = chakra(FaDumbbell);
 const CCardio = chakra(GiRunningNinja);
-export default function CreateForm() {
+export default function CreateForm(props: any) {
 	const [name, setName] = useState("");
 	const [desc, setDesc] = useState("");
 	const [beg, setBeg] = useState(false);
 	const [int, setInt] = useState(false);
 	const [adv, setAdv] = useState(false);
+	const [privacy, setPrivacy] = useState(false);
 	const [tags, setTags]: any = useState([]);
 	useEffect(() => {
-		console.log(tags);
-	}, [tags]);
+		console.log(privacy);
+	}, [privacy]);
 
 	function handleTags(t: string) {
 		if (tags.includes(t)) {
@@ -52,14 +55,20 @@ export default function CreateForm() {
 				Create your template
 			</Heading>
 
-			<form>
-				<VStack spacing={2} alignItems="left">
+			<form
+				onSubmit={(e) => {
+					e.preventDefault();
+					props.setToggle();
+					console.log("test");
+				}}
+			>
+				<VStack spacing={2} alignItems="center">
 					<FormControl>
 						<FormLabel htmlFor="name" color="white">
 							Name
 						</FormLabel>
 						<Input
-							placeholder="Starting Strength 5x5"
+							placeholder=""
 							value={name}
 							color="white"
 							_placeholder={{ color: "white" }}
@@ -107,7 +116,7 @@ export default function CreateForm() {
 							</Checkbox>
 						</CheckboxGroup>
 					</HStack>
-					<Text textAlign="left">Tags</Text>
+
 					<HStack spacing={2} alignItems="center" wrap="wrap">
 						<VStack>
 							<IconButton
@@ -141,6 +150,7 @@ export default function CreateForm() {
 							/>
 							<Text fontSize="10px">Weightlifting</Text>
 						</VStack>
+
 						<VStack>
 							<IconButton
 								aria-label="gains"
@@ -170,15 +180,25 @@ export default function CreateForm() {
 							<Text fontSize="10px">Cardio</Text>
 						</VStack>
 					</HStack>
+					<Flex align="center">
+						<Checkbox
+							mx={1}
+							colorScheme="red"
+							isChecked={privacy}
+							onChange={() => setPrivacy(!privacy)}
+							color="white"
+						>
+							private
+						</Checkbox>
+						<Pop
+							// placement="right-start"
+							title="howdy"
+							description="Set to private if you do not want anyone to view your program"
+						/>
+					</Flex>
 				</VStack>
 
-				<Button
-					my={4}
-					bg="purple.500"
-					onClick={() => {
-						console.log("test");
-					}}
-				>
+				<Button type="submit" my={4} bg="purple.500">
 					Create
 				</Button>
 			</form>
