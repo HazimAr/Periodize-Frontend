@@ -1,3 +1,4 @@
+
 import {
 	Container,
 	FormControl,
@@ -9,9 +10,11 @@ import {
 	Flex,
 	Heading,
 } from "@chakra-ui/react";
-import { useState, useEffect } from "react";
 import Glass from "@components/glassbg";
-export default function CreateForm() {
+import { useState, useEffect } from "react";
+
+// eslint-disable-next-line import/no-default-export
+export default function CreateForm(): JSX.Element {
 	const [name, setName] = useState("");
 	const [desc, setDesc] = useState("");
 
@@ -53,7 +56,7 @@ export default function CreateForm() {
 								value={name}
 								color="blue.400"
 								_placeholder={{ color: "blue.300" }}
-								onChange={(e) => setName(e.target.value)}
+								onChange={(e) => { setName(e.target.value); }}
 							/>
 						</FormControl>
 						<FormControl>
@@ -65,7 +68,7 @@ export default function CreateForm() {
 								value={desc}
 								color="blue.400"
 								_placeholder={{ color: "blue.300" }}
-								onChange={(e) => setDesc(e.target.value)}
+								onChange={(e) => { setDesc(e.target.value); }}
 							/>
 						</FormControl>
 					</form>
