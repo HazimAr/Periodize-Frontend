@@ -1,9 +1,11 @@
-import { Box, Flex, Spacer } from "@chakra-ui/react";
+/* eslint-disable no-negated-condition */
+import { Box, Flex, Spacer, Text } from "@chakra-ui/react";
 import AvatarBadge from "@components/avatar";
 import Link from "@components/link";
 import StyledButton from "@components/styledbutton";
 import useProfile from "@hooks/useProfile";
 import NextLink from "next/link";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 
 const Header = styled.header`
@@ -82,31 +84,51 @@ const StyledMenuList = styled.ul`
 export default function Head(): JSX.Element {
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	const user: any = useProfile();
+	const [loading, setLoading] = useState(false);
 
-	const body = user ? (
-		<Flex align="center">
-			<Box ml={8}>
-				<AvatarBadge
-					name={user.username}
-					src={user.image ? user.image : "https://bit.ly/broken-link"}
-					size="sm"
-				/>
-			</Box>
-		</Flex>
-	) : (
-		<Flex align="center">
-			<Box ml={1.5} mr={1.5}>
-				<Link href="/login" name="Login" />
-			</Box>
-			<Box ml={1.5} mr={1.5}>
-				<NextLink href="/register">
-					<a>
-						<StyledButton> Sign Up</StyledButton>
-					</a>
-				</NextLink>
-			</Box>
-		</Flex>
-	);
+	useEffect(() => {
+		if (!user) {
+			setLoading(true);
+			return;
+		}
+		setLoading(false);
+	}, [loading, user]);
+
+	let body = null;
+	if (loading) {
+		body = <Text>Loading...</Text>;
+	} else if (!user) {
+		body = (
+			<Flex align="center">
+				<Box ml={1.5} mr={1.5}>
+					<Link href="/login" name="Login" />
+				</Box>
+				<Box ml={1.5} mr={1.5}>
+					<NextLink href="/register">
+						<a>
+							<StyledButton>Sign Up</StyledButton>
+						</a>
+					</NextLink>
+				</Box>
+			</Flex>
+		);
+	} else {
+		body = (
+			<Flex align="center">
+				<Box ml={8}>
+					<AvatarBadge
+						name={user.username}
+						src={
+							user.image
+								? user.image
+								: "https://bit.ly/broken-link"
+						}
+						size="sm"
+					/>
+				</Box>
+			</Flex>
+		);
+	}
 
 	return (
 		<Box h="100px">
