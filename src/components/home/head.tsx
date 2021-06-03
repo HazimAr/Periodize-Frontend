@@ -1,9 +1,7 @@
 import styled from "styled-components";
 import { Box, Flex, Spacer } from "@chakra-ui/react";
-import React, { useEffect, useState } from "react";
+import useProfile from "@hooks/useProfile";
 import Link from "@components/link";
-import { getProfileData } from "@api/profile";
-import { getCookie } from "@lib/cookie";
 import AvatarBadge from "@components/avatar";
 
 const Header = styled.header`
@@ -79,49 +77,28 @@ const StyledMenuList = styled.ul`
 `;
 
 export default function Head(): JSX.Element {
-	const [user, setUser]: any = useState();
-	useEffect(() => {
-		const sess = getCookie("sessionid");
-		if (sess) {
-			getProfileData().then((data) => {
-				if (data.code == 200) {
-					setUser(data.data);
-				}
-			});
-		}
-	}, []);
+	const user: any = useProfile();
 
-	let body = null;
-	if (user) {
-		body = (
-			<Flex align="center">
-				<Box ml={8}>
-					<AvatarBadge
-						name={user.username}
-						src={
-							user.image
-								? user.image
-								: "https://bit.ly/broken-link"
-						}
-						size="sm"
-					/>
-				</Box>
-			</Flex>
-		);
-
-		// user is logged in
-	} else {
-		body = (
-			<Flex align="center">
-				<Box mr={1.5} ml={-9}>
-					<Link href="/register" name="register" />
-				</Box>
-				<Box ml={1.5}>
-					<Link href="/login" name="login" />
-				</Box>
-			</Flex>
-		);
-	}
+	let body = user ? (
+		<Flex align="center">
+			<Box ml={8}>
+				<AvatarBadge
+					name={user.username}
+					src={user.image ? user.image : "https://bit.ly/broken-link"}
+					size="sm"
+				/>
+			</Box>
+		</Flex>
+	) : (
+		<Flex align="center">
+			<Box mr={1.5} ml={-9}>
+				<Link href="/register" name="register" />
+			</Box>
+			<Box ml={1.5}>
+				<Link href="/login" name="login" />
+			</Box>
+		</Flex>
+	);
 
 	return (
 		<Box h="100px">

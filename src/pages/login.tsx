@@ -1,6 +1,4 @@
 import { login } from "@api/auth";
-import { getProfileData } from "@api/profile";
-import { getCookie } from "@lib/cookie";
 import Link from "@components/link";
 import { FaLock } from "react-icons/fa";
 import GoogleButton from "@components/google";
@@ -26,6 +24,7 @@ import {
 } from "@chakra-ui/react";
 import { ViewIcon, ViewOffIcon, EmailIcon } from "@chakra-ui/icons";
 import { StyledFlex } from "@styles/index.theme";
+import useProfile from "@hooks/useProfile";
 const CFaLock = chakra(FaLock);
 
 export default function LoginPage(): JSX.Element {
@@ -36,16 +35,11 @@ export default function LoginPage(): JSX.Element {
 	const [showPassword, setShowPassword] = useState(false);
 	const handleShowClick = () => setShowPassword(!showPassword);
 
+	const user: any = useProfile();
+
 	useEffect(() => {
-		const sess = getCookie("sessionid");
-		if (sess) {
-			getProfileData().then((data) => {
-				if (data.code == 200) {
-					window.location.href = "/dashboard";
-				}
-			});
-		}
-	}, []);
+		window.location.href = "/dashboard";
+	}, [user]);
 
 	return (
 		<>

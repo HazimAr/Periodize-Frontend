@@ -23,6 +23,7 @@
 			"@styles/*": ["styles/*"],
 			"@api/*": ["api/*"],
 			"@utils/*": ["utils/*"],
+			"@hooks/*": ["hooks/*"],
 			"@lib/*": ["lib/*"],
 			"@src/*": ["/*"],
 			"@pages/*": ["pages/*"]
@@ -39,6 +40,7 @@
 		"src/components/home/header.jsx",
 		"src/components/LoginForm.jsx",
 		"src/pages/register.tsx",
-		"src/styles/linkstyles."
-, "src/components/google.tsx"	]
+		"src/styles/linkstyles.",
+		"src/components/google.tsx"
+	]
 }
