@@ -7,6 +7,7 @@ export default function StyledButton(props: any) {
 		<Button
 			border="1px solid transparent"
 			borderRadius="5px"
+			_focus={{ outline: "none" }}
 			type="submit"
 			variant="solid"
 			bg="text.800"
