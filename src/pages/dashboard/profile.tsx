@@ -1,10 +1,11 @@
-import Layout from "@components/dashboard/layout";
 import { Box, Flex, Text } from "@chakra-ui/react";
-import useProfile from "@hooks/useProfile";
 import AvatarBadge from "@components/avatar";
+import Layout from "@components/dashboard/layout";
 import Button from "@components/styledbutton";
+// import useProfile from "@hooks/useProfile";
+
 export default function index(): JSX.Element {
-	const user: any = useProfile();
+	// const user: any = useProfile();
 
 	return (
 		<Layout>
