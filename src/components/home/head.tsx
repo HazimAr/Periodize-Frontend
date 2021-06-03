@@ -1,4 +1,3 @@
-
 import { Box, Flex, Spacer } from "@chakra-ui/react";
 import AvatarBadge from "@components/avatar";
 import Link from "@components/link";
