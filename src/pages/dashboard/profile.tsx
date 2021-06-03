@@ -10,69 +10,65 @@ export default function Profile(): JSX.Element {
 
 	return (
 		<Layout>
-			{/* {user ? (
-				<Box bg="grey">
-					<Flex>
-						<AvatarBadge
-							name={user.username}
-							src={user.image}
-							size="xl"
-						/>
-						<Text>{user.username}</Text>
-						<Text>Module later</Text>
-					</Flex>
-					<Flex></Flex>
-				</Box>
-			) : (
-				<p>Loading... "{user}</p>
-			)} */}
-			<Flex justifyContent="center" alignItems="center" height="100vh">
-				<Box
-					borderRadius="5px"
-					boxSizing="border-box"
-					border="10px solid transparent"
-					maxWidth="400px"
-					width="100%"
+			{user ? (
+				<Flex
+					justifyContent="center"
+					alignItems="center"
+					height="100vh"
 				>
-					<Flex alignItems="center">
-						<AvatarBadge
-							name="Lilin"
-							src="https://bit.ly/broken-link"
-							size="lg"
-						/>
-						<Text ml="10px">{user.username}</Text>
-						<Button ml="auto"> ... </Button>
-					</Flex>
-					<Box textAlign="left">
+					<Box
+						borderRadius="5px"
+						boxSizing="border-box"
+						border="10px solid transparent"
+						maxWidth="400px"
+						width="100%"
+					>
 						<Flex alignItems="center">
-							<Box>
-								<Text>Username:</Text>
-								<Text>HazAr</Text>
-							</Box>
-							{/* <Text ml="auto">...</Text> */}
-							<Button ml="auto"> Edit </Button>
+							<AvatarBadge
+								name={user.username}
+								src={
+									user.image
+										? user.image
+										: "https://bit.ly/broken-link"
+								}
+								size="lg"
+							/>
+							<Text ml="10px">{user.username}</Text>
+							<Button ml="auto"> ... </Button>
 						</Flex>
-
-						<Flex alignItems="center">
-							<Box>
-								<Text>Email:</Text>
-								<Text>hazimarafa80@gmail.com</Text>
-							</Box>
-							<Button ml="auto"> Edit </Button>
-						</Flex>
-						<Flex alignItems="center">
-							<Box>
-								<Text>Phone Number:</Text>
-								<Text>707-777-7777</Text>
-							</Box>
-							<Flex ml="auto" alignItems="center">
-								<Text mr="20px">Remove</Text>
-								<Button> Edit </Button>
+						<Box textAlign="left">
+							<Flex alignItems="center">
+								<Box>
+									<Text>Username:</Text>
+									<Text>{user.username}</Text>
+								</Box>
+								{/* <Text ml="auto">...</Text> */}
+								<Button ml="auto"> Edit </Button>
 							</Flex>
-						</Flex>
+
+							<Flex alignItems="center">
+								<Box>
+									<Text>Email:</Text>
+									<Text>{user.email}</Text>
+								</Box>
+								<Button ml="auto"> Edit </Button>
+							</Flex>
+							{/* <Flex alignItems="center">
+								<Box>
+									<Text>Phone Number:</Text>
+									<Text>{user.username}</Text>
+								</Box>
+								<Flex ml="auto" alignItems="center">
+									<Text mr="20px">Remove</Text>
+									<Button> Edit </Button>
+								</Flex>
+							</Flex> */}
+						</Box>
 					</Box>
-				</Box>
-			</Flex>
+				</Flex>
+			) : (
+				<Text>Loading... </Text>
+			)}
 		</Layout>
 	);
 }
