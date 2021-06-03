@@ -1,9 +1,10 @@
-import Document, { Html, Head, Main, NextScript } from "next/document";
-import { ServerStyleSheet } from "styled-components";
+/* eslint-disable react/no-danger */
 import { ColorModeScript } from "@chakra-ui/react";
 import { GA_TRACKING_ID, META } from "@src/config";
 import theme from "@styles/theme";
-// eslint-disable-next-line import/no-default-export
+import Document, { Html, Head, Main, NextScript } from "next/document";
+import { ServerStyleSheet } from "styled-components";
+
 export default class MyDocument extends Document {
 	static async getInitialProps(ctx) {
 		const sheet = new ServerStyleSheet();

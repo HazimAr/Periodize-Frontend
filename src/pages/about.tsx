@@ -1,7 +1,8 @@
-import Head from "@components/home/head";
-import Foot from "@components/home/foot";
 import StaffCard from "@components/about/staffcard";
 import Container from "@components/container";
+import Foot from "@components/home/foot";
+import Head from "@components/home/head";
+
 export default function About(): JSX.Element {
 	const staff = [
 		{
@@ -46,6 +47,7 @@ export default function About(): JSX.Element {
 							portfolio={p.portfolio}
 							para={p.para}
 							linkedIn={p.linkedIn}
+							key={p.name}
 						/>
 					);
 				})}
