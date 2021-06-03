@@ -2,6 +2,8 @@
 import { Box, Flex, Spacer } from "@chakra-ui/react";
 import AvatarBadge from "@components/avatar";
 import Link from "@components/link";
+import NextLink from "next/link";
+import StyledButton from "@components/styledbutton";
 import useProfile from "@hooks/useProfile";
 import styled from "styled-components";
 
@@ -94,11 +96,15 @@ export default function Head(): JSX.Element {
 		</Flex>
 	) : (
 		<Flex align="center">
-			<Box ml={1.5}>
+			<Box ml={1.5} mr={1.5}>
 				<Link href="/login" name="Login" />
 			</Box>
-			<Box mr={1.5} ml={-9}>
-				<Link href="/register" name="Sign Up" />
+			<Box ml={1.5} mr={1.5}>
+				<NextLink href="/register">
+					<a>
+						<StyledButton> Sign Up</StyledButton>
+					</a>
+				</NextLink>
 			</Box>
 		</Flex>
 	);
@@ -124,7 +130,6 @@ export default function Head(): JSX.Element {
 							<Link href="/contact" name="Contact" />
 						</Box>
 					</Flex>
-					<Spacer />
 
 					{body}
 				</Flex>
