@@ -1,8 +1,9 @@
-import styled from "styled-components";
+/* eslint-disable @typescript-eslint/no-confusing-void-expression */
 import { Box, Flex, Spacer } from "@chakra-ui/react";
-import useProfile from "@hooks/useProfile";
-import Link from "@components/link";
 import AvatarBadge from "@components/avatar";
+import Link from "@components/link";
+import useProfile from "@hooks/useProfile";
+import styled from "styled-components";
 
 const Header = styled.header`
 	position: fixed;
@@ -76,10 +77,12 @@ const StyledMenuList = styled.ul`
 	}
 `;
 
+// eslint-disable-next-line import/no-default-export
 export default function Head(): JSX.Element {
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	const user: any = useProfile();
 
-	let body = user ? (
+	const body = user ? (
 		<Flex align="center">
 			<Box ml={8}>
 				<AvatarBadge
@@ -91,11 +94,11 @@ export default function Head(): JSX.Element {
 		</Flex>
 	) : (
 		<Flex align="center">
-			<Box mr={1.5} ml={-9}>
-				<Link href="/register" name="register" />
-			</Box>
 			<Box ml={1.5}>
-				<Link href="/login" name="login" />
+				<Link href="/login" name="Login" />
+			</Box>
+			<Box mr={1.5} ml={-9}>
+				<Link href="/register" name="Sign Up" />
 			</Box>
 		</Flex>
 	);
