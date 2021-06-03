@@ -13,8 +13,8 @@ export default function StyledButton(props: any): JSX.Element {
 			_focus={{ outline: "none" }}
 			type="submit"
 			variant="solid"
-			bg="text.800"
-			_hover={{ bg: "text.700" }}
+			bgColor="text.800"
+			_hover={{ bgColor: "text.700" }}
 			color="white"
 			{...props}
 		>
