@@ -1,6 +1,5 @@
 import {
 	Container,
-	Box,
 	FormControl,
 	Input,
 	HStack,
@@ -8,7 +7,6 @@ import {
 	FormLabel,
 	Textarea,
 	Flex,
-	Text,
 	Heading,
 } from "@chakra-ui/react";
 import { useState, useEffect } from "react";
