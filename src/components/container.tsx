@@ -1,6 +1,6 @@
 import { Flex } from "@chakra-ui/react";
 
-export default function Container(props: any): JSX.Element {
+export default function Container({ children, props }: any): JSX.Element {
 	return (
 		<Flex
 			direction="column"
@@ -9,6 +9,8 @@ export default function Container(props: any): JSX.Element {
 			maxW="1200px"
 			{...props}
 			margin="auto"
-		/>
+		>
+			{children}
+		</Flex>
 	);
 }
