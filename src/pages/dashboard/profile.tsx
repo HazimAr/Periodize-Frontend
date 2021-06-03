@@ -41,10 +41,10 @@ export default function index(): JSX.Element {
 						<Text ml="10px">Username Here</Text>
 						<Button ml="auto"> ... </Button>
 					</Flex>
-					<Box>
+					<Box textAlign="left">
 						<Flex alignItems="center">
-							<Box mr="auto">
-								<Text>Username</Text>
+							<Box>
+								<Text>Username:</Text>
 								<Text>HazAr</Text>
 							</Box>
 							{/* <Text ml="auto">...</Text> */}
@@ -52,15 +52,15 @@ export default function index(): JSX.Element {
 						</Flex>
 
 						<Flex alignItems="center">
-							<Box mr="auto">
-								<Text>Email</Text>
+							<Box >
+								<Text>Email:</Text>
 								<Text>hazimarafa80@gmail.com</Text>
 							</Box>
 							<Button ml="auto"> Edit </Button>
 						</Flex>
 						<Flex alignItems="center">
-							<Box mr="auto">
-								<Text>Phone Number</Text>
+							<Box >
+								<Text>Phone Number:</Text>
 								<Text>707-777-7777</Text>
 							</Box>
 							<Flex ml="auto" alignItems="center">
