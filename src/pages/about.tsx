@@ -57,7 +57,7 @@ import useInterval from "@hooks/useInterval";
 
 export default function About(): JSX.Element {
 	const [count, setCount] = useState(0);
-	const [farms, setFarms] = useState(1);
+	const [farms, setFarms] = useState(0);
 	const [boats, setBoats] = useState(0);
 	const [helicopters, setHelicopters] = useState(0);
 	const [income, setIncome] = useState(0);
