@@ -107,42 +107,6 @@ const options: Option[] = [
 			return <RiHome2Line size="30px" />;
 		},
 	},
-
-	{
-		title: "Editor",
-		link: "/dashboard/editor",
-		Image: () => {
-			return <FaCode size="30px" />;
-		},
-	},
-	{
-		title: "Games",
-		link: "/dashboard/games",
-		Image: () => {
-			return <RiGamepadLine size="30px" />;
-		},
-	},
-	{
-		title: "Hub",
-		link: "/dashboard/hub",
-		Image: () => {
-			return <AiOutlineFileText size="30px" />;
-		},
-	},
-	{
-		title: "Your Scripts",
-		link: "/dashboard/scripts",
-		Image: () => {
-			return <FaSave size="30px" />;
-		},
-	},
-	{
-		title: "Recent Players",
-		link: "/dashboard/players",
-		Image: () => {
-			return <FaListUl size="30px" />;
-		},
-	},
 	{
 		title: "Help",
 		link: "/dashboard/help",
