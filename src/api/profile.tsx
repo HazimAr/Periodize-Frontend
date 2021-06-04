@@ -67,6 +67,7 @@ async function updateProfile(username: string, email: string, image: string) {
 	username = username ?? profile.data.username;
 	email = email ?? profile.data.email;
 	image = image ?? profile.data.image;
+
 	const sendData = {
 		username,
 		email,
