@@ -93,27 +93,31 @@ export default function Head(): JSX.Element {
 		}
 	}, [user]);
 
-	let body = (
-		<Flex align="center">
-			<Box mr={1.5} ml={1.5}>
-				<Link href="/about" name="About" />
-			</Box>
-			<Box mr={1.5} ml={1.5}>
-				<Link href="/contact" name="Contact" />
-			</Box>
-			<Box ml={1.5} mr={1.5}>
-				<Link href="/login" name="Login" />
-			</Box>
-			<Box ml={1.5} mr={1.5}>
-				<NextLink href="/register">
-					<a>
-						<StyledButton>Sign Up</StyledButton>
-					</a>
-				</NextLink>
-			</Box>
-		</Flex>
-	);
-	if (user && !loading) {
+	let body = null;
+	if (loading) {
+		console.log()
+	} else if (!user) {
+		body = (
+			<Flex align="center">
+				<Box mr={1.5} ml={1.5}>
+					<Link href="/about" name="About" />
+				</Box>
+				<Box mr={1.5} ml={1.5}>
+					<Link href="/contact" name="Contact" />
+				</Box>
+				<Box ml={1.5} mr={1.5}>
+					<Link href="/login" name="Login" />
+				</Box>
+				<Box ml={1.5} mr={1.5}>
+					<NextLink href="/register">
+						<a>
+							<StyledButton>Sign Up</StyledButton>
+						</a>
+					</NextLink>
+				</Box>
+			</Flex>
+		);
+	} else {
 		body = (
 			<Flex align="center">
 				<Box mr={1.5} ml={1.5}>
