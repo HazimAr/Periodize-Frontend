@@ -69,6 +69,7 @@ export default function Profile(): JSX.Element {
 			) : (
 				<Text>Loading... </Text>
 			)}
+			
 		</Layout>
 	);
 }

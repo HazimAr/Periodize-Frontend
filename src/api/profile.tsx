@@ -22,12 +22,28 @@ async function forgotPassword(email: string) {
 	return data;
 }
 
-async function changePassword(password: string, id: string) {
+async function changePasswordForgot(password: string, id: string) {
 	const sendData = {
 		newPassword: password,
 		token: id,
 	};
 	const { data } = await axios.patch(`${DB_URL}/users/forgot`, sendData);
+
+	return data;
+}
+
+async function updatePassword(
+	password: string,
+	newPassword: string,
+	sessionid: string
+) {
+	const sendData = {
+		password,
+		newPassword,
+		sessionid,
+	};
+
+	const { data } = await axios.patch(`${DB_URL}/users`, sendData);
 
 	return data;
 }
@@ -45,27 +61,16 @@ async function verifyEmail(email: string, key: string) {
 	return data;
 }
 
-async function updateProfile(
-	username: string = "",
-	email: string = "",
-	password: string = ""
-) {
+async function updateProfile(username: string, email: string, image: string) {
 	const profile = await getProfileData();
-	if (!username) {
-		username = profile.data.username;
-	}
 
-	if (!email) {
-		email = profile.data.email;
-	}
-
-	if (!password) {
-		password = profile.data.password;
-	}
+	username = username ?? profile.data.username;
+	email = email ?? profile.data.email;
+	image = image ?? profile.data.image;
 	const sendData = {
 		username,
 		email,
-		password,
+		image,
 	};
 
 	const { data } = await axios.patch(`${DB_URL}/users/update`, sendData);
@@ -77,6 +82,7 @@ export {
 	getProfileData,
 	forgotPassword,
 	verifyEmail,
-	changePassword,
+	changePasswordForgot as changePassword,
 	updateProfile,
+	updatePassword,
 };
