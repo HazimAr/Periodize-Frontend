@@ -11,10 +11,9 @@ const Google = styled(GoogleLogin)`
 	display: flex;
 	justify-content: center;
 	align-items: center;
-
 `;
 
-export default function GoogleButton():JSX.Element {
+export default function GoogleButton(): JSX.Element {
 	return (
 		<Google
 			clientId={CLIENT_ID}

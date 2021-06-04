@@ -34,9 +34,8 @@ const StyledMenu = styled.div`
 `;
 export function setHeader(bool: boolean): void {
 	const ele: HTMLElement | null = document.querySelector("#drop-menu");
-	const menus: NodeListOf<Element> | null = document.querySelectorAll(
-		".open"
-	);
+	const menus: NodeListOf<Element> | null =
+		document.querySelectorAll(".open");
 	const time = "0.3s";
 	if (bool && ele !== null) {
 		ele.style.animation = `dropin ${time} forwards`;

@@ -1,12 +1,9 @@
 import { Box } from "@chakra-ui/react";
-import Head from "@components/home/head";
-import Foot from "@components/home/foot";
+import HeadFoot from "@components/home/headfoot";
 export default function Email() {
 	return (
-		<>
-			<Head />
+		<HeadFoot>
 			<Box>Password successfully changed ^_^Y</Box>
-			<Foot />
-		</>
+		</HeadFoot>
 	);
 }

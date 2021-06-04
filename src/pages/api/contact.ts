@@ -44,7 +44,7 @@ export default function Email(
 		};
 		// eslint-disable-next-line no-void
 		void mg.messages().send(data, (_error, body) => {
-			res.status(200).json(body.message );
+			res.status(200).json(body.message);
 		});
 		return res;
 	}

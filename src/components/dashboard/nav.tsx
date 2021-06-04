@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import { BsPeopleCircle } from "react-icons/bs";
 import { FiHelpCircle } from "react-icons/fi";
 import { IoIosArrowForward } from "react-icons/io";
-import {  RiHome2Line } from "react-icons/ri";
+import { RiHome2Line } from "react-icons/ri";
 import styled from "styled-components";
 
 import MobileNav, { setHeader } from "../home/menu";

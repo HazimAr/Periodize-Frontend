@@ -48,12 +48,11 @@
 	</Container> 
 	*/
 
-import Foot from "@components/home/foot";
-import Head from "@components/home/head";
 import { Text, Flex, Button } from "@chakra-ui/react";
 import { useState } from "react";
 
 import useInterval from "@hooks/useInterval";
+import HeadFoot from "@components/home/headfoot";
 
 export default function About(): JSX.Element {
 	const [count, setCount] = useState(0);
@@ -88,9 +87,7 @@ export default function About(): JSX.Element {
 	}, 100);
 
 	return (
-		<>
-			<Head />
-
+		<HeadFoot>
 			<Text>${count}</Text>
 			<Text>Farms: {farms}</Text>
 			<Text>Boats: {boats}</Text>
@@ -200,8 +197,6 @@ export default function About(): JSX.Element {
 				</Flex>
 				
 			</Flex> */}
-
-			<Foot />
-		</>
+		</HeadFoot>
 	);
 }

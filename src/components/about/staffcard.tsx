@@ -23,7 +23,7 @@ interface StaffCardProps {
 const CFaGithub = chakra(FaGithub);
 const CFaLinkedIn = chakra(FaLinkedin);
 export default function StaffCard({
-	src = "", 
+	src = "",
 	name,
 	sub,
 	github,
@@ -38,15 +38,15 @@ export default function StaffCard({
 			borderRadius="10px"
 			mb={4}
 			bgGradient="linear(to-r, rgba(14,73,27,1),#43a839)"
-			maxWidth = "600px"
-			width = "100%"
+			maxWidth="600px"
+			width="100%"
 		>
 			<Image
 				src={src}
 				alt={name}
 				borderRadius="10px"
 				boxSize="150px"
-				// objectFit="cover"	
+				// objectFit="cover"
 			/>
 			<VStack align="flex-start" mx={2} spacing={2}>
 				<Heading as="h2">{name}</Heading>

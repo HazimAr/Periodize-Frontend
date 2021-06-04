@@ -22,8 +22,7 @@ import {
 } from "@chakra-ui/react";
 import Container from "@components/container";
 import Emoji from "@components/emoji";
-import Foot from "@components/home/foot";
-import Head from "@components/home/head";
+import HeadFoot from "@components/home/headfoot";
 import StyledButton from "@components/styledbutton";
 import axios from "axios";
 import { validate } from "email-validator";
@@ -56,8 +55,7 @@ export default function Home(): JSX.Element {
 	}
 
 	return (
-		<>
-			<Head />
+		<HeadFoot>
 			<Container>
 				<Heading
 					as="h2"
@@ -323,8 +321,7 @@ export default function Home(): JSX.Element {
 					<Emoji symbol="💖" label="heart" />
 				</Text>
 			</Container>
-			<Foot />
-		</>
+		</HeadFoot>
 	);
 }
 

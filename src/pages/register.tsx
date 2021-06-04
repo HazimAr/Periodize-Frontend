@@ -24,8 +24,7 @@ import {
 	useColorMode,
 } from "@chakra-ui/react";
 import GoogleButton from "@components/google";
-import Foot from "@components/home/foot";
-import Head from "@components/home/head";
+import HeadFoot from "@components/home/headfoot";
 import Link from "@components/link";
 import Button from "@components/styledbutton";
 import { StyledFlex } from "@styles/index.theme";
@@ -52,8 +51,7 @@ export default function LoginPage(): JSX.Element {
 	};
 
 	return (
-		<>
-			<Head />
+		<HeadFoot>
 			<Flex
 				flexDirection="column"
 				width="100wh"
@@ -226,7 +224,6 @@ export default function LoginPage(): JSX.Element {
 					<Link href="/privacy" name="Privacy Policy" />
 				</StyledFlex>
 			</Flex>
-			<Foot />
-		</>
+		</HeadFoot>
 	);
 }

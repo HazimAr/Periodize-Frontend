@@ -20,10 +20,9 @@ import {
 } from "@chakra-ui/react";
 import { EmailIcon } from "@chakra-ui/icons";
 import axios from "axios";
-import Head from "@components/home/head";
-import Foot from "@components/home/foot";
 
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
+import HeadFoot from "@components/home/headfoot";
 const CFaLock = chakra(FaLock);
 export default function LoginPage() {
 	const [email, setEmail] = useState("");
@@ -48,8 +47,7 @@ export default function LoginPage() {
 		window.location.href = "/forgot/email";
 	}
 	return (
-		<>
-			<Head />
+		<HeadFoot>
 			<Flex
 				flexDirection="column"
 				width="100wh"
@@ -245,7 +243,6 @@ export default function LoginPage() {
 					<Link href="/register" name="New to us? Sign Up" />
 				</Box>
 			</Flex>
-			<Foot />
-		</>
+		</HeadFoot>
 	);
 }

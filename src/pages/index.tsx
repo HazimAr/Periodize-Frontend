@@ -1,12 +1,9 @@
-import Foot from "@components/home/foot";
-import Head from "@components/home/head";
+import HeadFoot from "@components/home/headfoot";
 
 export default function Home(): JSX.Element {
 	return (
-		<>
-			<Head />
+		<HeadFoot>
 			<div>Under Construction</div>
-			<Foot />
-		</>
+		</HeadFoot>
 	);
 }

@@ -1,12 +1,10 @@
 import { Box } from "@chakra-ui/react";
-import Head from "@components/home/head";
-import Foot from "@components/home/foot";
+import HeadFoot from "@components/home/headfoot";
+
 export default function Email() {
 	return (
-		<>
-			<Head />
+		<HeadFoot>
 			<Box>Check your email fool</Box>
-			<Foot />
-		</>
+		</HeadFoot>
 	);
 }
