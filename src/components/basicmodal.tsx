@@ -9,7 +9,7 @@ import {
 } from "@chakra-ui/react";
 
 export default function CreateModal({ header, body }: any) {
-	const { isOpen, onOpen, onClose, onToggle } = useDisclosure();
+	const { isOpen, onOpen, onClose } = useDisclosure();
 	return (
 		<>
 			<Button onClick={onOpen}>{header}</Button>
