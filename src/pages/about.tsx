@@ -65,26 +65,26 @@ export default function About(): JSX.Element {
 	// Game Loop
 	useInterval(() => {
 		if (compound) {
-			let intrest = count / 1000;
+			let intrest = count / 10000;
 			setCount(
 				Math.ceil(
 					intrest +
-						(count + 1 * farms + 10 * boats + 100 * helicopters) *
+						(count + .1 * farms + 1 * boats + 10 * helicopters) *
 							100
 				) / 100
 			);
 
 			setIncome(
 				Math.ceil(
-					intrest + (1 * farms + 10 * boats + 100 * helicopters) * 100
+					intrest + (.1 * farms + 1 * boats + 10 * helicopters) * 100
 				) / 100
 			);
 			return;
 		}
 
-		setCount(count + 1 * farms + 10 * boats + 100 * helicopters);
-		setIncome(10 * (1 * farms + 10 * boats + 100 * helicopters));
-	}, 100);
+		setCount(count + 1 * farms + 1 * boats + 10 * helicopters);
+		setIncome(100 * (.1 * farms + 1 * boats + 10 * helicopters));
+	}, 10);
 
 	return (
 		<HeadFoot>
