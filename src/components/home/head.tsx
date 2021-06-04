@@ -12,6 +12,7 @@ import styled from "styled-components";
 const Header = styled.header`
 	position: fixed;
 	width: 100%;
+	min-height: 90px;
 	display: flex;
 	justify-content: center;
 	align-items: center;
