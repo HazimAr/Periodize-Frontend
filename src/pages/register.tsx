@@ -47,7 +47,9 @@ export default function LoginPage(): JSX.Element {
 	const [error, setError] = useState("");
 	const [isSubmitting, setSubmitting] = useState(false);
 	const [showPassword, setShowPassword] = useState(false);
-	const handleShowClick = () => { setShowPassword(!showPassword); };
+	const handleShowClick = () => {
+		setShowPassword(!showPassword);
+	};
 
 	return (
 		<>
@@ -178,7 +180,8 @@ export default function LoginPage(): JSX.Element {
 											return;
 										}
 										validate(email)
-											? axios.post("/api/validate", {
+											? axios
+													.post("/api/validate", {
 														email,
 													})
 													.then((e: any) => {

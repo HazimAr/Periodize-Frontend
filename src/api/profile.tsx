@@ -45,4 +45,38 @@ async function verifyEmail(email: string, key: string) {
 	return data;
 }
 
-export { getProfileData, forgotPassword, verifyEmail, changePassword };
+async function updateProfile(
+	username: string = "",
+	email: string = "",
+	password: string = ""
+) {
+	const profile = await getProfileData();
+	if (!username) {
+		username = profile.data.username;
+	}
+
+	if (!email) {
+		email = profile.data.email;
+	}
+
+	if (!password) {
+		password = profile.data.password;
+	}
+	const sendData = {
+		username,
+		email,
+		password,
+	};
+
+	const { data } = await axios.patch(`${DB_URL}/users/update`, sendData);
+
+	return data;
+}
+
+export {
+	getProfileData,
+	forgotPassword,
+	verifyEmail,
+	changePassword,
+	updateProfile,
+};
