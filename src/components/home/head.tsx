@@ -100,16 +100,16 @@ export default function Head(): JSX.Element {
 	} else if (!user) {
 		body = (
 			<Flex align="center">
-				<Box mr={1.5} ml={1.5}>
+				<Box mx={1.5}>
 					<Link href="/about" name="About" />
 				</Box>
-				<Box mr={1.5} ml={1.5}>
+				<Box mx={1.5}>
 					<Link href="/contact" name="Contact" />
 				</Box>
-				<Box ml={1.5} mr={1.5}>
+				<Box mx={1.5}>
 					<Link href="/login" name="Login" />
 				</Box>
-				<Box ml={1.5} mr={1.5}>
+				<Box mx={1.5}>
 					<NextLink href="/register">
 						<a>
 							<StyledButton>Sign Up</StyledButton>
@@ -121,13 +121,13 @@ export default function Head(): JSX.Element {
 	} else {
 		body = (
 			<Flex align="center">
-				<Box mr={1.5} ml={1.5}>
+				<Box mx={1.5}>
 					<Link href="/about" name="About" />
 				</Box>
-				<Box mr={1.5} ml={1.5}>
+				<Box mx={1.5}>
 					<Link href="/contact" name="Contact" />
 				</Box>
-				<Box ml={8}>
+				<Box ml={6}>
 					<AvatarBadge
 						name={user.username}
 						src={
