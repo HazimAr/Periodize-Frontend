@@ -1,6 +1,6 @@
 import { ListItem, UnorderedList } from "@chakra-ui/react";
-import { getProfileData } from "@api/profile";
-import { useState, useEffect } from "react";
+// import { getProfileData } from "@api/profile";
+// import { useState, useEffect } from "react";
 // export default function ProgramList(): JSX.Element {
 // 	const [user, setUser] = useState();
 
