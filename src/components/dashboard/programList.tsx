@@ -26,7 +26,7 @@ export default function ProgramList(): JSX.Element {
 
 	return (
 		<UnorderedList m="0px" p="0px" variant="none">
-			<ListItem>hello</ListItem>
+			<ListItem>{" "}</ListItem>
 		</UnorderedList>
 	);
 }
