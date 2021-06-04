@@ -131,7 +131,7 @@ export default function About(): JSX.Element {
 				<Button
 					onClick={() => {
 						if (count >= 10000) {
-							console.log("Buying Striper");
+							console.log("Buying Helicopter");
 							setHelicopters(helicopters + 1);
 							setCount(count - 10000);
 						} else {
