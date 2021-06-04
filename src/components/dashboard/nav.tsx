@@ -3,12 +3,10 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import { AiOutlineFileText } from "react-icons/ai";
 import { BsPeopleCircle } from "react-icons/bs";
-import { FaCode, FaSave, FaListUl } from "react-icons/fa";
 import { FiHelpCircle } from "react-icons/fi";
 import { IoIosArrowForward } from "react-icons/io";
-import { RiGamepadLine, RiHome2Line } from "react-icons/ri";
+import {  RiHome2Line } from "react-icons/ri";
 import styled from "styled-components";
 
 import MobileNav, { setHeader } from "../home/menu";
