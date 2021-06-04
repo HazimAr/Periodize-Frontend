@@ -68,15 +68,21 @@ export default function About(): JSX.Element {
 		if (compound) {
 			let intrest = count / 1000;
 			setCount(
-				Math.ceil(intrest + (count + 1 * farms + 10 * boats + 100 * helicopters) * 100) / 100
+				Math.ceil(
+					intrest +
+						(count + 1 * farms + 10 * boats + 100 * helicopters) *
+							100
+				) / 100
 			);
 
 			setIncome(
-				Math.ceil(intrest + ( 1 * farms + 10 * boats + 100 * helicopters) * 100) / 100
+				Math.ceil(
+					intrest + (1 * farms + 10 * boats + 100 * helicopters) * 100
+				) / 100
 			);
 			return;
 		}
-		
+
 		setCount(count + 1 * farms + 10 * boats + 100 * helicopters);
 		setIncome(10 * (1 * farms + 10 * boats + 100 * helicopters));
 	}, 100);
@@ -139,7 +145,7 @@ export default function About(): JSX.Element {
 						}
 					}}
 				>
-					Buy Strippers ($10,000)
+					Buy Helicopters ($10,000)
 				</Button>
 			</Flex>
 			<Button
