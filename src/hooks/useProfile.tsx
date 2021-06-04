@@ -16,7 +16,9 @@ export default function useProfile(): any {
 			void getProfileData().then((data) => {
 				if (data.code === 200) {
 					setUser(data.data);
+					return;
 				}
+				setUser(null);
 			});
 			return;
 		}

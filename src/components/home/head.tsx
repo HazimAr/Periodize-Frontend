@@ -95,7 +95,7 @@ export default function Head(): JSX.Element {
 
 	let body = null;
 	if (loading) {
-		console.log()
+		console.log();
 	} else if (!user) {
 		body = (
 			<Flex align="center">
