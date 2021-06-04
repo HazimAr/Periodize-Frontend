@@ -196,6 +196,6 @@ export default function About(): JSX.Element {
 			</Flex> */}
 
 			<Foot />
-		</Text>
+		</>
 	);
 }
