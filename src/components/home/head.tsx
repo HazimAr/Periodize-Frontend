@@ -129,7 +129,7 @@ export default function Head(): JSX.Element {
 				<Box mx={1.5}>
 					<Link href="/contact" name="Contact" />
 				</Box>
-				<Box ml={6}>
+				<Box ml="5px">
 					<AvatarBadge
 						name={user.username}
 						src={
