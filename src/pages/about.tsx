@@ -1,71 +1,124 @@
-import { Text, Flex, Button, Box, Image } from "@chakra-ui/react";
-
+import { Container, Text, Image, Box, Flex, Heading } from "@chakra-ui/react";
 import HeadFoot from "@components/home/headfoot";
 
 export default function About(): JSX.Element {
 	return (
 		<HeadFoot>
 			<Flex
-				justify="center"
-				align="center"
 				height="100vh"
-				w="100vw"
-				backgroundImage="/lu.jpg"
-				filter="grayscale(100%)"
+				width="100vw"
+				align="flex-start"
+				justify="center"
+				bgImage="/lu.jpg"
+
+				// filter="grayscale(100%)"
 			>
-				<Box width="40%">
-					<Text align="left" fontSize="36px" mb={4} color="black">
+				<Box w="33%" mt="86px">
+					<Heading size="3xl" mb="32px" align="center" color="black">
 						Our Story
-					</Text>
-					<Text align="left" maxW="40%" color="black">
+					</Heading>
+					<Text align="left" color="black">
 						Lorem ipsum dolor sit amet consectetur adipisicing elit.
-						Explicabo, aliquam est maiores reiciendis nostrum
-						laborum earum. Maxime in deleniti consequuntur vitae
-						explicabo aliquid assumenda minus temporibus nisi
-						beatae. Ducimus, voluptatem!
+						Voluptates, impedit doloremque eius quasi odio molestias
+						quod esse praesentium rem libero ipsa enim! Expedita
+						corrupti, dolorum iste commodi explicabo excepturi nam.
+						Lorem ipsum dolor sit amet consectetur, adipisicing
+						elit.
 					</Text>
 				</Box>
 			</Flex>
-			<Flex justify="center" align="center" height="100vh" w="100vw">
-				<Box width="40%">
-					<Text align="left" fontSize="36px" mb={2}>
-						Mission
-					</Text>
-					<Text align="left" maxW="40%">
-						Lorem ipsum dolor sit amet consectetur adipisicing elit.
-						Explicabo, aliquam est maiores reiciendis nostrum
-						laborum earum. Maxime in deleniti consequuntur vitae
-						explicabo aliquid assumenda minus temporibus nisi
-						beatae. Ducimus, voluptatem!
-					</Text>
+			<Flex height="100vh" width="100vw" align="center" justify="center">
+				<Box w="33%" mt="86px">
+					<Heading size="3xl" mb="32px" align="center" color="black">
+						Cutting Edge Technology :D
+					</Heading>
+					<Flex>
+						<Flex
+							bgColor="blue"
+							flexDir="column"
+							w="400px"
+							borderRadius="5px"
+						>
+							<Image src="/lu.jpg" />
+							<Text align="left" color="black">
+								Lorem ipsum dolor sit amet consectetur
+								adipisicing elit. Voluptates, impedit doloremque
+								eius quasi odio molestias quod esse praesentium
+							</Text>
+						</Flex>{" "}
+						<Flex
+							bgColor="blue"
+							flexDir="column"
+							w="400px"
+							borderRadius="5px"
+							mx="8px"
+						>
+							<Image src="/lu.jpg" />
+							<Text align="left" color="black">
+								Lorem ipsum dolor sit amet consectetur
+								adipisicing elit. Voluptates, impedit doloremque
+								eius quasi odio molestias quod esse praesentium
+								rem libero ipsa enim!
+							</Text>
+						</Flex>
+						<Flex
+							bgColor="blue"
+							flexDir="column"
+							w="400px"
+							borderRadius="5px"
+						>
+							<Image src="/lu.jpg" />
+							<Text align="left" color="black">
+								Lorem ipsum dolor sit amet consectetur
+								adipisicing elit. Voluptates, impedit doloremque
+								eius quasi odio molestias quod esse praesentium
+							</Text>
+						</Flex>
+					</Flex>
 				</Box>
-				<Image
-					src="/ai.jpg"
-					alt="kawaii"
-					height="300px"
-					objectFit="cover"
-				/>
-			</Flex>{" "}
-			<Flex justify="center" align="center" height="100vh" w="100vw">
-				<Box width="40%">
-					<Text align="left" fontSize="36px" mb={2}>
-						Our Story
-					</Text>
-					<Text align="left" maxW="40%">
-						Lorem ipsum dolor sit amet consectetur adipisicing elit.
-						Explicabo, aliquam est maiores reiciendis nostrum
-						laborum earum. Maxime in deleniti consequuntur vitae
-						explicabo aliquid assumenda minus temporibus nisi
-						beatae. Ducimus, voluptatem!
-					</Text>
-				</Box>
-				<Image
-					src="/ai.jpg"
-					alt="kawaii"
-					height="300px"
-					objectFit="cover"
-				/>
 			</Flex>
+			<Image
+				src="https://via.placeholder.com/150"
+				alt="placeholder"
+				my="15px"
+			/>
+
+			<Text fontSize="3xl" mb="15px">
+				Mission
+			</Text>
+			<Text>
+				Lorem ipsum dolor sit amet consectetur adipisicing elit.
+				Voluptates, impedit doloremque eius quasi odio molestias quod
+				esse praesentium rem libero ipsa enim! Expedita corrupti,
+				dolorum iste commodi explicabo excepturi nam. Lorem ipsum dolor
+				sit amet consectetur, adipisicing elit. Quibusdam aliquid
+				architecto consequuntur id sint, minima, totam debitis a, ipsum
+				voluptate dolorum voluptatem. Tenetur odio consequatur, maiores
+				sit modi autem nisi?
+			</Text>
+			<Image
+				src="https://via.placeholder.com/150"
+				alt="placeholder"
+				my="15px"
+			/>
+			<Text fontSize="3xl" mb="15px">
+				Team
+			</Text>
+			<Text>
+				Lorem ipsum dolor sit amet consectetur adipisicing elit.
+				Voluptates, impedit doloremque eius quasi odio molestias quod
+				esse praesentium rem libero ipsa enim! Expedita corrupti,
+				dolorum iste commodi explicabo excepturi nam. Lorem ipsum dolor
+				sit amet consectetur, adipisicing elit. Quibusdam aliquid
+				architecto consequuntur id sint, minima, totam debitis a, ipsum
+				voluptate dolorum voluptatem. Tenetur odio consequatur, maiores
+				sit modi autem nisi?
+			</Text>
+			<Image
+				src="https://via.placeholder.com/150"
+				alt="placeholder"
+				my="15px"
+			/>
 		</HeadFoot>
 	);
 }

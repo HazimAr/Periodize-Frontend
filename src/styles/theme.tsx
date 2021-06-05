@@ -18,7 +18,6 @@ const theme = extendTheme({
 		lightBase: "#dde2ec",
 		darkPrimary: "#072f21",
 		black: "#16161D",
-
 		bg: {
 			100: "#0B0C10",
 			200: "#1F2833",
@@ -35,16 +34,6 @@ const theme = extendTheme({
 			900: "#081c15ff",
 		},
 
-		///* CSS HEX */
-		// --nyanza: #d8f3dcff;
-		// --turquoise-green: #b7e4c7ff;
-		// --turquoise-green-2: #95d5b2ff;
-		// --ocean-green: #74c69dff;
-		// --ocean-green-2: #52b788ff;
-		// --illuminating-emerald: ;
-		// --bottle-green: #2d6a4fff;
-		// --brunswick-green: #1b4332ff;
-		// --dark-jungle-green: #081c15ff;
 	},
 	components: {
 		Link,
