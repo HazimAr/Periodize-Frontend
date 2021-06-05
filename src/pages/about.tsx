@@ -1,4 +1,4 @@
-import { Container, Text, Image, Box, Flex, Heading } from "@chakra-ui/react";
+import { Text, Image, Box, Flex } from "@chakra-ui/react";
 import HeadFoot from "@components/home/headfoot";
 
 export default function About(): JSX.Element {
@@ -7,17 +7,14 @@ export default function About(): JSX.Element {
 			<Flex
 				height="100vh"
 				width="100vw"
-				align="flex-start"
-				justify="center"
-				bgImage="/lu.jpg"
-
-				// filter="grayscale(100%)"
+				align="center"
+				justify="space-evenly"
 			>
-				<Box w="33%" mt="86px">
-					<Heading size="3xl" mb="32px" align="center" color="black">
+				<Box w="33%">
+					<Text fontSize="3xl" mb="15px" align="left">
 						Our Story
-					</Heading>
-					<Text align="left" color="black">
+					</Text>
+					<Text color="text.500" align="left">
 						Lorem ipsum dolor sit amet consectetur adipisicing elit.
 						Voluptates, impedit doloremque eius quasi odio molestias
 						quod esse praesentium rem libero ipsa enim! Expedita
@@ -26,57 +23,14 @@ export default function About(): JSX.Element {
 						elit.
 					</Text>
 				</Box>
+				<Image
+					src="/ai.jpg"
+					alt="placeholder"
+					height="300px"
+					objectFit="cover"
+				/>
 			</Flex>
-			<Flex height="100vh" width="100vw" align="center" justify="center">
-				<Box w="33%" mt="86px">
-					<Heading size="3xl" mb="32px" align="center" color="black">
-						Cutting Edge Technology :D
-					</Heading>
-					<Flex>
-						<Flex
-							bgColor="blue"
-							flexDir="column"
-							w="400px"
-							borderRadius="5px"
-						>
-							<Image src="/lu.jpg" />
-							<Text align="left" color="black">
-								Lorem ipsum dolor sit amet consectetur
-								adipisicing elit. Voluptates, impedit doloremque
-								eius quasi odio molestias quod esse praesentium
-							</Text>
-						</Flex>{" "}
-						<Flex
-							bgColor="blue"
-							flexDir="column"
-							w="400px"
-							borderRadius="5px"
-							mx="8px"
-						>
-							<Image src="/lu.jpg" />
-							<Text align="left" color="black">
-								Lorem ipsum dolor sit amet consectetur
-								adipisicing elit. Voluptates, impedit doloremque
-								eius quasi odio molestias quod esse praesentium
-								rem libero ipsa enim!
-							</Text>
-						</Flex>
-						<Flex
-							bgColor="blue"
-							flexDir="column"
-							w="400px"
-							borderRadius="5px"
-						>
-							<Image src="/lu.jpg" />
-							<Text align="left" color="black">
-								Lorem ipsum dolor sit amet consectetur
-								adipisicing elit. Voluptates, impedit doloremque
-								eius quasi odio molestias quod esse praesentium
-							</Text>
-						</Flex>
-					</Flex>
-				</Box>
-			</Flex>
+
 			<Image
 				src="https://via.placeholder.com/150"
 				alt="placeholder"
