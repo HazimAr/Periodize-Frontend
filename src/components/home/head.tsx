@@ -18,6 +18,7 @@ const Header = styled.header`
 	align-items: center;
 	z-index: 100;
 	text-align: center;
+	background: #16161d;
 `;
 
 const StyledLink = styled.li`
@@ -60,6 +61,7 @@ const StyledMenuContainer = styled.div`
 		display: block;
 	}
 `;
+
 const DeselectMenu = styled.button`
 	height: 100vh;
 	left: -40vw;

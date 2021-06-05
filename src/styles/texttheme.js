@@ -9,6 +9,7 @@ const Text = {
 	variants: {
 		bnw: (props) => ({
 			color: props.colorMode === "dark" ? "white" : "black",
+			
 		}),
 	},
 	// The default size and variant values

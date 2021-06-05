@@ -20,16 +20,15 @@ import { ListItem, UnorderedList } from "@chakra-ui/react";
 // 		</UnorderedList>
 // 	);
 // }
-
+//  allows u to export and use this file in another   | function name  | : tells you type of info from return statement so HTML + Javascript
 export default function ProgramList(): JSX.Element {
-
-
 	return (
 		<UnorderedList m="0px" p="0px" variant="none">
 			<ListItem>{" "}</ListItem>
 		</UnorderedList>
 	);
 }
+
 // const friends = [
 // 	{ name: "hazim", hobbies: "bike" },
 // 	{ name: "lilan", hobbies: "programming" },

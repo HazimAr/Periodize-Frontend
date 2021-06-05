@@ -16,11 +16,13 @@ import {
 	DeselectMenu,
 	StyledLink as StyledMenuLink,
 } from "../home/head";
+
 const StyledText = styled.span`
 	display: none;
 	margin-left: 0rem;
 	transition: margin-left 100ms ease-in-out;
 `;
+
 const Logo = styled.li`
 	font-weight: bold;
 	text-align: center;
@@ -36,6 +38,7 @@ const Logo = styled.li`
 		transition: transform 400ms;
 	}
 `;
+
 const Navbar = styled.nav`
 	height: 100vh;
 	background: var(--secondary);
@@ -55,6 +58,7 @@ const Navbar = styled.nav`
 		}
 	}
 `;
+
 const StyledList = styled.ul`
 	position: relative;
 	height: 100%;
@@ -121,6 +125,7 @@ const List = styled.ul`
 	bottom: 0;
 	left: 0;
 `;
+
 const ArrowButton = styled.button`
 	display: flex;
 	justify-content: center;
@@ -133,6 +138,7 @@ const ArrowButton = styled.button`
 		cursor: pointer;
 	}
 `;
+
 const Wrapper = styled.div`
 	.closed {
 		width: 5rem;
@@ -159,11 +165,13 @@ const Wrapper = styled.div`
 		display: none;
 	}
 `;
+
 const FixedMenu = styled.div`
 	position: fixed;
 	right: 10px;
 	top: 10px;
 `;
+
 // eslint-disable-next-line import/no-default-export
 export default function Main(): JSX.Element {
 	const router = useRouter();
@@ -184,6 +192,7 @@ export default function Main(): JSX.Element {
 			}
 		}
 	});
+
 	function toggleInOut() {
 		const ele: HTMLDivElement | null = document.querySelector("#main");
 		const width = window.matchMedia("(max-width: 600px)");
@@ -199,8 +208,10 @@ export default function Main(): JSX.Element {
 				ele.style.marginLeft = "5rem";
 			}
 		}
+		
 		setIsClosed(!isClosed);
 	}
+
 	return (
 		<>
 			<FixedMenu>
