@@ -2,7 +2,6 @@
 /* eslint-disable no-negated-condition */
 import { Box, Flex, Spacer } from "@chakra-ui/react";
 import AvatarBadge from "@components/avatar";
-import Link from "@components/link";
 import StyledButton from "@components/styledbutton";
 import useProfile from "@hooks/useProfile";
 import NextLink from "next/link";
@@ -19,6 +18,7 @@ const Header = styled.header`
 	z-index: 100;
 	text-align: center;
 	background: #121129;
+	color: white;
 `;
 
 const StyledLink = styled.li`
@@ -103,13 +103,19 @@ export default function Head(): JSX.Element {
 		body = (
 			<Flex align="center">
 				<Box mx={1.5}>
-					<Link href="/about" name="About" />
+					<NextLink href="/about">
+						<a>About</a>
+					</NextLink>
 				</Box>
 				<Box mx={1.5}>
-					<Link href="/contact" name="Contact" />
+					<NextLink href="/contact">
+						<a>Contact</a>
+					</NextLink>
 				</Box>
 				<Box mx={1.5}>
-					<Link href="/login" name="Login" />
+					<NextLink href="/login">
+						<a>Login</a>
+					</NextLink>
 				</Box>
 				<Box mx={1.5}>
 					<NextLink href="/register">
@@ -124,10 +130,14 @@ export default function Head(): JSX.Element {
 		body = (
 			<Flex align="center">
 				<Box mx={1.5}>
-					<Link href="/about" name="About" />
+					<NextLink href="/about">
+						<a>About</a>
+					</NextLink>
 				</Box>
 				<Box mx={1.5}>
-					<Link href="/contact" name="Contact" />
+					<NextLink href="/contact">
+						<a>Contact</a>
+					</NextLink>
 				</Box>
 				<Box ml="5px">
 					<AvatarBadge
@@ -155,7 +165,9 @@ export default function Head(): JSX.Element {
 					py="25px"
 					textAlign="center"
 				>
-					<Link href="/" name="Periodize" />
+					<NextLink href="/">
+						<a>Periodize</a>
+					</NextLink>
 					<Spacer />
 
 					{body}
