@@ -18,7 +18,6 @@ const Header = styled.header`
 	align-items: center;
 	z-index: 100;
 	text-align: center;
-	background: #16161d;
 `;
 
 const StyledLink = styled.li`
@@ -145,7 +144,7 @@ export default function Head(): JSX.Element {
 	}
 
 	return (
-		<Box h="100px">
+		<Box h="100px" bg="#121129">
 			<Header>
 				<Flex
 					maxW="1200px"
