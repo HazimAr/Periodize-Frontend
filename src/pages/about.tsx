@@ -1,7 +1,3 @@
-<<<<<<< Updated upstream
-import { Text, Flex, Button } from "@chakra-ui/react";
-
-=======
 // // import StaffCard from "@components/about/staffcard";
 // // import Container from "@components/container";
 // // const staff = [
@@ -199,15 +195,11 @@ import { Text, Flex, Button } from "@chakra-ui/react";
 // ];
 
 import { Container, Text, Image, Box, Flex } from "@chakra-ui/react";
->>>>>>> Stashed changes
 import HeadFoot from "@components/home/headfoot";
 
 export default function About(): JSX.Element {
 	return (
 		<HeadFoot>
-<<<<<<< Updated upstream
-			<div>hi</div>
-=======
 	
 				<Flex height="100vh" width="100vw" align="center" justify="space-evenly">
 					<Box w="33%">
@@ -275,7 +267,6 @@ export default function About(): JSX.Element {
 					my="15px"
 				/>
 		
->>>>>>> Stashed changes
 		</HeadFoot>
 	);
 }
