@@ -1,124 +1,92 @@
-import { Container, Text, Image, Box, Flex, Heading } from "@chakra-ui/react";
+import {
+	Container,
+	Text,
+	Image,
+	Box,
+	Flex,
+	Heading,
+	Button,
+	Avatar,
+} from "@chakra-ui/react";
 import HeadFoot from "@components/home/headfoot";
+import StaffCard from "@components/about/staffcard";
 
 export default function About(): JSX.Element {
 	return (
-		<HeadFoot>
+		<Flex height="100%" flexDir="column">
+			<Flex
+				h="100vh"
+				w="100vw"
+				align="center"
+				justify="center"
+				bgColor="gray.400"
+				// bgImage="/lu.jpg"
+				// objectFit="contain"
+			>
+				<Flex flexDir="column">
+					<Heading
+						size="3xl"
+						mb="32px"
+						justifySelf="left"
+						color="white"
+					>
+						Who are we?
+					</Heading>
+					<Box maxW="200px">
+						<Text align="left" color="white">
+							We are a team of american developers recreating how
+							athletes, coaches, and the everyday person
+							approaches fitness. We aim to perfect the processes
+							of periodizaiton and programming to create optimal
+							training regiments
+						</Text>
+					</Box>
+				</Flex>
+			</Flex>
+
 			<Flex
 				height="100vh"
 				width="100vw"
-				align="flex-start"
+				align="center"
 				justify="center"
-				bgImage="/lu.jpg"
-
-				// filter="grayscale(100%)"
+				bgColor="gray.600"
 			>
-				<Box w="33%" mt="86px">
-					<Heading size="3xl" mb="32px" align="center" color="black">
-						Our Story
-					</Heading>
-					<Text align="left" color="black">
-						Lorem ipsum dolor sit amet consectetur adipisicing elit.
-						Voluptates, impedit doloremque eius quasi odio molestias
-						quod esse praesentium rem libero ipsa enim! Expedita
-						corrupti, dolorum iste commodi explicabo excepturi nam.
-						Lorem ipsum dolor sit amet consectetur, adipisicing
-						elit.
-					</Text>
-				</Box>
-			</Flex>
-			<Flex height="100vh" width="100vw" align="center" justify="center">
-				<Box w="33%" mt="86px">
-					<Heading size="3xl" mb="32px" align="center" color="black">
-						Cutting Edge Technology :D
-					</Heading>
-					<Flex>
-						<Flex
-							bgColor="blue"
-							flexDir="column"
-							w="400px"
-							borderRadius="5px"
-						>
-							<Image src="/lu.jpg" />
-							<Text align="left" color="black">
-								Lorem ipsum dolor sit amet consectetur
-								adipisicing elit. Voluptates, impedit doloremque
-								eius quasi odio molestias quod esse praesentium
-							</Text>
-						</Flex>{" "}
-						<Flex
-							bgColor="blue"
-							flexDir="column"
-							w="400px"
-							borderRadius="5px"
-							mx="8px"
-						>
-							<Image src="/lu.jpg" />
-							<Text align="left" color="black">
-								Lorem ipsum dolor sit amet consectetur
-								adipisicing elit. Voluptates, impedit doloremque
-								eius quasi odio molestias quod esse praesentium
-								rem libero ipsa enim!
-							</Text>
-						</Flex>
-						<Flex
-							bgColor="blue"
-							flexDir="column"
-							w="400px"
-							borderRadius="5px"
-						>
-							<Image src="/lu.jpg" />
-							<Text align="left" color="black">
-								Lorem ipsum dolor sit amet consectetur
-								adipisicing elit. Voluptates, impedit doloremque
-								eius quasi odio molestias quod esse praesentium
-							</Text>
-						</Flex>
+				<Flex flexDir="column" align="center" justify="center">
+					<Heading color="white">The Team</Heading>
+					<Flex
+						justify="center"
+						align="center"
+						bg="gray.700"
+						// width="60%"
+						flexDir="column"
+						borderRadius="5px"
+					>
+						<StaffCard
+							name="hazim"
+							city="houston"
+							src="/ai.jpg"
+							tags={[
+								"ui",
+								"gym",
+								"tendon",
+								"biking",
+								"cooking",
+								"yeetyah",
+							]}
+						/>
 					</Flex>
-				</Box>
+					<Flex justify="space-between" align="center">
+						<Image src="/lu.jpg" objectFit="cover" width="20%" />
+						<Container>
+							<Text align="left" color="white">
+								Lorem ipsum dolor sit amet consectetur
+								adipisicing elit. Voluptates, impedit doloremque
+								eius quasi odio molestias quod esse praesentium
+							</Text>
+						</Container>
+					</Flex>
+				</Flex>
 			</Flex>
-			<Image
-				src="https://via.placeholder.com/150"
-				alt="placeholder"
-				my="15px"
-			/>
-
-			<Text fontSize="3xl" mb="15px">
-				Mission
-			</Text>
-			<Text>
-				Lorem ipsum dolor sit amet consectetur adipisicing elit.
-				Voluptates, impedit doloremque eius quasi odio molestias quod
-				esse praesentium rem libero ipsa enim! Expedita corrupti,
-				dolorum iste commodi explicabo excepturi nam. Lorem ipsum dolor
-				sit amet consectetur, adipisicing elit. Quibusdam aliquid
-				architecto consequuntur id sint, minima, totam debitis a, ipsum
-				voluptate dolorum voluptatem. Tenetur odio consequatur, maiores
-				sit modi autem nisi?
-			</Text>
-			<Image
-				src="https://via.placeholder.com/150"
-				alt="placeholder"
-				my="15px"
-			/>
-			<Text fontSize="3xl" mb="15px">
-				Team
-			</Text>
-			<Text>
-				Lorem ipsum dolor sit amet consectetur adipisicing elit.
-				Voluptates, impedit doloremque eius quasi odio molestias quod
-				esse praesentium rem libero ipsa enim! Expedita corrupti,
-				dolorum iste commodi explicabo excepturi nam. Lorem ipsum dolor
-				sit amet consectetur, adipisicing elit. Quibusdam aliquid
-				architecto consequuntur id sint, minima, totam debitis a, ipsum
-				voluptate dolorum voluptatem. Tenetur odio consequatur, maiores
-				sit modi autem nisi?
-			</Text>
-			<Image
-				src="https://via.placeholder.com/150"
-				alt="placeholder"
-				my="15px"
-			/>
-		</HeadFoot>
+		</Flex>
 	);
 }
