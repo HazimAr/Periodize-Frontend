@@ -14,6 +14,7 @@ const StyledButton = styled(Button)`
 	:hover {
 		cursor: pointer;
 		background-color: #007fb9;
+		transform: scale(1.1);
 		svg {
 			transform: translateX(7.5px);
 		}
