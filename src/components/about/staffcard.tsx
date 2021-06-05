@@ -1,21 +1,16 @@
+/* eslint-disable import/no-default-export */
 import {
-	Flex,
 	chakra,
-	Image,
 	Heading,
 	Text,
-	Container,
 	Link,
 	HStack,
 	VStack,
 	Avatar,
 	Box,
 	Wrap,
-	Center,
 	WrapItem,
-	TagCloseButton,
 } from "@chakra-ui/react";
-import styled from "styled-components";
 import GlassFlex from "@components/glassflex";
 // const StaffC = styled(Flex)`
 // 	background-color: rgba(255, 255, 255, ${(props) => props.opacity || 0.4});
@@ -26,8 +21,9 @@ import GlassFlex from "@components/glassflex";
 // 	border-left: 1px solid rgba(255, 255, 255, 0.2);
 // 	box-shadow: 5px 5px 30px rgba(0, 0, 0, 0.2);
 // `;
-import { FaGithub, FaLinkedin } from "react-icons/fa";
-interface StaffCardProps {
+import { FaGithub } from "react-icons/fa";
+
+type StaffCardProps = {
 	src: string;
 	name: string;
 	city: string;
@@ -40,7 +36,7 @@ interface StaffCardProps {
 }
 
 const CFaGithub = chakra(FaGithub);
-const CFaLinkedIn = chakra(FaLinkedin);
+// const CFaLinkedIn = chakra(FaLinkedin);
 export default function StaffCard({
 	src = "",
 	name,
