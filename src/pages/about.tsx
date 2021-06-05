@@ -12,6 +12,22 @@ import HeadFoot from "@components/home/headfoot";
 import StaffCard from "@components/about/staffcard";
 
 export default function About(): JSX.Element {
+	const staff = [
+		{
+			name: "tendon dev",
+			city: "chicago",
+			github: "google.com",
+			tags: ["biking", "tea", "coffee", "furry"],
+			src: "/ai.jpg",
+		},
+		{
+			name: "hazim dev",
+			city: "houston",
+			github: "google.com",
+			tags: ["biking", "tea", "coffee", "furry"],
+			src: "/ai.jpg",
+		},
+	];
 	return (
 		<Flex height="100%" flexDir="column">
 			<Flex
@@ -19,9 +35,7 @@ export default function About(): JSX.Element {
 				w="100vw"
 				align="center"
 				justify="center"
-				bgColor="gray.400"
-				// bgImage="/lu.jpg"
-				// objectFit="contain"
+				// bgColor="gray.400"
 			>
 				<Flex flexDir="column">
 					<Heading
@@ -49,41 +63,30 @@ export default function About(): JSX.Element {
 				width="100vw"
 				align="center"
 				justify="center"
-				bgColor="gray.600"
+				// bgColor="gray.600"
+				bgImage="/purple.jpg"
+				objectFit="cover"
 			>
 				<Flex flexDir="column" align="center" justify="center">
 					<Heading color="white">The Team</Heading>
 					<Flex
 						justify="center"
 						align="center"
-						bg="gray.700"
 						// width="60%"
 						flexDir="column"
 						borderRadius="5px"
 					>
-						<StaffCard
-							name="hazim"
-							city="houston"
-							src="/ai.jpg"
-							tags={[
-								"ui",
-								"gym",
-								"tendon",
-								"biking",
-								"cooking",
-								"yeetyah",
-							]}
-						/>
-					</Flex>
-					<Flex justify="space-between" align="center">
-						<Image src="/lu.jpg" objectFit="cover" width="20%" />
-						<Container>
-							<Text align="left" color="white">
-								Lorem ipsum dolor sit amet consectetur
-								adipisicing elit. Voluptates, impedit doloremque
-								eius quasi odio molestias quod esse praesentium
-							</Text>
-						</Container>
+						{staff.map((p) => {
+							return (
+								<StaffCard
+									name={p.name}
+									city={p.city}
+									src={p.src}
+									tags={p.tags}
+									github={p.github}
+								/>
+							);
+						})}
 					</Flex>
 				</Flex>
 			</Flex>

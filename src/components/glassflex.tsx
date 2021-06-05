@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import { Box } from "@chakra-ui/react";
+import { Flex } from "@chakra-ui/react";
 
-const GlassFlex = styled(Box)`
+const GlassFlex = styled(Flex)`
 	background-color: rgba(255, 255, 255, ${(props) => props.op || 0.2});
 	overflow: hidden;
 	z-index: 10;
@@ -11,6 +11,6 @@ const GlassFlex = styled(Box)`
 	box-shadow: 5px 5px 30px rgba(0, 0, 0, 0.2);
 `;
 
-export default function GlassBgBox({ children, ...props }: any): JSX.Element {
+export default function GlassBgFlex({ children, ...props }: any): JSX.Element {
 	return <GlassFlex {...props}>{children}</GlassFlex>;
 }

@@ -16,89 +16,16 @@ import {
 	TagCloseButton,
 } from "@chakra-ui/react";
 import styled from "styled-components";
-
-const StaffC = styled(Box)`
-	body {
-		background-color: #28223f;
-		font-family: Montserrat, sans-serif;
-
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		flex-direction: column;
-
-		min-height: 100vh;
-		margin: 0;
-	}
-
-	h3 {
-		margin: 10px 0;
-	}
-
-	h6 {
-		margin: 5px 0;
-		text-transform: uppercase;
-	}
-
-	p {
-		font-size: 14px;
-		line-height: 21px;
-	}
-
-	.card-container {
-		background-color: #231e39;
-		border-radius: 5px;
-		box-shadow: 0px 10px 20px -10px rgba(0, 0, 0, 0.75);
-		color: #b3b8cd;
-		padding-top: 30px;
-		position: relative;
-		width: 350px;
-		max-width: 100%;
-		text-align: center;
-	}
-
-	.card-container .pro {
-		color: #231e39;
-		background-color: #febb0b;
-		border-radius: 3px;
-		font-size: 14px;
-		font-weight: bold;
-		padding: 3px 7px;
-		position: absolute;
-		top: 30px;
-		left: 30px;
-	}
-
-	.card-container .round {
-		border: 1px solid #03bfcb;
-		border-radius: 50%;
-		padding: 7px;
-	}
-
-	button.primary {
-		background-color: #03bfcb;
-		border: 1px solid #03bfcb;
-		border-radius: 3px;
-		color: #231e39;
-		font-family: Montserrat, sans-serif;
-		font-weight: 500;
-		padding: 10px 25px;
-	}
-
-	button.primary.ghost {
-		background-color: transparent;
-		color: #02899c;
-	}
-
-	.skills ul li {
-		border: 1px solid #2d2747;
-		border-radius: 2px;
-		display: inline-block;
-		font-size: 12px;
-		margin: 0 7px 7px 0;
-		padding: 7px;
-	}
-`;
+import GlassFlex from "@components/glassflex";
+// const StaffC = styled(Flex)`
+// 	background-color: rgba(255, 255, 255, ${(props) => props.opacity || 0.4});
+// 	overflow: hidden;
+// 	z-index: 10;
+// 	backdrop-filter: blur(15px);
+// 	border-top: 1px solid rgba(255, 255, 255, 0.2);
+// 	border-left: 1px solid rgba(255, 255, 255, 0.2);
+// 	box-shadow: 5px 5px 30px rgba(0, 0, 0, 0.2);
+// `;
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 interface StaffCardProps {
 	src: string;
@@ -106,7 +33,7 @@ interface StaffCardProps {
 	city: string;
 	tags: string[];
 	// sub: string;
-	// github: string;
+	github: string;
 	// para: string;
 	// portfolio: string;
 	// linkedIn: string;
@@ -119,20 +46,22 @@ export default function StaffCard({
 	name,
 	city,
 	tags,
+	github,
 }: // sub,
-// github,
+
 // portfolio,
 // para,
 // linkedIn,
 StaffCardProps): JSX.Element {
 	return (
-		<Flex
+		<GlassFlex
 			flexDir="column"
 			justify="center"
 			align="center"
 			width="350px"
-			bg="#231e39"
+			// bg="#231e39"
 			borderRadius="5px"
+			// op={0.02}
 		>
 			<Avatar src={src} alt="user" size="2xl" mt="24px" />
 			<VStack spacing="2px" mt="8px">
@@ -144,12 +73,21 @@ StaffCardProps): JSX.Element {
 					User interface designer and <br /> front-end developer
 				</Text>
 				<HStack>
-					<CFaGithub color="white" />
+					<Link href={github}>
+						<CFaGithub color="white" />
+					</Link>
 				</HStack>
 			</VStack>
 
-			<Box bgColor="#2d2747" mt="8px" px="16px" py="12px">
-				<Wrap w="95%" margin="auto">
+			<Box
+				// bgColor="#2d2747"
+				mt="8px"
+				px="16px"
+				py="20px"
+				w="100%"
+				borderRadius="5px"
+			>
+				<Wrap justify="center">
 					{tags.map((tag) => {
 						return (
 							<WrapItem key="tag">
@@ -167,6 +105,6 @@ StaffCardProps): JSX.Element {
 					})}
 				</Wrap>
 			</Box>
-		</Flex>
+		</GlassFlex>
 	);
 }
