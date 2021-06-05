@@ -1,272 +1,78 @@
-// // import StaffCard from "@components/about/staffcard";
-// // import Container from "@components/container";
-// // const staff = [
-// // 	{
-// // 		src: "/zuck.jpg",
-// // 		name: "Adam",
-// // 		github: "https://github.com/adamrajch",
-// // 		sub: "Fullstack dev specialized in smoke detectors",
-// // 		portfolio: "google.com",
-// // 		linkedIn: "https://www.linkedin.com/in/hazim-arafa-a439aa205/",
-// // 		para: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vitae efficitur mauris. Phasellus sed iaculis lectus, sed malesuada erat. Aenean blandit, dolor at pretium varius, risus orci placerat tortor, vel rhoncus eros metus ac neque. Cras purus mi, consectetur pharetra nunc sit amet, consequat auctor risus. Pellentesque sit amet vestibulum augue, eget porttitor lacus. Praesent ex mi, aliquet ac tortor at, accumsan dictum leo. Nullam tellus nunc, condimentum et congue ut, tristique vel eros.",
-// // 	},
-// // 	{
-// // 		src: "/Hazim.png",
-// // 		name: "Hazim",
-// // 		github: "https://github.com/hazimar",
-// // 		sub: "Fullstack dev specialized in smoke detectors",
-// // 		portfolio: "google.com",
-// // 		linkedIn: "https://www.linkedin.com/in/hazim-arafa-a439aa205/",
-// // 		para: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vitae efficitur mauris. Phasellus sed iaculis lectus, sed malesuada erat. Aenean blandit, dolor at pretium varius, risus orci placerat tortor, vel rhoncus eros metus ac neque. Cras purus mi, consectetur pharetra nunc sit amet, consequat auctor risus. Pellentesque sit amet vestibulum augue, eget porttitor lacus. Praesent ex mi, aliquet ac tortor at, accumsan dictum leo. Nullam tellus nunc, condimentum et congue ut, tristique vel eros.",
-// // 	},
-// // 	{
-// // 		src: "/ai.jpg",
-// // 		name: "Ai",
-// // 		github: "https://github.com/Lilin7534",
-// // 		sub: "Math grad dropout",
-// // 		portfolio: "https://ko-fi.com/lilinai",
-// // 		linkedIn: "google.com",
-// // 		para: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vitae efficitur mauris. Phasellus sed iaculis lectus, sed malesuada erat. Aenean blandit, dolor at pretium varius, risus orci placerat tortor, vel rhoncus eros metus ac neque. Cras purus mi, consectetur pharetra nunc sit amet, consequat auctor risus. Pellentesque sit amet vestibulum augue, eget porttitor lacus. Praesent ex mi, aliquet ac tortor at, accumsan dictum leo. Nullam tellus nunc, condimentum et congue ut, tristique vel eros.",
-// // 	}
-// // ];
-// /*
-// 	<Container>
-// 	{staff.map((p) => {
-// 		return (
-// 			<StaffCard
-// 				src={p.src}
-// 				name={p.name}
-// 				github={p.github}
-// 				sub={p.sub}
-// 				portfolio={p.portfolio}
-// 				para={p.para}
-// 				linkedIn={p.linkedIn}
-// 				key={p.name}
-// 			/>
-// 		);
-// 	})}
-// 	</Container>
-// 	*/
-
-// import { Text, Flex, Button } from "@chakra-ui/react";
-// import { useState } from "react";
-
-// import useInterval from "@hooks/useInterval";
-// import HeadFoot from "@components/home/headfoot";
-
-// export default function About(): JSX.Element {
-// 	const [count, setCount] = useState(0);
-// 	const [farms, setFarms] = useState(0);
-// 	const [boats, setBoats] = useState(0);
-// 	const [helicopters, setHelicopters] = useState(0);
-// 	const [income, setIncome] = useState(0);
-// 	const [compound, setCompound] = useState(false);
-
-// Game Loop
-// 	useInterval(() => {
-// 		if (compound) {
-// 			let intrest = count / 10000;
-// 			setCount(
-// 				Math.ceil(
-// 					intrest +
-// 						(count + 0.1 * farms + 1 * boats + 10 * helicopters) *
-// 							100
-// 				) / 100
-// 			);
-
-// 			setIncome(
-// 				Math.ceil(
-// 					intrest + (0.1 * farms + 1 * boats + 10 * helicopters) * 100
-// 				) / 100
-// 			);
-// 			return;
-// 		}
-
-// 		setCount(count + 1 * farms + 1 * boats + 10 * helicopters);
-// 		setIncome(100 * (0.1 * farms + 1 * boats + 10 * helicopters));
-// 	}, 100);
-
-// 	return (
-// 		<HeadFoot>
-// 			<Text>${count}</Text>
-// 			<Text>Farms: {farms}</Text>
-// 			<Text>Boats: {boats}</Text>
-// 			<Text>Helicopters: {helicopters}</Text>
-// 			<Text>${income} / sec</Text>
-// 			<Text>Compound: {compound ? "True" : "False"}</Text>
-// 			<Button
-// 				onClick={() => {
-// 					console.log("Increase");
-// 					setCount(count + 1);
-// 				}}
-// 			>
-// 				Increase
-// 			</Button>
-// 			<Flex justify="center">
-// 				<Button
-// 					onClick={() => {
-// 						if (count >= 100) {
-// 							console.log("Buying Farm");
-// 							setFarms(farms + 1);
-// 							setCount(count - 100);
-// 						} else {
-// 							console.log("Insufficient Funds");
-// 						}
-// 					}}
-// 				>
-// 					Buy Farm ($100)
-// 				</Button>
-
-// 				<Button
-// 					onClick={() => {
-// 						if (count >= 1000) {
-// 							console.log("Buying Boats");
-// 							setBoats(boats + 1);
-// 							setCount(count - 1000);
-// 						} else {
-// 							console.log("Insufficient Funds");
-// 						}
-// 					}}
-// 				>
-// 					Buy Boats ($1,000)
-// 				</Button>
-
-// 				<Button
-// 					onClick={() => {
-// 						if (count >= 10000) {
-// 							console.log("Buying Helicopter");
-// 							setHelicopters(helicopters + 1);
-// 							setCount(count - 10000);
-// 						} else {
-// 							console.log("Insufficient Funds");
-// 						}
-// 					}}
-// 				>
-// 					Buy Helicopters ($10,000)
-// 				</Button>
-// 			</Flex>
-// 			<Button
-// 				onClick={() => {
-// 					if (count >= 10000 && !compound) {
-// 						console.log("Buying Compound");
-// 						setCompound(true);
-// 						setCount(count - 10000);
-// 					} else {
-// 						console.log("Insufficient Funds");
-// 					}
-// 				}}
-// 			>
-// 				Buy Compound Intrest ($10,000)
-// 			</Button>
-// 		</HeadFoot>
-// 	);
-// }
-
-// import StaffCard from "@components/about/staffcard";
-// import Container from "@components/container";
-// const staff = [
-// 	{
-// 		src: "/zuck.jpg",
-// 		name: "Adam",
-// 		github: "https://github.com/adamrajch",
-// 		sub: "Fullstack dev specialized in smoke detectors",
-// 		portfolio: "google.com",
-// 		linkedIn: "https://www.linkedin.com/in/hazim-arafa-a439aa205/",
-// 		para: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vitae efficitur mauris. Phasellus sed iaculis lectus, sed malesuada erat. Aenean blandit, dolor at pretium varius, risus orci placerat tortor, vel rhoncus eros metus ac neque. Cras purus mi, consectetur pharetra nunc sit amet, consequat auctor risus. Pellentesque sit amet vestibulum augue, eget porttitor lacus. Praesent ex mi, aliquet ac tortor at, accumsan dictum leo. Nullam tellus nunc, condimentum et congue ut, tristique vel eros.",
-// 	},
-// 	{
-// 		src: "/Hazim.png",
-// 		name: "Hazim",
-// 		github: "https://github.com/hazimar",
-// 		sub: "Fullstack dev specialized in smoke detectors",
-// 		portfolio: "google.com",
-// 		linkedIn: "https://www.linkedin.com/in/hazim-arafa-a439aa205/",
-// 		para: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vitae efficitur mauris. Phasellus sed iaculis lectus, sed malesuada erat. Aenean blandit, dolor at pretium varius, risus orci placerat tortor, vel rhoncus eros metus ac neque. Cras purus mi, consectetur pharetra nunc sit amet, consequat auctor risus. Pellentesque sit amet vestibulum augue, eget porttitor lacus. Praesent ex mi, aliquet ac tortor at, accumsan dictum leo. Nullam tellus nunc, condimentum et congue ut, tristique vel eros.",
-// 	},
-// 	{
-// 		src: "/ai.jpg",
-// 		name: "Ai",
-// 		github: "https://github.com/Lilin7534",
-// 		sub: "Math grad dropout",
-// 		portfolio: "https://ko-fi.com/lilinai",
-// 		linkedIn: "google.com",
-// 		para: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vitae efficitur mauris. Phasellus sed iaculis lectus, sed malesuada erat. Aenean blandit, dolor at pretium varius, risus orci placerat tortor, vel rhoncus eros metus ac neque. Cras purus mi, consectetur pharetra nunc sit amet, consequat auctor risus. Pellentesque sit amet vestibulum augue, eget porttitor lacus. Praesent ex mi, aliquet ac tortor at, accumsan dictum leo. Nullam tellus nunc, condimentum et congue ut, tristique vel eros.",
-// 	}
-// ];
-
-import { Container, Text, Image, Box, Flex } from "@chakra-ui/react";
+import { Text, Image, Box, Flex } from "@chakra-ui/react";
 import HeadFoot from "@components/home/headfoot";
 
 export default function About(): JSX.Element {
 	return (
 		<HeadFoot>
-	
-				<Flex height="100vh" width="100vw" align="center" justify="space-evenly">
-					<Box w="33%">
-						<Text fontSize="3xl" mb="15px" align="left">
-							Our Story
-						</Text>
-						<Text color="text.500" align="left">
-							Lorem ipsum dolor sit amet consectetur adipisicing
-							elit. Voluptates, impedit doloremque eius quasi odio
-							molestias quod esse praesentium rem libero ipsa
-							enim! Expedita corrupti, dolorum iste commodi
-							explicabo excepturi nam. Lorem ipsum dolor sit amet
-							consectetur, adipisicing elit.
-						</Text>
-					</Box>
-					<Image
-						src="/ai.jpg"
-						alt="placeholder"
-						height="300px"
-						objectFit="cover"
-					/>
-				</Flex>
+			<Flex
+				height="100vh"
+				width="100vw"
+				align="center"
+				justify="space-evenly"
+			>
+				<Box w="33%">
+					<Text fontSize="3xl" mb="15px" align="left">
+						Our Story
+					</Text>
+					<Text color="text.500" align="left">
+						Lorem ipsum dolor sit amet consectetur adipisicing elit.
+						Voluptates, impedit doloremque eius quasi odio molestias
+						quod esse praesentium rem libero ipsa enim! Expedita
+						corrupti, dolorum iste commodi explicabo excepturi nam.
+						Lorem ipsum dolor sit amet consectetur, adipisicing
+						elit.
+					</Text>
+				</Box>
+				<Image
+					src="/ai.jpg"
+					alt="placeholder"
+					height="300px"
+					objectFit="cover"
+				/>
+			</Flex>
 
-				<Image
-					src="https://via.placeholder.com/150"
-					alt="placeholder"
-					my="15px"
+			<Image
+				src="https://via.placeholder.com/150"
+				alt="placeholder"
+				my="15px"
 			/>
-			
-			
-				<Text fontSize="3xl" mb="15px">
-					Mission
-				</Text>
-				<Text>
-					Lorem ipsum dolor sit amet consectetur adipisicing elit.
-					Voluptates, impedit doloremque eius quasi odio molestias
-					quod esse praesentium rem libero ipsa enim! Expedita
-					corrupti, dolorum iste commodi explicabo excepturi nam.
-					Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-					Quibusdam aliquid architecto consequuntur id sint, minima,
-					totam debitis a, ipsum voluptate dolorum voluptatem. Tenetur
-					odio consequatur, maiores sit modi autem nisi?
-				</Text>
-				<Image
-					src="https://via.placeholder.com/150"
-					alt="placeholder"
-					my="15px"
-				/>
-				<Text fontSize="3xl" mb="15px">
-					Team
-				</Text>
-				<Text>
-					Lorem ipsum dolor sit amet consectetur adipisicing elit.
-					Voluptates, impedit doloremque eius quasi odio molestias
-					quod esse praesentium rem libero ipsa enim! Expedita
-					corrupti, dolorum iste commodi explicabo excepturi nam.
-					Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-					Quibusdam aliquid architecto consequuntur id sint, minima,
-					totam debitis a, ipsum voluptate dolorum voluptatem. Tenetur
-					odio consequatur, maiores sit modi autem nisi?
-				</Text>
-				<Image
-					src="https://via.placeholder.com/150"
-					alt="placeholder"
-					my="15px"
-				/>
-		
+
+			<Text fontSize="3xl" mb="15px">
+				Mission
+			</Text>
+			<Text>
+				Lorem ipsum dolor sit amet consectetur adipisicing elit.
+				Voluptates, impedit doloremque eius quasi odio molestias quod
+				esse praesentium rem libero ipsa enim! Expedita corrupti,
+				dolorum iste commodi explicabo excepturi nam. Lorem ipsum dolor
+				sit amet consectetur, adipisicing elit. Quibusdam aliquid
+				architecto consequuntur id sint, minima, totam debitis a, ipsum
+				voluptate dolorum voluptatem. Tenetur odio consequatur, maiores
+				sit modi autem nisi?
+			</Text>
+			<Image
+				src="https://via.placeholder.com/150"
+				alt="placeholder"
+				my="15px"
+			/>
+			<Text fontSize="3xl" mb="15px">
+				Team
+			</Text>
+			<Text>
+				Lorem ipsum dolor sit amet consectetur adipisicing elit.
+				Voluptates, impedit doloremque eius quasi odio molestias quod
+				esse praesentium rem libero ipsa enim! Expedita corrupti,
+				dolorum iste commodi explicabo excepturi nam. Lorem ipsum dolor
+				sit amet consectetur, adipisicing elit. Quibusdam aliquid
+				architecto consequuntur id sint, minima, totam debitis a, ipsum
+				voluptate dolorum voluptatem. Tenetur odio consequatur, maiores
+				sit modi autem nisi?
+			</Text>
+			<Image
+				src="https://via.placeholder.com/150"
+				alt="placeholder"
+				my="15px"
+			/>
 		</HeadFoot>
 	);
 }
