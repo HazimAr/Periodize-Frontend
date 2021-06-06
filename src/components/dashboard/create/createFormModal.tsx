@@ -24,6 +24,7 @@ import {
 } from "react-icons/gi";
 import { useState, useEffect } from "react";
 import Pop from "@components/pop";
+import { createProgram } from "@api/program";
 
 const CWeightlifting = chakra(GiWeightLiftingUp);
 const CPowerlifting = chakra(GiWeightLiftingDown);
@@ -58,6 +59,19 @@ export default function CreateForm(props: any) {
 			<form
 				onSubmit={(e) => {
 					e.preventDefault();
+					createProgram(
+						name,
+						desc,
+						[
+							beg ? "begginer" : "",
+							int ? "intermedite" : "",
+							adv ? "advanced" : "",
+						],
+						privacy,
+						tags
+					).then(e=>{
+						console.log(e);
+					});
 					props.setToggle();
 					console.log("test");
 				}}

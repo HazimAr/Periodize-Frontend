@@ -24,6 +24,7 @@ import {
 } from "react-icons/gi";
 import { useState, useEffect } from "react";
 import Glass from "@components/glassbg";
+import { createProgram } from "@api/program";
 
 const CWeightlifting = chakra(GiWeightLiftingUp);
 const CPowerlifting = chakra(GiWeightLiftingDown);
@@ -36,6 +37,7 @@ export default function CreateForm() {
 	const [int, setInt] = useState(false);
 	const [adv, setAdv] = useState(false);
 	const [tags, setTags]: any = useState([]);
+
 	useEffect(() => {
 		console.log(tags);
 	}, [tags]);

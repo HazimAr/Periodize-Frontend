@@ -4,6 +4,7 @@ import AvatarBadge from "@components/avatar";
 import Layout from "@components/dashboard/layout";
 import Button from "@components/styledbutton";
 import useProfile from "@hooks/useProfile";
+import CreateModal from "@components/dashboard/create/createModal";
 
 export default function Profile(): JSX.Element {
 	const user: any = useProfile();
@@ -24,6 +25,7 @@ export default function Profile(): JSX.Element {
 						width="100%"
 					>
 						<Flex alignItems="center">
+							<a>
 							<AvatarBadge
 								name={user.username}
 								src={
@@ -32,7 +34,7 @@ export default function Profile(): JSX.Element {
 										: "https://bit.ly/broken-link"
 								}
 								size="lg"
-							/>
+							/></a>
 							<Text ml="10px">{user.username}</Text>
 							<Button ml="auto"> ... </Button>
 						</Flex>
@@ -63,6 +65,7 @@ export default function Profile(): JSX.Element {
 									<Button> Edit </Button>
 								</Flex>
 							</Flex> */}
+<CreateModal/>
 						</Box>
 					</Box>
 				</Flex>
