@@ -57,7 +57,7 @@ StaffCardProps): JSX.Element {
 			width="350px"
 			// bg="#231e39"
 			borderRadius="5px"
-			// op={0.02}
+			op={0.1}
 		>
 			<Avatar src={src} alt="user" size="2xl" mt="24px" />
 			<VStack spacing="2px" mt="8px">
