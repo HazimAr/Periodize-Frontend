@@ -33,7 +33,6 @@ const theme = extendTheme({
 			800: "#1b4332ff",
 			900: "#081c15ff",
 		},
-
 	},
 	components: {
 		Link,
@@ -46,7 +45,7 @@ const theme = extendTheme({
 			},
 			body: {
 				fontFamily: "body",
-				color: mode("text.700", "secondary")(props),
+				color: "white",
 				bg: mode("lightBase", "bg.100")(props),
 				lineHeight: "base",
 			},
