@@ -13,25 +13,26 @@ const breakpoints = createBreakpoints({
 
 const theme = extendTheme({
 	colors: {
-		primary: "#40916cff",
-		secondary: "#b7e4c7ff",
-		lightBase: "#dde2ec",
-		darkPrimary: "#072f21",
 		black: "#16161D",
 		bg: {
 			100: "#0B0C10",
 			200: "#1F2833",
 		},
+		brand: {
+			100: "#E2CDF5",
+			200: "#C59FEB",
+			300: "#9165C5",
+			400: "#5A378B",
+			500: "#1F0C3E",
+			600: "#170835",
+			700: "#11062C",
+			800: "#0C0323",
+			900: "#08021D",
+		},
 		text: {
-			100: "#06d6a0",
-			200: "#d8f3dcff",
-			300: "#b7e4c7ff",
-			400: "#95d5b2ff",
-			500: "#74c69dff",
-			600: "#52b788ff",
-			700: "#40916cff",
-			800: "#1b4332ff",
-			900: "#081c15ff",
+			100: "white",
+			200: "#E4E4E4",
+			300: "#737373",
 		},
 	},
 	components: {
@@ -46,11 +47,11 @@ const theme = extendTheme({
 			body: {
 				fontFamily: "body",
 				color: "white",
-				bg: mode("lightBase", "bg.100")(props),
+				bg: "brand.900",
 				lineHeight: "base",
 			},
 			a: {
-				color: mode("text.800", "text.600")(props),
+				color: "white",
 			},
 		}),
 	},
