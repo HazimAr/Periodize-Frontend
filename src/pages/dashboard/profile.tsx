@@ -26,15 +26,16 @@ export default function Profile(): JSX.Element {
 					>
 						<Flex alignItems="center">
 							<a>
-							<AvatarBadge
-								name={user.username}
-								src={
-									user.image
-										? user.image
-										: "https://bit.ly/broken-link"
-								}
-								size="lg"
-							/></a>
+								<AvatarBadge
+									name={user.username}
+									src={
+										user.image
+											? user.image
+											: "https://bit.ly/broken-link"
+									}
+									size="lg"
+								/>
+							</a>
 							<Text ml="10px">{user.username}</Text>
 							<Button ml="auto"> ... </Button>
 						</Flex>
@@ -53,7 +54,7 @@ export default function Profile(): JSX.Element {
 									<Text>Email:</Text>
 									<Text>{user.email}</Text>
 								</Box>
-								<Button ml="auto"> Edit </Button>
+								<Button ml="auto">Edit</Button>
 							</Flex>
 							{/* <Flex alignItems="center">
 								<Box>
@@ -65,14 +66,13 @@ export default function Profile(): JSX.Element {
 									<Button> Edit </Button>
 								</Flex>
 							</Flex> */}
-<CreateModal/>
+							<CreateModal />
 						</Box>
 					</Box>
 				</Flex>
 			) : (
 				<Text>Loading... </Text>
 			)}
-			
 		</Layout>
 	);
 }

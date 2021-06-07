@@ -73,7 +73,6 @@ export default function CreateForm(props: any) {
 						console.log(e);
 					});
 					props.setToggle();
-					console.log("test");
 				}}
 			>
 				<VStack spacing={2} alignItems="center">
