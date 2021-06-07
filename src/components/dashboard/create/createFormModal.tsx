@@ -63,13 +63,13 @@ export default function CreateForm(props: any) {
 						name,
 						desc,
 						[
-							beg ? "begginer" : "",
-							int ? "intermedite" : "",
+							beg ? "beginner" : "",
+							int ? "intermediate" : "",
 							adv ? "advanced" : "",
-						],
+						].toString(),
 						privacy,
-						tags
-					).then(e=>{
+						tags.toString()
+					).then((e) => {
 						console.log(e);
 					});
 					props.setToggle();

@@ -5,15 +5,15 @@ import { getCookie } from "@lib/cookie";
 async function createProgram(
 	name: string,
 	description: string,
-	experience: string[],
+	experience: string,
 	privates: boolean,
-	sport: string[]
+	sport: string
 ) {
 	name = name ?? "";
 	description = description ?? "";
-	experience = experience ?? [];
+	experience = experience ?? "";
 	privates = privates ?? false;
-	sport = sport ?? [];
+	sport = sport ?? "";
 
 	const sessionid = await getCookie("sessionid");
 	const sendData = {
