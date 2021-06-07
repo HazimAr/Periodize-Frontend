@@ -21,6 +21,7 @@ async function createUser(
 	const { data } = await axios.put(`${DB_URL}/users`, sendData);
 
 	if (data.data) {
+		eraseCookie("sessionid")
 		setCookie("sessionid", String(data.data.sessionid), 7);
 		window.location.href = "/dashboard";
 	}

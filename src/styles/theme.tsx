@@ -32,14 +32,15 @@ const theme = extendTheme({
 		text: {
 			100: "white",
 			200: "#E4E4E4",
-			300: "#737373",
+			300: "#a1a1a1",
+			400: "#737373",
 		},
 	},
 	components: {
 		Link,
 	},
 	styles: {
-		global: (props) => ({
+		global: () => ({
 			html: {
 				height: "100%",
 			},

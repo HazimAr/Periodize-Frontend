@@ -22,7 +22,7 @@ import {
 	GiRunningNinja,
 	GiWeightLiftingDown,
 } from "react-icons/gi";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Pop from "@components/pop";
 import { createProgram } from "@api/program";
 
@@ -33,14 +33,10 @@ const CCardio = chakra(GiRunningNinja);
 export default function CreateForm(props: any) {
 	const [name, setName] = useState("");
 	const [desc, setDesc] = useState("");
-	const [beg, setBeg] = useState(false);
-	const [int, setInt] = useState(false);
-	const [adv, setAdv] = useState(false);
+
+	const [exp, setExp]: any = useState([]);
 	const [privacy, setPrivacy] = useState(false);
 	const [tags, setTags]: any = useState([]);
-	useEffect(() => {
-		console.log(privacy);
-	}, [privacy]);
 
 	function handleTags(t: string) {
 		if (tags.includes(t)) {
@@ -50,6 +46,16 @@ export default function CreateForm(props: any) {
 
 		setTags((tag: any) => [...tag, t]);
 	}
+
+	function handleExp(t: string) {
+		if (exp.includes(t)) {
+			setExp(exp.filter((item: any) => item != t));
+			return;
+		}
+
+		setExp((ex: any) => [...ex, t]);
+	}
+
 	return (
 		<Container>
 			<Heading as="h3" size="lg" mb={4} opacity="0.7">
@@ -62,11 +68,7 @@ export default function CreateForm(props: any) {
 					createProgram(
 						name,
 						desc,
-						[
-							beg ? "beginner" : "",
-							int ? "intermediate" : "",
-							adv ? "advanced" : "",
-						].toString(),
+						exp.toString(),
 						privacy,
 						tags.toString()
 					).then((e) => {
@@ -99,22 +101,22 @@ export default function CreateForm(props: any) {
 						<CheckboxGroup>
 							<Checkbox
 								colorScheme="green"
-								isChecked={beg}
-								onChange={() => setBeg(!beg)}
+								isChecked={exp.includes("beginner")}
+								onChange={() => handleExp("beginner")}
 							>
 								Beginner
 							</Checkbox>
 							<Checkbox
 								colorScheme="blue"
-								isChecked={int}
-								onChange={() => setInt(!int)}
+								isChecked={exp.includes("intermediate")}
+								onChange={() => handleExp("intermediate")}
 							>
 								Intermediate
 							</Checkbox>
 							<Checkbox
 								colorScheme="red"
-								isChecked={adv}
-								onChange={() => setAdv(!adv)}
+								isChecked={exp.includes("advanced")}
+								onChange={() => handleExp("advanced")}
 							>
 								Advanced
 							</Checkbox>

@@ -29,4 +29,26 @@ async function createProgram(
 	return data;
 }
 
-export { createProgram };
+async function getPrograms() {
+	const sendData = {
+		sessionid: getCookie("sessionid"),
+	};
+	const { data } = await axios.post(`${DB_URL}/products/all`, sendData);
+	return data;
+}
+
+async function getProgram(id: number) {
+	const { data } = await axios.post(`${DB_URL}/products/${id}`);
+	return data;
+}
+
+async function deleteProgram(id: number) {
+	const { data } = await axios.delete(`${DB_URL}/products/${id}`);
+	return data;
+}
+async function updateProgram(id: number) {
+	const { data } = await axios.patch(`${DB_URL}/products/${id}`);
+	return data;
+}
+
+export { createProgram, getPrograms, getProgram, deleteProgram, updateProgram };
