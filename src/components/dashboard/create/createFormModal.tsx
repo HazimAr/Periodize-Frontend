@@ -52,7 +52,7 @@ export default function CreateForm(props: any) {
 	}
 	return (
 		<Container>
-			<Heading as="h3" size="lg" color="white" mb={4} opacity="0.7">
+			<Heading as="h3" size="lg" mb={4} opacity="0.7">
 				Create your template
 			</Heading>
 
@@ -78,26 +78,20 @@ export default function CreateForm(props: any) {
 			>
 				<VStack spacing={2} alignItems="center">
 					<FormControl>
-						<FormLabel htmlFor="name" color="white">
-							Name
-						</FormLabel>
+						<FormLabel htmlFor="name">Name</FormLabel>
 						<Input
 							placeholder=""
 							value={name}
-							color="white"
-							_placeholder={{ color: "white" }}
+							_placeholder={{ color: "gray.400" }}
 							onChange={(e) => setName(e.target.value)}
 							required
 						/>
 					</FormControl>
 					<FormControl>
-						<FormLabel htmlFor="description" color="white">
-							Summary
-						</FormLabel>
+						<FormLabel htmlFor="description">Summary</FormLabel>
 						<Textarea
 							placeholder=""
 							value={desc}
-							color="white"
 							_placeholder={{ color: "white" }}
 							onChange={(e) => setDesc(e.target.value)}
 						/>
@@ -108,7 +102,6 @@ export default function CreateForm(props: any) {
 								colorScheme="green"
 								isChecked={beg}
 								onChange={() => setBeg(!beg)}
-								color="white"
 							>
 								Beginner
 							</Checkbox>
@@ -116,7 +109,6 @@ export default function CreateForm(props: any) {
 								colorScheme="blue"
 								isChecked={int}
 								onChange={() => setInt(!int)}
-								color="white"
 							>
 								Intermediate
 							</Checkbox>
@@ -124,7 +116,6 @@ export default function CreateForm(props: any) {
 								colorScheme="red"
 								isChecked={adv}
 								onChange={() => setAdv(!adv)}
-								color="white"
 							>
 								Advanced
 							</Checkbox>
@@ -200,7 +191,6 @@ export default function CreateForm(props: any) {
 							colorScheme="red"
 							isChecked={privacy}
 							onChange={() => setPrivacy(!privacy)}
-							color="white"
 						>
 							private
 						</Checkbox>
