@@ -18,7 +18,7 @@ import {
 	InputRightElement,
 	FormHelperText,
 	chakra,
-	useColorMode,
+
 } from "@chakra-ui/react";
 
 import { ViewIcon, ViewOffIcon, EmailIcon } from "@chakra-ui/icons";
@@ -31,7 +31,6 @@ import HeadFoot from "@components/home/headfoot";
 const CFaLock = chakra(FaLock);
 
 export default function LoginPage(): JSX.Element {
-	const { colorMode } = useColorMode();
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const [error, setError] = useState("");
@@ -60,16 +59,7 @@ export default function LoginPage(): JSX.Element {
 					justifyContent="center"
 					alignItems="center"
 				>
-					<Text
-						bgGradient={
-							colorMode === "dark"
-								? "linear(to-r, #ffcdb2, #06d6a0)"
-								: "linear(to-r,primary, darkPrimary)"
-						}
-						bgClip="text"
-						fontSize="6xl"
-						fontWeight="extrabold"
-					>
+					<Text fontSize="6xl" fontWeight="extrabold">
 						Login
 					</Text>
 					<Box minW={{ base: "90%", md: "468px" }}>
@@ -94,11 +84,6 @@ export default function LoginPage(): JSX.Element {
 												setEmail(e.target.value);
 											}}
 											required
-											color={
-												colorMode === "dark"
-													? "secondary"
-													: "primary"
-											}
 										/>
 									</InputGroup>
 								</FormControl>
@@ -106,10 +91,7 @@ export default function LoginPage(): JSX.Element {
 									<InputGroup>
 										<InputLeftElement
 											pointerEvents="none"
-											color="gray.300"
-											children={
-												<CFaLock color="primary" />
-											}
+											children={<CFaLock />}
 										/>
 										<Input
 											type={
@@ -140,7 +122,6 @@ export default function LoginPage(): JSX.Element {
 												_focus={{ outline: "none" }}
 												outline="none"
 												m={0}
-												color="primary"
 												icon={
 													showPassword ? (
 														<ViewOffIcon />
@@ -162,7 +143,7 @@ export default function LoginPage(): JSX.Element {
 									</FormHelperText>
 								</FormControl>
 								{error ? (
-									<Box color="red.400">{error}</Box>
+									<Box color="red.500">{error}</Box>
 								) : null}
 								<Button
 									width="full"

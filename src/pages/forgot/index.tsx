@@ -62,12 +62,7 @@ export default function LoginPage() {
 				>
 					{fromEmail ? (
 						<>
-							<Text
-								bgGradient="linear(to-r, #ffcdb2, #06d6a0)"
-								bgClip="text"
-								fontSize="4xl"
-								fontWeight="extrabold"
-							>
+							<Text fontSize="4xl" fontWeight="extrabold">
 								Reset Password
 							</Text>
 							<Box minW={{ base: "90%", md: "468px" }}>
@@ -77,10 +72,7 @@ export default function LoginPage() {
 											<InputGroup>
 												<InputLeftElement
 													pointerEvents="none"
-													color="gray.300"
-													children={
-														<CFaLock color="gray.300" />
-													}
+													children={<CFaLock />}
 												/>
 												<Input
 													type={
@@ -136,14 +128,13 @@ export default function LoginPage() {
 											</InputGroup>
 										</FormControl>
 										{error ? (
-											<Box color="red.400">{error}</Box>
+											<Box color="red.500">{error}</Box>
 										) : null}
 										<Button
 											borderRadius={2}
 											type="submit"
 											variant="solid"
 											width="full"
-											bg="text.800"
 											_hover={{ bg: "text.600" }}
 											onClick={(e) => {
 												e.preventDefault();
@@ -166,12 +157,7 @@ export default function LoginPage() {
 						</>
 					) : (
 						<>
-							<Text
-								bgGradient="linear(to-r, #ffcdb2, #06d6a0)"
-								bgClip="text"
-								fontSize="4xl"
-								fontWeight="extrabold"
-							>
+							<Text fontSize="4xl" fontWeight="extrabold">
 								Forgot Password?
 							</Text>
 							<Box minW={{ base: "90%", md: "468px" }}>
@@ -181,9 +167,7 @@ export default function LoginPage() {
 											<InputGroup>
 												<InputLeftElement
 													pointerEvents="none"
-													children={
-														<EmailIcon color="gray.300" />
-													}
+													children={<EmailIcon />}
 												/>
 												<Input
 													type="email"
@@ -202,15 +186,14 @@ export default function LoginPage() {
 											</InputGroup>
 										</FormControl>
 										{error ? (
-											<Box color="red.400">{error}</Box>
+											<Box color="red.500">{error}</Box>
 										) : null}
 										<Button
 											borderRadius={2}
 											type="submit"
 											variant="solid"
 											width="full"
-											bg="text.800"
-											_hover={{ bg: "text.600" }}
+											// _hover={{ bg: "text.600" }}
 											onClick={(e) => {
 												e.preventDefault();
 												EmailValidator.validate(

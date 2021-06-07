@@ -12,7 +12,6 @@ import {
 	Textarea,
 	IconButton,
 	Tooltip,
-	useColorMode,
 	useColorModeValue,
 	Text,
 	chakra,
@@ -32,7 +31,6 @@ import { FaUserAlt, FaBuilding } from "react-icons/fa";
 const CFaUserAlt = chakra(FaUserAlt);
 const CFaBuilding = chakra(FaBuilding);
 export default function Home(): JSX.Element {
-	const { colorMode } = useColorMode();
 	const value = "mail@periodize.org";
 	const { hasCopied, onCopy } = useClipboard(value);
 	const [name, setName] = useState("");
@@ -57,17 +55,7 @@ export default function Home(): JSX.Element {
 	return (
 		<HeadFoot>
 			<Container>
-				<Heading
-					as="h2"
-					size="3xl"
-					mb={[8, 10]}
-					bgGradient={
-						colorMode === "dark"
-							? "linear(to-r, #ffcdb2, #06d6a0)"
-							: "linear(to-r,primary, darkPrimary)"
-					}
-					bgClip="text"
-				>
+				<Heading as="h2" size="3xl" mb={[8, 10]}>
 					Contact Us
 				</Heading>
 				<Flex
@@ -87,24 +75,13 @@ export default function Home(): JSX.Element {
 							mr={{ base: "", sm: "20px" }}
 							m="0"
 						>
-							<Heading
-								as="h2"
-								size="md"
-								pt={2}
-								color={colorMode === "dark" ? "white" : "black"}
-							>
+							<Heading as="h2" size="md" pt={2}>
 								Email us:
 							</Heading>
 							<Flex wrap="nowrap">
 								<Text
 									mb={6}
 									variant="bnw"
-									bgGradient={
-										colorMode === "dark"
-											? "linear(to-r,#42CAF7, white)"
-											: "linear(to-r ,primary, black)"
-									}
-									bgClip="text"
 									fontWeight="extrabold"
 									pt={2}
 								>
@@ -120,7 +97,6 @@ export default function Home(): JSX.Element {
 									<IconButton
 										aria-label="copy"
 										icon={<CopyIcon />}
-										color="primary"
 										variant="ghost"
 										_focus={{ outline: "none" }}
 										_hover={{
@@ -139,7 +115,6 @@ export default function Home(): JSX.Element {
 							lineHeight={["tall", "small"]}
 							size="sm"
 							fontSize={["large", "small"]}
-							variant="bnw"
 						>
 							The team is open for your ideas, questions and
 							needs. Our clients get the superior results when a
@@ -169,7 +144,7 @@ export default function Home(): JSX.Element {
 							<FormControl mb={4}>
 								<InputGroup>
 									<InputLeftElement pointerEvents="none">
-										<CFaUserAlt color="primary" />
+										<CFaUserAlt />
 									</InputLeftElement>
 									<Input
 										type="name"
@@ -190,11 +165,11 @@ export default function Home(): JSX.Element {
 									/>
 								</InputGroup>
 							</FormControl>
-							{error ? <Box color="red.400">{error}</Box> : null}
+							{error ? <Box color="red.500">{error}</Box> : null}
 							<FormControl mb={4}>
 								<InputGroup>
 									<InputLeftElement pointerEvents="none">
-										<EmailIcon color="primary" />
+										<EmailIcon />
 									</InputLeftElement>
 									<Input
 										type="email"
@@ -218,7 +193,7 @@ export default function Home(): JSX.Element {
 							<FormControl mb={4}>
 								<InputGroup>
 									<InputLeftElement pointerEvents="none">
-										<CFaBuilding color="primary" />
+										<CFaBuilding />
 									</InputLeftElement>
 									<Input
 										name="company"
@@ -242,7 +217,6 @@ export default function Home(): JSX.Element {
 									letterSpacing="widest"
 									mb={2}
 									textAlign="left"
-									variant="bnw"
 								>
 									Subject
 								</Text>

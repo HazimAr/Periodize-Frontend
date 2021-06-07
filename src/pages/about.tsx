@@ -22,24 +22,13 @@ export default function About(): JSX.Element {
 	return (
 		<HeadFoot>
 			<Flex height="100%" flexDir="column">
-				<Flex
-					h="100vh"
-					w="100vw"
-					align="center"
-					justify="center"
-					// bgColor="gray.400"
-				>
+				<Flex h="100vh" w="100vw" align="center" justify="center">
 					<Flex flexDir="column">
-						<Heading
-							size="3xl"
-							mb="32px"
-							justifySelf="left"
-							color="white"
-						>
+						<Heading size="3xl" mb="32px" justifySelf="left">
 							Who are we?
 						</Heading>
 						<Box maxW="200px">
-							<Text align="left" color="white">
+							<Text align="left">
 								We are a team of american developers recreating
 								how athletes, coaches, and the everyday person
 								approaches fitness. We aim to perfect the

@@ -21,7 +21,7 @@ import {
 	InputRightElement,
 	chakra,
 	IconButton,
-	useColorMode,
+
 } from "@chakra-ui/react";
 import GoogleButton from "@components/google";
 import HeadFoot from "@components/home/headfoot";
@@ -37,7 +37,7 @@ const CFaUserAlt = chakra(FaUserAlt);
 const CFaLock = chakra(FaLock);
 
 export default function LoginPage(): JSX.Element {
-	const { colorMode } = useColorMode();
+
 	const Filter = require("bad-words");
 	const filter = new Filter();
 	const [username, setUsername] = useState("");
@@ -65,12 +65,7 @@ export default function LoginPage(): JSX.Element {
 					alignItems="center"
 				>
 					<Text
-						bgGradient={
-							colorMode === "dark"
-								? "linear(to-r, #ffcdb2, #06d6a0)"
-								: "linear(to-r,primary, darkPrimary)"
-						}
-						bgClip="text"
+						bgGradient="text.200"
 						fontSize="6xl"
 						fontWeight="extrabold"
 					>
@@ -101,7 +96,7 @@ export default function LoginPage(): JSX.Element {
 								<FormControl>
 									<InputGroup>
 										<InputLeftElement pointerEvents="none">
-											<EmailIcon color="primary" />
+											<EmailIcon />
 										</InputLeftElement>
 										<Input
 											type="email"
@@ -119,11 +114,8 @@ export default function LoginPage(): JSX.Element {
 								</FormControl>
 								<FormControl>
 									<InputGroup>
-										<InputLeftElement
-											pointerEvents="none"
-											color="gray.300"
-										>
-											<CFaLock color="primary" />
+										<InputLeftElement pointerEvents="none">
+											<CFaLock />
 										</InputLeftElement>
 										<Input
 											type={
@@ -164,7 +156,7 @@ export default function LoginPage(): JSX.Element {
 									</InputGroup>
 								</FormControl>
 								{error ? (
-									<Box color="red.400">{error}</Box>
+									<Box color="red.500">{error}</Box>
 								) : null}
 								<Button
 									width="full"
