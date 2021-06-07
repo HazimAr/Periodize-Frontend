@@ -1,7 +1,6 @@
 import { Box, Flex, UnorderedList, Text } from "@chakra-ui/react";
 
 const arr = [
-
 	{
 		name: "Cardio",
 		experience: "beginner",
@@ -42,6 +41,7 @@ export default function ProgramList(): JSX.Element {
 				w="100%"
 				maxW="1200px"
 				spacing="10px"
+
 				//bg="red"
 			>
 				{arr.map((program) => {
@@ -51,6 +51,7 @@ export default function ProgramList(): JSX.Element {
 							justify="space-between"
 							align="center"
 							w="100%"
+							key={program.name}
 						>
 							<Box maxW="150px" w="100%">
 								<Text>{program.name}</Text>
@@ -72,7 +73,7 @@ export default function ProgramList(): JSX.Element {
 									</Box>
 								)}
 							</Box>
-							<Flex maxW="60px" w="100%" justify="space-between">
+							<Flex maxW="30px" w="100%" justify="space-between">
 								<FaPencilAlt size="10px" />
 								<FaTrashAlt size="10px" />
 							</Flex>
