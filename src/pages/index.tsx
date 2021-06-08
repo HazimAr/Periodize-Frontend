@@ -166,7 +166,7 @@ export default function Home(): JSX.Element {
 				justify="center"
 				bgImg="/lpworkout.jpg"
 				h="250px"
-				bgSize="1400px "
+				bgSize="1200px"
 				bgPosition="center"
 				bgRepeat="no-repeat"
 			>
