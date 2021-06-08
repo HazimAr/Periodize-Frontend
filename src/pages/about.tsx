@@ -32,7 +32,7 @@ export default function About(): JSX.Element {
 								We are a team of american developers recreating
 								how athletes, coaches, and the everyday person
 								approaches fitness. We aim to perfect the
-								processes of periodizaiton and programming to
+								processes of periodization and programming to
 								create optimal training regiments
 							</Text>
 						</Box>
