@@ -131,6 +131,34 @@ export default function Home(): JSX.Element {
 					</LearnMore>
 				</Flex>
 			</Flex>
+			<Flex justify="center">
+				<Flex
+					maxW="1200px"
+					align="center"
+					flexDir="row"
+					my="50px"
+					textAlign="left"
+				>
+					<Box>
+						<Heading size="lg">Twitter</Heading>
+						<Text size="md" my="10px">
+							"Lorem ipsum dolor sit amet consectetur adipisicing
+							elit. Cumque amet minima delectus, animi obcaecati
+							est vel quibusdam provident qui optio sunt pariatur"
+						</Text>
+						<Text>Hazim Senpai</Text>
+					</Box>
+					<Box>
+						<Heading size="lg">Instagram</Heading>
+						<Text size="md" my="10px">
+							"Lorem ipsum dolor sit amet consectetur adipisicing
+							elit. Cumque amet minima delectus, animi obcaecati
+							est vel quibusdam provident qui optio sunt pariatur"
+						</Text>
+						<Text>Adam Senpai</Text>
+					</Box>
+				</Flex>
+			</Flex>
 		</HeadFoot>
 	);
 }
