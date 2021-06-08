@@ -5,6 +5,7 @@ import Layout from "@components/dashboard/layout";
 import Button from "@components/styledbutton";
 import useProfile from "@hooks/useProfile";
 import CreateModal from "@components/dashboard/create/createModal";
+import { logout } from "@api/auth";
 
 export default function Profile(): JSX.Element {
 	const user: any = useProfile();
@@ -67,6 +68,13 @@ export default function Profile(): JSX.Element {
 								</Flex>
 							</Flex> */}
 							<CreateModal />
+							<Button
+								onClick={() => {
+									logout();
+								}}
+							>
+								Sign Out
+							</Button>
 						</Box>
 					</Box>
 				</Flex>

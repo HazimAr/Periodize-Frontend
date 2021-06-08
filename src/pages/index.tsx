@@ -136,7 +136,7 @@ export default function Home(): JSX.Element {
 					maxW="1200px"
 					align="center"
 					flexDir="row"
-					my="50px"
+					my="80px"
 					textAlign="left"
 				>
 					<Box>
@@ -157,6 +157,20 @@ export default function Home(): JSX.Element {
 						</Text>
 						<Text>Adam Senpai</Text>
 					</Box>
+				</Flex>
+			</Flex>
+			<Flex
+				justify="center"
+				bgImg="/lpworkout.jpg"
+			>
+				<Flex
+					maxW="1200px"
+					align="center"
+					flexDir="row"
+					my="50px"
+					textAlign="center"
+				>
+					<Text fontSize="4xl">Ready to make gains?</Text>
 				</Flex>
 			</Flex>
 		</HeadFoot>
