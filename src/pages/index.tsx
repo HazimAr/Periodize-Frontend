@@ -1,19 +1,21 @@
-import { Container, Box, Heading, Flex, Text, Button } from "@chakra-ui/react";
+import { Container, Box, Heading, Flex, Text } from "@chakra-ui/react";
 import HeadFoot from "@components/home/headfoot";
 import Image from "next/image";
 import { AiOutlineRight } from "react-icons/ai";
 import styled from "styled-components";
 import Link from "@components/link";
+import Button from "@components/styledbutton";
 
 const StyledButton = styled(Button)`
 	transition: all ease 0.2s;
+	transform: translateX(5px);
+
 	svg {
 		margin-left: 10px;
 		transition: all ease 0.4s;
 	}
 	:hover {
 		cursor: pointer;
-		background: #007fb9;
 		svg {
 			transform: translateX(10px);
 		}
@@ -47,7 +49,7 @@ export default function Home(): JSX.Element {
 									The all in 1 solution to your workout needs
 								</Text>
 							</Box>
-							<StyledButton p="25px" fontSize="3xl" bg="#6C63FF">
+							<StyledButton p="25px" fontSize="3xl">
 								Sign Up Now
 								<AiOutlineRight size="25px" />
 							</StyledButton>
@@ -167,7 +169,6 @@ export default function Home(): JSX.Element {
 				bgSize="1400px "
 				bgPosition="center"
 				bgRepeat="no-repeat"
-
 			>
 				<Flex
 					maxW="1200px"
