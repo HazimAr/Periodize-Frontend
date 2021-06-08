@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { BsPeopleCircle } from "react-icons/bs";
+import {FaDumbbell } from "react-icons/fa"
 import { FiHelpCircle } from "react-icons/fi";
 import { IoIosArrowForward } from "react-icons/io";
 import { RiHome2Line } from "react-icons/ri";
@@ -107,6 +108,13 @@ const options: Option[] = [
 		link: "/dashboard",
 		Image: () => {
 			return <RiHome2Line size="30px" />;
+		},
+	},
+	{
+		title: "Programs",
+		link: "/dashboard/programs",
+		Image: () => {
+			return <FaDumbbell size="30px" />;
 		},
 	},
 	{

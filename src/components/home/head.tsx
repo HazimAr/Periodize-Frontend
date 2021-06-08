@@ -140,15 +140,19 @@ export default function Head(): JSX.Element {
 					</NextLink>
 				</Box>
 				<Box ml="5px">
-					<AvatarBadge
-						name={user.username}
-						src={
-							user.image
-								? user.image
-								: "https://bit.ly/broken-link"
-						}
-						size="sm"
-					/>
+					<NextLink href="/dashboard">
+						<a>
+							<AvatarBadge
+								name={user.username}
+								src={
+									user.image
+										? user.image
+										: "https://bit.ly/broken-link"
+								}
+								size="sm"
+							/>
+						</a>
+					</NextLink>
 				</Box>
 			</Flex>
 		);
