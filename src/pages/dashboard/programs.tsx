@@ -27,6 +27,20 @@ export default function Programs(): JSX.Element {
 	);
 }
 
+// export async function getStaticPaths() {
+// 	// Call an external API endpoint to get posts
+// 	const res = await getPrograms();
+// 	const programs = await res.data;
+
+// 	// Get the paths we want to pre-render based on posts
+// 	const paths = programs.map((program: any) => ({
+// 		params: { id: program.id },
+// 	}));
+
+// 	// We'll pre-render only these paths at build time.
+// 	// { fallback: false } means other routes should 404.
+// 	return { paths, fallback: false };
+// }
 // export const getServerSideProps: GetServerSideProps = async () => {
 // 	const { data } = await getPrograms();
 
