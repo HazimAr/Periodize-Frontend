@@ -8,8 +8,6 @@ export { GA_TRACKING_ID, IS_PRODUCTION, IS_TEST, IS_BROWSER };
 // const DB_URL = "https://periodize.herokuapp.com";
 const DB_URL = "https://eda85ab6eec7.ngrok.io";
 
-
-
 const CLIENT_ID =
 	"796349303741-k933ic3bqhovc821vg9m552190vm13cv.apps.googleusercontent.com";
 const CLIENT_SECRET = "lIMFTb07wlZanTpO735ld2Qh";
