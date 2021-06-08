@@ -23,11 +23,11 @@ type MetaType = {
 };
 
 const META: MetaType = {
-	title: "",
+	title: "Periodize",
 	lang: "en-us",
-	description: "",
+	description: "Periodize",
 	image: "/",
-	url: "",
+	url: "https://periodize.org",
 };
 
 export { META, DB_URL, CLIENT_ID, CLIENT_SECRET };
