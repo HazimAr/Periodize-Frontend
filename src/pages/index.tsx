@@ -56,6 +56,7 @@ export default function Home(): JSX.Element {
 							src="/undraw/intro.svg"
 							height="500px"
 							width="500px"
+							alt="guy doing pushups"
 						/>
 					</Flex>
 				</Container>
