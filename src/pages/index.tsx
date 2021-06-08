@@ -162,6 +162,11 @@ export default function Home(): JSX.Element {
 			<Flex
 				justify="center"
 				bgImg="/lpworkout.jpg"
+				h="250px"
+				bgSize="1400px "
+				bgPosition="center"
+				bgRepeat="no-repeat"
+
 			>
 				<Flex
 					maxW="1200px"
