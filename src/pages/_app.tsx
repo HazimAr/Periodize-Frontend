@@ -8,7 +8,7 @@ import React, { useEffect } from "react";
 // import { ChakraProvider } from "@chakra-ui/react";
 import { AppProps } from "next/app";
 // import theme from "@styles/theme";
-import { Chakra } from "@styles/chakra";
+// import { Chakra } from "@styles/chakra";
 // eslint-disable-next-line import/no-default-export
 export default function MyApp({ Component, pageProps }: AppProps): JSX.Element {
 	const router = useRouter();
@@ -28,9 +28,9 @@ export default function MyApp({ Component, pageProps }: AppProps): JSX.Element {
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
 			{/* <ChakraProvider resetCSS theme={theme}> */}
-			<Chakra cookies={pageProps.cookies}>
+			{/* <Chakra cookies={pageProps.cookies}> */}
 				<Component {...pageProps} />
-			</Chakra>
+			{/* </Chakra> */}
 			{/* </ChakraProvider> */}
 		</>
 	);
