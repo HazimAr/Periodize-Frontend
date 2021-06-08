@@ -5,8 +5,8 @@ const IS_TEST = process.env.NODE_ENV === "test";
 const IS_BROWSER = typeof window !== "undefined";
 export { GA_TRACKING_ID, IS_PRODUCTION, IS_TEST, IS_BROWSER };
 
-const DB_URL = "https://periodize.herokuapp.com";
-// const DB_URL = "https://f2501d9e552d.ngrok.io";
+// const DB_URL = "https://periodize.herokuapp.com";
+const DB_URL = "https://f2501d9e552d.ngrok.io";
 
 
 
