@@ -9,6 +9,7 @@ function setCookie(name: string, value: string, days: number) {
 	}
 	document.cookie = `${name}=${value || ""}${expires}; path=/`;
 }
+
 function getCookie(name: string) {
 	const nameEQ = `${name}=`;
 	const ca = document.cookie.split(";");
@@ -23,6 +24,7 @@ function getCookie(name: string) {
 	}
 	return null;
 }
+
 function eraseCookie(name: string) {
 	document.cookie = `${name}=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;`;
 }
