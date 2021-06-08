@@ -25,9 +25,8 @@ export default function ProgramList(props: any): JSX.Element {
 								>
 									<Flex justify="space-between" my="16px">
 										<Link
-											as="h1"
 											name={program.name}
-											href={`/program/${program.id}`}
+											href={`/dashboard/program/${program.id}`}
 											fontSize="28px"
 										/>
 
@@ -71,6 +70,7 @@ export default function ProgramList(props: any): JSX.Element {
 														px="8px"
 														border="1px solid grey"
 														borderRadius="4px"
+														key={yee}
 													>
 														<Text fontSize="sm">
 															{yee
@@ -92,6 +92,7 @@ export default function ProgramList(props: any): JSX.Element {
 														px="8px"
 														border="1px solid grey"
 														borderRadius="4px"
+														key={yee}
 													>
 														<Text fontSize="sm">
 															{yee

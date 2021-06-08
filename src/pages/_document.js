@@ -11,23 +11,23 @@ export default class MyDocument extends Document {
 		const originalRenderPage = ctx.renderPage;
 
 		// try {
-			// ctx.renderPage = () =>
-			// 	originalRenderPage({
-			// 		enhanceApp: (App) => (props) =>
-			// 			sheet.collectStyles(<App {...props} />),
-			// 	});
+		// ctx.renderPage = () =>
+		// 	originalRenderPage({
+		// 		enhanceApp: (App) => (props) =>
+		// 			sheet.collectStyles(<App {...props} />),
+		// 	});
 
-			const initialProps = await Document.getInitialProps(ctx);
-			return {
-				...initialProps,
-				// styles: (
-				// 	<>
-				// 		{initialProps.styles}
-				// 		{sheet.getStyleElement()}
-				// 	</>
-				// ),
-			};
-		
+		const initialProps = await Document.getInitialProps(ctx);
+		return {
+			...initialProps,
+			// styles: (
+			// 	<>
+			// 		{initialProps.styles}
+			// 		{sheet.getStyleElement()}
+			// 	</>
+			// ),
+		};
+
 		// }
 		// finally {
 		// 	sheet.seal();
@@ -78,9 +78,9 @@ export default class MyDocument extends Document {
 					/>
 				</Head>
 				<body>
-					<ColorModeScript
+					{/* <ColorModeScript
 						initialColorMode={theme.initialColorMode}
-					/>
+					/> */}
 					<Main />
 					<NextScript />
 				</body>
