@@ -14,6 +14,10 @@ import {
 	VStack,
 	chakra,
 	Flex,
+	Box,
+	FormErrorMessage,
+	InputGroup,
+	InputLeftAddon,
 } from "@chakra-ui/react";
 import {
 	Formik,
@@ -23,13 +27,17 @@ import {
 	Field,
 	FieldProps,
 	FieldArray,
-	ErrorMessage
+	ErrorMessage,
+	replace,
 } from "formik";
+import { DeleteIcon, AddIcon } from "@chakra-ui/icons";
 import { FaDumbbell } from "react-icons/fa";
+import { BiNote } from "react-icons/bi";
 import {
 	GiWeightLiftingUp,
 	GiRunningNinja,
 	GiWeightLiftingDown,
+	GiLifeSupport,
 } from "react-icons/gi";
 import { useState } from "react";
 import Pop from "@components/pop";
@@ -41,43 +49,29 @@ const CPowerlifting = chakra(GiWeightLiftingDown);
 const CBodybuilding = chakra(FaDumbbell);
 const CCardio = chakra(GiRunningNinja);
 export default function CreateForm(props: any) {
-	const [activity, setActivity] = useState("");
-	const [load, setLoad] = useState("");
-	const [set, setSet] = useState("");
-	const [rep, setRep] = useState("");
 	interface MyFormValues {
 		lifts: [
 			{
-				superset: boolean;
-				note: "";
-				acitivies: [
-					{
-						name: string;
-						load: string;
-						set: string;
-						reps: string;
-						rest: string;
-						note: string;
-					}
-				];
+				name: string;
+				load: string;
+				sets: string;
+				reps: string;
+				rest: string;
+				note: string;
+				hideNote: boolean;
 			}
 		];
 	}
 	const initialValues: MyFormValues = {
 		lifts: [
 			{
-				superset: false,
+				name: "",
+				load: "",
+				sets: "",
+				reps: "",
+				rest: "",
 				note: "",
-				acitivies: [
-					{
-						name: "",
-						load: "",
-						set: "",
-						reps: "",
-						rest: "",
-						note: "",
-					},
-				],
+				hideNote: true,
 			},
 		],
 	};
@@ -97,88 +91,315 @@ export default function CreateForm(props: any) {
 				>
 					{({ values }) => (
 						<Form>
-							<FieldArray name="friends">
-								{({ insert, remove, push }) => (
+							<FieldArray name="lifts">
+								{({ insert, remove, push, replace }) => (
 									<div>
 										{values.lifts.length > 0 &&
 											values.lifts.map((lift, index) => (
-												<div
-													className="row"
+												<VStack
 													key={index}
+													mb="32px"
+													spacing="16px"
 												>
-													<div className="col">
-														<label
-															htmlFor={`lifts.${index}.name`}
-														>
-															Name
-														</label>
+													<Field
+														name={`lifts.${index}.name`}
+														// validate={
+														// 	validateName
+														// }
+													>
+														{({ field, form }) => (
+															<FormControl
+																isInvalid={
+																	form.errors
+																		.name &&
+																	form.touched
+																		.name
+																}
+															>
+																<Flex
+																	justify="space-between"
+																	align="center"
+																>
+																	<FormLabel
+																		htmlFor={`lifts.${index}.name`}
+																	>
+																		Movement
+																	</FormLabel>
+																	<Flex align="center">
+																		<Text>
+																			Note?
+																		</Text>
+																		<label>
+																			<Field
+																				type="checkbox"
+																				name={`lifts.${index}.hideNote`}
+																			/>
+																			{
+																				values
+																					.lifts[
+																					index
+																				]
+																					.hideNote
+																			}
+																		</label>
+
+																		{/* <IconButton
+																			variant="ghost"
+																			aria-label="add note"
+																			icon={
+																				<BiNote />
+																			}
+																			type="button"
+																			onClick={() =>
+																				//set hideNote
+																				replace(
+																					index,
+																					!lift.hideNote
+																				)
+																			}
+																		/> */}
+																		<IconButton
+																			variant="ghost"
+																			aria-label="delete"
+																			icon={
+																				<DeleteIcon />
+																			}
+																			type="button"
+																			onClick={() =>
+																				remove(
+																					index
+																				)
+																			}
+																		>
+																			X
+																		</IconButton>
+																	</Flex>
+																</Flex>
+
+																<Input
+																	{...field}
+																	id={`lifts.${index}.name`}
+																	placeholder=""
+																/>
+																<FormErrorMessage>
+																	{
+																		form
+																			.errors
+																			.sets
+																	}
+																</FormErrorMessage>
+															</FormControl>
+														)}
+													</Field>
+
+													<HStack
+														spacing="10px"
+														align="center"
+													>
 														<Field
-															name={`friends.${index}.name`}
-															placeholder="Jane Doe"
-															type="text"
-														/>
-														<ErrorMessage
-															name={`friends.${index}.name`}
-															component="div"
-															className="field-error"
-														/>
-													</div>
-													<div className="col">
-														<label
-															htmlFor={`friends.${index}.email`}
+															name={`lifts.${index}.sets`}
+															// validate={
+															// 	validateName
+															// }
 														>
-															Email
-														</label>
+															{({
+																field,
+																form,
+															}) => (
+																<FormControl
+																	isInvalid={
+																		form
+																			.errors
+																			.sets &&
+																		form
+																			.touched
+																			.sets
+																	}
+																>
+																	<InputGroup>
+																		<InputLeftAddon
+																			pointerEvents="none"
+																			children={
+																				<Text color="gray.300">
+																					Sets
+																				</Text>
+																			}
+																		/>
+																		<Input
+																			{...field}
+																			id={`lifts.${index}.sets`}
+																			placeholder=""
+																		/>
+																		<FormErrorMessage>
+																			{
+																				form
+																					.errors
+																					.sets
+																			}
+																		</FormErrorMessage>
+																	</InputGroup>
+																</FormControl>
+															)}
+														</Field>
+														<Text>x</Text>
 														<Field
-															name={`friends.${index}.email`}
-															placeholder="jane@acme.com"
-															type="email"
-														/>
-														<ErrorMessage
-															name={`friends.${index}.name`}
-															component="div"
-															className="field-error"
-														/>
-													</div>
-													<div className="col">
-														<button
-															type="button"
-															className="secondary"
-															onClick={() =>
-																remove(index)
-															}
+															name={`lifts.${index}.reps`}
+															// validate={
+															// 	validateName
+															// }
 														>
-															X
-														</button>
-													</div>
-												</div>
+															{({
+																field,
+																form,
+															}) => (
+																<FormControl
+																	isInvalid={
+																		form
+																			.errors
+																			.reps &&
+																		form
+																			.touched
+																			.reps
+																	}
+																>
+																	<InputGroup>
+																		<InputLeftAddon
+																			pointerEvents="none"
+																			children={
+																				<Text color="gray.300">
+																					Reps
+																				</Text>
+																			}
+																		/>
+																		<Input
+																			{...field}
+																			id={`lifts.${index}.reps`}
+																			placeholder=""
+																		/>
+																		<FormErrorMessage>
+																			{
+																				form
+																					.errors
+																					.sets
+																			}
+																		</FormErrorMessage>
+																	</InputGroup>
+																</FormControl>
+															)}
+														</Field>
+													</HStack>
+													<Field
+														name={`lifts.${index}.load`}
+														// validate={
+														// 	validateName
+														// }
+													>
+														{({ field, form }) => (
+															<FormControl
+																isInvalid={
+																	form.errors
+																		.load &&
+																	form.touched
+																		.load
+																}
+															>
+																<InputGroup>
+																	<InputLeftAddon
+																		pointerEvents="none"
+																		children={
+																			<Text color="gray.300">
+																				load
+																			</Text>
+																		}
+																	/>
+																	<Input
+																		{...field}
+																		id={`lifts.${index}.load`}
+																		placeholder=""
+																	/>
+																	<FormErrorMessage>
+																		{
+																			form
+																				.errors
+																				.sets
+																		}
+																	</FormErrorMessage>
+																</InputGroup>
+															</FormControl>
+														)}
+													</Field>
+													{lift.hideNote ? null : (
+														<Field
+															name={`lifts.${index}.note`}
+															// validate={
+															// 	validateName
+															// }
+														>
+															{({
+																field,
+																form,
+															}) => (
+																<FormControl
+																	isInvalid={
+																		form
+																			.errors
+																			.note &&
+																		form
+																			.touched
+																			.note
+																	}
+																>
+																	<InputGroup>
+																		<InputLeftAddon
+																			pointerEvents="none"
+																			children={
+																				<Text color="gray.300">
+																					note
+																				</Text>
+																			}
+																		/>
+																		<Input
+																			{...field}
+																			id={`lifts.${index}.note`}
+																			placeholder=""
+																		/>
+																		<FormErrorMessage>
+																			{
+																				form
+																					.errors
+																					.sets
+																			}
+																		</FormErrorMessage>
+																	</InputGroup>
+																</FormControl>
+															)}
+														</Field>
+													)}
+												</VStack>
 											))}
-										<button
+										<IconButton
+											aria-label="add"
+											icon={<AddIcon />}
 											type="button"
-											className="secondary"
 											onClick={() =>
 												push({
-													superset: false,
 													note: "",
-													acitivies: [
-														{
-															name: "",
-															load: "",
-															set: "",
-															reps: "",
-															rest: "",
-															note: "",
-														},
-													],
+													name: "",
+													load: "",
+													set: "",
+													reps: "",
+													rest: "",
 												})
 											}
 										>
 											Add activity
-										</button>
+										</IconButton>
 									</div>
 								)}
 							</FieldArray>
-							<button type="submit">Invite</button>
+							<Button type="submit" variant="outline" my="16px">
+								Submit
+							</Button>
 						</Form>
 					)}
 				</Formik>
