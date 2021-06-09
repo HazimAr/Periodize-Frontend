@@ -5,6 +5,7 @@ import { AiOutlineRight } from "react-icons/ai";
 import styled from "styled-components";
 import Link from "@components/link";
 import Button from "@components/styledbutton";
+import CarouselCenter from "@components/carousel";
 
 const StyledButton = styled(Button)`
 	transition: all ease 0.2s;
@@ -180,6 +181,8 @@ export default function Home(): JSX.Element {
 					<Text fontSize="4xl">Ready to make gains?</Text>
 				</Flex>
 			</Flex>
+			<CarouselCenter/>
+
 		</HeadFoot>
 	);
 }
