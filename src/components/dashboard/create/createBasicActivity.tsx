@@ -89,7 +89,7 @@ export default function CreateForm(props: any) {
 						actions.setSubmitting(false);
 					}}
 				>
-					{({ values }) => (
+					{({ values, setFieldValue }) => (
 						<Form>
 							<FieldArray name="lifts">
 								{({ insert, remove, push, replace }) => (
@@ -126,24 +126,7 @@ export default function CreateForm(props: any) {
 																		Movement
 																	</FormLabel>
 																	<Flex align="center">
-																		<Text>
-																			Note?
-																		</Text>
-																		<label>
-																			<Field
-																				type="checkbox"
-																				name={`lifts.${index}.hideNote`}
-																			/>
-																			{
-																				values
-																					.lifts[
-																					index
-																				]
-																					.hideNote
-																			}
-																		</label>
-
-																		{/* <IconButton
+																		<IconButton
 																			variant="ghost"
 																			aria-label="add note"
 																			icon={
@@ -152,12 +135,12 @@ export default function CreateForm(props: any) {
 																			type="button"
 																			onClick={() =>
 																				//set hideNote
-																				replace(
-																					index,
+																				setFieldValue(
+																					`lifts[${index}].hideNote`,
 																					!lift.hideNote
 																				)
 																			}
-																		/> */}
+																		/>
 																		<IconButton
 																			variant="ghost"
 																			aria-label="delete"
