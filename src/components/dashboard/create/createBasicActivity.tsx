@@ -97,12 +97,34 @@ export default function CreateForm(props: any) {
 							<FieldArray name="lifts">
 								{({ insert, remove, push }) => (
 									<div>
+										<Flex justify="flex-end" w="100%">
+											<IconButton
+												aria-label="add"
+												icon={<AddIcon />}
+												type="button"
+												onClick={() =>
+													push({
+														note: "",
+														name: "",
+														load: "",
+														set: "",
+														reps: "",
+														rest: "",
+														hideNote: true,
+														unit: "lb",
+													})
+												}
+											>
+												Add activity
+											</IconButton>
+										</Flex>
 										{values.lifts.length > 0 &&
 											values.lifts.map((lift, index) => (
 												<VStack
 													key={index}
 													mb="32px"
 													spacing="16px"
+													w="100%"
 												>
 													<Field
 														name={`lifts.${index}.name`}
@@ -126,7 +148,8 @@ export default function CreateForm(props: any) {
 																	<FormLabel
 																		htmlFor={`lifts.${index}.name`}
 																	>
-																		Movement
+																		{index +
+																			1}
 																	</FormLabel>
 																	<Flex align="center">
 																		<IconButton
@@ -274,9 +297,9 @@ export default function CreateForm(props: any) {
 															)}
 														</Field>
 													</HStack>
-													<Flex
-														justify="space-between"
-														width="100%"
+													<HStack
+														spacing="10px"
+														w="100%"
 													>
 														<Field
 															name={`lifts.${index}.load`}
@@ -323,6 +346,7 @@ export default function CreateForm(props: any) {
 																</FormControl>
 															)}
 														</Field>
+														<Text>@</Text>
 														<Select>
 															<option value="lb">
 																lb
@@ -333,8 +357,17 @@ export default function CreateForm(props: any) {
 															<option value="%">
 																% of 1RM
 															</option>
+															<option value="meter">
+																meters
+															</option>
+															<option value="mile">
+																mile
+															</option>
+															<option value="foot">
+																ft
+															</option>
 														</Select>
-													</Flex>
+													</HStack>
 													{lift.hideNote ? null : (
 														<Field
 															name={`lifts.${index}.note`}
@@ -397,6 +430,7 @@ export default function CreateForm(props: any) {
 													reps: "",
 													rest: "",
 													hideNote: true,
+													unit: "lb",
 												})
 											}
 										>
