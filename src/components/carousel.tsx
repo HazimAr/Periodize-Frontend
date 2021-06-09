@@ -6,7 +6,6 @@ export default function CarouselCenter(): JSX.Element {
 			<Flex
 				w="900px"
 				h="500px"
-				bg="linear-gradient(#291947, #6f35db99)"
 				borderRadius="20px"
 				justify="space-evenly"
 				align="center"
