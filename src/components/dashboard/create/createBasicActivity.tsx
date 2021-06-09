@@ -18,6 +18,7 @@ import {
 	FormErrorMessage,
 	InputGroup,
 	InputLeftAddon,
+	Select,
 } from "@chakra-ui/react";
 import {
 	Formik,
@@ -59,6 +60,7 @@ export default function CreateForm(props: any) {
 				rest: string;
 				note: string;
 				hideNote: boolean;
+				unit: string;
 			}
 		];
 	}
@@ -72,6 +74,7 @@ export default function CreateForm(props: any) {
 				rest: "",
 				note: "",
 				hideNote: true,
+				unit: "lb",
 			},
 		],
 	};
@@ -92,7 +95,7 @@ export default function CreateForm(props: any) {
 					{({ values, setFieldValue }) => (
 						<Form>
 							<FieldArray name="lifts">
-								{({ insert, remove, push, replace }) => (
+								{({ insert, remove, push }) => (
 									<div>
 										{values.lifts.length > 0 &&
 											values.lifts.map((lift, index) => (
@@ -271,46 +274,67 @@ export default function CreateForm(props: any) {
 															)}
 														</Field>
 													</HStack>
-													<Field
-														name={`lifts.${index}.load`}
-														// validate={
-														// 	validateName
-														// }
+													<Flex
+														justify="space-between"
+														width="100%"
 													>
-														{({ field, form }) => (
-															<FormControl
-																isInvalid={
-																	form.errors
-																		.load &&
-																	form.touched
-																		.load
-																}
-															>
-																<InputGroup>
-																	<InputLeftAddon
-																		pointerEvents="none"
-																		children={
-																			<Text color="gray.300">
-																				load
-																			</Text>
-																		}
-																	/>
-																	<Input
-																		{...field}
-																		id={`lifts.${index}.load`}
-																		placeholder=""
-																	/>
-																	<FormErrorMessage>
-																		{
-																			form
-																				.errors
-																				.sets
-																		}
-																	</FormErrorMessage>
-																</InputGroup>
-															</FormControl>
-														)}
-													</Field>
+														<Field
+															name={`lifts.${index}.load`}
+															// validate={
+															// 	validateName
+															// }
+														>
+															{({
+																field,
+																form,
+															}) => (
+																<FormControl
+																	isInvalid={
+																		form
+																			.errors
+																			.load &&
+																		form
+																			.touched
+																			.load
+																	}
+																>
+																	<InputGroup>
+																		<InputLeftAddon
+																			pointerEvents="none"
+																			children={
+																				<Text color="gray.300">
+																					load
+																				</Text>
+																			}
+																		/>
+																		<Input
+																			{...field}
+																			id={`lifts.${index}.load`}
+																			placeholder=""
+																		/>
+																		<FormErrorMessage>
+																			{
+																				form
+																					.errors
+																					.sets
+																			}
+																		</FormErrorMessage>
+																	</InputGroup>
+																</FormControl>
+															)}
+														</Field>
+														<Select>
+															<option value="lb">
+																lb
+															</option>
+															<option value="rpe">
+																RPE
+															</option>
+															<option value="%">
+																% of 1RM
+															</option>
+														</Select>
+													</Flex>
 													{lift.hideNote ? null : (
 														<Field
 															name={`lifts.${index}.note`}
@@ -372,6 +396,7 @@ export default function CreateForm(props: any) {
 													set: "",
 													reps: "",
 													rest: "",
+													hideNote: true,
 												})
 											}
 										>
