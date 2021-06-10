@@ -7,18 +7,19 @@ import {
 	Textarea,
 	Text,
 	Heading,
-	Checkbox,
 	Button,
-	CheckboxGroup,
 	IconButton,
 	VStack,
-	chakra,
 	Flex,
-	Box,
 	FormErrorMessage,
 	InputGroup,
 	InputLeftAddon,
 	Select,
+	NumberInput,
+	NumberInputField,
+	NumberInputStepper,
+	NumberIncrementStepper,
+	NumberDecrementStepper,
 } from "@chakra-ui/react";
 import {
 	Formik,
@@ -32,24 +33,32 @@ import {
 	replace,
 } from "formik";
 import { DeleteIcon, AddIcon } from "@chakra-ui/icons";
-import { FaDumbbell } from "react-icons/fa";
 import { BiNote } from "react-icons/bi";
-import {
-	GiWeightLiftingUp,
-	GiRunningNinja,
-	GiWeightLiftingDown,
-	GiLifeSupport,
-} from "react-icons/gi";
-import { useState } from "react";
 import Pop from "@components/pop";
 import { createProgram } from "@api/program";
 import GlassBgBox from "@components/glassbg";
-
-const CWeightlifting = chakra(GiWeightLiftingUp);
-const CPowerlifting = chakra(GiWeightLiftingDown);
-const CBodybuilding = chakra(FaDumbbell);
-const CCardio = chakra(GiRunningNinja);
+import * as Yup from "yup";
 export default function CreateForm(props: any) {
+	function validateName(value: string) {
+		let error;
+		if (!value) {
+			error = "Name is required";
+		} else if (value.length > 5) {
+			error = "Program name too long!😱";
+		}
+		return error;
+	}
+	const schema = Yup.object().shape({
+		lifts: Yup.array()
+			.of(
+				Yup.object().shape({
+					name: Yup.string().min(4, "too short").required("Required"), // these constraints take precedence
+					load: Yup.number().required().positive
+					})
+			)
+			.required("Must have friends") // these constraints are shown if and only if inner constraints are satisfied
+			.min(3, "Minimum of 3 friends"),
+	});
 	interface MyFormValues {
 		lifts: [
 			{
@@ -69,8 +78,8 @@ export default function CreateForm(props: any) {
 			{
 				name: "",
 				load: "",
-				sets: "",
-				reps: "",
+				sets: "5",
+				reps: "5",
 				rest: "",
 				note: "",
 				hideNote: true,
@@ -87,12 +96,20 @@ export default function CreateForm(props: any) {
 				<Formik
 					initialValues={initialValues}
 					onSubmit={(values, actions) => {
-						console.log({ values, actions });
-						alert(JSON.stringify(values, null, 2));
-						actions.setSubmitting(false);
+						setTimeout(() => {
+							alert(JSON.stringify(values, null, 2));
+							actions.setSubmitting(false);
+						}, 1000);
 					}}
 				>
-					{({ values, setFieldValue }) => (
+					{({
+						values,
+						setFieldValue,
+						isSubmitting,
+						errors,
+						touched,
+						isValidating,
+					}) => (
 						<Form>
 							<FieldArray name="lifts">
 								{({ insert, remove, push }) => (
@@ -128,11 +145,12 @@ export default function CreateForm(props: any) {
 												>
 													<Field
 														name={`lifts.${index}.name`}
-														// validate={
-														// 	validateName
-														// }
+														validate={validateName}
 													>
-														{({ field, form }) => (
+														{({
+															field,
+															form,
+														}: any) => (
 															<FormControl
 																isInvalid={
 																	form.errors
@@ -187,14 +205,19 @@ export default function CreateForm(props: any) {
 
 																<Input
 																	{...field}
-																	id={`lifts.${index}.name`}
-																	placeholder=""
+																	id={
+																		lift.name
+																	}
+																	placeholder={
+																		lift.name
+																	}
+																	validate={
+																		validateName
+																	}
 																/>
 																<FormErrorMessage>
 																	{
-																		form
-																			.errors
-																			.sets
+																		// errors.lifts[index].name
 																	}
 																</FormErrorMessage>
 															</FormControl>
@@ -234,11 +257,20 @@ export default function CreateForm(props: any) {
 																				</Text>
 																			}
 																		/>
-																		<Input
+																		<NumberInput
 																			{...field}
-																			id={`lifts.${index}.sets`}
-																			placeholder=""
-																		/>
+																			step={
+																				1
+																			}
+																		>
+																			<NumberInputField
+																				{...field}
+																			/>
+																			<NumberInputStepper>
+																				<NumberIncrementStepper />
+																				<NumberDecrementStepper />
+																			</NumberInputStepper>
+																		</NumberInput>
 																		<FormErrorMessage>
 																			{
 																				form
@@ -280,16 +312,52 @@ export default function CreateForm(props: any) {
 																				</Text>
 																			}
 																		/>
-																		<Input
+																		<NumberInput
 																			{...field}
-																			id={`lifts.${index}.reps`}
-																			placeholder=""
-																		/>
+																			step={
+																				1
+																			}
+																		>
+																			<NumberInputField
+																				{...field}
+																			/>
+																			<NumberInputStepper>
+																				<NumberIncrementStepper
+																					onClick={() =>
+																						setFieldValue(
+																							`lifts[${index}].reps`,
+																							parseInt(
+																								lift.reps
+																							) +
+																								1
+																						)
+																					}
+																				/>
+																				<NumberDecrementStepper
+																					onClick={() =>
+																						parseInt(
+																							lift.reps
+																						) >
+																						1
+																							? setFieldValue(
+																									`lifts[${index}].reps`,
+																									parseInt(
+																										lift.reps
+																									) -
+																										1
+																							  )
+																							: console.log(
+																									lift.reps
+																							  )
+																					}
+																				/>
+																			</NumberInputStepper>
+																		</NumberInput>
 																		<FormErrorMessage>
 																			{
 																				form
 																					.errors
-																					.sets
+																					.reps
 																			}
 																		</FormErrorMessage>
 																	</InputGroup>
@@ -420,14 +488,14 @@ export default function CreateForm(props: any) {
 										<IconButton
 											aria-label="add"
 											icon={<AddIcon />}
-											type="button"
+											type="submit"
 											onClick={() =>
 												push({
 													note: "",
 													name: "",
 													load: "",
-													set: "",
-													reps: "",
+													sets: "5",
+													reps: "5",
 													rest: "",
 													hideNote: true,
 													unit: "lb",
@@ -439,7 +507,12 @@ export default function CreateForm(props: any) {
 									</div>
 								)}
 							</FieldArray>
-							<Button type="submit" variant="outline" my="16px">
+							<Button
+								type="submit"
+								variant="outline"
+								my="16px"
+								isLoading={isSubmitting}
+							>
 								Submit
 							</Button>
 						</Form>
