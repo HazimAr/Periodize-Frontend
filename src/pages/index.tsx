@@ -1,11 +1,11 @@
 import { Container, Box, Heading, Flex, Text } from "@chakra-ui/react";
+import CarouselCenter from "@components/carousel";
 import HeadFoot from "@components/home/headfoot";
+import Button from "@components/styledbutton";
 import Image from "next/image";
 import { AiOutlineRight } from "react-icons/ai";
 import styled from "styled-components";
 import Link from "@components/link";
-import Button from "@components/styledbutton";
-import CarouselCenter from "@components/carousel";
 
 const StyledButton = styled(Button)`
 	transition: all ease 0.2s;
@@ -135,7 +135,7 @@ export default function Home(): JSX.Element {
 					</LearnMore>
 				</Flex>
 			</Flex>
-			
+
 			<Flex
 				justify="center"
 				bgImg="/lpworkout2.jpg"
@@ -152,11 +152,12 @@ export default function Home(): JSX.Element {
 					textAlign="center"
 					wrap="wrap"
 				>
-					<Text fontSize="6vw" fontWeight="bold">Obtain Your Strength.</Text>
+					<Text fontSize="6vw" fontWeight="bold">
+						Obtain Your Strength.
+					</Text>
 				</Flex>
 			</Flex>
-			<CarouselCenter/>
-
+			<CarouselCenter />
 		</HeadFoot>
 	);
 }
