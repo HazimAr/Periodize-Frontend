@@ -1,11 +1,11 @@
 import { Container, Box, Heading, Flex, Text } from "@chakra-ui/react";
+import CarouselCenter from "@components/carousel";
 import HeadFoot from "@components/home/headfoot";
+import Button from "@components/styledbutton";
 import Image from "next/image";
 import { AiOutlineRight } from "react-icons/ai";
 import styled from "styled-components";
 import Link from "@components/link";
-import Button from "@components/styledbutton";
-import CarouselCenter from "@components/carousel";
 
 const StyledButton = styled(Button)`
 	transition: all ease 0.2s;
@@ -135,54 +135,29 @@ export default function Home(): JSX.Element {
 					</LearnMore>
 				</Flex>
 			</Flex>
-			<Flex justify="center">
-				<Flex
-					maxW="1200px"
-					align="center"
-					flexDir="row"
-					my="80px"
-					textAlign="left"
-				>
-					<Box>
-						<Heading size="lg">Twitter</Heading>
-						<Text size="md" my="10px">
-							"Lorem ipsum dolor sit amet consectetur adipisicing
-							elit. Cumque amet minima delectus, animi obcaecati
-							est vel quibusdam provident qui optio sunt pariatur"
-						</Text>
-						<Text>Hazim Senpai</Text>
-					</Box>
-					<Box>
-						<Heading size="lg">Instagram</Heading>
-						<Text size="md" my="10px">
-							"Lorem ipsum dolor sit amet consectetur adipisicing
-							elit. Cumque amet minima delectus, animi obcaecati
-							est vel quibusdam provident qui optio sunt pariatur"
-						</Text>
-						<Text>Adam Senpai</Text>
-					</Box>
-				</Flex>
-			</Flex>
+
 			<Flex
 				justify="center"
-				bgImg="/lpworkout.jpg"
-				h="250px"
-				bgSize="1200px"
-				bgPosition="center"
+				bgImg="/lpworkout2.jpg"
+				h="300px"
+				bgSize="100%"
+				bgPosition="0% 80%"
 				bgRepeat="no-repeat"
 			>
 				<Flex
-					maxW="1200px"
+					maxW="100%"
 					align="center"
 					flexDir="row"
 					my="50px"
 					textAlign="center"
+					wrap="wrap"
 				>
-					<Text fontSize="4xl">Ready to make gains?</Text>
+					<Text fontSize="6vw" fontWeight="bold">
+						Obtain Your Strength.
+					</Text>
 				</Flex>
 			</Flex>
-			<CarouselCenter/>
-
+			<CarouselCenter />
 		</HeadFoot>
 	);
 }

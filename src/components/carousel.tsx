@@ -4,18 +4,22 @@ export default function CarouselCenter(): JSX.Element {
 	return (
 		<Flex justify="center" my="80px">
 			<Flex
-				w="900px"
-				h="500px"
-				borderRadius="20px"
+				w="90%"
+				m="auto"
+				// h="500px"
 				justify="space-evenly"
 				align="center"
+				flexDir={{ base: "column", sm: "row", md: "row" }}
 			>
 				<Box
 					bg="linear-gradient(to bottom right, #8c00ff7b, #9977ce
 )"
-					w="200px"
+					// w={["100%", "33%"]}
+					w="100%"
 					h="350px"
 					borderRadius="10px"
+					mx={["", "10px", "20px"]}
+					my={{ base: "10px" }}
 				>
 					<Heading my="5px">hi</Heading>
 					<Text>Cutie</Text>
@@ -23,9 +27,12 @@ export default function CarouselCenter(): JSX.Element {
 				</Box>
 				<Box
 					bg="linear-gradient(to bottom right, #8c00ff7b, #cf9f9fcc)"
-					w="200px"
+					// w={["100%", "33%"]}
+					w="100%"
 					h="350px"
 					borderRadius="10px"
+					mx={["", "10px", "20px"]}
+					my={{ base: "10px" }}
 				>
 					<Heading my="5px">howdy</Heading>
 					<Text>Cutie</Text>
@@ -33,9 +40,12 @@ export default function CarouselCenter(): JSX.Element {
 				</Box>
 				<Box
 					bg="linear-gradient(to bottom right, #8c00ff7b, #7cadc4cc)"
-					w="200px"
+					// w={["100%", "33%"]}
+					w="100%"
 					h="350px"
 					borderRadius="10px"
+					mx={["", "10px", "20px"]}
+					my={{ base: "10px" }}
 				>
 					<Heading my="5px">hola</Heading>
 					<Text>Cutie</Text>
