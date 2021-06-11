@@ -30,13 +30,19 @@ import {
 	FieldProps,
 	FieldArray,
 	ErrorMessage,
+	getIn,
 } from "formik";
-import { DeleteIcon, AddIcon } from "@chakra-ui/icons";
+import {
+	DeleteIcon,
+	AddIcon,
+	ArrowDownIcon,
+	ArrowUpIcon,
+} from "@chakra-ui/icons";
 import { BiNote } from "react-icons/bi";
-
 import { createProgram } from "@api/program";
 import GlassBgBox from "@components/glassbg";
 import * as Yup from "yup";
+
 export default function CreateForm(props: any) {
 	const ProgramSchema = Yup.object().shape({
 		lifts: Yup.array().of(
@@ -44,7 +50,7 @@ export default function CreateForm(props: any) {
 				name: Yup.string()
 					.min(2, "too short")
 					.required("Required")
-					.max(50, "Too long!"),
+					.max(25, "Too long!"),
 				load: Yup.number()
 					.positive()
 					.max(9000, "It can't be over 9000!!"),
@@ -65,6 +71,60 @@ export default function CreateForm(props: any) {
 			})
 		),
 	});
+
+	const CFormikInput = ({ field, form: { errors, touched } }: FieldProps) => {
+		const error = getIn(errors, field.name);
+		const touch = getIn(touched, field.name);
+		const invalid = touch && error;
+		return (
+			<FormControl isInvalid={invalid}>
+				<Input {...field} />
+				{error && <FormErrorMessage>{error}</FormErrorMessage>}
+			</FormControl>
+		);
+	};
+
+	const CNumberInput = (
+		{ field, form: { errors, touched, setFieldValue } }: FieldProps,
+		val: any
+	) => {
+		const error = getIn(errors, field.name);
+		const touch = getIn(touched, field.name);
+		const invalid = touch && error;
+
+		return (
+			<FormControl isInvalid={invalid}>
+				<NumberInput size="sm" maxW={20} min={1}>
+					<NumberInputField {...field} />
+					<NumberInputStepper>
+						<NumberIncrementStepper
+							onClick={() =>
+								setFieldValue(field.name, field.value + 1)
+							}
+						/>
+						<NumberDecrementStepper
+							onClick={() =>
+								parseInt(val) > 1
+									? setFieldValue(field.name, field.value - 1)
+									: console.log(field.value)
+							}
+						/>
+					</NumberInputStepper>
+				</NumberInput>
+				{error && <FormErrorMessage>{error}</FormErrorMessage>}
+			</FormControl>
+		);
+	};
+	const ErrorMessage = ({ name }) => (
+		<Field
+			name={name}
+			render={({ form }) => {
+				const error = getIn(form.errors, name);
+				const touch = getIn(form.touched, name);
+				return touch && error ? error : null;
+			}}
+		/>
+	);
 	interface MyFormValues {
 		lifts: [
 			{
@@ -108,15 +168,10 @@ export default function CreateForm(props: any) {
 						}, 1000);
 					}}
 					validationSchema={ProgramSchema}
+					validateOnChange={false}
+					validateOnBlur={false}
 				>
-					{({
-						values,
-						setFieldValue,
-						isSubmitting,
-						errors,
-						touched,
-						isValidating,
-					}) => (
+					{({ values, setFieldValue, isSubmitting, errors }) => (
 						<Form>
 							<FieldArray name="lifts">
 								{({ insert, remove, push }) => (
@@ -143,350 +198,298 @@ export default function CreateForm(props: any) {
 											</IconButton>
 										</Flex>
 										{values.lifts.length > 0 &&
-											values.lifts.map((lift, index) => (
-												<VStack
-													key={index}
-													mb="32px"
-													spacing="16px"
-													w="100%"
-												>
-													<Field
-														name={`lifts.${index}.name`}
-													>
-														{({
-															field,
-															form,
-														}: any) => (
-															<FormControl
-															// isInvalid={
-															// 	form.errors
-															// 		.name &&
-															// 	form.touched
-															// 		.name
-															// }
-															>
-																<Flex
-																	justify="space-between"
-																	align="center"
-																>
-																	<FormLabel
-																		htmlFor={`lifts.${index}.name`}
-																	>
-																		{index +
-																			1}
-																	</FormLabel>
-																	<Flex align="center">
-																		<IconButton
-																			variant="ghost"
-																			aria-label="add note"
-																			icon={
-																				<BiNote />
-																			}
-																			type="button"
-																			onClick={() =>
-																				setFieldValue(
-																					`lifts[${index}].hideNote`,
-																					!lift.hideNote
-																				)
-																			}
-																		/>
-																		<IconButton
-																			variant="ghost"
-																			aria-label="delete"
-																			icon={
-																				<DeleteIcon />
-																			}
-																			type="button"
-																			onClick={() =>
-																				remove(
-																					index
-																				)
-																			}
-																		>
-																			X
-																		</IconButton>
-																	</Flex>
-																</Flex>
-
-																<Input
-																	{...field}
-																	id={
-																		lift.name
-																	}
-																	placeholder={
-																		lift.name
-																	}
-																	// validate={
-																	// 	validateName
-																	// }
-																/>
-																<FormErrorMessage>
-																	{
-																		// errors.lifts[index].name
-																	}
-																</FormErrorMessage>
-															</FormControl>
-														)}
-													</Field>
-
-													<HStack
-														spacing="10px"
-														align="center"
-													>
-														<Field
-															name={`lifts.${index}.sets`}
-														>
-															{({
-																field,
-																form,
-															}) => (
-																<FormControl
-																	isInvalid={
-																		form
-																			.errors
-																			.sets &&
-																		form
-																			.touched
-																			.sets
-																	}
-																>
-																	<InputGroup>
-																		<InputLeftAddon
-																			pointerEvents="none"
-																			children={
-																				<Text color="gray.300">
-																					Sets
-																				</Text>
-																			}
-																		/>
-																		<NumberInput
-																			{...field}
-																			step={
-																				1
-																			}
-																		>
-																			<NumberInputField
-																				{...field}
-																			/>
-																			<NumberInputStepper>
-																				<NumberIncrementStepper />
-																				<NumberDecrementStepper />
-																			</NumberInputStepper>
-																		</NumberInput>
-																		<FormErrorMessage>
-																			{
-																				form
-																					.errors
-																					.sets
-																			}
-																		</FormErrorMessage>
-																	</InputGroup>
-																</FormControl>
-															)}
-														</Field>
-														<Text>x</Text>
-														<Field
-															name={`lifts.${index}.reps`}
-															// validate={
-															// 	validateName
-															// }
-														>
-															{({
-																field,
-																form,
-															}) => (
-																<FormControl
-																	isInvalid={
-																		form
-																			.errors
-																			.reps &&
-																		form
-																			.touched
-																			.reps
-																	}
-																>
-																	<InputGroup>
-																		<InputLeftAddon
-																			pointerEvents="none"
-																			children={
-																				<Text color="gray.300">
-																					Reps
-																				</Text>
-																			}
-																		/>
-																		<NumberInput
-																			{...field}
-																			step={
-																				1
-																			}
-																		>
-																			<NumberInputField
-																				{...field}
-																			/>
-																			<NumberInputStepper>
-																				<NumberIncrementStepper
-																					onClick={() =>
-																						setFieldValue(
-																							`lifts[${index}].reps`,
-																							parseInt(
-																								lift.reps
-																							) +
-																								1
-																						)
-																					}
-																				/>
-																				<NumberDecrementStepper
-																					onClick={() =>
-																						parseInt(
-																							lift.reps
-																						) >
-																						1
-																							? setFieldValue(
-																									`lifts[${index}].reps`,
-																									parseInt(
-																										lift.reps
-																									) -
-																										1
-																							  )
-																							: console.log(
-																									lift.reps
-																							  )
-																					}
-																				/>
-																			</NumberInputStepper>
-																		</NumberInput>
-																		<FormErrorMessage>
-																			{
-																				form
-																					.errors
-																					.reps
-																			}
-																		</FormErrorMessage>
-																	</InputGroup>
-																</FormControl>
-															)}
-														</Field>
-													</HStack>
-													<HStack
-														spacing="10px"
+											values.lifts.map((lift, index) => {
+												return (
+													<VStack
+														key={index}
+														mb="32px"
+														spacing="16px"
 														w="100%"
 													>
-														<Field
-															name={`lifts.${index}.load`}
-															// validate={
-															// 	validateName
-															// }
+														<Flex
+															justify="flex-end"
+															align="center"
+															w="100%"
 														>
-															{({
-																field,
-																form,
-															}) => (
-																<FormControl
-																	isInvalid={
-																		form
-																			.errors
-																			.load &&
-																		form
-																			.touched
-																			.load
-																	}
-																>
-																	<InputGroup>
-																		<InputLeftAddon
-																			pointerEvents="none"
-																			children={
-																				<Text color="gray.300">
-																					load
-																				</Text>
-																			}
-																		/>
-																		<Input
-																			{...field}
-																			id={`lifts.${index}.load`}
-																			placeholder=""
-																		/>
-																		<FormErrorMessage>
-																			{
-																				form
-																					.errors
-																					.sets
-																			}
-																		</FormErrorMessage>
-																	</InputGroup>
-																</FormControl>
-															)}
-														</Field>
-														<Text>@</Text>
-														<Select>
-															<option value="lb">
-																lb
-															</option>
-															<option value="rpe">
-																RPE
-															</option>
-															<option value="%">
-																% of 1RM
-															</option>
-															<option value="meter">
-																meters
-															</option>
-															<option value="mile">
-																mile
-															</option>
-															<option value="foot">
-																ft
-															</option>
-														</Select>
-													</HStack>
-													{lift.hideNote ? null : (
+															<IconButton
+																variant="ghost"
+																aria-label="add note"
+																icon={
+																	<BiNote />
+																}
+																type="button"
+																onClick={() =>
+																	setFieldValue(
+																		`lifts[${index}].hideNote`,
+																		!lift.hideNote
+																	)
+																}
+															/>
+															<IconButton
+																variant="ghost"
+																aria-label="delete"
+																icon={
+																	<DeleteIcon />
+																}
+																type="button"
+																onClick={() =>
+																	remove(
+																		index
+																	)
+																}
+															>
+																X
+															</IconButton>
+														</Flex>
 														<Field
-															name={`lifts.${index}.note`}
-															// validate={
-															// 	validateName
-															// }
+															name={`lifts.${index}.name`}
+															component={
+																CFormikInput
+															}
+														/>
+
+														<HStack
+															spacing="10px"
+															align="center"
 														>
-															{({
-																field,
-																form,
-															}) => (
-																<FormControl
-																	isInvalid={
-																		form
-																			.errors
-																			.note &&
-																		form
-																			.touched
-																			.note
+															<Field
+																name={`lifts.${index}.sets`}
+																component={
+																	CNumberInput
+																}
+															/>
+
+															<VStack>
+																<IconButton
+																	aria-label="increase"
+																	icon={
+																		<ArrowUpIcon />
 																	}
-																>
-																	<InputGroup>
-																		<InputLeftAddon
-																			pointerEvents="none"
-																			children={
-																				<Text color="gray.300">
-																					note
-																				</Text>
-																			}
-																		/>
-																		<Input
-																			{...field}
-																			id={`lifts.${index}.note`}
-																			placeholder=""
-																		/>
-																		<FormErrorMessage>
-																			{
-																				form
-																					.errors
-																					.sets
-																			}
-																		</FormErrorMessage>
-																	</InputGroup>
-																</FormControl>
-															)}
-														</Field>
-													)}
-												</VStack>
-											))}
+																	onClick={() =>
+																		setFieldValue(
+																			`lifts[${index}].sets`,
+																			parseInt(
+																				lift.sets
+																			) +
+																				1
+																		)
+																	}
+																/>
+																<IconButton
+																	aria-label="decrease"
+																	icon={
+																		<ArrowDownIcon />
+																	}
+																	onClick={() =>
+																		parseInt(
+																			lift.sets
+																		) > 1
+																			? setFieldValue(
+																					`lifts[${index}].sets`,
+																					parseInt(
+																						lift.sets
+																					) -
+																						1
+																			  )
+																			: console.log(
+																					lift.sets
+																			  )
+																	}
+																/>
+															</VStack>
+
+															<Text>x</Text>
+															<Field
+																name={`lifts.${index}.reps`}
+																// validate={
+																// 	validateName
+																// }
+															>
+																{({
+																	field,
+																	form,
+																}) => (
+																	<FormControl
+																		isInvalid={
+																			form
+																				.errors
+																				.reps &&
+																			form
+																				.touched
+																				.reps
+																		}
+																	>
+																		<InputGroup>
+																			<InputLeftAddon
+																				pointerEvents="none"
+																				children={
+																					<Text color="gray.300">
+																						Reps
+																					</Text>
+																				}
+																			/>
+																			<NumberInput
+																				{...field}
+																				step={
+																					1
+																				}
+																			>
+																				<NumberInputField
+																					{...field}
+																				/>
+																				<NumberInputStepper>
+																					<NumberIncrementStepper
+																						onClick={() =>
+																							setFieldValue(
+																								`lifts[${index}].reps`,
+																								parseInt(
+																									lift.reps
+																								) +
+																									1
+																							)
+																						}
+																					/>
+																					<NumberDecrementStepper
+																						onClick={() =>
+																							parseInt(
+																								lift.reps
+																							) >
+																							1
+																								? setFieldValue(
+																										`lifts[${index}].reps`,
+																										parseInt(
+																											lift.reps
+																										) -
+																											1
+																								  )
+																								: console.log(
+																										lift.reps
+																								  )
+																						}
+																					/>
+																				</NumberInputStepper>
+																			</NumberInput>
+																			<ErrorMessage
+																				name={`lifts[${index}].reps`}
+																			/>
+																		</InputGroup>
+																	</FormControl>
+																)}
+															</Field>
+														</HStack>
+														<HStack
+															spacing="10px"
+															w="100%"
+														>
+															<Field
+																name={`lifts.${index}.load`}
+																// validate={
+																// 	validateName
+																// }
+															>
+																{({
+																	field,
+																	form,
+																}) => (
+																	<FormControl
+																		isInvalid={
+																			form
+																				.errors
+																				.load &&
+																			form
+																				.touched
+																				.load
+																		}
+																	>
+																		<InputGroup>
+																			<InputLeftAddon
+																				pointerEvents="none"
+																				children={
+																					<Text color="gray.300">
+																						load
+																					</Text>
+																				}
+																			/>
+																			<Input
+																				{...field}
+																				id={`lifts.${index}.load`}
+																				placeholder=""
+																			/>
+																			<ErrorMessage
+																				name={`lifts[${index}].load`}
+																			/>
+																		</InputGroup>
+																	</FormControl>
+																)}
+															</Field>
+															<Text>@</Text>
+															<Select>
+																<option value="lb">
+																	lb
+																</option>
+																<option value="rpe">
+																	RPE
+																</option>
+																<option value="%">
+																	% of 1RM
+																</option>
+																<option value="meter">
+																	meters
+																</option>
+																<option value="mile">
+																	mile
+																</option>
+																<option value="foot">
+																	ft
+																</option>
+															</Select>
+														</HStack>
+														{lift.hideNote ? null : (
+															<Field
+																name={`lifts.${index}.note`}
+																// validate={
+																// 	validateName
+																// }
+															>
+																{({
+																	field,
+																	form,
+																}) => (
+																	<FormControl
+																		isInvalid={
+																			form
+																				.errors
+																				.note &&
+																			form
+																				.touched
+																				.note
+																		}
+																	>
+																		<InputGroup>
+																			<InputLeftAddon
+																				pointerEvents="none"
+																				children={
+																					<Text color="gray.300">
+																						note
+																					</Text>
+																				}
+																			/>
+																			<Input
+																				{...field}
+																				id={`lifts.${index}.note`}
+																				placeholder=""
+																			/>
+																			<ErrorMessage
+																				name={`lifts[${index}].note`}
+																			/>
+																		</InputGroup>
+																	</FormControl>
+																)}
+															</Field>
+														)}
+													</VStack>
+												);
+											})}
 										<IconButton
 											aria-label="add"
 											icon={<AddIcon />}
