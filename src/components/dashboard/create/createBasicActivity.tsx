@@ -30,34 +30,40 @@ import {
 	FieldProps,
 	FieldArray,
 	ErrorMessage,
-	replace,
 } from "formik";
 import { DeleteIcon, AddIcon } from "@chakra-ui/icons";
 import { BiNote } from "react-icons/bi";
-import Pop from "@components/pop";
+
 import { createProgram } from "@api/program";
 import GlassBgBox from "@components/glassbg";
 import * as Yup from "yup";
 export default function CreateForm(props: any) {
-	function validateName(value: string) {
-		let error;
-		if (!value) {
-			error = "Name is required";
-		} else if (value.length > 5) {
-			error = "Program name too long!😱";
-		}
-		return error;
-	}
-	const schema = Yup.object().shape({
-		lifts: Yup.array()
-			.of(
-				Yup.object().shape({
-					name: Yup.string().min(4, "too short").required("Required"), // these constraints take precedence
-					load: Yup.number().required().positive
-					})
-			)
-			.required("Must have friends") // these constraints are shown if and only if inner constraints are satisfied
-			.min(3, "Minimum of 3 friends"),
+	const ProgramSchema = Yup.object().shape({
+		lifts: Yup.array().of(
+			Yup.object().shape({
+				name: Yup.string()
+					.min(2, "too short")
+					.required("Required")
+					.max(50, "Too long!"),
+				load: Yup.number()
+					.positive()
+					.max(9000, "It can't be over 9000!!"),
+				sets: Yup.number()
+					.required()
+					.positive()
+					.max(999, "Thats too much.."),
+				reps: Yup.number()
+					.required()
+					.positive()
+					.max(999, "Thats too much.."),
+				rest: Yup.string().max(50, "Too long!"),
+				note: Yup.string()
+					.min(3, "Too short! How is that a note?")
+					.max(100, "Too long!"),
+				unit: Yup.string().max(15),
+				hideNote: Yup.boolean(),
+			})
+		),
 	});
 	interface MyFormValues {
 		lifts: [
@@ -101,6 +107,7 @@ export default function CreateForm(props: any) {
 							actions.setSubmitting(false);
 						}, 1000);
 					}}
+					validationSchema={ProgramSchema}
 				>
 					{({
 						values,
@@ -145,19 +152,18 @@ export default function CreateForm(props: any) {
 												>
 													<Field
 														name={`lifts.${index}.name`}
-														validate={validateName}
 													>
 														{({
 															field,
 															form,
 														}: any) => (
 															<FormControl
-																isInvalid={
-																	form.errors
-																		.name &&
-																	form.touched
-																		.name
-																}
+															// isInvalid={
+															// 	form.errors
+															// 		.name &&
+															// 	form.touched
+															// 		.name
+															// }
 															>
 																<Flex
 																	justify="space-between"
@@ -178,7 +184,6 @@ export default function CreateForm(props: any) {
 																			}
 																			type="button"
 																			onClick={() =>
-																				//set hideNote
 																				setFieldValue(
 																					`lifts[${index}].hideNote`,
 																					!lift.hideNote
@@ -211,9 +216,9 @@ export default function CreateForm(props: any) {
 																	placeholder={
 																		lift.name
 																	}
-																	validate={
-																		validateName
-																	}
+																	// validate={
+																	// 	validateName
+																	// }
 																/>
 																<FormErrorMessage>
 																	{
@@ -230,9 +235,6 @@ export default function CreateForm(props: any) {
 													>
 														<Field
 															name={`lifts.${index}.sets`}
-															// validate={
-															// 	validateName
-															// }
 														>
 															{({
 																field,
@@ -507,6 +509,7 @@ export default function CreateForm(props: any) {
 									</div>
 								)}
 							</FieldArray>
+							<pre>{JSON.stringify(errors, null, 2)}</pre>
 							<Button
 								type="submit"
 								variant="outline"
