@@ -20,6 +20,7 @@ import {
 	NumberInputStepper,
 	NumberIncrementStepper,
 	NumberDecrementStepper,
+	InputRightElement,
 } from "@chakra-ui/react";
 import {
 	Formik,
@@ -52,15 +53,15 @@ export default function CreateForm(props: any) {
 					.required("Required")
 					.max(25, "Too long!"),
 				load: Yup.number()
-					.positive()
+					.positive("Provide a positive load!")
 					.max(9000, "It can't be over 9000!!"),
 				sets: Yup.number()
 					.required()
-					.positive()
+					.positive("Use a positive number")
 					.max(999, "Thats too much.."),
 				reps: Yup.number()
 					.required()
-					.positive()
+					.positive("Use a positive number")
 					.max(999, "Thats too much.."),
 				rest: Yup.string().max(50, "Too long!"),
 				note: Yup.string()
@@ -94,23 +95,55 @@ export default function CreateForm(props: any) {
 
 		return (
 			<FormControl isInvalid={invalid}>
-				<NumberInput size="sm" maxW={20} min={1}>
-					<NumberInputField {...field} />
-					<NumberInputStepper>
-						<NumberIncrementStepper
-							onClick={() =>
-								setFieldValue(field.name, field.value + 1)
+				<Flex align="center">
+					<Input
+						{...field}
+						onChange={(e) => {
+							e.preventDefault();
+							const { value } = e.target;
+							// const regex = /^(|-?\d+)$/;
+							// const regex = /^(?!0\d)\d*(\.\d+)?$/gm;
+							// if (regex.test(value.toString())) {
+							// 	setFieldValue(field.name, value);
+							// }
+							if (parseInt(value) >= 0 || value === "") {
+								setFieldValue(field.name, value);
 							}
-						/>
-						<NumberDecrementStepper
-							onClick={() =>
-								parseInt(val) > 1
-									? setFieldValue(field.name, field.value - 1)
-									: console.log(field.value)
-							}
-						/>
-					</NumberInputStepper>
-				</NumberInput>
+						}}
+					/>
+
+					<InputRightElement
+						children={
+							<HStack spacing="">
+								<IconButton
+									aria-label="increase"
+									icon={<ArrowUpIcon />}
+									variant="ghost"
+									onClick={() =>
+										setFieldValue(
+											field.name,
+											parseInt(field.value) + 1
+										)
+									}
+								/>
+								<IconButton
+									aria-label="decrease"
+									icon={<ArrowDownIcon />}
+									variant="ghost"
+									onClick={() =>
+										parseInt(field.value) > 1
+											? setFieldValue(
+													field.name,
+													parseInt(field.value) - 1
+											  )
+											: console.log(field.value)
+									}
+								/>
+							</HStack>
+						}
+					/>
+				</Flex>
+
 				{error && <FormErrorMessage>{error}</FormErrorMessage>}
 			</FormControl>
 		);
@@ -168,8 +201,8 @@ export default function CreateForm(props: any) {
 						}, 1000);
 					}}
 					validationSchema={ProgramSchema}
-					validateOnChange={false}
-					validateOnBlur={false}
+					// validateOnChange={false}
+					// validateOnBlur={false}
 				>
 					{({ values, setFieldValue, isSubmitting, errors }) => (
 						<Form>
@@ -259,123 +292,13 @@ export default function CreateForm(props: any) {
 																}
 															/>
 
-															<VStack>
-																<IconButton
-																	aria-label="increase"
-																	icon={
-																		<ArrowUpIcon />
-																	}
-																	onClick={() =>
-																		setFieldValue(
-																			`lifts[${index}].sets`,
-																			parseInt(
-																				lift.sets
-																			) +
-																				1
-																		)
-																	}
-																/>
-																<IconButton
-																	aria-label="decrease"
-																	icon={
-																		<ArrowDownIcon />
-																	}
-																	onClick={() =>
-																		parseInt(
-																			lift.sets
-																		) > 1
-																			? setFieldValue(
-																					`lifts[${index}].sets`,
-																					parseInt(
-																						lift.sets
-																					) -
-																						1
-																			  )
-																			: console.log(
-																					lift.sets
-																			  )
-																	}
-																/>
-															</VStack>
-
 															<Text>x</Text>
 															<Field
 																name={`lifts.${index}.reps`}
-																// validate={
-																// 	validateName
-																// }
-															>
-																{({
-																	field,
-																	form,
-																}) => (
-																	<FormControl
-																		isInvalid={
-																			form
-																				.errors
-																				.reps &&
-																			form
-																				.touched
-																				.reps
-																		}
-																	>
-																		<InputGroup>
-																			<InputLeftAddon
-																				pointerEvents="none"
-																				children={
-																					<Text color="gray.300">
-																						Reps
-																					</Text>
-																				}
-																			/>
-																			<NumberInput
-																				{...field}
-																				step={
-																					1
-																				}
-																			>
-																				<NumberInputField
-																					{...field}
-																				/>
-																				<NumberInputStepper>
-																					<NumberIncrementStepper
-																						onClick={() =>
-																							setFieldValue(
-																								`lifts[${index}].reps`,
-																								parseInt(
-																									lift.reps
-																								) +
-																									1
-																							)
-																						}
-																					/>
-																					<NumberDecrementStepper
-																						onClick={() =>
-																							parseInt(
-																								lift.reps
-																							) >
-																							1
-																								? setFieldValue(
-																										`lifts[${index}].reps`,
-																										parseInt(
-																											lift.reps
-																										) -
-																											1
-																								  )
-																								: console.log(
-																										lift.reps
-																								  )
-																						}
-																					/>
-																				</NumberInputStepper>
-																			</NumberInput>
-																			<ErrorMessage
-																				name={`lifts[${index}].reps`}
-																			/>
-																		</InputGroup>
-																	</FormControl>
-																)}
-															</Field>
+																component={
+																	CNumberInput
+																}
+															/>
 														</HStack>
 														<HStack
 															spacing="10px"
@@ -383,45 +306,10 @@ export default function CreateForm(props: any) {
 														>
 															<Field
 																name={`lifts.${index}.load`}
-																// validate={
-																// 	validateName
-																// }
-															>
-																{({
-																	field,
-																	form,
-																}) => (
-																	<FormControl
-																		isInvalid={
-																			form
-																				.errors
-																				.load &&
-																			form
-																				.touched
-																				.load
-																		}
-																	>
-																		<InputGroup>
-																			<InputLeftAddon
-																				pointerEvents="none"
-																				children={
-																					<Text color="gray.300">
-																						load
-																					</Text>
-																				}
-																			/>
-																			<Input
-																				{...field}
-																				id={`lifts.${index}.load`}
-																				placeholder=""
-																			/>
-																			<ErrorMessage
-																				name={`lifts[${index}].load`}
-																			/>
-																		</InputGroup>
-																	</FormControl>
-																)}
-															</Field>
+																component={
+																	CNumberInput
+																}
+															/>
 															<Text>@</Text>
 															<Select>
 																<option value="lb">
@@ -432,6 +320,9 @@ export default function CreateForm(props: any) {
 																</option>
 																<option value="%">
 																	% of 1RM
+																</option>
+																<option value="%">
+																	bodyweight
 																</option>
 																<option value="meter">
 																	meters
@@ -512,7 +403,7 @@ export default function CreateForm(props: any) {
 									</div>
 								)}
 							</FieldArray>
-							<pre>{JSON.stringify(errors, null, 2)}</pre>
+							{/* <pre>{JSON.stringify(errors, null, 2)}</pre> */}
 							<Button
 								type="submit"
 								variant="outline"
