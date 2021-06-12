@@ -1,7 +1,5 @@
 import {
 	Container,
-	FormControl,
-	Input,
 	HStack,
 	Text,
 	Heading,
@@ -9,20 +7,17 @@ import {
 	IconButton,
 	VStack,
 	Flex,
-	InputGroup,
-	InputLeftAddon,
-	Select,
 } from "@chakra-ui/react";
-import { Formik, Form, Field, FieldArray, getIn } from "formik";
+import { Formik, Form, Field, FieldArray } from "formik";
 import { DeleteIcon, AddIcon } from "@chakra-ui/icons";
 import { BiNote } from "react-icons/bi";
-import { createProgram } from "@api/program";
+// import { createProgram } from "@api/program";
 import GlassBgBox from "@components/glassbg";
 import * as Yup from "yup";
 import CNumberInput from "@components/formiknumberinput";
 import CFormikInput from "@components/formikinput";
 import CFormikUnitSelect from "@components/unitselectoptions";
-export default function CreateForm(props: any) {
+export default function CreateForm() {
 	const ProgramSchema = Yup.object().shape({
 		lifts: Yup.array().of(
 			Yup.object().shape({
@@ -51,16 +46,6 @@ export default function CreateForm(props: any) {
 		),
 	});
 
-	const ErrorMessage = ({ name }) => (
-		<Field
-			name={name}
-			render={({ form }) => {
-				const error = getIn(form.errors, name);
-				const touch = getIn(form.touched, name);
-				return touch && error ? error : null;
-			}}
-		/>
-	);
 	interface MyFormValues {
 		lifts: [
 			{
@@ -107,17 +92,10 @@ export default function CreateForm(props: any) {
 					// validateOnChange={false}
 					// validateOnBlur={false}
 				>
-					{({
-						values,
-						setFieldValue,
-						isSubmitting,
-						errors,
-						handleChange,
-						handleBlur,
-					}) => (
+					{({ values, setFieldValue, isSubmitting }) => (
 						<Form>
 							<FieldArray name="lifts">
-								{({ insert, remove, push }) => (
+								{({ remove, push }) => (
 									<div>
 										<Flex justify="flex-end" w="100%">
 											<IconButton
