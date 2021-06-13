@@ -14,7 +14,7 @@ export default function UnitSelect({
 			<option value="lb">lb</option>
 			<option value="rpe">RPE</option>
 			<option value="%">% of 1RM</option>
-			<option value="%">bodyweight</option>
+			<option value="bodyweight">bodyweight</option>
 			<option value="meter">meters</option>
 			<option value="mile">mile</option>
 			<option value="foot">ft</option>

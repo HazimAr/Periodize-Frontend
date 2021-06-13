@@ -1,45 +1,23 @@
 import {
 	Container,
-	FormControl,
-	Input,
 	HStack,
-	FormLabel,
-	Textarea,
 	Text,
 	Heading,
 	Button,
 	IconButton,
 	VStack,
 	Flex,
-	FormErrorMessage,
-	InputGroup,
-	InputLeftAddon,
-	Select,
-	InputRightElement,
 } from "@chakra-ui/react";
-import {
-	Formik,
-	FormikHelpers,
-	FormikProps,
-	Form,
-	Field,
-	FieldProps,
-	FieldArray,
-	ErrorMessage,
-	getIn,
-} from "formik";
-import {
-	DeleteIcon,
-	AddIcon,
-	ArrowDownIcon,
-	ArrowUpIcon,
-} from "@chakra-ui/icons";
+import { Formik, Form, Field, FieldArray } from "formik";
+import { DeleteIcon, AddIcon } from "@chakra-ui/icons";
 import { BiNote } from "react-icons/bi";
-import { createProgram } from "@api/program";
+// import { createProgram } from "@api/program";
 import GlassBgBox from "@components/glassbg";
 import * as Yup from "yup";
-
-export default function CreateForm(props: any) {
+import CNumberInput from "@components/formiknumberinput";
+import CFormikInput from "@components/formikinput";
+import CFormikUnitSelect from "@components/unitselectoptions";
+export default function CreateForm() {
 	const ProgramSchema = Yup.object().shape({
 		lifts: Yup.array().of(
 			Yup.object().shape({
@@ -68,92 +46,8 @@ export default function CreateForm(props: any) {
 		),
 	});
 
-	const CFormikInput = ({ field, form: { errors, touched } }: FieldProps) => {
-		const error = getIn(errors, field.name);
-		const touch = getIn(touched, field.name);
-		const invalid = touch && error;
-		return (
-			<FormControl isInvalid={invalid}>
-				<Input {...field} />
-				{error && <FormErrorMessage>{error}</FormErrorMessage>}
-			</FormControl>
-		);
-	};
-
-	const CNumberInput = (
-		{ field, form: { errors, touched, setFieldValue } }: FieldProps,
-		val: any
-	) => {
-		const error = getIn(errors, field.name);
-		const touch = getIn(touched, field.name);
-		const invalid = touch && error;
-
-		return (
-			<FormControl isInvalid={invalid}>
-				<Flex align="center">
-					<Input
-						{...field}
-						onChange={(e) => {
-							e.preventDefault();
-							const { value } = e.target;
-							// const regex = /^(|-?\d+)$/;
-							// const regex = /^(?!0\d)\d*(\.\d+)?$/gm;
-							// if (regex.test(value.toString())) {
-							// 	setFieldValue(field.name, value);
-							// }
-							if (parseInt(value) >= 0 || value === "") {
-								setFieldValue(field.name, value);
-							}
-						}}
-					/>
-
-					<InputRightElement
-						children={
-							<HStack spacing="">
-								<IconButton
-									aria-label="increase"
-									icon={<ArrowUpIcon />}
-									variant="ghost"
-									onClick={() =>
-										setFieldValue(
-											field.name,
-											parseInt(field.value) + 1
-										)
-									}
-								/>
-								<IconButton
-									aria-label="decrease"
-									icon={<ArrowDownIcon />}
-									variant="ghost"
-									onClick={() =>
-										parseInt(field.value) > 1
-											? setFieldValue(
-													field.name,
-													parseInt(field.value) - 1
-											  )
-											: console.log(field.value)
-									}
-								/>
-							</HStack>
-						}
-					/>
-				</Flex>
-
-				{error && <FormErrorMessage>{error}</FormErrorMessage>}
-			</FormControl>
-		);
-	};
-	const ErrorMessage = ({ name }) => (
-		<Field
-			name={name}
-			render={({ form }) => {
-				const error = getIn(form.errors, name);
-				const touch = getIn(form.touched, name);
-				return touch && error ? error : null;
-			}}
-		/>
-	);
 	interface MyFormValues {
+		title: string;
 		lifts: [
 			{
 				name: string;
@@ -168,10 +62,11 @@ export default function CreateForm(props: any) {
 		];
 	}
 	const initialValues: MyFormValues = {
+		title: "My Program",
 		lifts: [
 			{
 				name: "",
-				load: "",
+				load: "135",
 				sets: "5",
 				reps: "5",
 				rest: "",
@@ -199,10 +94,10 @@ export default function CreateForm(props: any) {
 					// validateOnChange={false}
 					// validateOnBlur={false}
 				>
-					{({ values, setFieldValue, isSubmitting, errors }) => (
+					{({ values, setFieldValue, isSubmitting }) => (
 						<Form>
 							<FieldArray name="lifts">
-								{({ insert, remove, push }) => (
+								{({ remove, push }) => (
 									<div>
 										<Flex justify="flex-end" w="100%">
 											<IconButton
@@ -306,72 +201,20 @@ export default function CreateForm(props: any) {
 																}
 															/>
 															<Text>@</Text>
-															<Select>
-																<option value="lb">
-																	lb
-																</option>
-																<option value="rpe">
-																	RPE
-																</option>
-																<option value="%">
-																	% of 1RM
-																</option>
-																<option value="%">
-																	bodyweight
-																</option>
-																<option value="meter">
-																	meters
-																</option>
-																<option value="mile">
-																	mile
-																</option>
-																<option value="foot">
-																	ft
-																</option>
-															</Select>
+															<Field
+																name={`lifts[${index}].unit`}
+																component={
+																	CFormikUnitSelect
+																}
+															/>
 														</HStack>
 														{lift.hideNote ? null : (
 															<Field
 																name={`lifts.${index}.note`}
-																// validate={
-																// 	validateName
-																// }
-															>
-																{({
-																	field,
-																	form,
-																}) => (
-																	<FormControl
-																		isInvalid={
-																			form
-																				.errors
-																				.note &&
-																			form
-																				.touched
-																				.note
-																		}
-																	>
-																		<InputGroup>
-																			<InputLeftAddon
-																				pointerEvents="none"
-																				children={
-																					<Text color="gray.300">
-																						note
-																					</Text>
-																				}
-																			/>
-																			<Input
-																				{...field}
-																				id={`lifts.${index}.note`}
-																				placeholder=""
-																			/>
-																			<ErrorMessage
-																				name={`lifts[${index}].note`}
-																			/>
-																		</InputGroup>
-																	</FormControl>
-																)}
-															</Field>
+																component={
+																	CFormikInput
+																}
+															/>
 														)}
 													</VStack>
 												);
@@ -398,6 +241,8 @@ export default function CreateForm(props: any) {
 									</div>
 								)}
 							</FieldArray>
+							<pre>{JSON.stringify(values, null, 2)}</pre>
+
 							{/* <pre>{JSON.stringify(errors, null, 2)}</pre> */}
 							<Button
 								type="submit"
