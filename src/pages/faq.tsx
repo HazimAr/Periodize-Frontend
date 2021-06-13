@@ -1,5 +1,16 @@
-import { Heading, Box } from "@chakra-ui/react";
+import {
+	Heading,
+	Box,
+	Flex,
+	Image,
+	Text,
+	Input,
+	Button,
+} from "@chakra-ui/react";
 import BlogSection from "@components/blogsection";
+import { IoIosSend } from "react-icons/io";
+import GlassBgFlex from "@components/glassflex";
+import HeadFoot from "@components/home/headfoot";
 
 export default function FAQ(): JSX.Element {
 	const faqs = [
@@ -12,18 +23,44 @@ export default function FAQ(): JSX.Element {
 			para: "I am in great pain.",
 		},
 		{
-			header: "What is the meaning of life2222?",
+			header: "What is the meaning of life?",
 			para: "That is that there is no meaning.",
-		},
-		{
-			header: "What do we do with loli lovers?",
-			para: "FBI OPEN UP.",
 		},
 	];
 	return (
-		<Box>
-			<Heading>FAQs</Heading>
-			<BlogSection arr={faqs} />
-		</Box>
+		<HeadFoot>
+			<Flex flexDir="column" mt="-20px" bg="#121129">
+				<Flex
+					align="center"
+					bgColor="#eef1f8"
+					bgSize="25%"
+					height="175px"
+					bgImg="/faqbanner.jpg"
+					bgPos="80% 15%"
+					bgRepeat="no-repeat"
+				>
+					<Image height="175px" src="/personal-trainers.jpg" />
+					<Heading color="#8886f8" size="xl">
+						Frequently Asked Questions (FAQ)
+					</Heading>
+				</Flex>
+
+				<Flex align="center" my="40px" justify="center">
+					<Box paddingRight="90px">General</Box>
+					<BlogSection arr={faqs} />
+				</Flex>
+
+				{/* <Flex position="sticky" top="0" flexDir="row-reverse">
+					<GlassBgFlex
+						flexDir="column"
+						borderRadius="10px"
+						p="10px"
+						bg="linear-gradient(to bottom right, #8b07f77a, #7cadc4cc)"
+					>
+						
+					</GlassBgFlex>
+				</Flex> */}
+			</Flex>
+		</HeadFoot>
 	);
 }

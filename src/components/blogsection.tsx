@@ -2,15 +2,28 @@ import { Flex, Box, Text } from "@chakra-ui/react";
 
 export default function BlogSection({ arr }: any): JSX.Element {
 	return (
-		<Flex justify="center" h="100vh" w="100vw" align="center">
-			<Box w="500px">
+		
+		<Flex  align="center" flexDir="column">
+			
 				{arr.map((sect: any) => (
-					<Box bg="black" mb="10px" p="10px 20px" key={sect.header}>
-						<Flex color="#cd53f1ec">{sect.header}</Flex>
-						<Flex>{sect.para}</Flex>
-					</Box>
+					<Flex
+						flexDir="column"
+						bg="#b2bbeb44"
+						mb="10px"
+						p="10px 20px"
+						borderRadius="10px"
+						w="900px"
+						key={sect.header}
+					>
+						<Text color="#f3b6d8eb" align="left" fontSize="15px">
+							{sect.header}
+						</Text>
+						<Text color="white" align="left" fontSize="13px">
+							{sect.para}
+						</Text>
+					</Flex>
 				))}
-			</Box>
+			
 		</Flex>
 	);
 }
