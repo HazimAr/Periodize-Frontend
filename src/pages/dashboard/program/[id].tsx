@@ -3,6 +3,7 @@ import { Flex, Heading } from "@chakra-ui/react";
 import Editable from "@components/editable";
 import Layout from "@components/dashboard/layout";
 import { GetStaticPaths } from "next";
+
 export default function Program({ program }: any): JSX.Element {
 	// const router = useRouter();
 	// const { pid } = router.query;
