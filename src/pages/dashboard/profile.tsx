@@ -1,61 +1,83 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Box, Flex, Text } from "@chakra-ui/react";
+import { Box, Flex, Text, Input } from "@chakra-ui/react";
 import AvatarBadge from "@components/avatar";
 import Layout from "@components/dashboard/layout";
 import Button from "@components/styledbutton";
 import useProfile from "@hooks/useProfile";
-import CreateModal from "@components/dashboard/create/createModal";
+import BasicModal from "@components/basicmodal";
 import { logout } from "@api/auth";
+import GlassBgFlex from "@components/glassbg";
+import EditProfile from "@components/editprofilemodal";
 
 export default function Profile(): JSX.Element {
 	const user: any = useProfile();
 
 	return (
-		<Layout>
+		<>
 			{user ? (
 				<Flex
 					justifyContent="center"
 					alignItems="center"
 					height="100vh"
+					flexDir="column"
 				>
-					<Box
-						borderRadius="5px"
+					<GlassBgFlex
+						borderRadius="15px"
 						boxSizing="border-box"
-						border="10px solid transparent"
-						maxWidth="400px"
+						// border="10px solid transparent"
+						maxWidth="650px"
 						width="100%"
+						h="345px"
+						p="10px"
+						mt="20px"
+						bg="linear-gradient(#52307e, #8c499c, #3f33c27f)"
 					>
-						<Flex alignItems="center">
-							<a>
-								<AvatarBadge
-									name={user.username}
-									src={
-										user.image
-											? user.image
-											: "https://bit.ly/broken-link"
-									}
-									size="lg"
-								/>
-							</a>
-							<Text ml="10px">{user.username}</Text>
-							<Button ml="auto"> ... </Button>
+						<Flex
+							alignItems="center"
+							mb="20px"
+							justify="space-between"
+						>
+							<Flex align="center">
+								<a>
+									<AvatarBadge
+										name={user.username}
+										src={
+											user.image
+												? user.image
+												: "https://bit.ly/broken-link"
+										}
+										size="lg"
+									/>
+								</a>
+								<Text ml="10px">{user.username}</Text>
+							</Flex>
+							<BasicModal ml="auto" header="Change"></BasicModal>
 						</Flex>
-						<Box textAlign="left">
-							<Flex alignItems="center">
+						<Box
+							textAlign="left"
+							bgColor="#6c4279b3"
+							p="10px"
+							borderRadius="15px"
+						>
+							<Flex
+								alignItems="center"
+								mb="10px"
+								justify="space-between"
+							>
 								<Box>
 									<Text>Username:</Text>
 									<Text>{user.username}</Text>
 								</Box>
 								{/* <Text ml="auto">...</Text> */}
-								<Button ml="auto"> Edit </Button>
+								<BasicModal header="Edit"><EditProfile/></BasicModal>
 							</Flex>
 
-							<Flex alignItems="center">
+							<Flex alignItems="center" mb="10px" justify="space-between">
 								<Box>
 									<Text>Email:</Text>
 									<Text>{user.email}</Text>
 								</Box>
-								<Button ml="auto">Edit</Button>
+								<BasicModal ml="auto" header="Edit"></BasicModal>
 							</Flex>
 							{/* <Flex alignItems="center">
 								<Box>
@@ -67,20 +89,34 @@ export default function Profile(): JSX.Element {
 									<Button> Edit </Button>
 								</Flex>
 							</Flex> */}
-							<CreateModal />
 							<Button
 								onClick={() => {
 									logout();
 								}}
+								ml="365px"
 							>
 								Sign Out
 							</Button>
 						</Box>
-					</Box>
+					</GlassBgFlex>
+
+					<Flex flexDir="column" mt="50px" w="800px">
+						<Text Text align="left" mb="20px">
+							Advanced Settings
+						</Text>
+						<Button w="200px">Enable Two Factor Authen</Button>
+						<Text mt="10px" align="left">
+							Lorem ipsum dolor sit amet consectetur adipisicing
+							elit. Cumque amet minima delectus, animi obcaecati
+							est vel quibusdam provident qui optio sunt pariatur,
+							voluptatum vitae nulla reprehenderit ipsum quos
+							mollitia quam!
+						</Text>
+					</Flex>
 				</Flex>
 			) : (
 				<Text>Loading... </Text>
 			)}
-		</Layout>
+		</>
 	);
 }
