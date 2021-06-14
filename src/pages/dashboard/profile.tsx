@@ -27,10 +27,10 @@ export default function Profile(): JSX.Element {
 						// border="10px solid transparent"
 						maxWidth="650px"
 						width="100%"
-						h="345px"
+						h="300px"
 						p="10px"
 						mt="20px"
-						bg="linear-gradient(#52307e, #8c499c, #3f33c27f)"
+						bg="linear-gradient(#8053bb, #49709c, #3f33c27f)"
 					>
 						<Flex
 							alignItems="center"
@@ -55,7 +55,7 @@ export default function Profile(): JSX.Element {
 						</Flex>
 						<Box
 							textAlign="left"
-							bgColor="#6c4279b3"
+							bgColor="#70498fbb"
 							p="10px"
 							borderRadius="15px"
 						>
@@ -69,15 +69,24 @@ export default function Profile(): JSX.Element {
 									<Text>{user.username}</Text>
 								</Box>
 								{/* <Text ml="auto">...</Text> */}
-								<BasicModal header="Edit"><EditProfile/></BasicModal>
+								<BasicModal header="Edit">
+									<EditProfile />
+								</BasicModal>
 							</Flex>
 
-							<Flex alignItems="center" mb="10px" justify="space-between">
+							<Flex
+								alignItems="center"
+								mb="10px"
+								justify="space-between"
+							>
 								<Box>
 									<Text>Email:</Text>
 									<Text>{user.email}</Text>
 								</Box>
-								<BasicModal ml="auto" header="Edit"></BasicModal>
+								<BasicModal
+									ml="auto"
+									header="Edit"
+								></BasicModal>
 							</Flex>
 							{/* <Flex alignItems="center">
 								<Box>
@@ -89,22 +98,33 @@ export default function Profile(): JSX.Element {
 									<Button> Edit </Button>
 								</Flex>
 							</Flex> */}
-							<Button
-								onClick={() => {
-									logout();
-								}}
-								ml="365px"
-							>
-								Sign Out
-							</Button>
+							<Flex flexDir="row-reverse">
+								<Button
+									onClick={() => {
+										logout();
+									}}
+									
+								>
+									Sign Out
+								</Button>
+							</Flex>
 						</Box>
 					</GlassBgFlex>
 
 					<Flex flexDir="column" mt="50px" w="800px">
-						<Text Text align="left" mb="20px">
+						<Text
+							Text
+							align="left"
+							mb="20px"
+							fontSize="30px"
+							fontWeight="bold"
+							mBottom="20px"
+						>
 							Advanced Settings
 						</Text>
-						<Button w="200px">Enable Two Factor Authen</Button>
+						<Button w="150px" my="10px">
+							Reset Password
+						</Button>
 						<Text mt="10px" align="left">
 							Lorem ipsum dolor sit amet consectetur adipisicing
 							elit. Cumque amet minima delectus, animi obcaecati
