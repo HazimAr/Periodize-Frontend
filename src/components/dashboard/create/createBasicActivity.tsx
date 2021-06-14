@@ -158,9 +158,7 @@ export default function CreateForm() {
 																		index
 																	)
 																}
-															>
-																X
-															</IconButton>
+															/>
 														</Flex>
 														<Field
 															name={`lifts.${index}.name`}
@@ -239,7 +237,7 @@ export default function CreateForm() {
 									</div>
 								)}
 							</FieldArray>
-							<pre>{JSON.stringify(values, null, 2)}</pre>
+							{/* <pre>{JSON.stringify(values, null, 2)}</pre> */}
 
 							{/* <pre>{JSON.stringify(errors, null, 2)}</pre> */}
 							<Button
