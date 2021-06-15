@@ -12,7 +12,7 @@ export default function BlogSection({ arr }: any): JSX.Element {
 						mb="10px"
 						p="10px 20px"
 						borderRadius="10px"
-						w="900px"
+						w="100%"
 						key={sect.header}
 					>
 						<Text color="#f3b6d8eb" align="left" fontSize="15px">

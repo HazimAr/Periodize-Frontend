@@ -4,8 +4,7 @@ import {
 	Flex,
 	Image,
 	Text,
-	Input,
-	Button,
+	Container
 } from "@chakra-ui/react";
 import BlogSection from "@components/blogsection";
 import { IoIosSend } from "react-icons/io";
@@ -29,8 +28,8 @@ export default function FAQ(): JSX.Element {
 	];
 	return (
 		<HeadFoot>
-			<Flex flexDir="column" mt="-20px" bg="#121129">
-				<Flex
+			<Container>
+				{/* <Flex
 					align="center"
 					bgColor="#eef1f8"
 					bgSize="25%"
@@ -38,12 +37,13 @@ export default function FAQ(): JSX.Element {
 					bgImg="/faqbanner.jpg"
 					bgPos="80% 15%"
 					bgRepeat="no-repeat"
+					w="100vw"
 				>
 					<Image height="175px" src="/personal-trainers.jpg" />
-					<Heading color="#8886f8" size="xl">
-						Frequently Asked Questions (FAQ)
-					</Heading>
-				</Flex>
+				</Flex> */}
+				<Heading color="#8886f8" fontSize="20px">
+					Frequently Asked Questions (FAQ)
+				</Heading>
 
 				<Flex align="center" my="40px" justify="center">
 					<Box paddingRight="90px">General</Box>
@@ -60,7 +60,7 @@ export default function FAQ(): JSX.Element {
 						
 					</GlassBgFlex>
 				</Flex> */}
-			</Flex>
+			</Container>
 		</HeadFoot>
 	);
 }

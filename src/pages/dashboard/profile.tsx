@@ -8,6 +8,7 @@ import BasicModal from "@components/basicmodal";
 import { logout } from "@api/auth";
 import GlassBgFlex from "@components/glassbg";
 import EditProfile from "@components/editprofilemodal";
+import EditPassword from "@components/editpasswordmodal";
 
 export default function Profile(): JSX.Element {
 	const user: any = useProfile();
@@ -84,9 +85,6 @@ export default function Profile(): JSX.Element {
 									<Text>Email:</Text>
 									<Text>{user.email}</Text>
 								</Box>
-								<BasicModal ml="auto" header="Edit">
-									<EditProfile />
-								</BasicModal>
 							</Flex>
 							{/* <Flex alignItems="center">
 								<Box>
@@ -121,9 +119,11 @@ export default function Profile(): JSX.Element {
 						>
 							Advanced Settings
 						</Text>
-						<Button w="150px" my="10px">
-							Reset Password
-						</Button>
+						<Box w="150px" my="10px">
+							<BasicModal header="Reset Password">
+								<EditPassword />
+							</BasicModal>
+						</Box>
 						<Text mt="10px" align="left">
 							Lorem ipsum dolor sit amet consectetur adipisicing
 							elit. Cumque amet minima delectus, animi obcaecati
