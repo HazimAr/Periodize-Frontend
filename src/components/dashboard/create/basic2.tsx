@@ -386,6 +386,8 @@ export default function CreateForm() {
 															values.days.length +
 															1,
 														dayDescription: "",
+														hideNote: true,
+														workouts: [],
 													})
 												}
 											>
@@ -404,6 +406,7 @@ export default function CreateForm() {
 																p="16px"
 																w="50%"
 															>
+																
 																<Flex
 																	justify="flex-end"
 																	my="8px"
@@ -443,7 +446,7 @@ export default function CreateForm() {
 																	/>
 																</Flex>
 																<Flex
-																	justify="space-around"
+																	justify="center"
 																	my="16px"
 																>
 																	<Button
