@@ -30,7 +30,7 @@ export default function Layout({
 	}, []);
 	return (
 		<Main id="main">
-			<Nav />
+			{/* <Nav /> */}
 			<Content>{children}</Content>
 		</Main>
 	);

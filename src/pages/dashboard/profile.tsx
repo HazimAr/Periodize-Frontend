@@ -11,9 +11,10 @@ import EditProfile from "@components/editprofilemodal";
 
 export default function Profile(): JSX.Element {
 	const user: any = useProfile();
+	console.log(user);
 
 	return (
-		<>
+		<Layout>
 			{user ? (
 				<Flex
 					justifyContent="center"
@@ -83,10 +84,9 @@ export default function Profile(): JSX.Element {
 									<Text>Email:</Text>
 									<Text>{user.email}</Text>
 								</Box>
-								<BasicModal
-									ml="auto"
-									header="Edit"
-								></BasicModal>
+								<BasicModal ml="auto" header="Edit">
+									<EditProfile />
+								</BasicModal>
 							</Flex>
 							{/* <Flex alignItems="center">
 								<Box>
@@ -103,7 +103,6 @@ export default function Profile(): JSX.Element {
 									onClick={() => {
 										logout();
 									}}
-									
 								>
 									Sign Out
 								</Button>
@@ -137,6 +136,6 @@ export default function Profile(): JSX.Element {
 			) : (
 				<Text>Loading... </Text>
 			)}
-		</>
+		</Layout>
 	);
 }

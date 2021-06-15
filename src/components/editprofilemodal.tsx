@@ -3,6 +3,8 @@ import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 import CFormikInput from "@components/formikinput";
 import { Flex, Text, Box, Button } from "@chakra-ui/react";
+import useProfile from "@hooks/useProfile";
+
 // import GlassBgBox from "@components/glassbg";
 
 export default function EditProfile() {
@@ -18,10 +20,10 @@ export default function EditProfile() {
 		username: string;
 		email: string;
 	}
-
+	const user: any = useProfile();
 	const initialValues: MyFormValues = {
-		username: "Noa",
-		email: "",
+		username: user?.username,
+		email: user?.email,
 	};
 
 	return (
@@ -40,33 +42,35 @@ export default function EditProfile() {
 			>
 				{({ errors, touched }) => (
 					<Form>
-                        <Box p="4">
-						<Text
-							align="left"
-							mb="5px"
-							fontWeight="bold"
-							fontSize="13px"
-						>
-							USERNAME
-						</Text>
-						<Field name="username" component={CFormikInput} />
-						<Text
-							align="left"
-							mt="20px"
-							mb="5px"
-							fontWeight="bold"
-							fontSize="13px"
-						>
-							EMAIL
-						</Text>
-						<Field
-							name="email"
-							type="email"
-							component={CFormikInput}
-						/>
-                        </Box>
+						<Box p="4">
+							<Text
+								align="left"
+								mb="5px"
+								fontWeight="bold"
+								fontSize="13px"
+							>
+								USERNAME
+							</Text>
+							<Field name="username" component={CFormikInput} />
+							<Text
+								align="left"
+								mt="20px"
+								mb="5px"
+								fontWeight="bold"
+								fontSize="13px"
+							>
+								EMAIL
+							</Text>
+							<Field
+								name="email"
+								type="email"
+								component={CFormikInput}
+							/>
+						</Box>
 						<Flex flexDir="row-reverse" mt="20px" bg="black" p="2">
-							<Button variant="solid" type="submit">Submit</Button>
+							<Button variant="solid" type="submit">
+								Submit
+							</Button>
 							<Button variant="ghost" p="2" mr="15px">
 								Cancel
 							</Button>
