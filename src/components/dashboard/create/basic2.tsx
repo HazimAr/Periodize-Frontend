@@ -68,38 +68,229 @@ export default function CreateForm() {
 			})
 		),
 	});
-
+	interface Lifts {
+		name: string;
+		load: string;
+		sets: string;
+		reps: string;
+		rest: string;
+		note: string;
+		hideNote: boolean;
+		unit: string;
+	}
+	interface Workouts {
+		workoutName: string;
+		workoutNote: string;
+		rest: string;
+		lifts: Lifts[];
+	}
+	interface Days {
+		dayName: string;
+		dayDescription: string;
+		hideNote: boolean;
+		workouts: Workouts[];
+	}
 	interface MyFormValues {
 		title: string;
 		description: string;
 		preset: string | null;
+		days: Days[];
+	}
+
+	const basictemplate: MyFormValues = {
+		title: "3 a day basic",
+		description: "Upper/ Lower / Full Body!",
+		preset: null,
 		days: [
 			{
-				dayName: string;
-				dayDescription: string;
-				hideNote: boolean;
+				dayName: "Upper",
+				dayDescription:
+					"Push pull upper with main movements of pull ups and bench press",
+				hideNote: true,
 				workouts: [
 					{
-						workoutName: string;
-						workoutNote: string;
-						rest: string;
+						workoutName: "Super Set Bench",
+						workoutNote: "",
+						rest: "",
 						lifts: [
 							{
-								name: string;
-								load: string;
-								sets: string;
-								reps: string;
-								rest: string;
-								note: string;
-								hideNote: boolean;
-								unit: string;
-							}
-						];
-					}
-				];
-			}
-		];
-	}
+								name: "Bench Press",
+								load: "9",
+								sets: "5",
+								reps: "5",
+								rest: "",
+								note: "",
+								hideNote: true,
+								unit: "rpe",
+							},
+						],
+					},
+					{
+						workoutName: "Pull up",
+						workoutNote: "",
+						rest: "",
+						lifts: [
+							{
+								name: "Pull up",
+								load: "6",
+								sets: "5",
+								reps: "8",
+								rest: "",
+								note: "",
+								hideNote: true,
+								unit: "rpe",
+							},
+						],
+					},
+					{
+						workoutName: "",
+						workoutNote: "",
+						rest: "",
+						lifts: [
+							{
+								name: "Push ups",
+								load: "",
+								sets: "2",
+								reps: "5",
+								rest: "",
+								note: "",
+								hideNote: true,
+								unit: "bodyweight",
+							},
+						],
+					},
+				],
+			},
+			{
+				dayName: "Lower",
+				dayDescription:
+					"Push pull upper with main movements of pull ups and bench press",
+				hideNote: true,
+				workouts: [
+					{
+						workoutName: "",
+						workoutNote: "",
+						rest: "",
+						lifts: [
+							{
+								name: "Bench Press",
+								load: "9",
+								sets: "5",
+								reps: "5",
+								rest: "",
+								note: "",
+								hideNote: true,
+								unit: "rpe",
+							},
+							{
+								name: "Incline Bench",
+								load: "9",
+								sets: "5",
+								reps: "5",
+								rest: "",
+								note: "",
+								hideNote: true,
+								unit: "rpe",
+							},
+						],
+					},
+					{
+						workoutName: "",
+						workoutNote: "",
+						rest: "",
+						lifts: [
+							{
+								name: "Pull up",
+								load: "6",
+								sets: "5",
+								reps: "8",
+								rest: "",
+								note: "",
+								hideNote: true,
+								unit: "rpe",
+							},
+						],
+					},
+					{
+						workoutName: "",
+						workoutNote: "",
+						rest: "",
+						lifts: [
+							{
+								name: "Push ups",
+								load: "",
+								sets: "2",
+								reps: "5",
+								rest: "",
+								note: "",
+								hideNote: true,
+								unit: "bodyweight",
+							},
+						],
+					},
+				],
+			},
+			{
+				dayName: "Fullbody",
+				dayDescription:
+					"Push pull upper with main movements of pull ups and bench press",
+				hideNote: true,
+				workouts: [
+					{
+						workoutName: "",
+						workoutNote: "",
+						rest: "",
+						lifts: [
+							{
+								name: "Bench Press",
+								load: "9",
+								sets: "5",
+								reps: "5",
+								rest: "",
+								note: "",
+								hideNote: true,
+								unit: "rpe",
+							},
+						],
+					},
+					{
+						workoutName: "",
+						workoutNote: "",
+						rest: "",
+						lifts: [
+							{
+								name: "Pull up",
+								load: "6",
+								sets: "5",
+								reps: "8",
+								rest: "",
+								note: "",
+								hideNote: true,
+								unit: "rpe",
+							},
+						],
+					},
+					{
+						workoutName: "",
+						workoutNote: "",
+						rest: "",
+						lifts: [
+							{
+								name: "Push ups",
+								load: "",
+								sets: "2",
+								reps: "5",
+								rest: "",
+								note: "",
+								hideNote: true,
+								unit: "bodyweight",
+							},
+						],
+					},
+				],
+			},
+		],
+	};
 	const initialValues: MyFormValues = {
 		title: "My Split",
 		description: "",
@@ -150,7 +341,7 @@ export default function CreateForm() {
 					// validateOnChange={false}
 					// validateOnBlur={false}
 				>
-					{({ values, setFieldValue, isSubmitting }) => (
+					{({ values, setFieldValue, isSubmitting, setValues }) => (
 						<Form>
 							<FieldArray name="days">
 								{({ remove, push }) => (
@@ -166,7 +357,16 @@ export default function CreateForm() {
 													name="title"
 												/>
 											</Box>
-
+											<Button
+												onClick={() => {
+													setValues(
+														basictemplate,
+														false
+													);
+												}}
+											>
+												Basic Split
+											</Button>
 											<Box w="10%" mx="8px">
 												<Field
 													component={
@@ -192,13 +392,22 @@ export default function CreateForm() {
 												Add Day
 											</IconButton>
 										</Flex>
-										<Flex justify="center">
+										<Flex justify="center" flexWrap="wrap">
 											{values.days.length > 0 &&
 												values.days.map(
 													(day, index) => {
 														return (
-															<Box mx="8px">
-																<Flex justify="flex-end">
+															<Box
+																mx="8px"
+																my="8px"
+																bgColor="gray.800"
+																p="16px"
+																w="50%"
+															>
+																<Flex
+																	justify="flex-end"
+																	my="8px"
+																>
 																	<Field
 																		name={`days[${index}.dayName]`}
 																		component={
@@ -233,6 +442,69 @@ export default function CreateForm() {
 																		}
 																	/>
 																</Flex>
+																<Flex
+																	justify="space-around"
+																	my="16px"
+																>
+																	<Button
+																		onClick={() => {}}
+																	>
+																		Lift
+																	</Button>
+																	<Button>
+																		Super
+																		Set
+																	</Button>
+																	<Button>
+																		Circuit
+																	</Button>
+																</Flex>
+																<Box>
+																	<FieldArray
+																		name={`day[${index}].workouts`}
+																	>
+																		{({
+																			remove,
+																			push,
+																		}) => (
+																			<Box>
+																				{values
+																					.days[
+																					index
+																				]
+																					.workouts
+																					.length >
+																					0 &&
+																					values.days[
+																						index
+																					].workouts.map(
+																						(
+																							workout,
+																							windex
+																						) => {
+																							return (
+																								<Box>
+																									<Field
+																										name={`days[${index}].workouts[${windex}].workoutName`}
+																										component={
+																											CFormikInput
+																										}
+																									/>
+																								</Box>
+																							);
+																						}
+																					)}
+																			</Box>
+																			// <Field
+																			// 	name={`days[${index}].workouts[${}]`}
+																			// 	component={
+																			// 		CFormikInput
+																			// 	}
+																			// />
+																		)}
+																	</FieldArray>
+																</Box>
+
 																{day.hideNote ? null : (
 																	<Field
 																		name={`days[${index}].dayDescription`}

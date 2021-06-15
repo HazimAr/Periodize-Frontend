@@ -41,70 +41,76 @@ const usefulLinks = [
 
 export default function Foot(): JSX.Element {
 	return (
-		<Flex maxWidth="1200px" justify="center">
-			<Flex bg="snow" h="30vh" w="60%%">
-				<Flex bg="#633800" textAlign="left" h="80%">
-					<Flex bg="#D76300" w="30%">
-						<Text fontSize="xl" align="left">
-							Periodize
-						</Text>
-					</Flex>
-					<Flex bg="#FFDE58" justify="space-between" w="500px">
-						<Box bg="#FFE7B5" w="100vw">
-							<UnorderedList styleType="none">
-								<ListItem> Company </ListItem>
-								{companyLinks.map((cl) => {
-									return (
-										<ListItem key={cl.title}>
-											<Link href={cl.link}>
-												<a>
-													<Heading
-														ml="20px"
-														size="md"
-													>
-														{cl.title}
-													</Heading>
-												</a>
-											</Link>
-										</ListItem>
-									);
-								})}
-							</UnorderedList>
-						</Box>
-						<Box bg=" #555555" w="100vw">
-							<UnorderedList styleType="none">
-								<ListItem> Useful Links </ListItem>
-								{usefulLinks.map((ufl) => {
-									return (
-										<ListItem key={ufl.title}>
-											<Link href={ufl.link}>
-												<a>
-													<Heading
-														ml="20px"
-														size="md"
-													>
-														{ufl.title}
-													</Heading>
-												</a>
-											</Link>
-										</ListItem>
-									);
-								})}
-							</UnorderedList>
-						</Box>
-					</Flex>
-					<Flex bg=" #000000" flexDirection="row-reverse" ml="auto">
-						<Text fontSize="md"> [Social media icons here] </Text>
-					</Flex>
-				</Flex>
-				<Divider />
-				<Flex bg="#D00070" justify="space-between" h="20%">
-					<Flex bg="#8C4799">
-						<Text>[Placeholder link]]</Text>
-					</Flex>
-					<Flex bg="#0032A0" flexDirection="row-reverse">
-						© 2021 Periodize{" "}
-					</Flex>
+		<Flex
+			maxWidth="1200px"
+			justify="center"
+			flexDir={{ base: "column", md: "row" }}
+			height="40vh"
+		>
+			<Flex
+				w="33%"
+				my={{ base: "20px", md: "0px" }}
+				ml={{ base: "20px", md: "0px" }}
+			>
+				Spotify
+			</Flex>
+			<Flex
+				w="40vw"
+				flexDir={{ base: "column", md: "row" }}
+				ml={{ base: "20px", md: "0px" }}
+			>
+				<Box
+					w="100%"
+					mx={{ base: "0px", md: "20px" }}
+					my={{ base: "20px", md: "0px" }}
+				>
+					<UnorderedList styleType="none" textAlign="left" ml="0px">
+						<ListItem> Company </ListItem>
+						{companyLinks.map((cl) => {
+							return (
+								<ListItem key={cl.title} my="8px">
+									<Link href={cl.link}>
+										<a>
+											<Heading size="md">
+												{cl.title}
+											</Heading>
+										</a>
+									</Link>
+								</ListItem>
+							);
+						})}
+					</UnorderedList>
+				</Box>
+				<Box
+					w="100%"
+					mx={{ base: "0px", md: "20px" }}
+					my={{ base: "20px", md: "0px" }}
+				>
+					<UnorderedList styleType="none" textAlign="left" ml="0px">
+						<ListItem> Useful Links </ListItem>
+						{usefulLinks.map((ufl) => {
+							return (
+								<ListItem key={ufl.title}>
+									<Link href={ufl.link}>
+										<a>
+											<Heading size="md" my="8px">
+												{ufl.title}
+											</Heading>
+										</a>
+									</Link>
+								</ListItem>
+							);
+						})}
+					</UnorderedList>
+				</Box>
+				<Flex
+					w="100%"
+					pl={{ base: "0px", md: "100px" }}
+					my={{ base: "20px", md: "0px" }}
+					// ml={{ base: "20px", md: "0px" }}
+				>
+					<Text>Twitter</Text>
+					<Text>Reddit</Text>
 				</Flex>
 			</Flex>
 		</Flex>

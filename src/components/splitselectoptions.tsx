@@ -2,7 +2,7 @@ import { FieldProps } from "formik";
 import { Select } from "@chakra-ui/react";
 export default function SplitSelect({
 	field,
-	form: { handleChange, handleBlur },
+	form: { handleChange, handleBlur, setFieldValue, setValues },
 }: FieldProps) {
 	return (
 		<Select
