@@ -15,7 +15,7 @@ import {
 } from "@chakra-ui/layout";
 import { Text } from "@chakra-ui/react";
 import Link from "next/link";
-
+import Cont from "@components/container";
 const companyLinks = [
 	{
 		title: "About",
@@ -42,45 +42,43 @@ export default function Foot(): JSX.Element {
 	return (
 		<Flex
 			maxWidth="1200px"
-			justify="center"
+			justify="space-around"
+			margin="auto"
+			// align="space-between"
 			flexDir={{ base: "column", md: "row" }}
 			height="40vh"
 		>
 			<Flex
-				justify="space-between"
+				// justify="space-between"
 				flexDir={{ base: "column", md: "row" }}
-				ml={{ base: "30px", sm: "40px", md: "0px" }}
+				ml={{ base: "30px", sm: "40px", md: "60px" }}
+				w="100%"
 			>
-				<Flex
-					w="25%"
-					my={{ base: "20px", md: "0px" }}
-					
-					
-				>
-					Spotify
+				<Flex w="30%" my={{ base: "20px", md: "0px" }}>
+					<Heading size="lg">Periodize </Heading>
 				</Flex>
-				<Flex
-					w="40%"
-					flexDir={{ base: "column", md: "row" }}
-				>
+				<Flex w="60%" flexDir={{ base: "column", md: "row" }}>
 					<Box
-						w="100%"
+						// w="40%"
 						my={{ base: "20px", md: "0px" }}
+						mx={{ base: "0px", md: "60px" }}
 					>
 						<UnorderedList
 							styleType="none"
 							textAlign="left"
 							ml="0px"
 						>
-							<ListItem> Company </ListItem>
+							<ListItem>
+								<Heading size="sm">Company</Heading>
+							</ListItem>
 							{companyLinks.map((cl) => {
 								return (
-									<ListItem key={cl.title} my="8px">
+									<ListItem key={cl.title} my="16px">
 										<Link href={cl.link}>
 											<a>
-												<Heading size="md">
+												<Text size="md">
 													{cl.title}
-												</Heading>
+												</Text>
 											</a>
 										</Link>
 									</ListItem>
@@ -89,8 +87,8 @@ export default function Foot(): JSX.Element {
 						</UnorderedList>
 					</Box>
 					<Box
-						w="100%"
-						mx={{ base: "0px", md: "20px" }}
+						w={{ base: "100px", sm: "200px", md: "350px" }}
+						px={{ base: "0px", md: "60px" }}
 						my={{ base: "20px", md: "0px" }}
 					>
 						<UnorderedList
@@ -98,15 +96,15 @@ export default function Foot(): JSX.Element {
 							textAlign="left"
 							ml="0px"
 						>
-							<ListItem> Useful Links </ListItem>
+							<Heading size="sm">Useful Links</Heading>
 							{usefulLinks.map((ufl) => {
 								return (
-									<ListItem key={ufl.title}>
+									<ListItem key={ufl.title} my="16px">
 										<Link href={ufl.link}>
 											<a>
-												<Heading size="md" my="8px">
+												<Text size="md">
 													{ufl.title}
-												</Heading>
+												</Text>
 											</a>
 										</Link>
 									</ListItem>
@@ -115,15 +113,17 @@ export default function Foot(): JSX.Element {
 						</UnorderedList>
 					</Box>
 				</Flex>
-				<Flex
-					w="100%"
-					pl={{ base: "0px", md: "70px" }}
-					my={{ base: "20px", md: "0px" }}
-					// ml={{ base: "20px", md: "0px" }}
-				>
-					<Text>Twitter</Text>
-					<Text>Reddit</Text>
-				</Flex>
+			</Flex>
+			<Flex
+				// w="50%"
+				justify={{ base: "", md: "center" }}
+				pl={{ base: "0px", md: "30px" }}
+				my={{ base: "20px", md: "0px" }}
+				mr={{ base: "0px", sm: "0px", md: "60px" }}
+				ml={{ base: "30px", sm: "40px", md: "0px" }}
+			>
+				<Text>Twitter</Text>
+				<Text>Reddit</Text>
 			</Flex>
 		</Flex>
 	);

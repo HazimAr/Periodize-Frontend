@@ -484,12 +484,44 @@ export default function CreateForm() {
 																						) => {
 																							return (
 																								<Box>
-																									<Field
-																										name={`days[${index}].workouts[${windex}].workoutName`}
-																										component={
-																											CFormikInput
-																										}
-																									/>
+																									<Flex
+																										justify="flex-end"
+																										my="8px"
+																									>
+																										<Field
+																											name={`days[${index}].workouts[${windex}].workoutName`}
+																											component={
+																												CFormikInput
+																											}
+																										/>
+																										<IconButton
+																											variant="ghost"
+																											aria-label="add note"
+																											icon={
+																												<BiNote />
+																											}
+																											type="button"
+																											onClick={() =>
+																												setFieldValue(
+																													`days[${index}].hideNote`,
+																													!day.hideNote
+																												)
+																											}
+																										/>
+																										<IconButton
+																											variant="ghost"
+																											aria-label="delete"
+																											icon={
+																												<DeleteIcon />
+																											}
+																											type="button"
+																											onClick={() =>
+																												remove(
+																													index
+																												)
+																											}
+																										/>
+																									</Flex>
 																								</Box>
 																							);
 																						}
