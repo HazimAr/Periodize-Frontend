@@ -20,13 +20,7 @@ export const UserProfile = (props: UserProfileProps) => {
 			<Avatar size="sm" name={name} src={image} />
 			<Flex direction="column" fontWeight="medium">
 				<Text fontSize="sm">{name}</Text>
-				<Text
-					fontSize="xs"
-					lineHeight="shorter"
-					color={mode("gray.600", "gray.400")}
-				>
-					{email}
-				</Text>
+				
 			</Flex>
 		</HStack>
 	);
