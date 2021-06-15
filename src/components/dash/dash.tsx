@@ -144,7 +144,7 @@ export default function Dash() {
 							pt="8"
 						>
 							<Heading size="md" fontWeight="extrabold" mb="6">
-								Product Vision
+								Le Penguin of Doom was here!
 							</Heading>
 							<Box
 								flex="1"
