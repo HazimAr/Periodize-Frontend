@@ -1,5 +1,10 @@
-import Dash from "@components/dash2/dash";
+import Layout from "@components/dashboard/layout";
+import { Text } from "@chakra-ui/react";
 
-export default function DashTest(): JSX.Element {
-	return <Dash />;
+export default function Home(): JSX.Element {
+	return (
+		<Layout>
+			<Text>test</Text>
+		</Layout>
+	);
 }

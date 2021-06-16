@@ -2,13 +2,10 @@
 import { getProfileData } from "@api/profile";
 import { getCookie } from "@lib/cookie";
 import React, { useEffect } from "react";
-import styled from "styled-components";
 
-// import Nav from "./nav";
-
-const Content = styled.div``;
-
-const Main = styled.main``;
+import { Center, Flex } from "@chakra-ui/react";
+import { MobileTopBar } from "@components/dash2/mobiletopbar";
+import { Sidebar } from "@components/dash2/sidebar";
 // eslint-disable-next-line import/no-default-export
 export default function Layout({
 	children,
@@ -29,9 +26,14 @@ export default function Layout({
 		});
 	}, []);
 	return (
-		<Main id="main">
-			{/* <Nav /> */}
-			<Content>{children}</Content>
-		</Main>
+		<main id="main">
+			<Flex h="100vh" flexDirection="column" position="fixed">
+				<MobileTopBar />
+				<Flex flex="1">
+					<Sidebar display={{ base: "none", md: "flex" }} />
+					<Center>{children}</Center>
+				</Flex>
+			</Flex>
+		</main>
 	);
 }

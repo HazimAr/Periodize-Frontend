@@ -24,6 +24,7 @@ export const MobileTopBar = () => {
 			bg={mode("gray.50", "gray.800")}
 			display={{ base: "flex", md: "none" }}
 			borderBottomWidth="1px"
+			w="100vw"
 		>
 			<Logo h="6" iconColor="blue.600" />
 			<IconButton
