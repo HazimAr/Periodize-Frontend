@@ -11,9 +11,9 @@ import * as React from "react";
 import {
 	FaRegBell,
 	FaRegChartBar,
-	FaRegClipboard,
-	FaRegHeart,
-	FaRegImages,
+	FaClipboardList,
+	FaHeart,
+	FaDumbbell,
 	FaRegQuestionCircle,
 } from "react-icons/fa";
 import { Logo } from "@components/dash2/logo";
@@ -24,7 +24,7 @@ import { UserProfile } from "@components/dash2/userprofile";
 export const Sidebar = (props: FlexProps) => {
 	return (
 		<Flex
-			bg={mode("gray.50", "gray.800")}
+			bg="linear-gradient(#7f4cadc3, #1e5370)"
 			direction="column"
 			borderRightWidth="1px"
 			width="64"
@@ -39,7 +39,9 @@ export const Sidebar = (props: FlexProps) => {
 				px="4"
 			>
 				<Box mb="6">
-					<Logo color={mode("blue.600", "blue.400")} h="6" />
+
+						<Logo color={mode("blue.600", "blue.400")} h="6" />
+				
 				</Box>
 
 				<Box mb="6">
@@ -48,10 +50,16 @@ export const Sidebar = (props: FlexProps) => {
 
 				<Stack spacing="6" as="nav" aria-label="Sidebar Navigation">
 					<Stack spacing="1">
-						<NavLink label="Images" icon={FaRegImages} isActive />
-						<NavLink label="Favorites" icon={FaRegHeart} />
-						<NavLink label="Notes" icon={FaRegClipboard} />
-						<NavLink label="Statistics" icon={FaRegChartBar} />
+						<NavLink
+							label="My Programs"
+							icon={FaDumbbell}
+							isActive
+						/>
+						<NavLink label="Favorites" icon={FaHeart} />
+						<NavLink
+							label="Public Programs"
+							icon={FaClipboardList}
+						/>
 					</Stack>
 
 					<Divider />
@@ -61,6 +69,7 @@ export const Sidebar = (props: FlexProps) => {
 						<NavLink
 							label="Help Center"
 							icon={FaRegQuestionCircle}
+							href="/faq"
 						/>
 					</Stack>
 				</Stack>

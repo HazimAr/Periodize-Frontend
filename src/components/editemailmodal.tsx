@@ -7,12 +7,10 @@ import useProfile from "@hooks/useProfile";
 
 // import GlassBgBox from "@components/glassbg";
 
-export default function EditUsername() {
+export default function EditEmail() {
 	const EditSchema = Yup.object().shape({
-		username: Yup.string()
-			.min(2, "Too Short!")
-			.max(50, "Too Long!")
-			.required("Required"),
+
+		email: Yup.string().email("Invalid email").required("Required"),
 	});
 
 	interface MyFormValues {
@@ -26,7 +24,7 @@ export default function EditUsername() {
 	return (
 		<Box>
 			<Text mt="10px" mb="20px" fontSize="25px" fontWeight="bold">
-				Change your new username
+				Change your new email
 			</Text>
 			<Formik
 				initialValues={initialValues}
@@ -42,14 +40,18 @@ export default function EditUsername() {
 						<Box p="4">
 							<Text
 								align="left"
+								mt="20px"
 								mb="5px"
 								fontWeight="bold"
 								fontSize="13px"
 							>
-								USERNAME
+								EMAIL
 							</Text>
-							<Field name="username" component={CFormikInput} />
-							
+							<Field
+								name="email"
+								type="email"
+								component={CFormikInput}
+							/>
 						</Box>
 						<Flex flexDir="row-reverse" mt="20px" bg="black" p="2">
 							<Button variant="solid" type="submit">

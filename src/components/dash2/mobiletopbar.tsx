@@ -21,7 +21,7 @@ export const MobileTopBar = () => {
 			justify="space-between"
 			py="2"
 			px="4"
-			bg={mode("gray.50", "gray.800")}
+			bg="linear-gradient(to right,#7f4cadc3, #1e5370)"
 			display={{ base: "flex", md: "none" }}
 			borderBottomWidth="1px"
 			w="100vw"
@@ -44,7 +44,7 @@ export const MobileTopBar = () => {
 			>
 				<DrawerOverlay />
 				<DrawerContent
-					bg={mode("white", "gray.800")}
+					bg="linear-gradient(#7f4cadc3, #1e5370)"
 					shadow="none"
 					position="relative"
 					maxW="64"

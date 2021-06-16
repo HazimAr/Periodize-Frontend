@@ -27,13 +27,13 @@ export const NavLink = (props: NavLinkProps) => {
 			fontSize="sm"
 			userSelect="none"
 			aria-current={isActive ? "page" : undefined}
-			color={mode("gray.700", "gray.400")}
+			color={mode("white.700", "white.400")}
 			_hover={{
-				bg: mode("gray.100", "gray.700"),
-				color: mode("gray.900", "white"),
+				bg: mode("purple.200", "purple.700"),
+				color: mode("white.900", "white"),
 			}}
 			_activeLink={{
-				bg: mode("gray.200", "gray.700"),
+				bg: mode("purple.200", "purple.700"),
 				color: "inherit",
 			}}
 			{...rest}

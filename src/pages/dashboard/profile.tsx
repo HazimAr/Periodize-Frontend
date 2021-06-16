@@ -7,7 +7,8 @@ import useProfile from "@hooks/useProfile";
 import BasicModal from "@components/basicmodal";
 import { logout } from "@api/auth";
 import GlassBgFlex from "@components/glassbg";
-import EditProfile from "@components/editprofilemodal";
+import EditUsername from "@components/editprofilemodal";
+import EditEmail from "@components/editemailmodal";
 import EditPassword from "@components/editpasswordmodal";
 
 export default function Profile(): JSX.Element {
@@ -20,7 +21,6 @@ export default function Profile(): JSX.Element {
 				<Flex
 					justifyContent="center"
 					alignItems="center"
-					height="100vh"
 					flexDir="column"
 				>
 					<GlassBgFlex
@@ -72,7 +72,7 @@ export default function Profile(): JSX.Element {
 								</Box>
 								{/* <Text ml="auto">...</Text> */}
 								<BasicModal header="Edit">
-									<EditProfile />
+									<EditUsername />
 								</BasicModal>
 							</Flex>
 
@@ -85,6 +85,9 @@ export default function Profile(): JSX.Element {
 									<Text>Email:</Text>
 									<Text>{user.email}</Text>
 								</Box>
+								<BasicModal header="Edit">
+									<EditEmail />
+								</BasicModal>
 							</Flex>
 							{/* <Flex alignItems="center">
 								<Box>
