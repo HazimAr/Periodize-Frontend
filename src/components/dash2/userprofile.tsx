@@ -1,26 +1,32 @@
-import {
-	Avatar,
-	Flex,
-	HStack,
-	Text,
-	// useColorModeValue as mode,
-} from "@chakra-ui/react";
+import { Avatar, Flex, HStack, Link, Text } from "@chakra-ui/react";
 import * as React from "react";
+import useProfile from "@hooks/useProfile";
 
-interface UserProfileProps {
-	name: string;
-	image: string;
-	email: string;
-}
-
-export const UserProfile = (props: UserProfileProps) => {
-	const { name, image } = props;
+export const UserProfile = () => {
+	const user = useProfile();
+	const placeholder = {
+		username: "Loading...",
+	};
 	return (
-		<HStack spacing="4" px="2" flexShrink={0} borderTopWidth="1px" p="4">
-			<Avatar size="sm" name={name} src={image} />
-			<Flex direction="column" fontWeight="medium">
-				<Text fontSize="sm">{name}</Text>
-			</Flex>
-		</HStack>
+		<Link href="/dashboard/profile">
+			<HStack
+				spacing="4"
+				px="2"
+				flexShrink={0}
+				borderTopWidth="1px"
+				p="4"
+			>
+				<Avatar
+					size="sm"
+					name={user ? user.username : placeholder.username}
+					src={user?.image}
+				/>
+				<Flex direction="column" fontWeight="medium">
+					<Text fontSize="sm">
+						{user ? user.username : placeholder.username}
+					</Text>
+				</Flex>
+			</HStack>
+		</Link>
 	);
 };
