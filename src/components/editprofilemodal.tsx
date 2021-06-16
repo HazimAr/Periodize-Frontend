@@ -30,6 +30,7 @@ export default function EditProfile() {
 		<Box>
 			<Text mt="10px" mb="20px" fontSize="25px" fontWeight="bold">
 				Change your new username
+				{/* @ts-ignore */}
 				<br /> and email
 			</Text>
 			<Formik
@@ -40,6 +41,7 @@ export default function EditProfile() {
 					alert(JSON.stringify(values, null, 2));
 				}}
 			>
+				{/* @ts-ignore */}
 				{({ errors, touched }) => (
 					<Form>
 						<Box p="4">

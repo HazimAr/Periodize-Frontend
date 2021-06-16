@@ -2,13 +2,11 @@ import {
 	Heading,
 	Box,
 	Flex,
-	Image,
-	Text,
+
 	Container
 } from "@chakra-ui/react";
 import BlogSection from "@components/blogsection";
-import { IoIosSend } from "react-icons/io";
-import GlassBgFlex from "@components/glassflex";
+
 import HeadFoot from "@components/home/headfoot";
 
 export default function FAQ(): JSX.Element {

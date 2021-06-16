@@ -1,11 +1,11 @@
 import {
-	Container,
-	HStack,
-	Text,
+	// Container,
+	// HStack,
+	// Text,
 	Heading,
 	Button,
 	IconButton,
-	VStack,
+	// VStack,
 	Flex,
 	Box,
 } from "@chakra-ui/react";
@@ -15,9 +15,9 @@ import { BiNote } from "react-icons/bi";
 // import { createProgram } from "@api/program";
 import GlassBgBox from "@components/glassbg";
 import * as Yup from "yup";
-import CNumberInput from "@components/formiknumberinput";
+// import CNumberInput from "@components/formiknumberinput";
 import CFormikInput from "@components/formikinput";
-import CFormikUnitSelect from "@components/unitselectoptions";
+// import CFormikUnitSelect from "@components/unitselectoptions";
 import CFormikSplitSelect from "@components/splitselectoptions";
 export default function CreateForm() {
 	const ProgramSchema = Yup.object().shape({
@@ -341,9 +341,11 @@ export default function CreateForm() {
 					// validateOnChange={false}
 					// validateOnBlur={false}
 				>
+					{/* @ts-ignore */}
 					{({ values, setFieldValue, isSubmitting, setValues }) => (
 						<Form>
 							<FieldArray name="days">
+								{/* @ts-ignore */}
 								{({ remove, push }) => (
 									<Box>
 										<Flex
@@ -397,6 +399,7 @@ export default function CreateForm() {
 										<Flex justify="center" flexWrap="wrap">
 											{values.days.length > 0 &&
 												values.days.map(
+													/* @ts-ignore */
 													(day, index) => {
 														return (
 															<Box
@@ -406,7 +409,6 @@ export default function CreateForm() {
 																p="16px"
 																w="50%"
 															>
-																
 																<Flex
 																	justify="flex-end"
 																	my="8px"
@@ -467,7 +469,9 @@ export default function CreateForm() {
 																		name={`day[${index}].workouts`}
 																	>
 																		{({
+																			/* @ts-ignore */
 																			remove,
+																			/* @ts-ignore */
 																			push,
 																		}) => (
 																			<Box>
@@ -482,7 +486,9 @@ export default function CreateForm() {
 																						index
 																					].workouts.map(
 																						(
+																							/* @ts-ignore */
 																							workout,
+																							/* @ts-ignore */
 																							windex
 																						) => {
 																							return (
@@ -556,8 +562,8 @@ export default function CreateForm() {
 									</Box>
 								)}
 							</FieldArray>
+							{/* @ts-ignore */}
 							<pre>{JSON.stringify(values, null, 2)}</pre>
-
 							{/* <pre>{JSON.stringify(errors, null, 2)}</pre> */}
 							<Button
 								type="submit"

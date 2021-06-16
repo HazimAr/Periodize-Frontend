@@ -7,7 +7,6 @@
 
 import {
 	Box,
-	Divider,
 	Flex,
 	Heading,
 	ListItem,
@@ -15,7 +14,7 @@ import {
 } from "@chakra-ui/layout";
 import { Text } from "@chakra-ui/react";
 import Link from "next/link";
-import Cont from "@components/container";
+// import Cont from "@components/container";
 const companyLinks = [
 	{
 		title: "About",

@@ -1,10 +1,8 @@
-import { Flex, Box, Text } from "@chakra-ui/react";
+import { Flex, Text } from "@chakra-ui/react";
 
 export default function BlogSection({ arr }: any): JSX.Element {
 	return (
-		
 		<Flex  align="center" flexDir="column">
-			
 				{arr.map((sect: any) => (
 					<Flex
 						flexDir="column"
@@ -23,7 +21,6 @@ export default function BlogSection({ arr }: any): JSX.Element {
 						</Text>
 					</Flex>
 				))}
-			
 		</Flex>
 	);
 }

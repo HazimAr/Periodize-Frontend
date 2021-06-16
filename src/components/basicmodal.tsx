@@ -5,10 +5,9 @@ import {
 	ModalCloseButton,
 	Button,
 	useDisclosure,
-	Box,
 } from "@chakra-ui/react";
 
-export default function CreateModal({ header, body, children }: any) {
+export default function CreateModal({ header, children }: any) {
 	const { isOpen, onOpen, onClose } = useDisclosure();
 	return (
 		<>

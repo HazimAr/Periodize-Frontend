@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Box, Flex, Text, Input } from "@chakra-ui/react";
+import { Box, Flex, Text } from "@chakra-ui/react";
 import AvatarBadge from "@components/avatar";
 import Layout from "@components/dashboard/layout";
 import Button from "@components/styledbutton";

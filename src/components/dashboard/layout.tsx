@@ -4,7 +4,7 @@ import { getCookie } from "@lib/cookie";
 import React, { useEffect } from "react";
 import styled from "styled-components";
 
-import Nav from "./nav";
+// import Nav from "./nav";
 
 const Content = styled.div``;
 
