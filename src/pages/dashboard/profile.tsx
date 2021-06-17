@@ -23,6 +23,7 @@ export default function Profile(): JSX.Element {
 					alignItems="center"
 					flexDir="column"
 					maxW="100vw"
+					
 				>
 					<GlassBgFlex
 						borderRadius="15px"
