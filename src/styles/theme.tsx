@@ -56,7 +56,6 @@ const theme = extendTheme({
 		}),
 	},
 	initialColorMode: "dark",
-	useSystemColorMode: true,
 	fonts,
 	breakpoints,
 });
