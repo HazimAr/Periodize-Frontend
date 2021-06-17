@@ -46,6 +46,7 @@ async function deleteProgram(id: number) {
 	const { data } = await axios.delete(`${DB_URL}/products/${id}`);
 	return data;
 }
+
 async function updateProgram(id: number) {
 	const { data } = await axios.patch(`${DB_URL}/products/${id}`);
 	return data;
