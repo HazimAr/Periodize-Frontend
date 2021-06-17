@@ -29,7 +29,7 @@
 		"email-validator": "^2.0.4",
 		"formik": "^2.2.9",
 		"framer-motion": "^4.1.17",
-		"gsap": "^3.6.1",
+		"gsap": "^3.7.0",
 		"mailgun-js": "^0.22.0",
 		"next": "^11.0.0",
 		"react": "^17.0.2",
