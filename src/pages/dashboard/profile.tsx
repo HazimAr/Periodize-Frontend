@@ -22,6 +22,7 @@ export default function Profile(): JSX.Element {
 					justifyContent="center"
 					alignItems="center"
 					flexDir="column"
+					maxW="100vw"
 				>
 					<GlassBgFlex
 						borderRadius="15px"
@@ -111,7 +112,7 @@ export default function Profile(): JSX.Element {
 						</Box>
 					</GlassBgFlex>
 
-					<Flex flexDir="column" mt="50px" w="800px">
+					<Flex flexDir="column" mt="50px" justify="center" ml="10px">
 						<Text
 							Text
 							align="left"
