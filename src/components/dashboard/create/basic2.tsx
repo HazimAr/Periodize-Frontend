@@ -32,6 +32,7 @@ import CFormikInput from "@components/formikinput";
 import CFormikSplitSelect from "@components/splitselectoptions";
 import BasicModal from "@components/basicmodal";
 import { setDayOfYear } from "date-fns/esm";
+import DaySection from "@components/dashboard/create/formsections/daysection";
 export default function CreateForm() {
 	const ProgramSchema = Yup.object().shape({
 		title: Yup.string(),
@@ -345,152 +346,154 @@ export default function CreateForm() {
 			},
 		],
 	};
-	function Lifts({
-		liftsArrayHelpers,
-		workoutIndex,
-		dayIndex,
-	}: FunctionComponent<void | FieldArrayRenderProps>) {
-		const { values } = liftsArrayHelpers.form;
 
-		return (
-			<Box>
-				{values.days[dayIndex].workouts[workoutIndex].lifts &&
-				values.days[dayIndex].workouts[workoutIndex].lifts.length > 0
-					? values.days[dayIndex].workouts[workoutIndex].lifts.map(
-							(lift: Lifts, index: any) => (
-								<Box key={index}>
-									<Field
-										name={`days[${dayIndex}.workouts[${workoutIndex}].lifts[${index}].name`}
-										component={CFormikInput}
-									/>
-								</Box>
-							)
-					  )
-					: null}
-			</Box>
-		);
-	}
-	function Days({
-		daysArrayHelpers,
-	}: FunctionComponent<void | FieldArrayRenderProps>) {
-		const { values } = daysArrayHelpers.form;
+	//get the next current route , in your link list, render isActive if the url matches the current route
+	// function Lifts({
+	// 	liftsArrayHelpers,
+	// 	workoutIndex,
+	// 	dayIndex,
+	// }: FunctionComponent<void | FieldArrayRenderProps>) {
+	// 	const { values } = liftsArrayHelpers.form;
 
-		return (
-			<>
-				{values.days && values.days.length > 0 ? (
-					values.days.map((day, index) => (
-						<Box key={index} p="32px" bgColor="gray.600" my="16px">
-							<Flex justify="center">
-								<Field
-									name={`days[${index}].dayName`}
-									component={CFormikInput}
-								/>
+	// 	return (
+	// 		<Box>
+	// 			{values.days[dayIndex].workouts[workoutIndex].lifts &&
+	// 			values.days[dayIndex].workouts[workoutIndex].lifts.length > 0
+	// 				? values.days[dayIndex].workouts[workoutIndex].lifts.map(
+	// 						(lift: Lifts, index: any) => (
+	// 							<Box key={index}>
+	// 								<Field
+	// 									name={`days[${dayIndex}.workouts[${workoutIndex}].lifts[${index}].name`}
+	// 									component={CFormikInput}
+	// 								/>
+	// 							</Box>
+	// 						)
+	// 				  )
+	// 				: null}
+	// 		</Box>
+	// 	);
+	// }
+	// function Days({
+	// 	daysArrayHelpers,
+	// }: FunctionComponent<void | FieldArrayRenderProps>) {
+	// 	const { values } = daysArrayHelpers.form;
 
-								<Button
-									type="button"
-									onClick={() =>
-										daysArrayHelpers.remove(index)
-									}
-								>
-									-
-								</Button>
-							</Flex>
-							<Box>
-								<Field
-									name={`days[${index}].dayDescription`}
-									component={CFormikInput}
-								/>
-							</Box>
-							<Box>Lifts:</Box>
-							<FieldArray
-								name={`days[${index}].workouts`}
-								render={(arrayHelpers) => (
-									<>
-										<Workouts
-											dayIndex={`${index}`}
-											workoutsArrayHelpers={arrayHelpers}
-										/>
-									</>
-								)}
-							/>
-						</Box>
-					))
-				) : (
-					<button
-						type="button"
-						onClick={() =>
-							daysArrayHelpers.push({
-								dayName: "Test",
-								dayDescription: "howdy",
-								hideNote: true,
-								workouts: [],
-							})
-						}
-					>
-						Add a Day
-					</button>
-				)}
-			</>
-		);
-	}
-	function Workouts({
-		workoutsArrayHelpers,
-		dayIndex,
-	}: FunctionComponent<void | FieldArrayRenderProps>) {
-		const { values } = workoutsArrayHelpers.form;
+	// 	return (
+	// 		<>
+	// 			{values.days && values.days.length > 0 ? (
+	// 				values.days.map((day, index) => (
+	// 					<Box key={index} p="32px" bgColor="gray.600" my="16px">
+	// 						<Flex justify="center">
+	// 							<Field
+	// 								name={`days[${index}].dayName`}
+	// 								component={CFormikInput}
+	// 							/>
 
-		return (
-			<Box>
-				<Flex>
-					<Button
-						onClick={() => {
-							workoutsArrayHelpers.push({
-								workoutName: null,
-								workoutNote: "",
-								rest: "",
-								lifts: [
-									{
-										name: "testing push",
-										load: "",
-										sets: "",
-										reps: "",
-										rest: "",
-										note: "",
-										hideNote: true,
-										unit: "lb",
-									},
-								],
-							});
-						}}
-					>
-						Add Lift
-					</Button>
+	// 							<Button
+	// 								type="button"
+	// 								onClick={() =>
+	// 									daysArrayHelpers.remove(index)
+	// 								}
+	// 							>
+	// 								-
+	// 							</Button>
+	// 						</Flex>
+	// 						<Box>
+	// 							<Field
+	// 								name={`days[${index}].dayDescription`}
+	// 								component={CFormikInput}
+	// 							/>
+	// 						</Box>
+	// 						<Box>Lifts:</Box>
+	// 						<FieldArray
+	// 							name={`days[${index}].workouts`}
+	// 							render={(arrayHelpers) => (
+	// 								<>
+	// 									<Workouts
+	// 										dayIndex={`${index}`}
+	// 										workoutsArrayHelpers={arrayHelpers}
+	// 									/>
+	// 								</>
+	// 							)}
+	// 						/>
+	// 					</Box>
+	// 				))
+	// 			) : (
+	// 				<button
+	// 					type="button"
+	// 					onClick={() =>
+	// 						daysArrayHelpers.push({
+	// 							dayName: "Test",
+	// 							dayDescription: "howdy",
+	// 							hideNote: true,
+	// 							workouts: [],
+	// 						})
+	// 					}
+	// 				>
+	// 					Add a Day
+	// 				</button>
+	// 			)}
+	// 		</>
+	// 	);
+	// }
+	// function Workouts({
+	// 	workoutsArrayHelpers,
+	// 	dayIndex,
+	// }: FunctionComponent<void | FieldArrayRenderProps>) {
+	// 	const { values } = workoutsArrayHelpers.form;
 
-					<Button>Add SuperSet</Button>
-					<Button>Add Circuit</Button>
-				</Flex>
-				{values.days[dayIndex].workouts &&
-				values.days[dayIndex].workouts.length > 0
-					? values.days[dayIndex].workouts.map(
-							(workout: Workouts, index: any) => (
-								<Box key={index}>
-									<Field
-										name={`days[${dayIndex}].workouts[${index}].workoutName`}
-										component={CFormikInput}
-									/>
+	// 	return (
+	// 		<Box>
+	// 			<Flex>
+	// 				<Button
+	// 					onClick={() => {
+	// 						workoutsArrayHelpers.push({
+	// 							workoutName: null,
+	// 							workoutNote: "",
+	// 							rest: "",
+	// 							lifts: [
+	// 								{
+	// 									name: "testing push",
+	// 									load: "",
+	// 									sets: "",
+	// 									reps: "",
+	// 									rest: "",
+	// 									note: "",
+	// 									hideNote: true,
+	// 									unit: "lb",
+	// 								},
+	// 							],
+	// 						});
+	// 					}}
+	// 				>
+	// 					Add Lift
+	// 				</Button>
 
-									<Lifts
-										workoutIndex={index}
-										dayIndex={dayIndex}
-										liftsArrayHelpers={workoutsArrayHelpers}
-									/>
-								</Box>
-							)
-					  )
-					: null}
-			</Box>
-		);
-	}
+	// 				<Button>Add SuperSet</Button>
+	// 				<Button>Add Circuit</Button>
+	// 			</Flex>
+	// 			{values.days[dayIndex].workouts &&
+	// 			values.days[dayIndex].workouts.length > 0
+	// 				? values.days[dayIndex].workouts.map(
+	// 						(workout: Workouts, index: any) => (
+	// 							<Box key={index}>
+	// 								<Field
+	// 									name={`days[${dayIndex}].workouts[${index}].workoutName`}
+	// 									component={CFormikInput}
+	// 								/>
+
+	// 								<Lifts
+	// 									workoutIndex={index}
+	// 									dayIndex={dayIndex}
+	// 									liftsArrayHelpers={workoutsArrayHelpers}
+	// 								/>
+	// 							</Box>
+	// 						)
+	// 				  )
+	// 				: null}
+	// 		</Box>
+	// 	);
+	// }
 
 	return (
 		<Flex justify="center" flexDir="column" align="center" w="100%">
@@ -509,235 +512,27 @@ export default function CreateForm() {
 					validationSchema={ProgramSchema}
 					enableReinitialize={false}
 				>
-					{/* @ts-ignore */}
-					{({ values, setFieldValue, isSubmitting, setValues }) => (
+					{(props) => (
 						<Form>
-							<FieldArray name="days">
-								{/* @ts-ignore */}
-								{({ remove, push }) => (
-									<Box>
-										<Flex
-											justify="center"
-											w="100%"
-											my="16px"
-										>
-											<Box w="10%" mx="8px">
-												<Field
-													component={CFormikInput}
-													name="title"
-												/>
-											</Box>
-											<Button
-												onClick={() => {
-													setValues(
-														basictemplate,
-														false
-													);
-												}}
-											>
-												Basic Split
-											</Button>
-											<Box w="10%" mx="8px">
-												<Field
-													component={
-														CFormikSplitSelect
-													}
-													name="preset"
-												/>
-											</Box>
-
-											<IconButton
-												aria-label="add"
-												icon={<AddIcon />}
-												type="button"
-												onClick={() =>
-													push({
-														dayName:
-															values.days.length +
-															1,
-														dayDescription: "",
-														hideNote: true,
-														workouts: [],
-													})
-												}
-											>
-												Add Day
-											</IconButton>
-										</Flex>
-										<Flex justify="center" flexWrap="wrap">
-											{values.days.length > 0 &&
-												values.days.map(
-													/* @ts-ignore */
-													(day, index) => {
-														return (
-															<Box
-																mx="8px"
-																my="8px"
-																bgColor="gray.800"
-																p="16px"
-																w="50%"
-															>
-																<Flex
-																	justify="flex-end"
-																	my="8px"
-																>
-																	<Field
-																		name={`days[${index}.dayName]`}
-																		component={
-																			CFormikInput
-																		}
-																	/>
-																	<IconButton
-																		variant="ghost"
-																		aria-label="add note"
-																		icon={
-																			<BiNote />
-																		}
-																		type="button"
-																		onClick={() =>
-																			setFieldValue(
-																				`days[${index}].hideNote`,
-																				!day.hideNote
-																			)
-																		}
-																	/>
-																	<IconButton
-																		variant="ghost"
-																		aria-label="delete"
-																		icon={
-																			<DeleteIcon />
-																		}
-																		type="button"
-																		onClick={() =>
-																			remove(
-																				index
-																			)
-																		}
-																	/>
-																</Flex>
-																<Flex
-																	justify="center"
-																	my="16px"
-																>
-																	<Button
-																		onClick={() => {}}
-																	>
-																		Lift
-																	</Button>
-																	<Button>
-																		Super
-																		Set
-																	</Button>
-																	<Button>
-																		Circuit
-																	</Button>
-																</Flex>
-																<Box>
-																	<FieldArray
-																		name={`day[${index}].workouts`}
-																	>
-																		{({
-																			/* @ts-ignore */
-																			remove,
-																			/* @ts-ignore */
-																			push,
-																		}) => (
-																			<Box>
-																				{values
-																					.days[
-																					index
-																				]
-																					.workouts
-																					.length >
-																					0 &&
-																					values.days[
-																						index
-																					].workouts.map(
-																						(
-																							/* @ts-ignore */
-																							workout,
-																							/* @ts-ignore */
-																							windex
-																						) => {
-																							return (
-																								<Box>
-																									<Flex
-																										justify="flex-end"
-																										my="8px"
-																									>
-																										<Field
-																											name={`days[${index}].workouts[${windex}].workoutName`}
-																											component={
-																												CFormikInput
-																											}
-																										/>
-																										<IconButton
-																											variant="ghost"
-																											aria-label="add note"
-																											icon={
-																												<BiNote />
-																											}
-																											type="button"
-																											onClick={() =>
-																												setFieldValue(
-																													`days[${index}].hideNote`,
-																													!day.hideNote
-																												)
-																											}
-																										/>
-																										<IconButton
-																											variant="ghost"
-																											aria-label="delete"
-																											icon={
-																												<DeleteIcon />
-																											}
-																											type="button"
-																											onClick={() =>
-																												remove(
-																													index
-																												)
-																											}
-																										/>
-																									</Flex>
-																								</Box>
-																							);
-																						}
-																					)}
-																			</Box>
-																			// <Field
-																			// 	name={`days[${index}].workouts[${}]`}
-																			// 	component={
-																			// 		CFormikInput
-																			// 	}
-																			// />
-																		)}
-																	</FieldArray>
-																</Box>
-
-																{day.hideNote ? null : (
-																	<Field
-																		name={`days[${index}].dayDescription`}
-																		component={
-																			CFormikInput
-																		}
-																	/>
-																)}
-															</Box>
-														);
-													}
-												)}
-										</Flex>
-									</Box>
+							<FieldArray
+								name="days"
+								render={(arrayHelpers) => (
+									<>
+										<DaySection
+											daysArrayHelpers={arrayHelpers}
+											formHelpers={props}
+										/>
+									</>
 								)}
-							</FieldArray>
-							{/* @ts-ignore */}
-							<pre>{JSON.stringify(values, null, 2)}</pre>
+							/>
+
+							<pre>{JSON.stringify(props.values, null, 2)}</pre>
 							{/* <pre>{JSON.stringify(errors, null, 2)}</pre> */}
 							<Button
 								type="submit"
 								variant="outline"
 								my="16px"
-								isLoading={isSubmitting}
+								isLoading={props.isSubmitting}
 							>
 								Submit
 							</Button>

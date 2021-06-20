@@ -39,9 +39,7 @@ export const Sidebar = (props: FlexProps) => {
 				px="4"
 			>
 				<Box mb="6">
-
-						<Logo color={mode("blue.600", "blue.400")} h="6" />
-				
+					<Logo color={mode("blue.600", "blue.400")} h="6" />
 				</Box>
 
 				<Box mb="6">
