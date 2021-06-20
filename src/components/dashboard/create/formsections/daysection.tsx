@@ -49,7 +49,7 @@ export default function Days({
 				</IconButton>
 				<Button
 					onClick={() => {
-						formHelpers.setValues(basictemplate, false);
+						formHelpers.handleReset();
 					}}
 				>
 					Reset Form
