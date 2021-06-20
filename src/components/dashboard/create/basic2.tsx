@@ -8,17 +8,30 @@ import {
 	// VStack,
 	Flex,
 	Box,
+	FormErrorMessage,
+	Input,
 } from "@chakra-ui/react";
-import { Formik, Form, Field, FieldArray } from "formik";
+import {
+	Formik,
+	Form,
+	Field,
+	FieldArray,
+	useFormikContext,
+	FieldArrayRenderProps,
+	FormikContext,
+} from "formik";
 import { DeleteIcon, AddIcon } from "@chakra-ui/icons";
 import { BiNote } from "react-icons/bi";
 // import { createProgram } from "@api/program";
+import { useState } from "react";
 import GlassBgBox from "@components/glassbg";
 import * as Yup from "yup";
 // import CNumberInput from "@components/formiknumberinput";
 import CFormikInput from "@components/formikinput";
 // import CFormikUnitSelect from "@components/unitselectoptions";
 import CFormikSplitSelect from "@components/splitselectoptions";
+import BasicModal from "@components/basicmodal";
+import { setDayOfYear } from "date-fns/esm";
 export default function CreateForm() {
 	const ProgramSchema = Yup.object().shape({
 		title: Yup.string(),
@@ -123,6 +136,16 @@ export default function CreateForm() {
 								hideNote: true,
 								unit: "rpe",
 							},
+							{
+								name: "Incline Press",
+								load: "9",
+								sets: "5",
+								reps: "5",
+								rest: "",
+								note: "",
+								hideNote: true,
+								unit: "rpe",
+							},
 						],
 					},
 					{
@@ -143,7 +166,7 @@ export default function CreateForm() {
 						],
 					},
 					{
-						workoutName: "",
+						workoutName: "third movement",
 						workoutNote: "",
 						rest: "",
 						lifts: [
@@ -183,7 +206,7 @@ export default function CreateForm() {
 								unit: "rpe",
 							},
 							{
-								name: "Incline Bench",
+								name: "Decline Bench",
 								load: "9",
 								sets: "5",
 								reps: "5",
@@ -322,11 +345,157 @@ export default function CreateForm() {
 			},
 		],
 	};
+	function Lifts({
+		liftsArrayHelpers,
+		workoutIndex,
+		dayIndex,
+	}: FunctionComponent<void | FieldArrayRenderProps>) {
+		const { values } = liftsArrayHelpers.form;
+
+		return (
+			<Box>
+				{values.days[dayIndex].workouts[workoutIndex].lifts &&
+				values.days[dayIndex].workouts[workoutIndex].lifts.length > 0
+					? values.days[dayIndex].workouts[workoutIndex].lifts.map(
+							(lift: Lifts, index: any) => (
+								<Box key={index}>
+									<Field
+										name={`days[${dayIndex}.workouts[${workoutIndex}].lifts[${index}].name`}
+										component={CFormikInput}
+									/>
+								</Box>
+							)
+					  )
+					: null}
+			</Box>
+		);
+	}
+	function Days({
+		daysArrayHelpers,
+	}: FunctionComponent<void | FieldArrayRenderProps>) {
+		const { values } = daysArrayHelpers.form;
+
+		return (
+			<>
+				{values.days && values.days.length > 0 ? (
+					values.days.map((day, index) => (
+						<Box key={index} p="32px" bgColor="gray.600" my="16px">
+							<Flex justify="center">
+								<Field
+									name={`days[${index}].dayName`}
+									component={CFormikInput}
+								/>
+
+								<Button
+									type="button"
+									onClick={() =>
+										daysArrayHelpers.remove(index)
+									}
+								>
+									-
+								</Button>
+							</Flex>
+							<Box>
+								<Field
+									name={`days[${index}].dayDescription`}
+									component={CFormikInput}
+								/>
+							</Box>
+							<Box>Lifts:</Box>
+							<FieldArray
+								name={`days[${index}].workouts`}
+								render={(arrayHelpers) => (
+									<>
+										<Workouts
+											dayIndex={`${index}`}
+											workoutsArrayHelpers={arrayHelpers}
+										/>
+									</>
+								)}
+							/>
+						</Box>
+					))
+				) : (
+					<button
+						type="button"
+						onClick={() =>
+							daysArrayHelpers.push({
+								dayName: "Test",
+								dayDescription: "howdy",
+								hideNote: true,
+								workouts: [],
+							})
+						}
+					>
+						Add a Day
+					</button>
+				)}
+			</>
+		);
+	}
+	function Workouts({
+		workoutsArrayHelpers,
+		dayIndex,
+	}: FunctionComponent<void | FieldArrayRenderProps>) {
+		const { values } = workoutsArrayHelpers.form;
+
+		return (
+			<Box>
+				<Flex>
+					<Button
+						onClick={() => {
+							workoutsArrayHelpers.push({
+								workoutName: null,
+								workoutNote: "",
+								rest: "",
+								lifts: [
+									{
+										name: "testing push",
+										load: "",
+										sets: "",
+										reps: "",
+										rest: "",
+										note: "",
+										hideNote: true,
+										unit: "lb",
+									},
+								],
+							});
+						}}
+					>
+						Add Lift
+					</Button>
+
+					<Button>Add SuperSet</Button>
+					<Button>Add Circuit</Button>
+				</Flex>
+				{values.days[dayIndex].workouts &&
+				values.days[dayIndex].workouts.length > 0
+					? values.days[dayIndex].workouts.map(
+							(workout: Workouts, index: any) => (
+								<Box key={index}>
+									<Field
+										name={`days[${dayIndex}].workouts[${index}].workoutName`}
+										component={CFormikInput}
+									/>
+
+									<Lifts
+										workoutIndex={index}
+										dayIndex={dayIndex}
+										liftsArrayHelpers={workoutsArrayHelpers}
+									/>
+								</Box>
+							)
+					  )
+					: null}
+			</Box>
+		);
+	}
 
 	return (
 		<Flex justify="center" flexDir="column" align="center" w="100%">
 			<Heading as="h3" size="lg" mb={4} opacity="0.7">
-				Build A SPlit
+				Build A Dplit
 			</Heading>
 			<GlassBgBox p="18px" op={0.08} w="100%">
 				<Formik
@@ -338,8 +507,7 @@ export default function CreateForm() {
 						}, 1000);
 					}}
 					validationSchema={ProgramSchema}
-					// validateOnChange={false}
-					// validateOnBlur={false}
+					enableReinitialize={false}
 				>
 					{/* @ts-ignore */}
 					{({ values, setFieldValue, isSubmitting, setValues }) => (
