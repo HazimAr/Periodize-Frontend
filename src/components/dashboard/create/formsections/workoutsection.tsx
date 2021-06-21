@@ -1,7 +1,7 @@
 import CFormikInput from "@components/formikinput";
 import { FieldArrayRenderProps, Field } from "formik";
 // import React, { FunctionComponent } from "react";
-import { Box, Flex, Button } from "@chakra-ui/react";
+import { Box, Flex, Button, HStack } from "@chakra-ui/react";
 import Lifts from "@components/dashboard/create/formsections/liftsection";
 
 export default function Workouts({
@@ -28,7 +28,7 @@ export default function Workouts({
 	}
 	return (
 		<Box>
-			<Flex>
+			<HStack mx="12px" justify="center">
 				<Button
 					onClick={() => {
 						workoutsArrayHelpers.push({
@@ -88,7 +88,7 @@ export default function Workouts({
 					Add SuperSet
 				</Button>
 				<Button>Add Circuit</Button>
-			</Flex>
+			</HStack>
 			{values.days[dayIndex].workouts &&
 			values.days[dayIndex].workouts.length > 0
 				? values.days[dayIndex].workouts.map(

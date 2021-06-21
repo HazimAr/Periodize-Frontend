@@ -18,12 +18,10 @@ import {
 	InputRightElement,
 	FormHelperText,
 	chakra,
-
 } from "@chakra-ui/react";
 
 import { ViewIcon, ViewOffIcon, EmailIcon } from "@chakra-ui/icons";
 import Button from "@components/styledbutton";
-import { StyledFlex } from "@styles/index.theme";
 import useProfile from "@hooks/useProfile";
 import { validate } from "email-validator";
 import HeadFoot from "@components/home/headfoot";
@@ -171,11 +169,11 @@ export default function LoginPage(): JSX.Element {
 						</form>
 					</Box>
 				</Stack>
-				<StyledFlex flexDir="column">
+				<Flex flexDir="column">
 					<Link href="/forgot" name="Forgot password?" />
 					<Link href="/register" name="Don't have an account?" />
 					<Link href="/privacy" name="Privacy Policy" />
-				</StyledFlex>
+				</Flex>
 			</Flex>
 		</HeadFoot>
 	);
