@@ -1,6 +1,6 @@
 import { FieldArrayRenderProps, Field, FieldArray } from "formik";
 // import React, { FunctionComponent } from "react";
-import { Box, Flex, Button, IconButton } from "@chakra-ui/react";
+import { Box, Flex, Button, IconButton, FormLabel } from "@chakra-ui/react";
 import Workouts from "@components/dashboard/create/formsections/workoutsection";
 import { DeleteIcon, AddIcon, CloseIcon, DownloadIcon } from "@chakra-ui/icons";
 import CFormikSplitSelect from "@components/splitselectoptions";
@@ -59,12 +59,22 @@ export default function Days({
 			</Flex>
 			{values.days && values.days.length > 0 ? (
 				values.days.map((day, index) => (
-					<Box key={index} p="32px" bgColor="gray.600" my="16px">
+					<Box
+						key={index}
+						p="32px"
+						border="2px"
+						borderRadius="10px"
+						my="16px"
+					>
+						<Flex justify="center">
+							<FormLabel> Day Name: </FormLabel>
+						</Flex>
 						<Flex justify="center">
 							<Field
 								name={`days[${index}].dayName`}
 								component={CFormikInput}
 							/>
+
 							<IconButton
 								variant="ghost"
 								aria-label="add note"
@@ -92,10 +102,13 @@ export default function Days({
 						</Flex>
 						<Box>
 							{day.hideNote ? null : (
-								<Field
-									name={`days[${index}].dayDescription`}
-									component={CFormikInput}
-								/>
+								<Box mt="10px">
+									<FormLabel fontSize="15px">Description:</FormLabel>
+									<Field
+										name={`days[${index}].dayDescription`}
+										component={CFormikInput}
+									/>
+								</Box>
 							)}
 						</Box>
 						<Box>Lifts:</Box>

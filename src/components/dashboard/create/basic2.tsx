@@ -10,6 +10,7 @@ import {
 	Box,
 	FormErrorMessage,
 	Input,
+	Container,
 } from "@chakra-ui/react";
 import {
 	Formik,
@@ -361,47 +362,51 @@ export default function CreateForm() {
 	return (
 		<Flex justify="center" flexDir="column" align="center" w="100%">
 			<Heading as="h3" size="lg" mb={4} opacity="0.7">
-				Build A Dplit
+				Build A Workout Program
 			</Heading>
 			<GlassBgBox p="18px" op={0.08} w="100%">
-				<Formik
-					initialValues={initialValues}
-					onSubmit={(values, actions) => {
-						setTimeout(() => {
-							alert(JSON.stringify(values, null, 2));
-							actions.setSubmitting(false);
-						}, 1000);
-					}}
-					validationSchema={ProgramSchema}
-					enableReinitialize={false}
-				>
-					{(props) => (
-						<Form>
-							<FieldArray
-								name="days"
-								render={(arrayHelpers) => (
-									<>
-										<DaySection
-											daysArrayHelpers={arrayHelpers}
-											formHelpers={props}
-										/>
-									</>
-								)}
-							/>
+				<Container maxW="container.lg">
+					<Formik
+						initialValues={initialValues}
+						onSubmit={(values, actions) => {
+							setTimeout(() => {
+								alert(JSON.stringify(values, null, 2));
+								actions.setSubmitting(false);
+							}, 1000);
+						}}
+						validationSchema={ProgramSchema}
+						enableReinitialize={false}
+					>
+						{(props) => (
+							<Form>
+								<FieldArray
+									name="days"
+									render={(arrayHelpers) => (
+										<>
+											<DaySection
+												daysArrayHelpers={arrayHelpers}
+												formHelpers={props}
+											/>
+										</>
+									)}
+								/>
 
-							<pre>{JSON.stringify(props.values, null, 2)}</pre>
-							{/* <pre>{JSON.stringify(errors, null, 2)}</pre> */}
-							<Button
-								type="submit"
-								variant="outline"
-								my="16px"
-								isLoading={props.isSubmitting}
-							>
-								Submit
-							</Button>
-						</Form>
-					)}
-				</Formik>
+								<pre>
+									{JSON.stringify(props.values, null, 2)}
+								</pre>
+								{/* <pre>{JSON.stringify(errors, null, 2)}</pre> */}
+								<Button
+									type="submit"
+									variant="outline"
+									my="16px"
+									isLoading={props.isSubmitting}
+								>
+									Submit
+								</Button>
+							</Form>
+						)}
+					</Formik>
+				</Container>
 			</GlassBgBox>
 		</Flex>
 	);
