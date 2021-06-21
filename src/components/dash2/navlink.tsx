@@ -10,8 +10,6 @@ import * as React from "react";
 import { useRouter } from "next/router";
 import { Link as NextLink } from "next/link";
 
-import { useRouter } from "next/router";
-
 interface NavLinkProps extends LinkProps {
 	isActive?: boolean;
 	label: string;
@@ -21,12 +19,8 @@ interface NavLinkProps extends LinkProps {
 export const NavLink = (props: NavLinkProps) => {
 	const { icon, isActive, label, ...rest } = props;
 	const router = useRouter();
-<<<<<<< Updated upstream
-	console.log("my current url: ", props.href);
-=======
 	console.log("my url is: ", props.href);
 	console.log("this is my current url: ", router.asPath);
->>>>>>> Stashed changes
 	return (
 		<Link
 			as={NextLink}
