@@ -7,7 +7,7 @@ import CFormikSplitSelect from "@components/splitselectoptions";
 import CFormikInput from "@components/formikinput";
 import { basictemplate } from "@components/dashboard/create/formsections/_data";
 import { BiNote } from "react-icons/bi";
-import { lastDayOfDecade } from "date-fns";
+
 export default function Days({
 	daysArrayHelpers,
 	formHelpers,
