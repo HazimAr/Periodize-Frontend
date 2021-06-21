@@ -40,7 +40,7 @@ const Wave = styled.svg`
 export default function Home(): JSX.Element {
 	return (
 		<HeadFoot>
-			<Flex justify="center" align="center" mt="-40px" bg="#121129">
+			<Flex justify="center" align="center" mt="-40px" bg="#121129"> 
 				<Container maxW="1200px" color="white">
 					<Flex justify="center" align="center" wrap="wrap">
 						<Box mx="90px" maxW="500px" textAlign="center">

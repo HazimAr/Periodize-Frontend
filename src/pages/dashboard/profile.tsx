@@ -7,7 +7,7 @@ import useProfile from "@hooks/useProfile";
 import BasicModal from "@components/basicmodal";
 import { logout } from "@api/auth";
 import GlassBgFlex from "@components/glassbg";
-import EditUsername from "@components/editprofilemodal";
+import EditUsername from "@components/editusernamemodal";
 import EditEmail from "@components/editemailmodal";
 import EditPassword from "@components/editpasswordmodal";
 

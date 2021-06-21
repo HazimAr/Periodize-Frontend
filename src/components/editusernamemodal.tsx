@@ -16,11 +16,11 @@ export default function EditUsername() {
 	});
 
 	interface MyFormValues {
-		email: string;
+		username: string;
 	}
 	const user: any = useProfile();
 	const initialValues: MyFormValues = {
-		email: user?.email,
+		username: user?.username,
 	};
 
 	return (

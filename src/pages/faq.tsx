@@ -2,7 +2,6 @@ import {
 	Heading,
 	Box,
 	Flex,
-
 	Container
 } from "@chakra-ui/react";
 import BlogSection from "@components/blogsection";
@@ -27,7 +26,8 @@ export default function FAQ(): JSX.Element {
 	return (
 		<HeadFoot>
 			<Container>
-				{/* <Flex
+				<Flex flexDir="column" maxW="100vw">
+					{/* <Flex
 					align="center"
 					bgColor="#eef1f8"
 					bgSize="25%"
@@ -39,16 +39,16 @@ export default function FAQ(): JSX.Element {
 				>
 					<Image height="175px" src="/personal-trainers.jpg" />
 				</Flex> */}
-				<Heading color="#8886f8" fontSize="20px">
-					Frequently Asked Questions (FAQ)
-				</Heading>
+					<Heading color="#8886f8" fontSize="20px">
+						Frequently Asked Questions (FAQ)
+					</Heading>
 
-				<Flex align="center" my="40px" justify="center">
-					<Box paddingRight="90px">General</Box>
-					<BlogSection arr={faqs} />
-				</Flex>
+					<Flex mt="40px" mb="60px">
+						<Box mt="70px" mr="20px">General</Box>
+						<BlogSection arr={faqs}  />
+					</Flex>
 
-				{/* <Flex position="sticky" top="0" flexDir="row-reverse">
+					{/* <Flex position="sticky" top="0" flexDir="row-reverse">
 					<GlassBgFlex
 						flexDir="column"
 						borderRadius="10px"
@@ -58,6 +58,7 @@ export default function FAQ(): JSX.Element {
 						
 					</GlassBgFlex>
 				</Flex> */}
+				</Flex>
 			</Container>
 		</HeadFoot>
 	);

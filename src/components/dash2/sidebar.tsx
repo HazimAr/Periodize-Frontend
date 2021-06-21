@@ -20,6 +20,9 @@ import { Logo } from "@components/dash2/logo";
 import { NavLink } from "@components/dash2/navlink";
 import { SearchField } from "@components/dash2/searchfield";
 import { UserProfile } from "@components/dash2/userprofile";
+import { useRouter } from "next/router";
+
+
 
 export const Sidebar = (props: FlexProps) => {
 	return (
@@ -51,12 +54,18 @@ export const Sidebar = (props: FlexProps) => {
 						<NavLink
 							label="My Programs"
 							icon={FaDumbbell}
-							isActive
+							href="/myprograms"
 						/>
-						<NavLink label="Favorites" icon={FaHeart} />
+						<NavLink
+							label="Favorites"
+							icon={FaHeart}
+							href="/favorites"
+							
+						/>
 						<NavLink
 							label="Public Programs"
 							icon={FaClipboardList}
+							href="/publicprograms"
 						/>
 					</Stack>
 

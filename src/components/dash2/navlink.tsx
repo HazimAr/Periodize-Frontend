@@ -7,6 +7,8 @@ import {
 	Text,
 } from "@chakra-ui/react";
 import * as React from "react";
+import { useRouter } from "next/router";
+import { Link as NextLink } from "next/link";
 
 import { useRouter } from "next/router";
 
@@ -19,9 +21,16 @@ interface NavLinkProps extends LinkProps {
 export const NavLink = (props: NavLinkProps) => {
 	const { icon, isActive, label, ...rest } = props;
 	const router = useRouter();
+<<<<<<< Updated upstream
 	console.log("my current url: ", props.href);
+=======
+	console.log("my url is: ", props.href);
+	console.log("this is my current url: ", router.asPath);
+>>>>>>> Stashed changes
 	return (
 		<Link
+			as={NextLink}
+			bg={router.asPath === props.href ? "blue.700" : ""}
 			display="block"
 			py="2"
 			px="3"
@@ -36,10 +45,10 @@ export const NavLink = (props: NavLinkProps) => {
 				bg: mode("blue.200", "blue.700"),
 				color: mode("white.900", "white"),
 			}}
-			_activeLink={{
-				bg: mode("blue.200", "blue.700"),
-				color: "inherit",
-			}}
+			// _activeLink={{
+			// 	bg: router.asPath === props.href ? "blue.200" : "",
+			// 	color: "inherit",
+			// }}
 			{...rest}
 		>
 			<HStack spacing="4">
