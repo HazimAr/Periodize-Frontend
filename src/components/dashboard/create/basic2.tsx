@@ -335,26 +335,7 @@ export default function CreateForm() {
 				dayName: "",
 				dayDescription: "",
 				hideNote: true,
-				workouts: [
-					{
-						workoutName: "",
-						workoutNote: "",
-						hideNote: true,
-						rest: "",
-						lifts: [
-							// {
-							// 	name: "",
-							// 	load: "",
-							// 	sets: "",
-							// 	reps: "",
-							// 	rest: "",
-							// 	note: "",
-							// 	hideNote: true,
-							// 	unit: "",
-							// },
-						],
-					},
-				],
+				workouts: [],
 			},
 		],
 	};

@@ -67,7 +67,7 @@ export default function Days({
 						my="16px"
 					>
 						<Flex justify="center">
-							<FormLabel> Day Name: </FormLabel>
+							<FormLabel>Day Name </FormLabel>
 						</Flex>
 						<Flex justify="center">
 							<Field
@@ -103,7 +103,9 @@ export default function Days({
 						<Box>
 							{day.hideNote ? null : (
 								<Box mt="10px">
-									<FormLabel fontSize="15px">Description:</FormLabel>
+									<FormLabel fontSize="15px">
+										Description:
+									</FormLabel>
 									<Field
 										name={`days[${index}].dayDescription`}
 										component={CFormikInput}
@@ -111,18 +113,19 @@ export default function Days({
 								</Box>
 							)}
 						</Box>
-						<Box>Lifts:</Box>
-						<FieldArray
-							name={`days[${index}].workouts`}
-							render={(arrayHelpers) => (
-								<>
-									<Workouts
-										dayIndex={`${index}`}
-										workoutsArrayHelpers={arrayHelpers}
-									/>
-								</>
-							)}
-						/>
+						<Box my="8px">
+							<FieldArray
+								name={`days[${index}].workouts`}
+								render={(arrayHelpers) => (
+									<>
+										<Workouts
+											dayIndex={`${index}`}
+											workoutsArrayHelpers={arrayHelpers}
+										/>
+									</>
+								)}
+							/>
+						</Box>
 					</Box>
 				))
 			) : (
