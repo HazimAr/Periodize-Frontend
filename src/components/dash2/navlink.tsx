@@ -10,7 +10,6 @@ import * as React from "react";
 import { useRouter } from "next/router";
 import { Link as NextLink } from "next/link";
 
-import { useRouter } from "next/router";
 
 interface NavLinkProps extends LinkProps {
 	isActive?: boolean;
