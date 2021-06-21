@@ -9,14 +9,30 @@ export default function Workouts({
 	dayIndex,
 }: FunctionComponent<void | FieldArrayRenderProps>) {
 	const { values } = workoutsArrayHelpers.form;
-
+	interface Lifts {
+		name: string;
+		load: string;
+		sets: string;
+		reps: string;
+		rest: string;
+		note: string;
+		hideNote: boolean;
+		unit: string;
+	}
+	interface Workouts {
+		workoutName: string;
+		workoutNote: string;
+		hideNote: boolean;
+		rest: string;
+		lifts: Lifts[];
+	}
 	return (
 		<Box>
 			<Flex>
 				<Button
 					onClick={() => {
 						workoutsArrayHelpers.push({
-							workoutName: null,
+							workoutName: "",
 							workoutNote: "",
 							rest: "",
 							lifts: [
@@ -37,18 +53,53 @@ export default function Workouts({
 					Add Lift
 				</Button>
 
-				<Button>Add SuperSet</Button>
+				<Button
+					onClick={() => {
+						workoutsArrayHelpers.push({
+							workoutName: "Super Set",
+							workoutNote: "",
+							hideNote: true,
+							rest: "",
+							lifts: [
+								{
+									name: "Lift 1",
+									load: "",
+									sets: "",
+									reps: "",
+									rest: "",
+									note: "",
+									hideNote: true,
+									unit: "lb",
+								},
+								{
+									name: "Lift 2",
+									load: "",
+									sets: "",
+									reps: "",
+									rest: "",
+									note: "",
+									hideNote: true,
+									unit: "lb",
+								},
+							],
+						});
+					}}
+				>
+					Add SuperSet
+				</Button>
 				<Button>Add Circuit</Button>
 			</Flex>
 			{values.days[dayIndex].workouts &&
 			values.days[dayIndex].workouts.length > 0
 				? values.days[dayIndex].workouts.map(
-						(workout: any, index: any) => (
+						(workout: Workouts, index: any) => (
 							<Box key={index}>
-								<Field
-									name={`days[${dayIndex}].workouts[${index}].workoutName`}
-									component={CFormikInput}
-								/>
+								{workout.workoutName == "" ? null : (
+									<Field
+										name={`days[${dayIndex}].workouts[${index}].workoutName`}
+										component={CFormikInput}
+									/>
+								)}
 
 								<Lifts
 									workoutIndex={index}

@@ -95,6 +95,7 @@ export default function CreateForm() {
 	interface Workouts {
 		workoutName: string;
 		workoutNote: string;
+		hideNote: boolean;
 		rest: string;
 		lifts: Lifts[];
 	}
@@ -125,6 +126,7 @@ export default function CreateForm() {
 					{
 						workoutName: "Super Set Bench",
 						workoutNote: "",
+						hideNote: true,
 						rest: "",
 						lifts: [
 							{
@@ -152,6 +154,7 @@ export default function CreateForm() {
 					{
 						workoutName: "Pull up",
 						workoutNote: "",
+						hideNote: true,
 						rest: "",
 						lifts: [
 							{
@@ -169,6 +172,7 @@ export default function CreateForm() {
 					{
 						workoutName: "third movement",
 						workoutNote: "",
+						hideNote: true,
 						rest: "",
 						lifts: [
 							{
@@ -194,6 +198,7 @@ export default function CreateForm() {
 					{
 						workoutName: "",
 						workoutNote: "",
+						hideNote: true,
 						rest: "",
 						lifts: [
 							{
@@ -221,6 +226,7 @@ export default function CreateForm() {
 					{
 						workoutName: "",
 						workoutNote: "",
+						hideNote: true,
 						rest: "",
 						lifts: [
 							{
@@ -238,6 +244,7 @@ export default function CreateForm() {
 					{
 						workoutName: "",
 						workoutNote: "",
+						hideNote: true,
 						rest: "",
 						lifts: [
 							{
@@ -263,6 +270,7 @@ export default function CreateForm() {
 					{
 						workoutName: "",
 						workoutNote: "",
+						hideNote: true,
 						rest: "",
 						lifts: [
 							{
@@ -280,6 +288,7 @@ export default function CreateForm() {
 					{
 						workoutName: "",
 						workoutNote: "",
+						hideNote: true,
 						rest: "",
 						lifts: [
 							{
@@ -297,6 +306,7 @@ export default function CreateForm() {
 					{
 						workoutName: "",
 						workoutNote: "",
+						hideNote: true,
 						rest: "",
 						lifts: [
 							{
@@ -328,6 +338,7 @@ export default function CreateForm() {
 					{
 						workoutName: "",
 						workoutNote: "",
+						hideNote: true,
 						rest: "",
 						lifts: [
 							{
@@ -346,154 +357,6 @@ export default function CreateForm() {
 			},
 		],
 	};
-
-	//get the next current route , in your link list, render isActive if the url matches the current route
-	// function Lifts({
-	// 	liftsArrayHelpers,
-	// 	workoutIndex,
-	// 	dayIndex,
-	// }: FunctionComponent<void | FieldArrayRenderProps>) {
-	// 	const { values } = liftsArrayHelpers.form;
-
-	// 	return (
-	// 		<Box>
-	// 			{values.days[dayIndex].workouts[workoutIndex].lifts &&
-	// 			values.days[dayIndex].workouts[workoutIndex].lifts.length > 0
-	// 				? values.days[dayIndex].workouts[workoutIndex].lifts.map(
-	// 						(lift: Lifts, index: any) => (
-	// 							<Box key={index}>
-	// 								<Field
-	// 									name={`days[${dayIndex}.workouts[${workoutIndex}].lifts[${index}].name`}
-	// 									component={CFormikInput}
-	// 								/>
-	// 							</Box>
-	// 						)
-	// 				  )
-	// 				: null}
-	// 		</Box>
-	// 	);
-	// }
-	// function Days({
-	// 	daysArrayHelpers,
-	// }: FunctionComponent<void | FieldArrayRenderProps>) {
-	// 	const { values } = daysArrayHelpers.form;
-
-	// 	return (
-	// 		<>
-	// 			{values.days && values.days.length > 0 ? (
-	// 				values.days.map((day, index) => (
-	// 					<Box key={index} p="32px" bgColor="gray.600" my="16px">
-	// 						<Flex justify="center">
-	// 							<Field
-	// 								name={`days[${index}].dayName`}
-	// 								component={CFormikInput}
-	// 							/>
-
-	// 							<Button
-	// 								type="button"
-	// 								onClick={() =>
-	// 									daysArrayHelpers.remove(index)
-	// 								}
-	// 							>
-	// 								-
-	// 							</Button>
-	// 						</Flex>
-	// 						<Box>
-	// 							<Field
-	// 								name={`days[${index}].dayDescription`}
-	// 								component={CFormikInput}
-	// 							/>
-	// 						</Box>
-	// 						<Box>Lifts:</Box>
-	// 						<FieldArray
-	// 							name={`days[${index}].workouts`}
-	// 							render={(arrayHelpers) => (
-	// 								<>
-	// 									<Workouts
-	// 										dayIndex={`${index}`}
-	// 										workoutsArrayHelpers={arrayHelpers}
-	// 									/>
-	// 								</>
-	// 							)}
-	// 						/>
-	// 					</Box>
-	// 				))
-	// 			) : (
-	// 				<button
-	// 					type="button"
-	// 					onClick={() =>
-	// 						daysArrayHelpers.push({
-	// 							dayName: "Test",
-	// 							dayDescription: "howdy",
-	// 							hideNote: true,
-	// 							workouts: [],
-	// 						})
-	// 					}
-	// 				>
-	// 					Add a Day
-	// 				</button>
-	// 			)}
-	// 		</>
-	// 	);
-	// }
-	// function Workouts({
-	// 	workoutsArrayHelpers,
-	// 	dayIndex,
-	// }: FunctionComponent<void | FieldArrayRenderProps>) {
-	// 	const { values } = workoutsArrayHelpers.form;
-
-	// 	return (
-	// 		<Box>
-	// 			<Flex>
-	// 				<Button
-	// 					onClick={() => {
-	// 						workoutsArrayHelpers.push({
-	// 							workoutName: null,
-	// 							workoutNote: "",
-	// 							rest: "",
-	// 							lifts: [
-	// 								{
-	// 									name: "testing push",
-	// 									load: "",
-	// 									sets: "",
-	// 									reps: "",
-	// 									rest: "",
-	// 									note: "",
-	// 									hideNote: true,
-	// 									unit: "lb",
-	// 								},
-	// 							],
-	// 						});
-	// 					}}
-	// 				>
-	// 					Add Lift
-	// 				</Button>
-
-	// 				<Button>Add SuperSet</Button>
-	// 				<Button>Add Circuit</Button>
-	// 			</Flex>
-	// 			{values.days[dayIndex].workouts &&
-	// 			values.days[dayIndex].workouts.length > 0
-	// 				? values.days[dayIndex].workouts.map(
-	// 						(workout: Workouts, index: any) => (
-	// 							<Box key={index}>
-	// 								<Field
-	// 									name={`days[${dayIndex}].workouts[${index}].workoutName`}
-	// 									component={CFormikInput}
-	// 								/>
-
-	// 								<Lifts
-	// 									workoutIndex={index}
-	// 									dayIndex={dayIndex}
-	// 									liftsArrayHelpers={workoutsArrayHelpers}
-	// 								/>
-	// 							</Box>
-	// 						)
-	// 				  )
-	// 				: null}
-	// 		</Box>
-	// 	);
-	// }
 
 	return (
 		<Flex justify="center" flexDir="column" align="center" w="100%">

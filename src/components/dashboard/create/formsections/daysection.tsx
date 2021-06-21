@@ -2,10 +2,12 @@ import { FieldArrayRenderProps, Field, FieldArray } from "formik";
 // import React, { FunctionComponent } from "react";
 import { Box, Flex, Button, IconButton } from "@chakra-ui/react";
 import Workouts from "@components/dashboard/create/formsections/workoutsection";
-import { DeleteIcon, AddIcon } from "@chakra-ui/icons";
+import { DeleteIcon, AddIcon, CloseIcon, DownloadIcon } from "@chakra-ui/icons";
 import CFormikSplitSelect from "@components/splitselectoptions";
 import CFormikInput from "@components/formikinput";
 import { basictemplate } from "@components/dashboard/create/formsections/_data";
+import { BiNote } from "react-icons/bi";
+import { lastDayOfDecade } from "date-fns";
 export default function Days({
 	daysArrayHelpers,
 	formHelpers,
@@ -38,7 +40,7 @@ export default function Days({
 					type="button"
 					onClick={() =>
 						daysArrayHelpers.push({
-							dayName: values.days.length + 1,
+							dayName: `Day ${values.days.length + 1}`,
 							dayDescription: "",
 							hideNote: true,
 							workouts: [],
@@ -63,19 +65,38 @@ export default function Days({
 								name={`days[${index}].dayName`}
 								component={CFormikInput}
 							/>
-
-							<Button
+							<IconButton
+								variant="ghost"
+								aria-label="add note"
+								icon={<BiNote />}
 								type="button"
+								onClick={() =>
+									formHelpers.setFieldValue(
+										`days[${index}].hideNote`,
+										!day.hideNote
+									)
+								}
+							/>
+							<IconButton
+								aria-label="download day template"
+								// onClick={() => daysArrayHelpers.remove(index)}
+								icon={<DownloadIcon />}
+								variant="ghost"
+							/>
+							<IconButton
+								aria-label="delete"
 								onClick={() => daysArrayHelpers.remove(index)}
-							>
-								-
-							</Button>
+								icon={<CloseIcon />}
+								variant="ghost"
+							/>
 						</Flex>
 						<Box>
-							<Field
-								name={`days[${index}].dayDescription`}
-								component={CFormikInput}
-							/>
+							{day.hideNote ? null : (
+								<Field
+									name={`days[${index}].dayDescription`}
+									component={CFormikInput}
+								/>
+							)}
 						</Box>
 						<Box>Lifts:</Box>
 						<FieldArray
