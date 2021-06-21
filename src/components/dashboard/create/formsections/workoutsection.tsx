@@ -1,9 +1,10 @@
 import CFormikInput from "@components/formikinput";
 import { FieldArrayRenderProps, Field } from "formik";
 // import React, { FunctionComponent } from "react";
-import { Box, Flex, Button, HStack } from "@chakra-ui/react";
+import { Box, Flex, Button, HStack, IconButton } from "@chakra-ui/react";
 import Lifts from "@components/dashboard/create/formsections/liftsection";
-
+import { BiNote } from "react-icons/bi";
+import { DeleteIcon, AddIcon, CloseIcon, DownloadIcon } from "@chakra-ui/icons";
 export default function Workouts({
 	workoutsArrayHelpers,
 	dayIndex,
@@ -93,12 +94,36 @@ export default function Workouts({
 			values.days[dayIndex].workouts.length > 0
 				? values.days[dayIndex].workouts.map(
 						(workout: Workouts, index: any) => (
-							<Box key={index}>
+							<Box
+								key={index}
+								border="2px solid white"
+								borderRadius="5px"
+								p="8px"
+								my="16px"
+							>
 								{workout.workoutName == "" ? null : (
-									<Field
-										name={`days[${dayIndex}].workouts[${index}].workoutName`}
-										component={CFormikInput}
-									/>
+									<Flex my="8px">
+										<Field
+											name={`days[${dayIndex}].workouts[${index}].workoutName`}
+											component={CFormikInput}
+										/>
+										<IconButton
+											aria-label="download day template"
+											// onClick={() => liftsArrayHelpers.remove(index)}
+											icon={<DownloadIcon />}
+											variant="ghost"
+										/>
+										<IconButton
+											aria-label="delete"
+											onClick={() =>
+												workoutsArrayHelpers.remove(
+													index
+												)
+											}
+											icon={<CloseIcon />}
+											variant="ghost"
+										/>
+									</Flex>
 								)}
 
 								<Lifts

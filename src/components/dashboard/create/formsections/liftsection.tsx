@@ -1,9 +1,10 @@
 import CFormikInput from "@components/formikinput";
 import { FieldArrayRenderProps, Field } from "formik";
 // import React, { FunctionComponent } from "react";
-import { Box, Flex, Button, IconButton } from "@chakra-ui/react";
+import { Box, Flex, Button, IconButton, Text } from "@chakra-ui/react";
 import { BiNote } from "react-icons/bi";
 import { DeleteIcon, AddIcon, CloseIcon, DownloadIcon } from "@chakra-ui/icons";
+import UnitSelect from "@components/unitselectoptions";
 export default function Lifts({
 	liftsArrayHelpers,
 	workoutIndex,
@@ -23,13 +24,24 @@ export default function Lifts({
 										name={`days[${dayIndex}.workouts[${workoutIndex}].lifts[${index}].name`}
 										component={CFormikInput}
 									/>
+									<Text>Sets</Text>
 									<Field
 										name={`days[${dayIndex}.workouts[${workoutIndex}].lifts[${index}].sets`}
 										component={CFormikInput}
 									/>
+									<Text>Reps</Text>
 									<Field
 										name={`days[${dayIndex}.workouts[${workoutIndex}].lifts[${index}].reps`}
 										component={CFormikInput}
+									/>
+									<Text>Load</Text>
+									<Field
+										name={`days[${dayIndex}.workouts[${workoutIndex}].lifts[${index}].load`}
+										component={CFormikInput}
+									/>
+									<Field
+										name={`days[${dayIndex}.workouts[${workoutIndex}].lifts[${index}].unit`}
+										component={UnitSelect}
 									/>
 									{/* <IconButton
 										variant="ghost"
