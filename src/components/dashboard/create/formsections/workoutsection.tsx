@@ -37,7 +37,7 @@ export default function Workouts({
 							rest: "",
 							lifts: [
 								{
-									name: "testing push",
+									name: `Lift ${values.days[dayIndex].workouts.length}`,
 									load: "",
 									sets: "",
 									reps: "",

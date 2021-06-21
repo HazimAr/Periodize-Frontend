@@ -8,6 +8,8 @@ import {
 } from "@chakra-ui/react";
 import * as React from "react";
 
+import { useRouter } from "next/router";
+
 interface NavLinkProps extends LinkProps {
 	isActive?: boolean;
 	label: string;
@@ -16,6 +18,8 @@ interface NavLinkProps extends LinkProps {
 
 export const NavLink = (props: NavLinkProps) => {
 	const { icon, isActive, label, ...rest } = props;
+	const router = useRouter();
+	console.log("my current url: ", props.href);
 	return (
 		<Link
 			display="block"

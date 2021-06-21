@@ -17,10 +17,20 @@ export default function Lifts({
 				? values.days[dayIndex].workouts[workoutIndex].lifts.map(
 						(lift: any, index: any) => (
 							<Box key={index}>
-								<Field
-									name={`days[${dayIndex}.workouts[${workoutIndex}].lifts[${index}].name`}
-									component={CFormikInput}
-								/>
+								<Flex>
+									<Field
+										name={`days[${dayIndex}.workouts[${workoutIndex}].lifts[${index}].name`}
+										component={CFormikInput}
+									/>
+									<Field
+										name={`days[${dayIndex}.workouts[${workoutIndex}].lifts[${index}].sets`}
+										component={CFormikInput}
+									/>
+									<Field
+										name={`days[${dayIndex}.workouts[${workoutIndex}].lifts[${index}].reps`}
+										component={CFormikInput}
+									/>
+								</Flex>
 							</Box>
 						)
 				  )
