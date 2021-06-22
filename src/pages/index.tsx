@@ -39,8 +39,9 @@ const Wave = styled.svg`
 
 export default function Home(): JSX.Element {
 	return (
-		<HeadFoot>
-			<Flex justify="center" align="center" mt="-40px" bg="#121129"> 
+		// <HeadFoot>
+		<>
+			<Flex justify="center" align="center" mt="-40px" bg="#121129">
 				<Container maxW="1200px" color="white">
 					<Flex justify="center" align="center" wrap="wrap">
 						<Box mx="90px" maxW="500px" textAlign="center">
@@ -75,7 +76,6 @@ export default function Home(): JSX.Element {
 					d="M0,192L120,202.7C240,213,480,235,720,213.3C960,192,1200,128,1320,96L1440,64L1440,0L1320,0C1200,0,960,0,720,0C480,0,240,0,120,0L0,0Z"
 				/>
 			</Wave>
-			
 
 			<Flex
 				justify="center"
@@ -99,6 +99,7 @@ export default function Home(): JSX.Element {
 				</Flex>
 			</Flex>
 			<CarouselCenter />
-		</HeadFoot>
+		</>
+		// </HeadFoot>
 	);
 }
