@@ -1,13 +1,8 @@
 import CFormikInput from "@components/formikinput";
 import { Field } from "formik";
 // import React, { FunctionComponent } from "react";
-import {
-	Box,
-	Flex,
-	IconButton,
-	FormLabel,
-} from "@chakra-ui/react";
-import {  AddIcon, CloseIcon, DownloadIcon } from "@chakra-ui/icons";
+import { Box, Flex, IconButton, FormLabel } from "@chakra-ui/react";
+import { AddIcon, CloseIcon, DownloadIcon } from "@chakra-ui/icons";
 import UnitSelect from "@components/unitselectoptions";
 export default function Lifts({
 	workoutsArrayHelpers,

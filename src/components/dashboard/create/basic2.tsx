@@ -42,7 +42,7 @@ export default function CreateForm() {
 						type: Yup.string(),
 						lifts: Yup.array().of(
 							Yup.object().shape({
-								liftName: Yup.string()
+								name: Yup.string()
 									.min(2, "too short")
 									.required("Required")
 									.max(25, "Too long!"),
@@ -110,7 +110,27 @@ export default function CreateForm() {
 				dayName: "",
 				dayDescription: "",
 				hideNote: true,
-				workouts: [],
+				workouts: [
+					{
+						workoutName: "",
+						workoutNote: "",
+						hideNote: true,
+						type: "",
+						rest: "",
+						lifts: [
+							{
+								name: "",
+								load: "",
+								sets: "",
+								reps: "",
+								rest: "",
+								note: "",
+								hideNote: true,
+								unit: "",
+							},
+						],
+					},
+				],
 			},
 		],
 	};
@@ -125,9 +145,8 @@ export default function CreateForm() {
 					<Formik
 						initialValues={initialValues}
 						onSubmit={(values, actions) => {
-							// console.log("submit values: ", values);
 							alert(JSON.stringify(values, null, 2));
-							// actions.setSubmitting(false);
+							actions.setSubmitting(false);
 						}}
 						validationSchema={ProgramSchema}
 						// enableReinitialize={false}
@@ -155,9 +174,6 @@ export default function CreateForm() {
 									type="submit"
 									variant="outline"
 									my="16px"
-									onClick={() => {
-										console.log(props.values);
-									}}
 									// isLoading={props.isSubmitting}
 								>
 									Submit

@@ -1,12 +1,8 @@
-
-import {FieldArray } from "formik";
+import { FieldArray } from "formik";
 // import React, { FunctionComponent } from "react";
-import { Box, Button, HStack} from "@chakra-ui/react";
+import { Box, Button, HStack } from "@chakra-ui/react";
 import Lifts from "@components/dashboard/create/formsections/liftsection";
-export default function Workouts({
-	workoutsArrayHelpers,
-	dayIndex,
-}: any) {
+export default function Workouts({ workoutsArrayHelpers, dayIndex }: any) {
 	const { values } = workoutsArrayHelpers.form;
 	interface Lifts {
 		name: string;
@@ -147,31 +143,6 @@ export default function Workouts({
 								my="16px"
 							>
 								{console.log(workout)}
-								{/* {workout.type === "single" ? null : (
-									<Flex my="8px">
-										<Field
-											name={`days[${dayIndex}].workouts[${index}].workoutName`}
-											component={CFormikInput}
-										/>
-
-										<IconButton
-											aria-label="download workout template"
-											// onClick={() => liftsArrayHelpers.remove(index)}
-											icon={<DownloadIcon />}
-											variant="ghost"
-										/>
-										<IconButton
-											aria-label="delete"
-											onClick={() =>
-												workoutsArrayHelpers.remove(
-													index
-												)
-											}
-											icon={<CloseIcon />}
-											variant="ghost"
-										/>
-									</Flex>
-								)} */}
 
 								<FieldArray
 									name={`days[${dayIndex}].workouts[${index}].lifts`}
