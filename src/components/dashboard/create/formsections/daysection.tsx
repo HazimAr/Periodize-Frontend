@@ -1,6 +1,6 @@
 import { FieldArrayRenderProps, Field, FieldArray } from "formik";
 // import React, { FunctionComponent } from "react";
-import { Box, Flex, Button, IconButton, FormLabel } from "@chakra-ui/react";
+import { Box, Flex, Button, IconButton, FormLabel, Spacer } from "@chakra-ui/react";
 import Workouts from "@components/dashboard/create/formsections/workoutsection";
 import { DeleteIcon, AddIcon, CloseIcon, DownloadIcon } from "@chakra-ui/icons";
 import CFormikSplitSelect from "@components/splitselectoptions";
@@ -19,7 +19,7 @@ export default function Days({
 	console.log("form helpers", formHelpers.values);
 	return (
 		<>
-			<Box w="10%" mx="8px">
+			<Box w="100%" mx="8px">
 					<Field component={CFormikInput} name="title" />
 			</Box>
 			<Flex justify="center" w="100%" my="16px">
@@ -35,6 +35,7 @@ export default function Days({
 				</Box>
 
 				<IconButton
+					ml="8px"
 					aria-label="add"
 					icon={<AddIcon />}
 					type="button"
@@ -49,7 +50,8 @@ export default function Days({
 				>
 					Add Day
 				</IconButton>
-				<Button
+				<Spacer/>
+				<Button 
 					onClick={() => {
 						formHelpers.handleReset();
 					}}
@@ -67,8 +69,13 @@ export default function Days({
 						borderRadius="10px"
 						my="16px"
 					>
-						<Flex justify="space-between">
-							<FormLabel fontSize="30px">Day Name </FormLabel>
+						<Flex justify="space-between" mt="20px">
+							<Flex w="20%">
+							<Field
+								name={`days[${index}].dayName`}
+								component={CFormikInput}
+							/>
+							</Flex>
 							<Flex>
 								<IconButton
 									variant="ghost"
@@ -98,12 +105,6 @@ export default function Days({
 									variant="ghost"
 								/>
 							</Flex>
-						</Flex>
-						<Flex justify="center">
-							<Field
-								name={`days[${index}].dayName`}
-								component={CFormikInput}
-							/>
 						</Flex>
 						<Box>
 							{day.hideNote ? null : (
