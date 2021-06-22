@@ -8,7 +8,7 @@ import {
 } from "@chakra-ui/react";
 import * as React from "react";
 import { useRouter } from "next/router";
-import { Link as NextLink } from "next/link";
+
 
 interface NavLinkProps extends LinkProps {
 	isActive?: boolean;
@@ -23,7 +23,7 @@ export const NavLink = (props: NavLinkProps) => {
 	console.log("this is my current url: ", router.asPath);
 	return (
 		<Link
-			as={NextLink}
+			
 			bg={router.asPath === props.href ? "blue.700" : ""}
 			display="block"
 			py="2"

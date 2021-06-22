@@ -4,35 +4,25 @@ import {
 	// Text,
 	Heading,
 	Button,
-	IconButton,
 	// VStack,
 	Flex,
-	Box,
-	FormErrorMessage,
-	Input,
 	Container,
 } from "@chakra-ui/react";
 import {
 	Formik,
 	Form,
-	Field,
 	FieldArray,
-	useFormikContext,
-	FieldArrayRenderProps,
-	FormikContext,
+	
 } from "formik";
-import { DeleteIcon, AddIcon } from "@chakra-ui/icons";
-import { BiNote } from "react-icons/bi";
+
 // import { createProgram } from "@api/program";
-import { useState } from "react";
+
 import GlassBgBox from "@components/glassbg";
 import * as Yup from "yup";
 // import CNumberInput from "@components/formiknumberinput";
-import CFormikInput from "@components/formikinput";
+
 // import CFormikUnitSelect from "@components/unitselectoptions";
-import CFormikSplitSelect from "@components/splitselectoptions";
-import BasicModal from "@components/basicmodal";
-import { setDayOfYear } from "date-fns/esm";
+
 import DaySection from "@components/dashboard/create/formsections/daysection";
 export default function CreateForm() {
 	const ProgramSchema = Yup.object().shape({

@@ -10,7 +10,6 @@ import {
 import * as React from "react";
 import {
 	FaRegBell,
-	FaRegChartBar,
 	FaClipboardList,
 	FaHeart,
 	FaDumbbell,
@@ -20,7 +19,7 @@ import { Logo } from "@components/dash2/logo";
 import { NavLink } from "@components/dash2/navlink";
 import { SearchField } from "@components/dash2/searchfield";
 import { UserProfile } from "@components/dash2/userprofile";
-import { useRouter } from "next/router";
+
 
 
 

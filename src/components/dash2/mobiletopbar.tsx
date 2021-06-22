@@ -5,7 +5,7 @@ import {
 	DrawerOverlay,
 	Flex,
 	IconButton,
-	useColorModeValue as mode,
+	
 } from "@chakra-ui/react";
 import * as React from "react";
 import { HiOutlineMenu } from "react-icons/hi";

@@ -2,5 +2,17 @@ import { Flex, Box, Text } from "@chakra-ui/react";
 import Dash from "@components/dash2/dash";
 
 export default function MyPrograms(): JSX.Element {
-	return <Dash />;
+
+	
+	return (
+	
+	
+	
+	<Flex w="100vw" h="100vh">
+	<Dash />
+	<Box>
+
+	</Box>
+	</Flex>
+	);
 }
