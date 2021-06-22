@@ -345,7 +345,7 @@ export default function CreateForm() {
 			<Heading as="h3" size="lg" mb={4} opacity="0.7">
 				Build A Workout Program
 			</Heading>
-			<GlassBgBox p="18px" op={0.08} w="100%">
+			<GlassBgBox p="18px" op={0.08} w="100%" >
 				<Container maxW="container.lg">
 					<Formik
 						initialValues={initialValues}

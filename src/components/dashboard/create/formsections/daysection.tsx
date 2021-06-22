@@ -19,10 +19,10 @@ export default function Days({
 	console.log("form helpers", formHelpers.values);
 	return (
 		<>
-			<Flex justify="center" w="100%" my="16px">
-				<Box w="10%" mx="8px">
+			<Box w="10%" mx="8px">
 					<Field component={CFormikInput} name="title" />
-				</Box>
+			</Box>
+			<Flex justify="center" w="100%" my="16px">
 				<Button
 					onClick={() => {
 						formHelpers.setValues(basictemplate, false);
@@ -61,43 +61,48 @@ export default function Days({
 				values.days.map((day, index) => (
 					<Box
 						key={index}
-						p="32px"
+						paddingBottom="32px"
+						px="32px"
 						border="2px"
 						borderRadius="10px"
 						my="16px"
 					>
-						<Flex justify="center">
-							<FormLabel>Day Name </FormLabel>
+						<Flex justify="space-between">
+							<FormLabel fontSize="30px">Day Name </FormLabel>
+							<Flex>
+								<IconButton
+									variant="ghost"
+									aria-label="add note"
+									icon={<BiNote />}
+									type="button"
+									onClick={() =>
+										formHelpers.setFieldValue(
+											`days[${index}].hideNote`,
+											!day.hideNote
+										)
+									}
+								/>
+
+								<IconButton
+									aria-label="download day template"
+									// onClick={() => daysArrayHelpers.remove(index)}
+									icon={<DownloadIcon />}
+									variant="ghost"
+								/>
+								<IconButton
+									aria-label="delete"
+									onClick={() =>
+										daysArrayHelpers.remove(index)
+									}
+									icon={<CloseIcon />}
+									variant="ghost"
+								/>
+							</Flex>
 						</Flex>
 						<Flex justify="center">
 							<Field
 								name={`days[${index}].dayName`}
 								component={CFormikInput}
-							/>
-
-							<IconButton
-								variant="ghost"
-								aria-label="add note"
-								icon={<BiNote />}
-								type="button"
-								onClick={() =>
-									formHelpers.setFieldValue(
-										`days[${index}].hideNote`,
-										!day.hideNote
-									)
-								}
-							/>
-							<IconButton
-								aria-label="download day template"
-								// onClick={() => daysArrayHelpers.remove(index)}
-								icon={<DownloadIcon />}
-								variant="ghost"
-							/>
-							<IconButton
-								aria-label="delete"
-								onClick={() => daysArrayHelpers.remove(index)}
-								icon={<CloseIcon />}
-								variant="ghost"
 							/>
 						</Flex>
 						<Box>

@@ -1,7 +1,14 @@
 import CFormikInput from "@components/formikinput";
 import { FieldArrayRenderProps, Field } from "formik";
 // import React, { FunctionComponent } from "react";
-import { Box, Flex, Button, IconButton, Text } from "@chakra-ui/react";
+import {
+	Box,
+	Flex,
+	Button,
+	IconButton,
+	Text,
+	FormLabel,
+} from "@chakra-ui/react";
 import { BiNote } from "react-icons/bi";
 import { DeleteIcon, AddIcon, CloseIcon, DownloadIcon } from "@chakra-ui/icons";
 import UnitSelect from "@components/unitselectoptions";
@@ -11,6 +18,7 @@ export default function Lifts({
 	dayIndex,
 }: FunctionComponent<void | FieldArrayRenderProps>) {
 	const { values } = liftsArrayHelpers.form;
+	
 
 	return (
 		<Box>
@@ -20,25 +28,33 @@ export default function Lifts({
 						(lift: any, index: any) => (
 							<Box key={index}>
 								<Flex>
+									
 									<Field
 										name={`days[${dayIndex}.workouts[${workoutIndex}].lifts[${index}].name`}
 										component={CFormikInput}
 									/>
-									<Text>Sets</Text>
+									
+									<FormLabel ml="50px">Sets</FormLabel>
+									
 									<Field
 										name={`days[${dayIndex}.workouts[${workoutIndex}].lifts[${index}].sets`}
 										component={CFormikInput}
+										
 									/>
-									<Text>Reps</Text>
+									
+									<FormLabel ml="15px">Reps</FormLabel>
+									
 									<Field
 										name={`days[${dayIndex}.workouts[${workoutIndex}].lifts[${index}].reps`}
 										component={CFormikInput}
 									/>
-									<Text>Load</Text>
+									
+									<FormLabel ml="50px">Load</FormLabel>
 									<Field
 										name={`days[${dayIndex}.workouts[${workoutIndex}].lifts[${index}].load`}
 										component={CFormikInput}
 									/>
+									
 									<Field
 										name={`days[${dayIndex}.workouts[${workoutIndex}].lifts[${index}].unit`}
 										component={UnitSelect}
