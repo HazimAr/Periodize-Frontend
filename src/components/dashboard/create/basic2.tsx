@@ -87,6 +87,7 @@ export default function CreateForm() {
 		workoutName: string;
 		workoutNote: string;
 		hideNote: boolean;
+		type: string;
 		rest: string;
 		lifts: Lifts[];
 	}
@@ -116,6 +117,7 @@ export default function CreateForm() {
 				workouts: [
 					{
 						workoutName: "Super Set Bench",
+						type: "superset",
 						workoutNote: "",
 						hideNote: true,
 						rest: "",
@@ -146,6 +148,7 @@ export default function CreateForm() {
 						workoutName: "Pull up",
 						workoutNote: "",
 						hideNote: true,
+						type: "single",
 						rest: "",
 						lifts: [
 							{
@@ -164,6 +167,7 @@ export default function CreateForm() {
 						workoutName: "third movement",
 						workoutNote: "",
 						hideNote: true,
+						type: "single",
 						rest: "",
 						lifts: [
 							{
@@ -191,6 +195,7 @@ export default function CreateForm() {
 						workoutNote: "",
 						hideNote: true,
 						rest: "",
+						type: "superset",
 						lifts: [
 							{
 								name: "Bench Press",
@@ -218,6 +223,7 @@ export default function CreateForm() {
 						workoutName: "",
 						workoutNote: "",
 						hideNote: true,
+						type: "single",
 						rest: "",
 						lifts: [
 							{
@@ -236,6 +242,7 @@ export default function CreateForm() {
 						workoutName: "",
 						workoutNote: "",
 						hideNote: true,
+						type: "single",
 						rest: "",
 						lifts: [
 							{
@@ -262,6 +269,7 @@ export default function CreateForm() {
 						workoutName: "",
 						workoutNote: "",
 						hideNote: true,
+						type: "single",
 						rest: "",
 						lifts: [
 							{
@@ -280,6 +288,7 @@ export default function CreateForm() {
 						workoutName: "",
 						workoutNote: "",
 						hideNote: true,
+						type: "single",
 						rest: "",
 						lifts: [
 							{
@@ -298,6 +307,7 @@ export default function CreateForm() {
 						workoutName: "",
 						workoutNote: "",
 						hideNote: true,
+						type: "single",
 						rest: "",
 						lifts: [
 							{
@@ -335,7 +345,7 @@ export default function CreateForm() {
 			<Heading as="h3" size="lg" mb={4} opacity="0.7">
 				Build A Workout Program
 			</Heading>
-			<GlassBgBox p="18px" op={0.08} w="100%" >
+			<GlassBgBox p="18px" op={0.08} w="100%">
 				<Container maxW="container.lg">
 					<Formik
 						initialValues={initialValues}
@@ -362,9 +372,9 @@ export default function CreateForm() {
 									)}
 								/>
 
-								<pre>
+								{/* <pre>
 									{JSON.stringify(props.values, null, 2)}
-								</pre>
+								</pre> */}
 								{/* <pre>{JSON.stringify(errors, null, 2)}</pre> */}
 								<Button
 									type="submit"
