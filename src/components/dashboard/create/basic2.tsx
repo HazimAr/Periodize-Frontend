@@ -34,7 +34,6 @@ export default function CreateForm() {
 					Yup.object().shape({
 						workoutName: Yup.string()
 							.min(2, "too short")
-							.required("Required")
 							.max(25, "Too long!"),
 						workoutNote: Yup.string()
 							.min(3, "Too short! How is that a note?")
@@ -107,22 +106,22 @@ export default function CreateForm() {
 		preset: "",
 		days: [
 			{
-				dayName: "",
+				dayName: "hi",
 				dayDescription: "",
 				hideNote: true,
 				workouts: [
 					{
-						workoutName: "",
+						workoutName: "he",
 						workoutNote: "",
 						hideNote: true,
-						type: "",
+						type: "single",
 						rest: "",
 						lifts: [
 							{
-								name: "",
-								load: "",
-								sets: "",
-								reps: "",
+								name: "hehe",
+								load: "5",
+								sets: "5",
+								reps: "5",
 								rest: "",
 								note: "",
 								hideNote: true,
@@ -145,11 +144,14 @@ export default function CreateForm() {
 					<Formik
 						initialValues={initialValues}
 						onSubmit={(values, actions) => {
-							alert(JSON.stringify(values, null, 2));
-							actions.setSubmitting(false);
+							console.log("submitting");
+							// alert(JSON.stringify(values, null, 2));
+							// actions.setSubmitting(false);
 						}}
 						validationSchema={ProgramSchema}
-						// enableReinitialize={false}
+						enableReinitialize={false}
+						validateOnChange={false}
+						validateOnBlur={false}
 					>
 						{(props) => (
 							<Form>
@@ -168,7 +170,9 @@ export default function CreateForm() {
 								{/* <pre>
 									{JSON.stringify(props.values, null, 2)}
 								</pre> */}
-								{/* <pre>{JSON.stringify(errors, null, 2)}</pre> */}
+								<pre>
+									{JSON.stringify(props.errors, null, 2)}
+								</pre>
 								<Button type="submit">Submit</Button>
 								{/* <Button
 									type="submit"
