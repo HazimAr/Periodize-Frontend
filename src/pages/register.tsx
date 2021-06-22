@@ -21,8 +21,8 @@ import {
 	InputRightElement,
 	chakra,
 	IconButton,
-
 } from "@chakra-ui/react";
+
 import GoogleButton from "@components/google";
 import HeadFoot from "@components/home/headfoot";
 import Link from "@components/link";
@@ -36,7 +36,6 @@ const CFaUserAlt = chakra(FaUserAlt);
 const CFaLock = chakra(FaLock);
 
 export default function LoginPage(): JSX.Element {
-
 	const Filter = require("bad-words");
 	const filter = new Filter();
 	const [username, setUsername] = useState("");
