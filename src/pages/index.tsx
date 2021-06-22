@@ -1,11 +1,11 @@
 import { Container, Box, Heading, Flex, Text } from "@chakra-ui/react";
 import CarouselCenter from "@components/carousel";
-import HeadFoot from "@components/home/headfoot";
+// import HeadFoot from "@components/home/headfoot";
 import Button from "@components/styledbutton";
 import Image from "next/image";
 import { AiOutlineRight } from "react-icons/ai";
 import styled from "styled-components";
-import Link from "@components/link";
+// import Link from "@components/link";
 
 const StyledButton = styled(Button)`
 	transition: all ease 0.2s;
@@ -25,12 +25,12 @@ const StyledButton = styled(Button)`
 
 const StyledText = styled(Text)``;
 
-const LearnMore = styled(Text)`
-	${StyledText} {
-		margin-top: 10px;
-		margin-bottom: 3px;
-	}
-`;
+// const LearnMore = styled(Text)`
+// 	${StyledText} {
+// 		margin-top: 10px;
+// 		margin-bottom: 3px;
+// 	}
+// `;
 
 const Wave = styled.svg`
 	position: absolute;
