@@ -8,12 +8,7 @@ import {
 	Flex,
 	Container,
 } from "@chakra-ui/react";
-import {
-	Formik,
-	Form,
-	FieldArray,
-	
-} from "formik";
+import { Formik, Form, FieldArray } from "formik";
 
 // import { createProgram } from "@api/program";
 
@@ -24,6 +19,7 @@ import * as Yup from "yup";
 // import CFormikUnitSelect from "@components/unitselectoptions";
 
 import DaySection from "@components/dashboard/create/formsections/daysection";
+
 export default function CreateForm() {
 	const ProgramSchema = Yup.object().shape({
 		title: Yup.string(),
@@ -43,6 +39,7 @@ export default function CreateForm() {
 						workoutNote: Yup.string()
 							.min(3, "Too short! How is that a note?")
 							.max(100, "Too long!"),
+						type: Yup.string(),
 						lifts: Yup.array().of(
 							Yup.object().shape({
 								liftName: Yup.string()
@@ -104,11 +101,10 @@ export default function CreateForm() {
 		days: Days[];
 	}
 
-	
 	const initialValues: MyFormValues = {
 		title: "My Split",
 		description: "",
-		preset: null,
+		preset: "",
 		days: [
 			{
 				dayName: "",
@@ -129,13 +125,12 @@ export default function CreateForm() {
 					<Formik
 						initialValues={initialValues}
 						onSubmit={(values, actions) => {
-							setTimeout(() => {
-								alert(JSON.stringify(values, null, 2));
-								actions.setSubmitting(false);
-							}, 1000);
+							// console.log("submit values: ", values);
+							alert(JSON.stringify(values, null, 2));
+							// actions.setSubmitting(false);
 						}}
 						validationSchema={ProgramSchema}
-						enableReinitialize={false}
+						// enableReinitialize={false}
 					>
 						{(props) => (
 							<Form>
@@ -155,14 +150,18 @@ export default function CreateForm() {
 									{JSON.stringify(props.values, null, 2)}
 								</pre> */}
 								{/* <pre>{JSON.stringify(errors, null, 2)}</pre> */}
-								<Button
+								<Button type="submit">Submit</Button>
+								{/* <Button
 									type="submit"
 									variant="outline"
 									my="16px"
-									isLoading={props.isSubmitting}
+									onClick={() => {
+										console.log(props.values);
+									}}
+									// isLoading={props.isSubmitting}
 								>
 									Submit
-								</Button>
+								</Button> */}
 							</Form>
 						)}
 					</Formik>
