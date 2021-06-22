@@ -1,4 +1,4 @@
-import { Flex, Box, Text } from "@chakra-ui/layout";
+import { Flex } from "@chakra-ui/layout";
 
 
 

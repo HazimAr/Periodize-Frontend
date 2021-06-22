@@ -1,23 +1,20 @@
 import CFormikInput from "@components/formikinput";
-import { FieldArrayRenderProps, Field } from "formik";
+import { Field } from "formik";
 // import React, { FunctionComponent } from "react";
 import {
 	Box,
 	Flex,
-	Button,
 	IconButton,
-	Text,
 	FormLabel,
 } from "@chakra-ui/react";
-import { BiNote } from "react-icons/bi";
-import { DeleteIcon, AddIcon, CloseIcon, DownloadIcon } from "@chakra-ui/icons";
+import {  AddIcon, CloseIcon, DownloadIcon } from "@chakra-ui/icons";
 import UnitSelect from "@components/unitselectoptions";
 export default function Lifts({
 	workoutsArrayHelpers,
 	liftsArrayHelpers,
 	workoutIndex,
 	dayIndex,
-}: FunctionComponent<void | FieldArrayRenderProps>) {
+}: any) {
 	const { values } = liftsArrayHelpers.form;
 
 	return (
@@ -74,7 +71,7 @@ export default function Lifts({
 										name={`days[${dayIndex}.workouts[${workoutIndex}].lifts[${index}].name`}
 										component={CFormikInput}
 									/>
-
+									{console.log(lift)}
 									<FormLabel ml="50px">Sets</FormLabel>
 
 									<Field

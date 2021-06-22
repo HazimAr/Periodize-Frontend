@@ -1,14 +1,12 @@
-import CFormikInput from "@components/formikinput";
-import { FieldArrayRenderProps, Field, FieldArray } from "formik";
+
+import {FieldArray } from "formik";
 // import React, { FunctionComponent } from "react";
-import { Box, Flex, Button, HStack, IconButton } from "@chakra-ui/react";
+import { Box, Button, HStack} from "@chakra-ui/react";
 import Lifts from "@components/dashboard/create/formsections/liftsection";
-import { BiNote } from "react-icons/bi";
-import { DeleteIcon, AddIcon, CloseIcon, DownloadIcon } from "@chakra-ui/icons";
 export default function Workouts({
 	workoutsArrayHelpers,
 	dayIndex,
-}: FunctionComponent<void | FieldArrayRenderProps>) {
+}: any) {
 	const { values } = workoutsArrayHelpers.form;
 	interface Lifts {
 		name: string;
@@ -148,6 +146,7 @@ export default function Workouts({
 								p="8px"
 								my="16px"
 							>
+								{console.log(workout)}
 								{/* {workout.type === "single" ? null : (
 									<Flex my="8px">
 										<Field

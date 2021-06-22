@@ -27,7 +27,6 @@ import GoogleButton from "@components/google";
 import HeadFoot from "@components/home/headfoot";
 import Link from "@components/link";
 import Button from "@components/styledbutton";
-import { StyledFlex } from "@styles/index.theme";
 import axios from "axios";
 import { validate } from "email-validator";
 import { useState } from "react";
@@ -210,11 +209,11 @@ export default function LoginPage(): JSX.Element {
 						</form>
 					</Box>
 				</Stack>
-				<StyledFlex flexDir="column">
+				<Flex flexDir="column">
 					<Link href="/forgot" name="Forgot password?" />
 					<Link href="/login" name="Already have an account?" />
 					<Link href="/privacy" name="Privacy Policy" />
-				</StyledFlex>
+				</Flex>
 			</Flex>
 		</HeadFoot>
 	);

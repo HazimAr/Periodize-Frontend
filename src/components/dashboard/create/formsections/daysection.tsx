@@ -1,18 +1,41 @@
-import { FieldArrayRenderProps, Field, FieldArray } from "formik";
+import { Field, FieldArray } from "formik";
 // import React, { FunctionComponent } from "react";
 import { Box, Flex, Button, IconButton, FormLabel, Spacer } from "@chakra-ui/react";
 import Workouts from "@components/dashboard/create/formsections/workoutsection";
-import { DeleteIcon, AddIcon, CloseIcon, DownloadIcon } from "@chakra-ui/icons";
+import { AddIcon, CloseIcon, DownloadIcon } from "@chakra-ui/icons";
 import CFormikSplitSelect from "@components/splitselectoptions";
 import CFormikInput from "@components/formikinput";
 import { basictemplate } from "@components/dashboard/create/formsections/_data";
 import { BiNote } from "react-icons/bi";
-
 export default function Days({
 	daysArrayHelpers,
 	formHelpers,
-}: FunctionComponent<void | FieldArrayRenderProps>) {
+}: any) {
 	// props
+	interface Lifts {
+		name: string;
+		load: string;
+		sets: string;
+		reps: string;
+		rest: string;
+		note: string;
+		hideNote: boolean;
+		unit: string;
+	}
+	interface Workouts {
+		workoutName: string;
+		workoutNote: string;
+		hideNote: boolean;
+		type: string;
+		rest: string;
+		lifts: Lifts[];
+	}
+	interface Days {
+		dayName: string;
+		dayDescription: string;
+		hideNote: boolean;
+		workouts: Workouts[];
+	}
 	const { values } = daysArrayHelpers.form;
 	console.log(formHelpers.values.days);
 
@@ -60,7 +83,7 @@ export default function Days({
 				</Button>
 			</Flex>
 			{values.days && values.days.length > 0 ? (
-				values.days.map((day, index) => (
+				values.days.map((day:Days, index:number) => (
 					<Box
 						key={index}
 						paddingBottom="32px"
