@@ -23,7 +23,7 @@ const StyledButton = styled(Button)`
 	}
 `;
 
-const StyledText = styled(Text)``;
+// const StyledText = styled(Text)``;
 
 // const LearnMore = styled(Text)`
 // 	${StyledText} {
