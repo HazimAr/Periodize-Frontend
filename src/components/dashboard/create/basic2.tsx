@@ -14,6 +14,7 @@ import { createProgram } from "@api/program";
 
 import GlassBgBox from "@components/glassbg";
 import * as Yup from "yup";
+import { useRouter } from "next/router";
 // import CNumberInput from "@components/formiknumberinput";
 
 // import CFormikUnitSelect from "@components/unitselectoptions";
@@ -21,6 +22,7 @@ import * as Yup from "yup";
 import DaySection from "@components/dashboard/create/formsections/daysection";
 import { MyFormValues, Days, Workouts, Lifts } from "types";
 export default function CreateForm() {
+	const router = useRouter();
 	const ProgramSchema = Yup.object().shape({
 		title: Yup.string(),
 		description: Yup.string(),
@@ -144,7 +146,7 @@ export default function CreateForm() {
 					<Formik
 						initialValues={initialValues}
 						onSubmit={(values, actions) => {
-							createProgram(values);
+							createProgram(values).then(() => router.push("/"));
 							// console.log("submitting");
 							// alert(JSON.stringify(values, null, 2));
 							// actions.setSubmitting(false);

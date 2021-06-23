@@ -1,4 +1,3 @@
-import { FieldArray } from "formik";
 // import React, { FunctionComponent } from "react";
 import {
 	Box,
@@ -16,9 +15,29 @@ import {
 	GridItem,
 	Text,
 	SimpleGrid,
+	Flex,
+	IconButton,
+	FormLabel,
 } from "@chakra-ui/react";
+import { Field, FieldArray } from "formik";
+import { useState } from "react";
+import CFormikInput from "@components/formikinput";
+import CFormikTextarea from "@components/formiktextarea";
 import Lifts from "@components/dashboard/create/formsections/liftsection";
-export default function Workouts({ workoutsArrayHelpers, dayIndex }: any) {
+import { BiNote } from "react-icons/bi";
+import {
+	AddIcon,
+	CloseIcon,
+	DownloadIcon,
+	ViewIcon,
+	ViewOffIcon,
+} from "@chakra-ui/icons";
+export default function Workouts({
+	workoutsArrayHelpers,
+	dayIndex,
+	daysArrayHelpers,
+	formHelpers,
+}: any) {
 	const { values } = workoutsArrayHelpers.form;
 	interface Lifts {
 		name: string;
@@ -38,8 +57,62 @@ export default function Workouts({ workoutsArrayHelpers, dayIndex }: any) {
 		type: string;
 		lifts: Lifts[];
 	}
+	const [display, setDisplay] = useState(true);
 	return (
 		<Box>
+			<Flex justify="space-between" mt="20px">
+				<Flex>
+					<Field
+						name={`days[${dayIndex}].dayName`}
+						component={CFormikInput}
+					/>
+				</Flex>
+				<Flex>
+					<IconButton
+						variant="ghost"
+						aria-label="hide day"
+						icon={display ? <ViewIcon /> : <ViewOffIcon />}
+						// type="button"
+						onClick={() => setDisplay(!display)}
+					/>
+					<IconButton
+						variant="ghost"
+						aria-label="add note"
+						icon={<BiNote />}
+						type="button"
+						onClick={() =>
+							formHelpers.setFieldValue(
+								`days[${dayIndex}].hideNote`,
+								!values.day[dayIndex].hideNote
+							)
+						}
+					/>
+
+					<IconButton
+						aria-label="download day template"
+						// onClick={() => daysArrayHelpers.remove(index)}
+						icon={<DownloadIcon />}
+						variant="ghost"
+					/>
+					<IconButton
+						aria-label="delete"
+						onClick={() => daysArrayHelpers.remove(dayIndex)}
+						icon={<CloseIcon />}
+						variant="ghost"
+					/>
+				</Flex>
+			</Flex>
+			<Box>
+				{values.day[dayIndex].hideNote ? null : (
+					<Box mt="10px">
+						<FormLabel fontSize="15px">Description:</FormLabel>
+						<Field
+							name={`days[${dayIndex}].dayDescription`}
+							component={CFormikTextarea}
+						/>
+					</Box>
+				)}
+			</Box>
 			<HStack justify="flex-end" my="16px">
 				<Button
 					variant="outline"

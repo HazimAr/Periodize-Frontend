@@ -107,83 +107,6 @@ export default function Lifts({
 			values.days[dayIndex].workouts[workoutIndex].lifts.length > 0
 				? values.days[dayIndex].workouts[workoutIndex].lifts.map(
 						(lift: any, index: any) => (
-							// <Grid
-							// 	templateColumns="repeat(6, 1fr)"
-							// 	gap={4}
-							// 	// rowGap={8}
-							// 	my="6px"
-							// 	px="8px"
-							// >
-							// 	<GridItem>
-							// 		<Field
-							// 			name={`days[${dayIndex}.workouts[${workoutIndex}].lifts[${index}].name`}
-							// 			component={CFormikInput}
-							// 		/>
-							// 	</GridItem>
-							// 	<GridItem>
-							// 		<Field
-							// 			name={`days[${dayIndex}.workouts[${workoutIndex}].lifts[${index}].sets`}
-							// 			component={CFormikInput}
-							// 		/>
-							// 	</GridItem>
-							// 	<GridItem>
-							// 		<Field
-							// 			name={`days[${dayIndex}.workouts[${workoutIndex}].lifts[${index}].reps`}
-							// 			component={CFormikInput}
-							// 		/>
-							// 	</GridItem>
-							// 	<GridItem>
-							// 		<Field
-							// 			name={`days[${dayIndex}.workouts[${workoutIndex}].lifts[${index}].load`}
-							// 			component={CFormikInput}
-							// 		/>
-							// 	</GridItem>
-							// 	<GridItem>
-							// 		<Field
-							// 			name={`days[${dayIndex}.workouts[${workoutIndex}].lifts[${index}].unit`}
-							// 			component={UnitSelect}
-							// 		/>
-							// 	</GridItem>
-							// 	<GridItem rowEnd="auto">
-							// 		<Flex justify="flex-end">
-							// 			{/* <IconButton
-							// 				aria-label="download day template"
-							// 				// onClick={() => liftsArrayHelpers.remove(index)}
-							// 				icon={<DownloadIcon />}
-							// 				variant="ghost"
-							// 			/> */}
-
-							// 			{values.days[dayIndex].workouts[
-							// 				workoutIndex
-							// 			].type === "single" ? (
-							// 				<IconButton
-							// 					aria-label="delete"
-							// 					onClick={() =>
-							// 						workoutsArrayHelpers.remove(
-							// 							workoutIndex
-							// 						)
-							// 					}
-							// 					icon={<CloseIcon />}
-							// 					variant="ghost"
-							// 					size="sm"
-							// 				/>
-							// 			) : (
-							// 				<IconButton
-							// 					aria-label="delete"
-							// 					onClick={() =>
-							// 						liftsArrayHelpers.remove(
-							// 							index
-							// 						)
-							// 					}
-							// 					icon={<CloseIcon />}
-							// 					variant="ghost"
-							// 					size="sm"
-							// 				/>
-							// 			)}
-							// 		</Flex>
-							// 	</GridItem>
-							// </Grid>
-
 							<SimpleGrid columns={6} spacing={4} my="6px">
 								<Field
 									name={`days[${dayIndex}.workouts[${workoutIndex}].lifts[${index}].name`}
@@ -211,13 +134,6 @@ export default function Lifts({
 								/>
 
 								<Flex justify="flex-end">
-									{/* <IconButton
-											aria-label="download day template"
-											// onClick={() => liftsArrayHelpers.remove(index)}
-											icon={<DownloadIcon />}
-											variant="ghost"
-										/> */}
-
 									{values.days[dayIndex].workouts[
 										workoutIndex
 									].type === "single" ? (

@@ -101,7 +101,7 @@ export default function Days({ daysArrayHelpers, formHelpers }: any) {
 						borderRadius="10px"
 						my="16px"
 					>
-						<Flex justify="space-between" mt="20px">
+						{/* <Flex justify="space-between" mt="20px">
 							<Flex>
 								<Field
 									name={`days[${index}].dayName`}
@@ -159,20 +159,18 @@ export default function Days({ daysArrayHelpers, formHelpers }: any) {
 									/>
 								</Box>
 							)}
-						</Box>
+						</Box> */}
 						{display ? (
 							<Box my="8px">
 								<FieldArray
 									name={`days[${index}].workouts`}
 									render={(arrayHelpers) => (
-										<>
-											<Workouts
-												dayIndex={`${index}`}
-												workoutsArrayHelpers={
-													arrayHelpers
-												}
-											/>
-										</>
+										<Workouts
+											dayIndex={`${index}`}
+											workoutsArrayHelpers={arrayHelpers}
+											daysArrayHelpers={daysArrayHelpers}
+											formHelpers={formHelpers}
+										/>
 									)}
 								/>
 							</Box>
