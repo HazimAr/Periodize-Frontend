@@ -250,6 +250,7 @@ export default function Workouts({
 									// {console.log(workout)}
 
 									<FieldArray
+										key={index}
 										name={`days[${dayIndex}].workouts[${index}].lifts`}
 										render={(arrayHelpers) => (
 											<>

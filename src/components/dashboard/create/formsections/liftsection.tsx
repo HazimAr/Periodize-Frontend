@@ -107,7 +107,7 @@ export default function Lifts({
 			values.days[dayIndex].workouts[workoutIndex].lifts.length > 0
 				? values.days[dayIndex].workouts[workoutIndex].lifts.map(
 						(lift: any, index: any) => (
-							<SimpleGrid columns={6} spacing={4} my="6px">
+							<SimpleGrid columns={6} spacing={4} my="6px" key={index}>
 								<Field
 									name={`days[${dayIndex}.workouts[${workoutIndex}].lifts[${index}].name`}
 									component={CFormikInput}
