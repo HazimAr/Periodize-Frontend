@@ -49,11 +49,11 @@ export default function CreateForm() {
 									.positive("Provide a positive load!")
 									.max(9000, "It can't be over 9000!!"),
 								sets: Yup.number()
-									.required()
+									.required("Sets required!😡")
 									.positive("Use a positive number")
 									.max(999, "Thats too much.."),
 								reps: Yup.number()
-									.required()
+									.required("Reps required!😡")
 									.positive("Use a positive number")
 									.max(999, "Thats too much.."),
 								rest: Yup.string().max(50, "Too long!"),
@@ -144,8 +144,8 @@ export default function CreateForm() {
 					<Formik
 						initialValues={initialValues}
 						onSubmit={(values, actions) => {
-							console.log("submitting");
-							// alert(JSON.stringify(values, null, 2));
+							// console.log("submitting");
+							alert(JSON.stringify(values, null, 2));
 							// actions.setSubmitting(false);
 						}}
 						validationSchema={ProgramSchema}

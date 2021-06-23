@@ -1,8 +1,31 @@
 import CFormikInput from "@components/formikinput";
 import { Field } from "formik";
 // import React, { FunctionComponent } from "react";
-import { Box, Flex, IconButton, FormLabel } from "@chakra-ui/react";
+import {
+	Box,
+	Flex,
+	IconButton,
+	FormLabel,
+	Text,
+	Grid,
+	Table,
+	Thead,
+	Tbody,
+	Tfoot,
+	Tr,
+	Th,
+	Td,
+	TableCaption,
+	GridItem,
+	HStack,
+	InputLeftElement,
+	InputGroup,
+	Input,
+	Icon,
+	SimpleGrid,
+} from "@chakra-ui/react";
 import { AddIcon, CloseIcon, DownloadIcon } from "@chakra-ui/icons";
+import { FcAlarmClock } from "react-icons/fc";
 import UnitSelect from "@components/unitselectoptions";
 export default function Lifts({
 	workoutsArrayHelpers,
@@ -13,46 +36,74 @@ export default function Lifts({
 	const { values } = liftsArrayHelpers.form;
 
 	return (
-		<Box>
+		<Box
+			// templateRows="repeat(1, 1fr)"
+			// templateColumns="repeat(6, 1fr)"
+			// gap={4}
+			// rowGap={8}
+			border={
+				values.days[dayIndex].workouts[workoutIndex].type === "single"
+					? "1px solid white"
+					: "1px solid pink"
+			}
+			m="8px"
+			px="12px"
+			py="2px"
+			borderRadius="5px"
+		>
 			{values.days[dayIndex].workouts[workoutIndex].type ===
 			"single" ? null : (
-				<Flex my="8px">
-					<Field
-						name={`days[${dayIndex}].workouts[${workoutIndex}].workoutName`}
-						component={CFormikInput}
-					/>
-					<IconButton
-						aria-label="add lift"
-						variant="ghost"
-						icon={<AddIcon />}
-						onClick={() => {
-							liftsArrayHelpers.push({
-								name: `New Lift`,
-								load: "",
-								sets: "",
-								reps: "",
-								rest: "",
-								note: "",
-								hideNote: true,
-								unit: "lb",
-							});
-						}}
-					/>
+				<Flex justify="space-between" my="6px" pb="6px">
+					<Box w="50%">
+						<Field
+							name={`days[${dayIndex}.workouts[${workoutIndex}].workoutName`}
+							component={CFormikInput}
+						/>
+					</Box>
 
-					<IconButton
-						aria-label="download workout template"
-						// onClick={() => liftsArrayHelpers.remove(index)}
-						icon={<DownloadIcon />}
-						variant="ghost"
-					/>
-					<IconButton
-						aria-label="delete"
-						onClick={() =>
-							workoutsArrayHelpers.remove(workoutIndex)
-						}
-						icon={<CloseIcon />}
-						variant="ghost"
-					/>
+					<Flex>
+						{values.days[dayIndex].workouts[workoutIndex].type ===
+						"circuit" ? (
+							<Flex w="100px" align="center">
+								<Icon
+									as={FcAlarmClock}
+									color="gray.300"
+									w={8}
+									h={8}
+								/>
+
+								<Field
+									name={`days[${dayIndex}.workouts[${workoutIndex}].rest`}
+									component={CFormikInput}
+								/>
+							</Flex>
+						) : null}
+						<IconButton
+							aria-label="add"
+							onClick={() =>
+								liftsArrayHelpers.push({
+									name: "New Lift",
+									load: "",
+									sets: "",
+									reps: "",
+									rest: "",
+									note: "",
+									hideNote: true,
+									unit: "",
+								})
+							}
+							icon={<AddIcon />}
+							variant="ghost"
+						/>
+						<IconButton
+							aria-label="delete"
+							onClick={() =>
+								workoutsArrayHelpers.remove(workoutIndex)
+							}
+							icon={<CloseIcon />}
+							variant="ghost"
+						/>
+					</Flex>
 				</Flex>
 			)}
 
@@ -60,55 +111,116 @@ export default function Lifts({
 			values.days[dayIndex].workouts[workoutIndex].lifts.length > 0
 				? values.days[dayIndex].workouts[workoutIndex].lifts.map(
 						(lift: any, index: any) => (
-							<Box key={index} my="4px">
-								<Flex>
-									<Field
-										name={`days[${dayIndex}.workouts[${workoutIndex}].lifts[${index}].name`}
-										component={CFormikInput}
-									/>
-									{console.log(lift)}
-									<FormLabel ml="50px">Sets</FormLabel>
+							// <Grid
+							// 	templateColumns="repeat(6, 1fr)"
+							// 	gap={4}
+							// 	// rowGap={8}
+							// 	my="6px"
+							// 	px="8px"
+							// >
+							// 	<GridItem>
+							// 		<Field
+							// 			name={`days[${dayIndex}.workouts[${workoutIndex}].lifts[${index}].name`}
+							// 			component={CFormikInput}
+							// 		/>
+							// 	</GridItem>
+							// 	<GridItem>
+							// 		<Field
+							// 			name={`days[${dayIndex}.workouts[${workoutIndex}].lifts[${index}].sets`}
+							// 			component={CFormikInput}
+							// 		/>
+							// 	</GridItem>
+							// 	<GridItem>
+							// 		<Field
+							// 			name={`days[${dayIndex}.workouts[${workoutIndex}].lifts[${index}].reps`}
+							// 			component={CFormikInput}
+							// 		/>
+							// 	</GridItem>
+							// 	<GridItem>
+							// 		<Field
+							// 			name={`days[${dayIndex}.workouts[${workoutIndex}].lifts[${index}].load`}
+							// 			component={CFormikInput}
+							// 		/>
+							// 	</GridItem>
+							// 	<GridItem>
+							// 		<Field
+							// 			name={`days[${dayIndex}.workouts[${workoutIndex}].lifts[${index}].unit`}
+							// 			component={UnitSelect}
+							// 		/>
+							// 	</GridItem>
+							// 	<GridItem rowEnd="auto">
+							// 		<Flex justify="flex-end">
+							// 			{/* <IconButton
+							// 				aria-label="download day template"
+							// 				// onClick={() => liftsArrayHelpers.remove(index)}
+							// 				icon={<DownloadIcon />}
+							// 				variant="ghost"
+							// 			/> */}
 
-									<Field
-										name={`days[${dayIndex}.workouts[${workoutIndex}].lifts[${index}].sets`}
-										component={CFormikInput}
-									/>
+							// 			{values.days[dayIndex].workouts[
+							// 				workoutIndex
+							// 			].type === "single" ? (
+							// 				<IconButton
+							// 					aria-label="delete"
+							// 					onClick={() =>
+							// 						workoutsArrayHelpers.remove(
+							// 							workoutIndex
+							// 						)
+							// 					}
+							// 					icon={<CloseIcon />}
+							// 					variant="ghost"
+							// 					size="sm"
+							// 				/>
+							// 			) : (
+							// 				<IconButton
+							// 					aria-label="delete"
+							// 					onClick={() =>
+							// 						liftsArrayHelpers.remove(
+							// 							index
+							// 						)
+							// 					}
+							// 					icon={<CloseIcon />}
+							// 					variant="ghost"
+							// 					size="sm"
+							// 				/>
+							// 			)}
+							// 		</Flex>
+							// 	</GridItem>
+							// </Grid>
 
-									<FormLabel ml="15px">Reps</FormLabel>
+							<SimpleGrid columns={6} spacing={4} my="6px">
+								<Field
+									name={`days[${dayIndex}.workouts[${workoutIndex}].lifts[${index}].name`}
+									component={CFormikInput}
+								/>
 
-									<Field
-										name={`days[${dayIndex}.workouts[${workoutIndex}].lifts[${index}].reps`}
-										component={CFormikInput}
-									/>
+								<Field
+									name={`days[${dayIndex}.workouts[${workoutIndex}].lifts[${index}].sets`}
+									component={CFormikInput}
+								/>
 
-									<FormLabel ml="50px">Load</FormLabel>
-									<Field
-										name={`days[${dayIndex}.workouts[${workoutIndex}].lifts[${index}].load`}
-										component={CFormikInput}
-									/>
+								<Field
+									name={`days[${dayIndex}.workouts[${workoutIndex}].lifts[${index}].reps`}
+									component={CFormikInput}
+								/>
 
-									<Field
-										name={`days[${dayIndex}.workouts[${workoutIndex}].lifts[${index}].unit`}
-										component={UnitSelect}
-									/>
+								<Field
+									name={`days[${dayIndex}.workouts[${workoutIndex}].lifts[${index}].load`}
+									component={CFormikInput}
+								/>
+
+								<Field
+									name={`days[${dayIndex}.workouts[${workoutIndex}].lifts[${index}].unit`}
+									component={UnitSelect}
+								/>
+
+								<Flex justify="flex-end">
 									{/* <IconButton
-										variant="ghost"
-										aria-label="add note"
-										icon={<BiNote />}
-										type="button"
-										onClick={() =>
-											formHelpers.setFieldValue(
-												`days[${index}].hideNote`,
-												!day.hideNote
-											)
-										}
-									/> */}
-									<IconButton
-										aria-label="download day template"
-										// onClick={() => liftsArrayHelpers.remove(index)}
-										icon={<DownloadIcon />}
-										variant="ghost"
-									/>
+											aria-label="download day template"
+											// onClick={() => liftsArrayHelpers.remove(index)}
+											icon={<DownloadIcon />}
+											variant="ghost"
+										/> */}
 
 									{values.days[dayIndex].workouts[
 										workoutIndex
@@ -122,6 +234,7 @@ export default function Lifts({
 											}
 											icon={<CloseIcon />}
 											variant="ghost"
+											size="sm"
 										/>
 									) : (
 										<IconButton
@@ -131,10 +244,11 @@ export default function Lifts({
 											}
 											icon={<CloseIcon />}
 											variant="ghost"
+											size="sm"
 										/>
 									)}
 								</Flex>
-							</Box>
+							</SimpleGrid>
 						)
 				  )
 				: null}

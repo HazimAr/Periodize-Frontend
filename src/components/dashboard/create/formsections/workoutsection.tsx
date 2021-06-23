@@ -1,6 +1,22 @@
 import { FieldArray } from "formik";
 // import React, { FunctionComponent } from "react";
-import { Box, Button, HStack } from "@chakra-ui/react";
+import {
+	Box,
+	Button,
+	HStack,
+	Table,
+	Thead,
+	Tbody,
+	Tfoot,
+	Tr,
+	Th,
+	Td,
+	TableCaption,
+	Grid,
+	GridItem,
+	Text,
+	SimpleGrid,
+} from "@chakra-ui/react";
 import Lifts from "@components/dashboard/create/formsections/liftsection";
 export default function Workouts({ workoutsArrayHelpers, dayIndex }: any) {
 	const { values } = workoutsArrayHelpers.form;
@@ -24,7 +40,7 @@ export default function Workouts({ workoutsArrayHelpers, dayIndex }: any) {
 	}
 	return (
 		<Box>
-			<HStack mx="12px" justify="center">
+			<HStack mx="12px" justify="center" my="16px">
 				<Button
 					onClick={() => {
 						workoutsArrayHelpers.push({
@@ -131,35 +147,52 @@ export default function Workouts({ workoutsArrayHelpers, dayIndex }: any) {
 					Add Circuit
 				</Button>
 			</HStack>
+			{values.days[dayIndex].workouts.length < 1 ? null : (
+				<Box m="8px" px="12px" py="8px">
+					<SimpleGrid columns={6}>
+						<Box>Movement</Box>
+						<Box>Sets</Box>
+						<Box>Reps</Box>
+						<Box>Load</Box>
+						<Box>Unit</Box>
+						<Box></Box>
+					</SimpleGrid>
+				</Box>
+			)}
+
+			{/* <Grid
+				// templateRows="repeat(2, 1fr)"
+				templateColumns="repeat(6, 1fr)"
+				gap={6}
+			>
+				<GridItem>Movement</GridItem>
+				<GridItem>Sets</GridItem>
+				<GridItem>Reps</GridItem>
+				<GridItem>Load</GridItem>
+				<GridItem>Unit</GridItem>
+				<GridItem></GridItem>
+			</Grid> */}
 			{values.days[dayIndex].workouts &&
 			values.days[dayIndex].workouts.length > 0
 				? values.days[dayIndex].workouts.map(
 						(workout: Workouts, index: any) => (
-							<Box
-								key={index}
-								border="1px solid white"
-								borderRadius="5px"
-								p="8px"
-								my="16px"
-							>
-								{console.log(workout)}
+							// {console.log(workout)}
 
-								<FieldArray
-									name={`days[${dayIndex}].workouts[${index}].lifts`}
-									render={(arrayHelpers) => (
-										<>
-											<Lifts
-												workoutIndex={index}
-												dayIndex={dayIndex}
-												liftsArrayHelpers={arrayHelpers}
-												workoutsArrayHelpers={
-													workoutsArrayHelpers
-												}
-											/>
-										</>
-									)}
-								/>
-							</Box>
+							<FieldArray
+								name={`days[${dayIndex}].workouts[${index}].lifts`}
+								render={(arrayHelpers) => (
+									<>
+										<Lifts
+											workoutIndex={index}
+											dayIndex={dayIndex}
+											liftsArrayHelpers={arrayHelpers}
+											workoutsArrayHelpers={
+												workoutsArrayHelpers
+											}
+										/>
+									</>
+								)}
+							/>
 						)
 				  )
 				: null}
