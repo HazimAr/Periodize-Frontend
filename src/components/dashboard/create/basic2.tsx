@@ -108,47 +108,46 @@ export default function CreateForm() {
 	};
 
 	return (
-		<Flex flexDir="column" w="100%" mt="16px">
-			<Heading as="h3" size="lg" mb={4} opacity="0.7">
-				Build A Workout Program
-			</Heading>
-			<Box p="18px" w="100%">
-				<Container maxW="container.md">
-					<Formik
-						initialValues={initialValues}
-						onSubmit={(values, actions) => {
-							createProgram(values).then(() => router.push("/"));
-							// console.log("submitting");
-							// alert(JSON.stringify(values, null, 2));
-							// actions.setSubmitting(false);
-						}}
-						validationSchema={ProgramSchema}
-						enableReinitialize={false}
-						validateOnChange={false}
-						validateOnBlur={false}
-					>
-						{(props) => (
-							<Form>
-								<FieldArray
-									name="days"
-									render={(arrayHelpers) => (
-										<>
-											<DaySection
-												daysArrayHelpers={arrayHelpers}
-												formHelpers={props}
-											/>
-										</>
-									)}
-								/>
+		<Flex flexDir="column" w="100%" mt="16px" p="18px">
+			<Container maxW="container.md">
+				<Heading size="lg" mb={4}>
+					Build A Workout Program
+				</Heading>
+				<Formik
+					initialValues={initialValues}
+					onSubmit={(values, actions) => {
+						createProgram(values).then(() => router.push("/"));
+						// console.log("submitting");
+						// alert(JSON.stringify(values, null, 2));
+						// actions.setSubmitting(false);
+					}}
+					validationSchema={ProgramSchema}
+					enableReinitialize={false}
+					validateOnChange={false}
+					validateOnBlur={false}
+				>
+					{(props) => (
+						<Form>
+							<FieldArray
+								name="days"
+								render={(arrayHelpers) => (
+									<>
+										<DaySection
+											daysArrayHelpers={arrayHelpers}
+											formHelpers={props}
+										/>
+									</>
+								)}
+							/>
 
-								{/* <pre>
+							{/* <pre>
 									{JSON.stringify(props.values, null, 2)}
 								</pre> */}
-								{/* <pre>
+							{/* <pre>
 									{JSON.stringify(props.errors, null, 2)}
 								</pre> */}
-								<Button type="submit">Submit</Button>
-								{/* <Button
+							<Button type="submit">Submit</Button>
+							{/* <Button
 									type="submit"
 									variant="outline"
 									my="16px"
@@ -156,11 +155,10 @@ export default function CreateForm() {
 								>
 									Submit
 								</Button> */}
-							</Form>
-						)}
-					</Formik>
-				</Container>
-			</Box>
+						</Form>
+					)}
+				</Formik>
+			</Container>
 		</Flex>
 	);
 }
