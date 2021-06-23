@@ -23,7 +23,6 @@ export default function Profile(): JSX.Element {
 					alignItems="center"
 					flexDir="column"
 					maxW="100vw"
-					
 				>
 					<GlassBgFlex
 						borderRadius="15px"
@@ -113,29 +112,32 @@ export default function Profile(): JSX.Element {
 						</Box>
 					</GlassBgFlex>
 
-					<Flex flexDir="column" mt="50px" justify="center" ml="10px">
-						<Text
-							Text
-							align="left"
-							mb="20px"
-							fontSize="30px"
-							fontWeight="bold"
-							mBottom="20px"
-						>
-							Advanced Settings
-						</Text>
-						<Box w="150px" my="10px">
-							<BasicModal header="Reset Password">
-								<EditPassword />
-							</BasicModal>
+					<Flex mt="50px" justify="center">
+						<Box ml="50px">
+							<Text
+								Text
+								align="left"
+								mb="20px"
+								fontSize="30px"
+								fontWeight="bold"
+								mBottom="20px"
+							>
+								Advanced Settings
+							</Text>
+							<Box w="150px" my="10px">
+								<BasicModal header="Reset Password">
+									<EditPassword />
+								</BasicModal>
+							</Box>
+							
+							<Text mt="20px" align="left" maWidth="500px">
+								Lorem ipsum dolor sit amet consectetur
+								adipisicing elit. Cumque amet minima delectus,
+								animi obcaecati est vel quibusdam provident qui
+								optio sunt pariatur, voluptatum vitae nulla
+								reprehenderit ipsum quos mollitia quam!
+							</Text>
 						</Box>
-						<Text mt="10px" align="left">
-							Lorem ipsum dolor sit amet consectetur adipisicing
-							elit. Cumque amet minima delectus, animi obcaecati
-							est vel quibusdam provident qui optio sunt pariatur,
-							voluptatum vitae nulla reprehenderit ipsum quos
-							mollitia quam!
-						</Text>
 					</Flex>
 				</Flex>
 			) : (

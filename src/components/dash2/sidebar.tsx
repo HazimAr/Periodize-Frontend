@@ -14,6 +14,7 @@ import {
 	FaHeart,
 	FaDumbbell,
 	FaRegQuestionCircle,
+	FaPlus,
 } from "react-icons/fa";
 import { Logo } from "@components/dash2/logo";
 import { NavLink } from "@components/dash2/navlink";
@@ -51,6 +52,11 @@ export const Sidebar = (props: FlexProps) => {
 				<Stack spacing="6" as="nav" aria-label="Sidebar Navigation">
 					<Stack spacing="1">
 						<NavLink
+							label="Create Program" 
+							icon={FaPlus}
+							href="dashboard/create"
+						/>
+						<NavLink
 							label="My Programs"
 							icon={FaDumbbell}
 							href="/myprograms"
@@ -59,7 +65,6 @@ export const Sidebar = (props: FlexProps) => {
 							label="Favorites"
 							icon={FaHeart}
 							href="/favorites"
-							
 						/>
 						<NavLink
 							label="Public Programs"
