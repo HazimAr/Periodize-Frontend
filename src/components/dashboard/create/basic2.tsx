@@ -19,7 +19,7 @@ import * as Yup from "yup";
 // import CFormikUnitSelect from "@components/unitselectoptions";
 
 import DaySection from "@components/dashboard/create/formsections/daysection";
-
+import { MyFormValues, Days, Workouts, Lifts } from "types";
 export default function CreateForm() {
 	const ProgramSchema = Yup.object().shape({
 		title: Yup.string(),
@@ -69,36 +69,36 @@ export default function CreateForm() {
 			})
 		),
 	});
-	interface Lifts {
-		name: string;
-		load: string;
-		sets: string;
-		reps: string;
-		rest: string;
-		note: string;
-		hideNote: boolean;
-		unit: string;
-	}
-	interface Workouts {
-		workoutName: string;
-		workoutNote: string;
-		hideNote: boolean;
-		type: string;
-		rest: string;
-		lifts: Lifts[];
-	}
-	interface Days {
-		dayName: string;
-		dayDescription: string;
-		hideNote: boolean;
-		workouts: Workouts[];
-	}
-	interface MyFormValues {
-		title: string;
-		description: string;
-		// preset: string | null;
-		days: Days[];
-	}
+	// interface Lifts {
+	// 	name: string;
+	// 	load: string;
+	// 	sets: string;
+	// 	reps: string;
+	// 	rest: string;
+	// 	note: string;
+	// 	hideNote: boolean;
+	// 	unit: string;
+	// }
+	// interface Workouts {
+	// 	workoutName: string;
+	// 	workoutNote: string;
+	// 	hideNote: boolean;
+	// 	type: string;
+	// 	rest: string;
+	// 	lifts: Lifts[];
+	// }
+	// interface Days {
+	// 	dayName: string;
+	// 	dayDescription: string;
+	// 	hideNote: boolean;
+	// 	workouts: Workouts[];
+	// }
+	// interface MyFormValues {
+	// 	title: string;
+	// 	description: string;
+	// 	// preset: string | null;
+	// 	days: Days[];
+	// }
 
 	const initialValues: MyFormValues = {
 		title: "My Split",
