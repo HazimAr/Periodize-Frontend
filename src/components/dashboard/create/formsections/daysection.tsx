@@ -102,7 +102,7 @@ export default function Days({ daysArrayHelpers, formHelpers }: any) {
 						my="16px"
 					>
 						<Flex justify="space-between" mt="20px">
-							<Flex w="20%">
+							<Flex>
 								<Field
 									name={`days[${index}].dayName`}
 									component={CFormikInput}
