@@ -25,7 +25,7 @@ import {
 	SimpleGrid,
 } from "@chakra-ui/react";
 import { AddIcon, CloseIcon, DownloadIcon } from "@chakra-ui/icons";
-import { FcAlarmClock } from "react-icons/fc";
+import { GiAlarmClock } from "react-icons/gi";
 import UnitSelect from "@components/unitselectoptions";
 export default function Lifts({
 	workoutsArrayHelpers,
@@ -37,16 +37,12 @@ export default function Lifts({
 
 	return (
 		<Box
-			// templateRows="repeat(1, 1fr)"
-			// templateColumns="repeat(6, 1fr)"
-			// gap={4}
-			// rowGap={8}
 			border={
 				values.days[dayIndex].workouts[workoutIndex].type === "single"
 					? "1px solid white"
 					: "1px solid pink"
 			}
-			m="8px"
+			my="8px"
 			px="12px"
 			py="2px"
 			borderRadius="5px"
@@ -66,10 +62,10 @@ export default function Lifts({
 						"circuit" ? (
 							<Flex w="100px" align="center">
 								<Icon
-									as={FcAlarmClock}
+									as={GiAlarmClock}
 									color="gray.300"
-									w={8}
-									h={8}
+									w={6}
+									h={6}
 								/>
 
 								<Field

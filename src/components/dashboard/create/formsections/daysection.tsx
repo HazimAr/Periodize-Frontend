@@ -1,5 +1,5 @@
 import { Field, FieldArray } from "formik";
-// import React, { FunctionComponent } from "react";
+import { useState } from "react";
 import {
 	Box,
 	Flex,
@@ -9,15 +9,19 @@ import {
 	Spacer,
 } from "@chakra-ui/react";
 import Workouts from "@components/dashboard/create/formsections/workoutsection";
-import { AddIcon, CloseIcon, DownloadIcon } from "@chakra-ui/icons";
+import {
+	AddIcon,
+	CloseIcon,
+	DownloadIcon,
+	ViewIcon,
+	ViewOffIcon,
+} from "@chakra-ui/icons";
 import CFormikSplitSelect from "@components/splitselectoptions";
 import CFormikInput from "@components/formikinput";
+import CFormikTextarea from "@components/formiktextarea";
 import { basictemplate } from "@components/dashboard/create/formsections/_data";
 import { BiNote } from "react-icons/bi";
-export default function Days({
-	daysArrayHelpers,
-	formHelpers,
-}: any) {
+export default function Days({ daysArrayHelpers, formHelpers }: any) {
 	// props
 	interface Lifts {
 		name: string;
@@ -44,10 +48,10 @@ export default function Days({
 		workouts: Workouts[];
 	}
 	const { values } = daysArrayHelpers.form;
-
+	const [display, setDisplay] = useState(true);
 	return (
-		<>
-			<Box w="100%" mx="8px">
+		<Box>
+			<Box w="100%">
 				<Field component={CFormikInput} name="title" />
 			</Box>
 			<Flex justify="center" w="100%" my="16px">
@@ -88,11 +92,11 @@ export default function Days({
 				</Button>
 			</Flex>
 			{values.days && values.days.length > 0 ? (
-				values.days.map((day:Days, index:number) => (
+				values.days.map((day: Days, index: number) => (
 					<Box
 						key={index}
 						paddingBottom="32px"
-						px="32px"
+						px="18px"
 						border="2px"
 						borderRadius="10px"
 						my="16px"
@@ -105,6 +109,15 @@ export default function Days({
 								/>
 							</Flex>
 							<Flex>
+								<IconButton
+									variant="ghost"
+									aria-label="hide day"
+									icon={
+										display ? <ViewIcon /> : <ViewOffIcon />
+									}
+									// type="button"
+									onClick={() => setDisplay(!display)}
+								/>
 								<IconButton
 									variant="ghost"
 									aria-label="add note"
@@ -142,24 +155,28 @@ export default function Days({
 									</FormLabel>
 									<Field
 										name={`days[${index}].dayDescription`}
-										component={CFormikInput}
+										component={CFormikTextarea}
 									/>
 								</Box>
 							)}
 						</Box>
-						<Box my="8px">
-							<FieldArray
-								name={`days[${index}].workouts`}
-								render={(arrayHelpers) => (
-									<>
-										<Workouts
-											dayIndex={`${index}`}
-											workoutsArrayHelpers={arrayHelpers}
-										/>
-									</>
-								)}
-							/>
-						</Box>
+						{display ? (
+							<Box my="8px">
+								<FieldArray
+									name={`days[${index}].workouts`}
+									render={(arrayHelpers) => (
+										<>
+											<Workouts
+												dayIndex={`${index}`}
+												workoutsArrayHelpers={
+													arrayHelpers
+												}
+											/>
+										</>
+									)}
+								/>
+							</Box>
+						) : null}
 					</Box>
 				))
 			) : (
@@ -177,6 +194,6 @@ export default function Days({
 					Add a Day
 				</button>
 			)}
-		</>
+		</Box>
 	);
 }

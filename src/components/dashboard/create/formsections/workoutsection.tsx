@@ -40,8 +40,9 @@ export default function Workouts({ workoutsArrayHelpers, dayIndex }: any) {
 	}
 	return (
 		<Box>
-			<HStack mx="12px" justify="center" my="16px">
+			<HStack justify="flex-end" my="16px">
 				<Button
+					variant="outline"
 					onClick={() => {
 						workoutsArrayHelpers.push({
 							workoutName: "",
@@ -67,6 +68,7 @@ export default function Workouts({ workoutsArrayHelpers, dayIndex }: any) {
 				</Button>
 
 				<Button
+					variant="outline"
 					onClick={() => {
 						workoutsArrayHelpers.push({
 							workoutName: "Super Set",
@@ -102,6 +104,7 @@ export default function Workouts({ workoutsArrayHelpers, dayIndex }: any) {
 					Add SuperSet
 				</Button>
 				<Button
+					variant="outline"
 					onClick={() => {
 						workoutsArrayHelpers.push({
 							workoutName: "Circuit",

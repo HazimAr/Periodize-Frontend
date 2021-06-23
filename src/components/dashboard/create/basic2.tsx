@@ -106,7 +106,7 @@ export default function CreateForm() {
 		preset: "",
 		days: [
 			{
-				dayName: "hi",
+				dayName: "Day 1",
 				dayDescription: "",
 				hideNote: true,
 				workouts: [
@@ -170,9 +170,9 @@ export default function CreateForm() {
 								{/* <pre>
 									{JSON.stringify(props.values, null, 2)}
 								</pre> */}
-								<pre>
+								{/* <pre>
 									{JSON.stringify(props.errors, null, 2)}
-								</pre>
+								</pre> */}
 								<Button type="submit">Submit</Button>
 								{/* <Button
 									type="submit"
