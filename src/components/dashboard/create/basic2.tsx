@@ -9,7 +9,7 @@ import {
 	Container,
 } from "@chakra-ui/react";
 import { Formik, Form, FieldArray } from "formik";
-
+import { createProgram } from "@api/program";
 // import { createProgram } from "@api/program";
 
 import GlassBgBox from "@components/glassbg";
@@ -96,14 +96,14 @@ export default function CreateForm() {
 	interface MyFormValues {
 		title: string;
 		description: string;
-		preset: string | null;
+		// preset: string | null;
 		days: Days[];
 	}
 
 	const initialValues: MyFormValues = {
 		title: "My Split",
 		description: "",
-		preset: "",
+		// preset: "",
 		days: [
 			{
 				dayName: "Day 1",
@@ -144,8 +144,9 @@ export default function CreateForm() {
 					<Formik
 						initialValues={initialValues}
 						onSubmit={(values, actions) => {
+							createProgram(values);
 							// console.log("submitting");
-							alert(JSON.stringify(values, null, 2));
+							// alert(JSON.stringify(values, null, 2));
 							// actions.setSubmitting(false);
 						}}
 						validationSchema={ProgramSchema}
