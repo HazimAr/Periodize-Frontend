@@ -142,7 +142,7 @@ export default function CreateForm() {
 				Build A Workout Program
 			</Heading>
 			<GlassBgBox p="18px" op={0.08} w="100%">
-				<Container maxW="container.lg">
+				<Container maxW="container.md">
 					<Formik
 						initialValues={initialValues}
 						onSubmit={(values, actions) => {

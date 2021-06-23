@@ -18,6 +18,7 @@ import {
 	Flex,
 	IconButton,
 	FormLabel,
+	Icon,
 } from "@chakra-ui/react";
 import { Field, FieldArray } from "formik";
 import { useState } from "react";
@@ -67,7 +68,123 @@ export default function Workouts({
 						component={CFormikInput}
 					/>
 				</Flex>
-				<Flex>
+				<Flex align="center">
+					<HStack
+						justify="flex-end"
+						spacing={1}
+						// border="1px solid teal"
+						// p="6px"
+						// borderRadius="5px"
+					>
+						<AddIcon />
+						<Button
+							variant="outline"
+							onClick={() => {
+								workoutsArrayHelpers.push({
+									workoutName: "",
+									workoutNote: "",
+									rest: "",
+									type: "single",
+									lifts: [
+										{
+											name: `New Lift`,
+											load: "",
+											sets: "",
+											reps: "",
+											rest: "",
+											note: "",
+											hideNote: true,
+											unit: "lb",
+										},
+									],
+								});
+							}}
+						>
+							Lift
+						</Button>
+						<Button
+							variant="outline"
+							onClick={() => {
+								workoutsArrayHelpers.push({
+									workoutName: "Super Set",
+									workoutNote: "",
+									hideNote: true,
+									rest: "",
+									type: "superset",
+									lifts: [
+										{
+											name: "Lift 1",
+											load: "",
+											sets: "",
+											reps: "",
+											rest: "",
+											note: "",
+											hideNote: true,
+											unit: "lb",
+										},
+										{
+											name: "Lift 2",
+											load: "",
+											sets: "",
+											reps: "",
+											rest: "",
+											note: "",
+											hideNote: true,
+											unit: "lb",
+										},
+									],
+								});
+							}}
+						>
+							SuperSet
+						</Button>
+						<Button
+							variant="outline"
+							onClick={() => {
+								workoutsArrayHelpers.push({
+									workoutName: "Circuit",
+									workoutNote: "",
+									hideNote: true,
+									rest: "",
+									type: "circuit",
+									lifts: [
+										{
+											name: "Lift 1",
+											load: "",
+											sets: "",
+											reps: "",
+											rest: "",
+											note: "",
+											hideNote: true,
+											unit: "lb",
+										},
+										{
+											name: "Lift 2",
+											load: "",
+											sets: "",
+											reps: "",
+											rest: "",
+											note: "",
+											hideNote: true,
+											unit: "lb",
+										},
+										{
+											name: "Lift 3",
+											load: "",
+											sets: "",
+											reps: "",
+											rest: "",
+											note: "",
+											hideNote: true,
+											unit: "lb",
+										},
+									],
+								});
+							}}
+						>
+							Circuit
+						</Button>
+					</HStack>
 					<IconButton
 						variant="ghost"
 						aria-label="hide day"
@@ -83,7 +200,7 @@ export default function Workouts({
 						onClick={() =>
 							formHelpers.setFieldValue(
 								`days[${dayIndex}].hideNote`,
-								!values.day[dayIndex].hideNote
+								!values.days[dayIndex].hideNote
 							)
 						}
 					/>
@@ -102,176 +219,58 @@ export default function Workouts({
 					/>
 				</Flex>
 			</Flex>
-			<Box>
-				{values.day[dayIndex].hideNote ? null : (
-					<Box mt="10px">
-						<FormLabel fontSize="15px">Description:</FormLabel>
-						<Field
-							name={`days[${dayIndex}].dayDescription`}
-							component={CFormikTextarea}
-						/>
-					</Box>
-				)}
-			</Box>
-			<HStack justify="flex-end" my="16px">
-				<Button
-					variant="outline"
-					onClick={() => {
-						workoutsArrayHelpers.push({
-							workoutName: "",
-							workoutNote: "",
-							rest: "",
-							type: "single",
-							lifts: [
-								{
-									name: `New Lift`,
-									load: "",
-									sets: "",
-									reps: "",
-									rest: "",
-									note: "",
-									hideNote: true,
-									unit: "lb",
-								},
-							],
-						});
-					}}
-				>
-					Add Lift
-				</Button>
 
-				<Button
-					variant="outline"
-					onClick={() => {
-						workoutsArrayHelpers.push({
-							workoutName: "Super Set",
-							workoutNote: "",
-							hideNote: true,
-							rest: "",
-							type: "superset",
-							lifts: [
-								{
-									name: "Lift 1",
-									load: "",
-									sets: "",
-									reps: "",
-									rest: "",
-									note: "",
-									hideNote: true,
-									unit: "lb",
-								},
-								{
-									name: "Lift 2",
-									load: "",
-									sets: "",
-									reps: "",
-									rest: "",
-									note: "",
-									hideNote: true,
-									unit: "lb",
-								},
-							],
-						});
-					}}
-				>
-					Add SuperSet
-				</Button>
-				<Button
-					variant="outline"
-					onClick={() => {
-						workoutsArrayHelpers.push({
-							workoutName: "Circuit",
-							workoutNote: "",
-							hideNote: true,
-							rest: "",
-							type: "circuit",
-							lifts: [
-								{
-									name: "Lift 1",
-									load: "",
-									sets: "",
-									reps: "",
-									rest: "",
-									note: "",
-									hideNote: true,
-									unit: "lb",
-								},
-								{
-									name: "Lift 2",
-									load: "",
-									sets: "",
-									reps: "",
-									rest: "",
-									note: "",
-									hideNote: true,
-									unit: "lb",
-								},
-								{
-									name: "Lift 3",
-									load: "",
-									sets: "",
-									reps: "",
-									rest: "",
-									note: "",
-									hideNote: true,
-									unit: "lb",
-								},
-							],
-						});
-					}}
-				>
-					Add Circuit
-				</Button>
-			</HStack>
-			{values.days[dayIndex].workouts.length < 1 ? null : (
-				<Box m="8px" px="12px" py="8px">
-					<SimpleGrid columns={6}>
-						<Box>Movement</Box>
-						<Box>Sets</Box>
-						<Box>Reps</Box>
-						<Box>Load</Box>
-						<Box>Unit</Box>
-						<Box></Box>
-					</SimpleGrid>
+			{values.days[dayIndex].hideNote ? null : (
+				<Box mt="10px">
+					<FormLabel fontSize="15px">Description:</FormLabel>
+					<Field
+						name={`days[${dayIndex}].dayDescription`}
+						component={CFormikTextarea}
+					/>
 				</Box>
 			)}
+			{display ? (
+				<Box>
+					{values.days[dayIndex].workouts.length < 1 ? null : (
+						<Box m="8px" px="12px" py="8px">
+							<SimpleGrid columns={6}>
+								<Box>Movement</Box>
+								<Box>Sets</Box>
+								<Box>Reps</Box>
+								<Box>Load</Box>
+								<Box>Unit</Box>
+								<Box></Box>
+							</SimpleGrid>
+						</Box>
+					)}
+					{values.days[dayIndex].workouts &&
+					values.days[dayIndex].workouts.length > 0
+						? values.days[dayIndex].workouts.map(
+								(workout: Workouts, index: any) => (
+									// {console.log(workout)}
 
-			{/* <Grid
-				// templateRows="repeat(2, 1fr)"
-				templateColumns="repeat(6, 1fr)"
-				gap={6}
-			>
-				<GridItem>Movement</GridItem>
-				<GridItem>Sets</GridItem>
-				<GridItem>Reps</GridItem>
-				<GridItem>Load</GridItem>
-				<GridItem>Unit</GridItem>
-				<GridItem></GridItem>
-			</Grid> */}
-			{values.days[dayIndex].workouts &&
-			values.days[dayIndex].workouts.length > 0
-				? values.days[dayIndex].workouts.map(
-						(workout: Workouts, index: any) => (
-							// {console.log(workout)}
-
-							<FieldArray
-								name={`days[${dayIndex}].workouts[${index}].lifts`}
-								render={(arrayHelpers) => (
-									<>
-										<Lifts
-											workoutIndex={index}
-											dayIndex={dayIndex}
-											liftsArrayHelpers={arrayHelpers}
-											workoutsArrayHelpers={
-												workoutsArrayHelpers
-											}
-										/>
-									</>
-								)}
-							/>
-						)
-				  )
-				: null}
+									<FieldArray
+										name={`days[${dayIndex}].workouts[${index}].lifts`}
+										render={(arrayHelpers) => (
+											<>
+												<Lifts
+													workoutIndex={index}
+													dayIndex={dayIndex}
+													liftsArrayHelpers={
+														arrayHelpers
+													}
+													workoutsArrayHelpers={
+														workoutsArrayHelpers
+													}
+												/>
+											</>
+										)}
+									/>
+								)
+						  )
+						: null}
+				</Box>
+			) : null}
 		</Box>
 	);
 }

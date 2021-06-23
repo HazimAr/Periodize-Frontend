@@ -97,7 +97,7 @@ export default function Days({ daysArrayHelpers, formHelpers }: any) {
 						key={index}
 						paddingBottom="32px"
 						px="18px"
-						border="2px"
+						border="1px"
 						borderRadius="10px"
 						my="16px"
 					>
@@ -160,21 +160,20 @@ export default function Days({ daysArrayHelpers, formHelpers }: any) {
 								</Box>
 							)}
 						</Box> */}
-						{display ? (
-							<Box my="8px">
-								<FieldArray
-									name={`days[${index}].workouts`}
-									render={(arrayHelpers) => (
-										<Workouts
-											dayIndex={`${index}`}
-											workoutsArrayHelpers={arrayHelpers}
-											daysArrayHelpers={daysArrayHelpers}
-											formHelpers={formHelpers}
-										/>
-									)}
-								/>
-							</Box>
-						) : null}
+
+						<Box my="8px">
+							<FieldArray
+								name={`days[${index}].workouts`}
+								render={(arrayHelpers) => (
+									<Workouts
+										dayIndex={`${index}`}
+										workoutsArrayHelpers={arrayHelpers}
+										daysArrayHelpers={daysArrayHelpers}
+										formHelpers={formHelpers}
+									/>
+								)}
+							/>
+						</Box>
 					</Box>
 				))
 			) : (
