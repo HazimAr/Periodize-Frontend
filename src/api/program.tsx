@@ -1,16 +1,18 @@
 import axios from "axios";
 import { DB_URL } from "config";
 import { getCookie } from "@lib/cookie";
+import { MyFormValues } from "types";
 
 async function createProgram(
-	title: string = "",
-	description: string = "",
-	days: any[] = []
+	program: MyFormValues
+	// title: string = "",
+	// description: string = "",
+	// days: any[] = []
 ) {
 	const sendData = {
-		title,
-		description,
-		days,
+		title: program.title,
+		description: program.description,
+		days: program.days,
 		sessionid: await getCookie("sessionid"),
 	};
 	const { data } = await axios.put(`${DB_URL}/programs`, sendData);
