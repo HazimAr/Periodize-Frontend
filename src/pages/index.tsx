@@ -1,5 +1,5 @@
-import { Container, Box, Heading, Flex, Text } from "@chakra-ui/react";
-import CarouselCenter from "@components/carousel";
+import { Container, Box, Heading, Flex, Text, SimpleGrid } from "@chakra-ui/react";
+import AppleBox1 from "@components/apple1";
 // import HeadFoot from "@components/home/headfoot";
 import Button from "@components/styledbutton";
 import Image from "next/image";
@@ -80,7 +80,7 @@ export default function Home(): JSX.Element {
 			<Flex
 				justify="center"
 				bgImg="/lpworkout2.jpg"
-				h="300px"
+				h="350px"
 				bgSize="100%"
 				bgPosition="0% 80%"
 				bgRepeat="no-repeat"
@@ -88,7 +88,6 @@ export default function Home(): JSX.Element {
 				<Flex
 					maxW="100%"
 					align="center"
-					flexDir="row"
 					my="50px"
 					textAlign="center"
 					wrap="wrap"
@@ -98,7 +97,9 @@ export default function Home(): JSX.Element {
 					</Text>
 				</Flex>
 			</Flex>
-			<CarouselCenter />
+			<AppleBox1/>
+
+
 		</>
 		// </HeadFoot>
 	);

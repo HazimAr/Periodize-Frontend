@@ -113,7 +113,7 @@ export default function Profile(): JSX.Element {
 					</GlassBgFlex>
 
 					<Flex mt="50px" justify="center">
-						<Box ml="50px">
+						<Box ml="20px">
 							<Text
 								Text
 								align="left"
@@ -130,7 +130,7 @@ export default function Profile(): JSX.Element {
 								</BasicModal>
 							</Box>
 							
-							<Text mt="20px" align="left" maWidth="500px">
+							<Text mt="20px" align="left" w={{sm:"70%"}}>
 								Lorem ipsum dolor sit amet consectetur
 								adipisicing elit. Cumque amet minima delectus,
 								animi obcaecati est vel quibusdam provident qui
