@@ -7,6 +7,7 @@ import {
 	// VStack,
 	Flex,
 	Container,
+	Box,
 } from "@chakra-ui/react";
 import { Formik, Form, FieldArray } from "formik";
 import { createProgram } from "@api/program";
@@ -71,36 +72,6 @@ export default function CreateForm() {
 			})
 		),
 	});
-	// interface Lifts {
-	// 	name: string;
-	// 	load: string;
-	// 	sets: string;
-	// 	reps: string;
-	// 	rest: string;
-	// 	note: string;
-	// 	hideNote: boolean;
-	// 	unit: string;
-	// }
-	// interface Workouts {
-	// 	workoutName: string;
-	// 	workoutNote: string;
-	// 	hideNote: boolean;
-	// 	type: string;
-	// 	rest: string;
-	// 	lifts: Lifts[];
-	// }
-	// interface Days {
-	// 	dayName: string;
-	// 	dayDescription: string;
-	// 	hideNote: boolean;
-	// 	workouts: Workouts[];
-	// }
-	// interface MyFormValues {
-	// 	title: string;
-	// 	description: string;
-	// 	// preset: string | null;
-	// 	days: Days[];
-	// }
 
 	const initialValues: MyFormValues = {
 		title: "My Split",
@@ -137,11 +108,11 @@ export default function CreateForm() {
 	};
 
 	return (
-		<Flex justify="center" flexDir="column" align="center" w="100%">
+		<Flex flexDir="column" w="100%" mt="16px">
 			<Heading as="h3" size="lg" mb={4} opacity="0.7">
 				Build A Workout Program
 			</Heading>
-			<GlassBgBox p="18px" op={0.08} w="100%">
+			<Box p="18px" w="100%">
 				<Container maxW="container.md">
 					<Formik
 						initialValues={initialValues}
@@ -189,7 +160,7 @@ export default function CreateForm() {
 						)}
 					</Formik>
 				</Container>
-			</GlassBgBox>
+			</Box>
 		</Flex>
 	);
 }

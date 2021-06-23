@@ -62,7 +62,7 @@ export default function Days({ daysArrayHelpers, formHelpers }: any) {
 				>
 					Basic Split
 				</Button>
-				<Box w="10%" mx="8px">
+				<Box w="20%" mx="8px">
 					<Field component={CFormikSplitSelect} name="preset" />
 				</Box>
 

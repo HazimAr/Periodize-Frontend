@@ -27,11 +27,14 @@ export default function Layout({
 	}, []);
 	return (
 		<main id="main">
-			<Flex h="100vh" flexDirection="column" position="fixed">
+			<Flex h="100vh" flexDirection="column" position="fixed" w="100%">
 				<MobileTopBar />
 				<Flex flex="1">
 					<Sidebar display={{ base: "none", md: "flex" }} />
-					<Center>{children}</Center>
+					{/* <Center w="100%">{children}</Center>
+					 */}
+
+					{children}
 				</Flex>
 			</Flex>
 		</main>
