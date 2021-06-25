@@ -1,5 +1,20 @@
-import { Flex, Text, Box, Heading, Button, SimpleGrid } from "@chakra-ui/react";
+import {
+	Flex,
+	Text,
+	Heading,
+	Button,
+	SimpleGrid,
+	Box,
+	BoxProps,
+} from "@chakra-ui/react";
+import React from "react";
 
+import { motion } from "framer-motion";
+
+export const MotionFlex = motion<BoxProps>(Box);
+
+
+		
 export default function AppleBox1(): JSX.Element {
 	return (
 		
