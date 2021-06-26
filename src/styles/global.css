@@ -8,7 +8,7 @@ body {
 	height: 100%;
 }
 
-:-ms-input-placeholder {
+/* :-ms-input-placeholder {
 	color: #7f7f7f;
 	font-family: Arial, Helvetica, sans-serif;
 }
@@ -22,7 +22,7 @@ body {
 ::-moz-selection {
 	background: rgb(0, 110, 255);
 	color: white;
-}
+} */
 body::-webkit-scrollbar {
 	width: 0.7em;
 }
