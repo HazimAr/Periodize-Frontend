@@ -9,7 +9,6 @@ import {
 import * as React from "react";
 import { useRouter } from "next/router";
 
-
 interface NavLinkProps extends LinkProps {
 	isActive?: boolean;
 	label: string;
@@ -19,11 +18,9 @@ interface NavLinkProps extends LinkProps {
 export const NavLink = (props: NavLinkProps) => {
 	const { icon, isActive, label, ...rest } = props;
 	const router = useRouter();
-	console.log("my url is: ", props.href);
-	console.log("this is my current url: ", router.asPath);
+
 	return (
 		<Link
-			
 			bg={router.asPath === props.href ? "blue.700" : ""}
 			display="block"
 			py="2"

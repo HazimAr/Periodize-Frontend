@@ -6,6 +6,7 @@ export default function MyPrograms(): JSX.Element {
 	const [programs, setPrograms] = useState();
 	useEffect(() => {
 		getPrograms().then((data) => setPrograms(data.data));
+		
 	}, []);
 
 	useEffect(() => {
