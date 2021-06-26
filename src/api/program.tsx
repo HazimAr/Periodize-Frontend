@@ -5,9 +5,6 @@ import { MyFormValues } from "types";
 
 async function createProgram(
 	program: MyFormValues
-	// title: string = "",
-	// description: string = "",
-	// days: any[] = []
 ) {
 	const sendData = {
 		title: program.title,
