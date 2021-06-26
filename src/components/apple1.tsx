@@ -6,40 +6,54 @@ import {
 	SimpleGrid,
 	Box,
 	BoxProps,
+	TextProps,
 } from "@chakra-ui/react";
 import React from "react";
 
 import { motion } from "framer-motion";
 
-export const MotionFlex = motion<BoxProps>(Box);
+const MotionText = motion<TextProps>(Text);
+const MotionBox = motion<BoxProps>(Box);
 
-
-		
 export default function AppleBox1(): JSX.Element {
 	return (
-		
-		<SimpleGrid columns={{md: 1, lg: 2}} spacing={2} my="20px">
+		<SimpleGrid columns={{ base: 1, sm: 2, lg: 2 }} spacing={2} my="20px">
 			<Box
-				borderRadius="10px"
 				bg="linear-gradient(to bottom right, #8c00ff7b, #cf9f9fcc)"
-				height="500px"
-			></Box>
-			<Box
+				h="500px"
 				borderRadius="10px"
+			>
+				<MotionText whileHover={{ scale: 1.5 }} fontSize="40px">
+					Text
+				</MotionText>
+			</Box>
+			<Box
 				bg="linear-gradient(to bottom right, #8c00ff7b, #7cadc4cc)"
-				height="500px"
-			></Box>
-			<Box
+				h="500px"
 				borderRadius="10px"
+			>
+				<MotionText whileHover={{ scale: 1.5 }} fontSize="40px">
+					Text
+				</MotionText>
+			</Box>
+			<Box
 				bg="linear-gradient(to bottom right, #0026ff7a, #7ca7c4cc)"
-				height="500px"
-			></Box>
-			<Box
+				h="500px"
 				borderRadius="10px"
+			>
+				<MotionText whileHover={{ scale: 1.5 }} fontSize="40px">
+					Text
+				</MotionText>
+			</Box>
+			<Box
 				bg="linear-gradient(to bottom right, #0026ff7a, #7cadc4cc)"
-				height="500px"
-			></Box>
+				h="500px"
+				borderRadius="10px"
+			>
+				<MotionText whileHover={{ scale: 1.5 }} fontSize="40px">
+					Text
+				</MotionText>
+			</Box>
 		</SimpleGrid>
-		
 	);
 }

@@ -59,7 +59,7 @@ export const Sidebar = (props: FlexProps) => {
 						<NavLink
 							label="My Programs"
 							icon={FaDumbbell}
-							href="/myprograms"
+							href="/dashboard"
 						/>
 						<NavLink
 							label="Favorites"

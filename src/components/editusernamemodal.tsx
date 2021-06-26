@@ -26,7 +26,7 @@ export default function EditUsername() {
 	return (
 		<Box>
 			<Text mt="10px" mb="20px" fontSize="25px" fontWeight="bold">
-				Change your new username
+				Change your username
 			</Text>
 			<Formik
 				initialValues={initialValues}

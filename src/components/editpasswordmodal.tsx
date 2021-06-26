@@ -9,12 +9,10 @@ import useProfile from "@hooks/useProfile";
 
 export default function EditPassword() {
 	const EditSchema = Yup.object().shape({
-		currentpassword: Yup.string()
+		newpassword: Yup.string()
 			.min(2, "Too Short!")
 			.max(50, "Too Long!")
 			.required("Required"),
-		//@ts-ignore
-		password: Yup.string().password("Invalid Password").required("Required"),
 	});
 
 	interface MyFormValues {
@@ -24,9 +22,9 @@ export default function EditPassword() {
 	{/* @ts-ignore */}
 	const user: any = useProfile();
 	const initialValues: MyFormValues = {
-		currentpassword: "oldpass",
+		currentpassword: "",
 		//@ts-ignore
-		password: "newpass",
+		newpassword: "",
 	};
 
 	return (
@@ -65,7 +63,7 @@ export default function EditPassword() {
 								fontWeight="bold"
 								fontSize="13px"
 							>
-								EMAIL
+								New Password
 							</Text>
 							<Field
 								name="newpassword"
