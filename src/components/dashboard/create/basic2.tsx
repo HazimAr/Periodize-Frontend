@@ -53,10 +53,12 @@ export default function CreateForm() {
 									.max(9000, "It can't be over 9000!!"),
 								sets: Yup.number()
 									.required("Sets required!😡")
+									.integer()
 									.positive("Use a positive number")
 									.max(999, "Thats too much.."),
 								reps: Yup.number()
 									.required("Reps required!😡")
+									.integer()
 									.positive("Use a positive number")
 									.max(999, "Thats too much.."),
 								rest: Yup.string().max(50, "Too long!"),

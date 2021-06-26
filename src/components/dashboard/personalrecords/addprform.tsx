@@ -5,6 +5,8 @@ import {
 	Flex,
 	UnorderedList,
 	Button,
+	ButtonProps,
+	BoxProps,
 } from "@chakra-ui/react";
 import Layout from "@components/dashboard/personalrecords/addprform";
 import {
@@ -18,7 +20,13 @@ import {
 import CFormikInput from "@components/formikinput";
 import * as Yup from "yup";
 import { SimpleGrid } from "@chakra-ui/react";
+import { motion } from "framer-motion";
+import { useState } from "react";
 
+//styled(Box) motion(Box)
+
+const MotionButton = motion<ButtonProps>(Button);
+const MotionBox = motion<BoxProps>(Box);
 interface MyFormValues {
 	liftName: string;
 	load: string;
@@ -36,12 +44,36 @@ const PRSchema = Yup.object().shape({
 
 export default function PRForm(): JSX.Element {
 	const initialValues: MyFormValues = { liftName: "", load: "", reps: "" };
+	const [visible, setVisible] = useState(false);
 
+	const [color, setColor] = useState(false);
+	//immutable setColor is a function! setColor("new value")
+
+	const variants = {
+		start: {
+			opacity: 0,
+			x: -300,
+			y: -200,
+		},
+		visible: {
+			opacity: 1,
+			x: 0,
+			y: 0,
+			transition: { ease: "easeOut", duration: 2 },
+		},
+	};
 	return (
 		<Box>
-			<Box>
-				<Heading>Personal Records</Heading>
-			</Box>
+			<MotionBox
+				initial="start"
+				animate="visible"
+				variants={variants}
+				// transition={{ ease: "easeOut", duration: 2 }}
+			>
+				<Heading color={color === true ? "gold" : ""}>
+					Personal Records
+				</Heading>
+			</MotionBox>
 			<Box border="2px solid" borderRadius="5px" mt="20px" px="20px">
 				<Formik
 					initialValues={initialValues}
@@ -78,13 +110,32 @@ export default function PRForm(): JSX.Element {
 								component={CFormikInput}
 							/>
 						</SimpleGrid>
-						<Button
+						<MotionButton
 							type="submit"
 							my="10px"
 							bg="linear-gradient(#8c00ff7b, #5b6d9ecc)"
+							whileHover={{ scale: 1.1 }}
+							whileTap={{
+								scale: 0.8,
+								backgroundColor: "purple",
+							}}
+							// _hover={{}}
+							animate
 						>
 							Submit
-						</Button>
+						</MotionButton>
+						<MotionBox
+							onHoverStart={() => {
+								setColor(true);
+							}}
+							onHoverEnd={() => {
+								setColor(false);
+							}}
+						>
+							Hover Me!!!
+						</MotionBox>
+
+						{visible ? <Box mt="20px">Noa can see me</Box> : null}
 					</Form>
 				</Formik>
 			</Box>
