@@ -3,9 +3,11 @@ import { getProfileData } from "@api/profile";
 import { getCookie } from "@lib/cookie";
 import React, { useEffect } from "react";
 
-import { Center, Flex } from "@chakra-ui/react";
+import { Flex } from "@chakra-ui/react";
 import { MobileTopBar } from "@components/dash2/mobiletopbar";
 import { Sidebar } from "@components/dash2/sidebar";
+import { DB_URL } from "config";
+import axios from "axios";
 // eslint-disable-next-line import/no-default-export
 export default function Layout({
 	children,
@@ -39,4 +41,32 @@ export default function Layout({
 			</Flex>
 		</main>
 	);
+}
+
+export async function getServerSideProps({ req, res }: any): Promise<any> {
+	console.log("Server");
+	const sessionid = req.cookies.sessionid;
+	if (!sessionid) {
+		res.writeHead(307, {
+			Location: "login",
+		});
+		res.end();
+		return { props: {} };
+	}
+
+	const sendData = {
+		sessionid,
+	};
+
+	const { data } = await axios.post(`${DB_URL}/users/me`, sendData);
+
+	if (!data.data) {
+		res.writeHead(307, {
+			Location: "login",
+		});
+		res.end();
+		return { props: {} };
+	}
+
+	return { props: { user: data.data } };
 }
