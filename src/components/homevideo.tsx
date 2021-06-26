@@ -1,15 +1,15 @@
 import {
 	Box,
+	BoxProps,
 	Heading,
-	Text,
-	Link,
 	HStack,
 	Icon,
-	BoxProps,
+	Link,
+	Text,
 } from "@chakra-ui/react";
-import styled from "styled-components";
-import { FaGithub, FaInstagram } from "react-icons/fa";
 import { motion } from "framer-motion";
+import { FaGithub, FaInstagram } from "react-icons/fa";
+import styled from "styled-components";
 
 // const StyledVideo = styled.video`
 // 	position: absolute;

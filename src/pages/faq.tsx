@@ -1,11 +1,5 @@
-import {
-	Heading,
-	Box,
-	Flex,
-	Container
-} from "@chakra-ui/react";
+import { Box, Container, Flex, Heading } from "@chakra-ui/react";
 import BlogSection from "@components/blogsection";
-
 import HeadFoot from "@components/home/headfoot";
 
 export default function FAQ(): JSX.Element {
@@ -44,8 +38,10 @@ export default function FAQ(): JSX.Element {
 					</Heading>
 
 					<Flex mt="40px" mb="60px">
-						<Box mt="70px" mr="20px">General</Box>
-						<BlogSection arr={faqs}  />
+						<Box mt="70px" mr="20px">
+							General
+						</Box>
+						<BlogSection arr={faqs} />
 					</Flex>
 
 					{/* <Flex position="sticky" top="0" flexDir="row-reverse">

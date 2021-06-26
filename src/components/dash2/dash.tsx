@@ -9,7 +9,6 @@ export default function Dash() {
 			<MobileTopBar />
 			<Flex flex="1" overflow="hidden">
 				<Sidebar display={{ base: "none", md: "flex" }} />
-				
 			</Flex>
 		</Flex>
 	);

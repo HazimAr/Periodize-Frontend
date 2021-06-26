@@ -4,11 +4,11 @@ import { CopyIcon } from "@chakra-ui/icons";
 import {
 	IconButton,
 	Popover,
-	PopoverContent,
 	PopoverArrow,
 	PopoverCloseButton,
-	PopoverTrigger,
+	PopoverContent,
 	PopoverHeader,
+	PopoverTrigger,
 	useClipboard,
 } from "@chakra-ui/react";
 import { useState } from "react";

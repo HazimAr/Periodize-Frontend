@@ -1,7 +1,5 @@
-import { Box, Flex, Editable } from "@chakra-ui/react";
-
+import { ErrorMessage, Field, Form, Formik } from "formik";
 import React, { useEffect, useState } from "react";
-import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
 
 const arrData = [{ liftName: "bench", load: "315", reps: "5" }];

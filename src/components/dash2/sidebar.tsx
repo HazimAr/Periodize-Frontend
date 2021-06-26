@@ -7,22 +7,19 @@ import {
 	Stack,
 	useColorModeValue as mode,
 } from "@chakra-ui/react";
-import * as React from "react";
-import {
-	FaRegBell,
-	FaClipboardList,
-	FaHeart,
-	FaDumbbell,
-	FaRegQuestionCircle,
-	FaPlus,
-} from "react-icons/fa";
 import { Logo } from "@components/dash2/logo";
 import { NavLink } from "@components/dash2/navlink";
 import { SearchField } from "@components/dash2/searchfield";
 import { UserProfile } from "@components/dash2/userprofile";
-
-
-
+import * as React from "react";
+import {
+	FaClipboardList,
+	FaDumbbell,
+	FaHeart,
+	FaPlus,
+	FaRegBell,
+	FaRegQuestionCircle,
+} from "react-icons/fa";
 
 export const Sidebar = (props: FlexProps) => {
 	return (
@@ -52,7 +49,7 @@ export const Sidebar = (props: FlexProps) => {
 				<Stack spacing="6" as="nav" aria-label="Sidebar Navigation">
 					<Stack spacing="1">
 						<NavLink
-							label="Create Program" 
+							label="Create Program"
 							icon={FaPlus}
 							href="dashboard/create"
 						/>

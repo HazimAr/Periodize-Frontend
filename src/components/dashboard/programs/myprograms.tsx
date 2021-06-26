@@ -1,12 +1,11 @@
-import { Flex, Box, Heading } from "@chakra-ui/react";
 import { getPrograms } from "@api/program";
+import { Box, Heading } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 // eslint-disable-next-line import/no-default-export
 export default function MyPrograms(): JSX.Element {
 	const [programs, setPrograms] = useState();
 	useEffect(() => {
 		getPrograms().then((data) => setPrograms(data.data));
-		
 	}, []);
 
 	useEffect(() => {

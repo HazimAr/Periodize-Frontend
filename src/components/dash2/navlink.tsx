@@ -3,11 +3,11 @@ import {
 	Icon,
 	Link,
 	LinkProps,
-	useColorModeValue as mode,
 	Text,
+	useColorModeValue as mode,
 } from "@chakra-ui/react";
-import * as React from "react";
 import { useRouter } from "next/router";
+import * as React from "react";
 
 interface NavLinkProps extends LinkProps {
 	isActive?: boolean;

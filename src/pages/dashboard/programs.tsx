@@ -1,8 +1,7 @@
-import ProgramList from "@components/dashboard/programList";
-import Layout from "@components/dashboard/layout";
-
-import { useEffect, useState } from "react";
 import { getPrograms } from "@api/program";
+import Layout from "@components/dashboard/layout";
+import ProgramList from "@components/dashboard/programList";
+import { useEffect, useState } from "react";
 
 // type Data = {
 // 	code: number;

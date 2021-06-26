@@ -5,13 +5,12 @@ import {
 	DrawerOverlay,
 	Flex,
 	IconButton,
-	
 } from "@chakra-ui/react";
-import * as React from "react";
-import { HiOutlineMenu } from "react-icons/hi";
 import { Logo } from "@components/dash2/logo";
 import { Sidebar } from "@components/dash2/sidebar";
 import { useMobileMenuState } from "@components/dash2/usemobilemenustate";
+import * as React from "react";
+import { HiOutlineMenu } from "react-icons/hi";
 
 export const MobileTopBar = () => {
 	const { isOpen, onClose, onOpen } = useMobileMenuState();

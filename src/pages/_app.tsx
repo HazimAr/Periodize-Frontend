@@ -1,14 +1,14 @@
-import "@styles/global.css";
-
 import { pageview } from "@lib/gtag";
+// import theme from "@styles/theme";
+import { Chakra } from "@styles/chakra";
+import "@styles/global.css";
 import { META } from "config";
+// import { ChakraProvider } from "@chakra-ui/react";
+import { AppProps } from "next/app";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import React, { useEffect } from "react";
-// import { ChakraProvider } from "@chakra-ui/react";
-import { AppProps } from "next/app";
-// import theme from "@styles/theme";
-import { Chakra } from "@styles/chakra";
+
 // eslint-disable-next-line import/no-default-export
 export default function MyApp({ Component, pageProps }: AppProps): JSX.Element {
 	const router = useRouter();

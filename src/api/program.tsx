@@ -1,11 +1,9 @@
+import { getCookie } from "@lib/cookie";
 import axios from "axios";
 import { DB_URL } from "config";
-import { getCookie } from "@lib/cookie";
 import { MyFormValues } from "types";
 
-async function createProgram(
-	program: MyFormValues
-) {
+async function createProgram(program: MyFormValues) {
 	const sendData = {
 		title: program.title,
 		description: program.description,

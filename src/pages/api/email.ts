@@ -1,6 +1,6 @@
+import { forgotPassword } from "@api/profile";
 import mailgun from "mailgun-js";
 import type { NextApiRequest, NextApiResponse } from "next";
-import { forgotPassword } from "@api/profile";
 
 const DOMAIN = "mail.periodize.org";
 

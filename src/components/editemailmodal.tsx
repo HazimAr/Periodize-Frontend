@@ -1,15 +1,14 @@
-import React from "react";
-import { Formik, Form, Field } from "formik";
-import * as Yup from "yup";
+import { Box, Button, Flex, Text } from "@chakra-ui/react";
 import CFormikInput from "@components/formikinput";
-import { Flex, Text, Box, Button } from "@chakra-ui/react";
 import useProfile from "@hooks/useProfile";
+import { Field, Form, Formik } from "formik";
+import React from "react";
+import * as Yup from "yup";
 
 // import GlassBgBox from "@components/glassbg";
 
 export default function EditEmail() {
 	const EditSchema = Yup.object().shape({
-
 		email: Yup.string().email("Invalid email").required("Required"),
 	});
 

@@ -1,16 +1,6 @@
-import {
-	Flex,
-	Text,
-	Heading,
-	Button,
-	SimpleGrid,
-	Box,
-	BoxProps,
-	TextProps,
-} from "@chakra-ui/react";
-import React from "react";
-
+import { Box, BoxProps, SimpleGrid, Text, TextProps } from "@chakra-ui/react";
 import { motion } from "framer-motion";
+import React from "react";
 
 const MotionText = motion<TextProps>(Text);
 const MotionBox = motion<BoxProps>(Box);

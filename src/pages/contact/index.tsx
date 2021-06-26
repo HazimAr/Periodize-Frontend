@@ -4,20 +4,20 @@
 /* eslint-disable @typescript-eslint/no-floating-promises */
 import { CopyIcon, EmailIcon } from "@chakra-ui/icons";
 import {
-	Heading,
-	useClipboard,
+	Box,
+	chakra,
 	Flex,
 	FormControl,
-	Input,
-	Textarea,
+	Heading,
 	IconButton,
-	Tooltip,
-	useColorModeValue,
-	Text,
-	chakra,
-	InputLeftElement,
+	Input,
 	InputGroup,
-	Box,
+	InputLeftElement,
+	Text,
+	Textarea,
+	Tooltip,
+	useClipboard,
+	useColorModeValue,
 } from "@chakra-ui/react";
 import Container from "@components/container";
 import Emoji from "@components/emoji";
@@ -26,7 +26,7 @@ import StyledButton from "@components/styledbutton";
 import axios from "axios";
 import { validate } from "email-validator";
 import React, { useState } from "react";
-import { FaUserAlt, FaBuilding } from "react-icons/fa";
+import { FaBuilding, FaUserAlt } from "react-icons/fa";
 
 const CFaUserAlt = chakra(FaUserAlt);
 const CFaBuilding = chakra(FaBuilding);

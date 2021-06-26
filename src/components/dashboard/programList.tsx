@@ -1,9 +1,9 @@
-import { Box, Flex, Text, HStack, Heading } from "@chakra-ui/react";
-import GlassBox from "@components/glassbg";
-import { FaPencilAlt, FaTrashAlt } from "react-icons/fa";
-import Link from "@components/link";
 import { LockIcon, UnlockIcon } from "@chakra-ui/icons";
+import { Box, Flex, Heading, HStack, Text } from "@chakra-ui/react";
+import GlassBox from "@components/glassbg";
+import Link from "@components/link";
 import { formatDistanceToNowStrict } from "date-fns";
+import { FaPencilAlt, FaTrashAlt } from "react-icons/fa";
 
 export default function ProgramList(props: any): JSX.Element {
 	// console.log("my props", props.programs);

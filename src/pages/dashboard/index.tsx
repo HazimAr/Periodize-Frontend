@@ -1,5 +1,5 @@
-import Layout from "@components/dashboard/layout";
 import { Text } from "@chakra-ui/react";
+import Layout from "@components/dashboard/layout";
 
 export default function Home(): JSX.Element {
 	return (

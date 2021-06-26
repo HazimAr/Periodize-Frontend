@@ -1,4 +1,4 @@
-import { Text, Box, Flex, Heading } from "@chakra-ui/react";
+import { Box, Flex, Heading, Text } from "@chakra-ui/react";
 import StaffCard from "@components/about/staffcard";
 import HeadFoot from "@components/home/headfoot";
 

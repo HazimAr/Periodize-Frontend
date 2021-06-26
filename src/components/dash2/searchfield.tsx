@@ -7,8 +7,8 @@ import {
 	Square,
 	useColorModeValue as mode,
 } from "@chakra-ui/react";
-import { BsSearch } from "react-icons/bs";
 import * as React from "react";
+import { BsSearch } from "react-icons/bs";
 
 export const SearchField = (props: InputGroupProps) => {
 	return (

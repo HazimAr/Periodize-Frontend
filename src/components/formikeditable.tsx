@@ -1,13 +1,13 @@
+import { CheckIcon, CloseIcon, EditIcon } from "@chakra-ui/icons";
 import {
+	ButtonGroup,
 	Editable,
 	EditableInput,
 	EditablePreview,
-	ButtonGroup,
-	IconButton,
 	Flex,
+	IconButton,
 	useEditableControls,
 } from "@chakra-ui/react";
-import { CheckIcon, CloseIcon, EditIcon } from "@chakra-ui/icons";
 export default function CustomControlsExample() {
 	/* Here's a custom control */
 	function EditableControls() {

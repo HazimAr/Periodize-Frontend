@@ -1,32 +1,30 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { login } from "@api/auth";
-import Link from "@components/link";
-import { FaLock } from "react-icons/fa";
-import GoogleButton from "@components/google";
-import { useEffect, useState } from "react";
-import axios from "axios";
-
+import { EmailIcon, ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 import {
-	Text,
-	Stack,
-	Flex,
 	Box,
+	chakra,
+	Flex,
 	FormControl,
+	FormHelperText,
+	IconButton,
+	Input,
 	InputGroup,
 	InputLeftElement,
-	Input,
-	IconButton,
 	InputRightElement,
-	FormHelperText,
-	chakra,
+	Stack,
+	Text,
 } from "@chakra-ui/react";
-
-import { ViewIcon, ViewOffIcon, EmailIcon } from "@chakra-ui/icons";
-import Button from "@components/styledbutton";
-import useProfile from "@hooks/useProfile";
-import { validate } from "email-validator";
+import GoogleButton from "@components/google";
 import HeadFoot from "@components/home/headfoot";
+import Link from "@components/link";
+import Button from "@components/styledbutton";
+import axios from "axios";
 import { DB_URL } from "config";
+import { validate } from "email-validator";
+import { useState } from "react";
+import { FaLock } from "react-icons/fa";
+
 // import { GetServerSideProps } from "next";
 
 const CFaLock = chakra(FaLock);

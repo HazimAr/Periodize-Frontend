@@ -5,13 +5,7 @@
 // }
 // import styled from "styled-components";
 
-import {
-	Box,
-	Flex,
-	Heading,
-	ListItem,
-	UnorderedList,
-} from "@chakra-ui/layout";
+import { Box, Flex, Heading, ListItem, UnorderedList } from "@chakra-ui/layout";
 import { Text } from "@chakra-ui/react";
 import Link from "next/link";
 // import Cont from "@components/container";

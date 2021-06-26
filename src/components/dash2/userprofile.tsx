@@ -1,6 +1,6 @@
 import { Avatar, Flex, HStack, Link, Text } from "@chakra-ui/react";
-import * as React from "react";
 import useProfile from "@hooks/useProfile";
+import * as React from "react";
 
 export const UserProfile = () => {
 	const user = useProfile();

@@ -1,27 +1,17 @@
 import {
 	Box,
-	Heading,
-	Text,
-	Flex,
-	UnorderedList,
+	BoxProps,
 	Button,
 	ButtonProps,
-	BoxProps,
+	Heading,
+	SimpleGrid,
+	Text,
 } from "@chakra-ui/react";
-import Layout from "@components/dashboard/personalrecords/addprform";
-import {
-	Formik,
-	FormikHelpers,
-	FormikProps,
-	Form,
-	Field,
-	FieldProps,
-} from "formik";
 import CFormikInput from "@components/formikinput";
-import * as Yup from "yup";
-import { SimpleGrid } from "@chakra-ui/react";
+import { Field, Form, Formik } from "formik";
 import { motion } from "framer-motion";
 import { useState } from "react";
+import * as Yup from "yup";
 
 //styled(Box) motion(Box)
 

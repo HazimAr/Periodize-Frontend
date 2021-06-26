@@ -2,7 +2,6 @@
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 import { eraseCookie, getCookie, setCookie } from "@lib/cookie";
 import axios from "axios";
-
 import { DB_URL } from "../config";
 
 async function createUser(

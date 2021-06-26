@@ -10,19 +10,18 @@ import { createUser } from "@api/auth";
 // import { Filter } from "bad-words";
 import { EmailIcon, ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 import {
-	Text,
-	Stack,
-	Flex,
 	Box,
+	chakra,
+	Flex,
 	FormControl,
+	IconButton,
+	Input,
 	InputGroup,
 	InputLeftElement,
-	Input,
 	InputRightElement,
-	chakra,
-	IconButton,
+	Stack,
+	Text,
 } from "@chakra-ui/react";
-
 import GoogleButton from "@components/google";
 import HeadFoot from "@components/home/headfoot";
 import Link from "@components/link";
@@ -30,7 +29,7 @@ import Button from "@components/styledbutton";
 import axios from "axios";
 import { validate } from "email-validator";
 import { useState } from "react";
-import { FaUserAlt, FaLock } from "react-icons/fa";
+import { FaLock, FaUserAlt } from "react-icons/fa";
 
 const CFaUserAlt = chakra(FaUserAlt);
 const CFaLock = chakra(FaLock);

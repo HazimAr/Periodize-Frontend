@@ -1,5 +1,5 @@
-import styled from "styled-components";
 import { Box } from "@chakra-ui/react";
+import styled from "styled-components";
 
 const GlassFlex = styled(Box)`
 	background-color: rgba(255, 255, 255, ${(props) => props.op || 0.2});

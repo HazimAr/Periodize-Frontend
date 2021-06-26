@@ -1,13 +1,13 @@
 /* eslint-disable import/no-default-export */
 import {
-	chakra,
-	Heading,
-	Text,
-	Link,
-	HStack,
-	VStack,
 	Avatar,
 	Box,
+	chakra,
+	Heading,
+	HStack,
+	Link,
+	Text,
+	VStack,
 	Wrap,
 	WrapItem,
 } from "@chakra-ui/react";

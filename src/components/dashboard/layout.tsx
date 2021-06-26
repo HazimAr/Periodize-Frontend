@@ -1,13 +1,13 @@
 /* eslint-disable no-void */
 import { getProfileData } from "@api/profile";
-import { getCookie } from "@lib/cookie";
-import React, { useEffect } from "react";
-
 import { Flex } from "@chakra-ui/react";
 import { MobileTopBar } from "@components/dash2/mobiletopbar";
 import { Sidebar } from "@components/dash2/sidebar";
-import { DB_URL } from "config";
+import { getCookie } from "@lib/cookie";
 import axios from "axios";
+import { DB_URL } from "config";
+import React, { useEffect } from "react";
+
 // eslint-disable-next-line import/no-default-export
 export default function Layout({
 	children,

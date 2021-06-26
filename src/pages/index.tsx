@@ -1,4 +1,4 @@
-import { Container, Box, Heading, Flex, Text, SimpleGrid } from "@chakra-ui/react";
+import { Box, Container, Flex, Heading, Text } from "@chakra-ui/react";
 import AppleBox1 from "@components/apple1";
 // import HeadFoot from "@components/home/headfoot";
 import Button from "@components/styledbutton";
@@ -97,9 +97,7 @@ export default function Home(): JSX.Element {
 					</Text>
 				</Flex>
 			</Flex>
-			<AppleBox1/>
-
-
+			<AppleBox1 />
 		</>
 		// </HeadFoot>
 	);

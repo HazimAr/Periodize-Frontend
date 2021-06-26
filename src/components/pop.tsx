@@ -1,14 +1,14 @@
+import { QuestionIcon } from "@chakra-ui/icons";
 import {
 	Popover,
-	PopoverTrigger,
+	PopoverArrow,
+	PopoverBody,
+	PopoverCloseButton,
 	PopoverContent,
 	PopoverHeader,
-	PopoverBody,
-	PopoverArrow,
-	PopoverCloseButton,
 	PopoverProps,
+	PopoverTrigger,
 } from "@chakra-ui/react";
-import { QuestionIcon } from "@chakra-ui/icons";
 
 type PopProps = {
 	title: string;

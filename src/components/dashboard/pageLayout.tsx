@@ -1,6 +1,6 @@
 /* eslint-disable no-void */
 
-import { Center, Flex, Container } from "@chakra-ui/react";
+import { Container, Flex } from "@chakra-ui/react";
 
 export default function PageLayout({
 	children,
@@ -9,9 +9,7 @@ export default function PageLayout({
 }): JSX.Element {
 	return (
 		<Flex flexDir="column" w="100%" mt="16px" p="18px">
-            <Container maxW="container.md">
-                {children}
-            </Container>
+			<Container maxW="container.md">{children}</Container>
 		</Flex>
 	);
 }

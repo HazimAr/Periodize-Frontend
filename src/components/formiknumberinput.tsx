@@ -1,13 +1,13 @@
+import { ArrowDownIcon, ArrowUpIcon } from "@chakra-ui/icons";
 import {
-	FormControl,
-	Input,
-	FormErrorMessage,
 	Flex,
-	InputRightElement,
+	FormControl,
+	FormErrorMessage,
 	HStack,
 	IconButton,
+	Input,
+	InputRightElement,
 } from "@chakra-ui/react";
-import { ArrowDownIcon, ArrowUpIcon } from "@chakra-ui/icons";
 import { FieldProps, getIn } from "formik";
 
 const CNumberInput = ({

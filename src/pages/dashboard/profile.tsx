@@ -1,16 +1,15 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Box, Flex, Text, Divider} from "@chakra-ui/react";
+import { logout } from "@api/auth";
+import { Box, Divider, Flex, Text } from "@chakra-ui/react";
 import AvatarBadge from "@components/avatar";
+import BasicModal from "@components/basicmodal";
 import Layout from "@components/dashboard/layout";
+import EditEmail from "@components/editemailmodal";
+import EditPassword from "@components/editpasswordmodal";
+import EditUsername from "@components/editusernamemodal";
+import GlassBgFlex from "@components/glassbg";
 import Button from "@components/styledbutton";
 import useProfile from "@hooks/useProfile";
-import BasicModal from "@components/basicmodal";
-import { logout } from "@api/auth";
-import GlassBgFlex from "@components/glassbg";
-import EditUsername from "@components/editusernamemodal";
-import EditEmail from "@components/editemailmodal";
-import EditPassword from "@components/editpasswordmodal"; 
-
 
 export default function Profile(): JSX.Element {
 	const user: any = useProfile();
@@ -19,8 +18,17 @@ export default function Profile(): JSX.Element {
 	return (
 		<Layout>
 			{user ? (
-				<Flex flexDir="column" justify="center" mt="20px" maxW="100vw" mx="40px">
-					<Text textAlign="left" fontSize="lg"> My Account</Text>
+				<Flex
+					flexDir="column"
+					justify="center"
+					mt="20px"
+					maxW="100vw"
+					mx="40px"
+				>
+					<Text textAlign="left" fontSize="lg">
+						{" "}
+						My Account
+					</Text>
 					<GlassBgFlex
 						borderRadius="7px"
 						boxSizing="border-box"

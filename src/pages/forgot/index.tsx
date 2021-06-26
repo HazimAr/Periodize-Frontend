@@ -1,28 +1,27 @@
 import { changePassword, forgotPassword } from "@api/profile";
-import { getParameterByName } from "@lib/cookie";
-import Link from "@components/link";
-import { FaLock } from "react-icons/fa";
-import { useEffect, useState } from "react";
-import * as EmailValidator from "email-validator";
+import { EmailIcon, ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 import {
-	Text,
-	Stack,
-	Flex,
 	Box,
+	Button,
+	chakra,
+	Flex,
 	FormControl,
+	IconButton,
+	Input,
 	InputGroup,
 	InputLeftElement,
-	Input,
-	Button,
-	IconButton,
 	InputRightElement,
-	chakra,
+	Stack,
+	Text,
 } from "@chakra-ui/react";
-import { EmailIcon } from "@chakra-ui/icons";
-import axios from "axios";
-
-import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 import HeadFoot from "@components/home/headfoot";
+import Link from "@components/link";
+import { getParameterByName } from "@lib/cookie";
+import axios from "axios";
+import * as EmailValidator from "email-validator";
+import { useEffect, useState } from "react";
+import { FaLock } from "react-icons/fa";
+
 const CFaLock = chakra(FaLock);
 export default function LoginPage() {
 	const [email, setEmail] = useState("");

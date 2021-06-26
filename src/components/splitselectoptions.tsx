@@ -1,5 +1,5 @@
-import { FieldProps } from "formik";
 import { Select } from "@chakra-ui/react";
+import { FieldProps } from "formik";
 export default function SplitSelect({
 	field,
 	//@ts-ignore

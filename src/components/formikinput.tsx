@@ -1,4 +1,4 @@
-import { FormControl, Input, FormErrorMessage } from "@chakra-ui/react";
+import { FormControl, FormErrorMessage, Input } from "@chakra-ui/react";
 import { FieldProps, getIn } from "formik";
 
 const CFormikInput = ({ field, form: { errors, touched } }: FieldProps) => {
