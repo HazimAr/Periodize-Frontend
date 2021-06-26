@@ -4,6 +4,7 @@ import Link from "@components/link";
 import { FaLock } from "react-icons/fa";
 import GoogleButton from "@components/google";
 import { useEffect, useState } from "react";
+import axios from "axios";
 
 import {
 	Text,
@@ -25,6 +26,8 @@ import Button from "@components/styledbutton";
 import useProfile from "@hooks/useProfile";
 import { validate } from "email-validator";
 import HeadFoot from "@components/home/headfoot";
+import { DB_URL } from "config";
+// import { GetServerSideProps } from "next";
 
 const CFaLock = chakra(FaLock);
 
@@ -34,14 +37,6 @@ export default function LoginPage(): JSX.Element {
 	const [error, setError] = useState("");
 	const [showPassword, setShowPassword] = useState(false);
 	const handleShowClick = () => setShowPassword(!showPassword);
-
-	const user: any = useProfile();
-
-	useEffect(() => {
-		if (user) {
-			window.location.href = "/dashboard";
-		}
-	}, [user]);
 
 	return (
 		<HeadFoot>
@@ -177,4 +172,20 @@ export default function LoginPage(): JSX.Element {
 			</Flex>
 		</HeadFoot>
 	);
+}
+
+export async function getServerSideProps({ req, res }: any): Promise<any> {
+	const sessionid = req.cookies.sessionid;
+	if (!sessionid) return { props: {} };
+	const sendData = {
+		sessionid,
+	};
+	const { data } = await axios.post(`${DB_URL}/users/me`, sendData);
+	if (data.data) {
+		res.writeHead(307, {
+			Location: "dashboard",
+		});
+		res.end();
+	}
+	return { props: {} };
 }
