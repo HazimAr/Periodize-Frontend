@@ -118,7 +118,8 @@ export default function CreateForm() {
 				<Formik
 					initialValues={initialValues}
 					onSubmit={(values, actions) => {
-						createProgram(values).then(() => router.push("/"));
+						createProgram(values)
+							// .then(() => router.push("/"));
 						// console.log("submitting");
 						// alert(JSON.stringify(values, null, 2));
 						// actions.setSubmitting(false);
