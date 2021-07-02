@@ -47,7 +47,7 @@ export default function Signup(): JSX.Element {
 		}
 	}, [signUpError]);
 
-	const onSubmit = async (data) => {
+	const onSubmit = async (data:any) => {
 		try {
 			if (showCode) {
 				confirmSignUp(data);

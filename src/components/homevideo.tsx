@@ -102,6 +102,7 @@ export default function HomeVideo() {
 		hidden: { opacity: 0, x: 300 },
 	};
 	return (
+		
 		<StyledSection>
 			{/* <header>
 					<h2 class="logo">Travel</h2>
