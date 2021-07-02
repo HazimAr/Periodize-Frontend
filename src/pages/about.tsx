@@ -5,8 +5,8 @@ import HeadFoot from "@components/home/headfoot";
 export default function About(): JSX.Element {
 	const staff = [
 		{
-			name: "tendon dev",
-			city: "chicago",
+			name: "Izzy Developer",
+			city: "Timbuktu",
 			github: "google.com",
 			tags: ["biking", "tea", "coffee", "furry"],
 			src: "/ai.jpg",
@@ -38,7 +38,9 @@ export default function About(): JSX.Element {
 						</Box>
 					</Flex>
 				</Flex>
-
+				<Box>
+					<Heading>Izzy Dev</Heading>
+				</Box>
 				<Flex
 					height="100vh"
 					width="100vw"
@@ -57,14 +59,14 @@ export default function About(): JSX.Element {
 							flexDir="column"
 							borderRadius="5px"
 						>
-							{staff.map((p) => {
+							{staff.map((person) => {
 								return (
 									<StaffCard
-										name={p.name}
-										city={p.city}
-										src={p.src}
-										tags={p.tags}
-										github={p.github}
+										name={person.name}
+										city={person.city}
+										src={person.src}
+										tags={person.tags}
+										github={person.github}
 									/>
 								);
 							})}
