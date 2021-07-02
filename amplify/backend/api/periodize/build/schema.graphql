@@ -1,0 +1,533 @@
+type Program @aws_cognito_user_pools @aws_api_key {
+  id: ID!
+  name: String!
+  summary: String
+  catergory: String
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
+  owner: String
+  days(filter: ModelDayFilterInput, sortDirection: ModelSortDirection, limit: Int, nextToken: String): ModelDayConnection @aws_cognito_user_pools @aws_api_key
+}
+
+type Day @aws_cognito_user_pools @aws_api_key {
+  id: ID!
+  name: String!
+  description: String
+  catergory: String
+  programID: ID!
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
+  program: Program @aws_cognito_user_pools @aws_api_key
+  owner: String
+  workout(name: ModelStringKeyConditionInput, filter: ModelWorkoutFilterInput, sortDirection: ModelSortDirection, limit: Int, nextToken: String): ModelWorkoutConnection @aws_cognito_user_pools @aws_api_key
+}
+
+type Workout @aws_cognito_user_pools @aws_api_key {
+  id: ID!
+  name: String!
+  description: String
+  catergory: [String!]!
+  dayID: ID!
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
+  day: Day @aws_cognito_user_pools @aws_api_key
+  owner: String
+  lift(liftID: ModelIDKeyConditionInput, filter: ModelLiftWorkoutJoinFilterInput, sortDirection: ModelSortDirection, limit: Int, nextToken: String): ModelLiftWorkoutJoinConnection @aws_cognito_user_pools @aws_api_key
+}
+
+type LiftWorkoutJoin @aws_cognito_user_pools @aws_api_key {
+  id: ID!
+  liftID: ID!
+  workoutID: ID!
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
+  workout: Workout! @aws_cognito_user_pools @aws_api_key
+  owner: String
+  lift: Lift! @aws_cognito_user_pools @aws_api_key
+}
+
+type Lift @aws_cognito_user_pools @aws_api_key {
+  id: ID!
+  name: String!
+  description: String
+  category: [String!]!
+  favorite: Boolean!
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
+  workout(workoutID: ModelIDKeyConditionInput, filter: ModelLiftWorkoutJoinFilterInput, sortDirection: ModelSortDirection, limit: Int, nextToken: String): ModelLiftWorkoutJoinConnection @aws_cognito_user_pools @aws_api_key
+  owner: String
+  records(load: ModelFloatKeyConditionInput, filter: ModelRecordFilterInput, sortDirection: ModelSortDirection, limit: Int, nextToken: String): ModelRecordConnection @aws_cognito_user_pools @aws_api_key
+}
+
+type Record @aws_cognito_user_pools @aws_api_key {
+  id: ID!
+  load: Float!
+  warmup: Int!
+  sets: Int!
+  reps: Int!
+  unit: String!
+  rpe: String!
+  percent: String!
+  liftID: ID!
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
+  lift: Lift @aws_cognito_user_pools @aws_api_key
+  owner: String
+}
+
+enum ModelSortDirection {
+  ASC
+  DESC
+}
+
+type ModelProgramConnection @aws_api_key @aws_cognito_user_pools {
+  items: [Program]
+  nextToken: String
+}
+
+input ModelStringInput {
+  ne: String
+  eq: String
+  le: String
+  lt: String
+  ge: String
+  gt: String
+  contains: String
+  notContains: String
+  between: [String]
+  beginsWith: String
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+  size: ModelSizeInput
+}
+
+input ModelIDInput {
+  ne: ID
+  eq: ID
+  le: ID
+  lt: ID
+  ge: ID
+  gt: ID
+  contains: ID
+  notContains: ID
+  between: [ID]
+  beginsWith: ID
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+  size: ModelSizeInput
+}
+
+input ModelIntInput {
+  ne: Int
+  eq: Int
+  le: Int
+  lt: Int
+  ge: Int
+  gt: Int
+  between: [Int]
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+}
+
+input ModelFloatInput {
+  ne: Float
+  eq: Float
+  le: Float
+  lt: Float
+  ge: Float
+  gt: Float
+  between: [Float]
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+}
+
+input ModelBooleanInput {
+  ne: Boolean
+  eq: Boolean
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+}
+
+input ModelSizeInput {
+  ne: Int
+  eq: Int
+  le: Int
+  lt: Int
+  ge: Int
+  gt: Int
+  between: [Int]
+}
+
+input ModelProgramFilterInput {
+  id: ModelIDInput
+  name: ModelStringInput
+  summary: ModelStringInput
+  catergory: ModelStringInput
+  and: [ModelProgramFilterInput]
+  or: [ModelProgramFilterInput]
+  not: ModelProgramFilterInput
+}
+
+enum ModelAttributeTypes {
+  binary
+  binarySet
+  bool
+  list
+  map
+  number
+  numberSet
+  string
+  stringSet
+  _null
+}
+
+type Query {
+  getProgram(id: ID!): Program @aws_api_key @aws_cognito_user_pools
+  listPrograms(filter: ModelProgramFilterInput, limit: Int, nextToken: String): ModelProgramConnection @aws_api_key @aws_cognito_user_pools
+  getDay(id: ID!): Day @aws_api_key @aws_cognito_user_pools
+  listDays(filter: ModelDayFilterInput, limit: Int, nextToken: String): ModelDayConnection @aws_api_key @aws_cognito_user_pools
+  getWorkout(id: ID!): Workout @aws_api_key @aws_cognito_user_pools
+  listWorkouts(filter: ModelWorkoutFilterInput, limit: Int, nextToken: String): ModelWorkoutConnection @aws_api_key @aws_cognito_user_pools
+  getLiftWorkoutJoin(id: ID!): LiftWorkoutJoin @aws_api_key @aws_cognito_user_pools
+  listLiftWorkoutJoins(filter: ModelLiftWorkoutJoinFilterInput, limit: Int, nextToken: String): ModelLiftWorkoutJoinConnection @aws_api_key @aws_cognito_user_pools
+  getLift(id: ID!): Lift @aws_api_key @aws_cognito_user_pools
+  listLifts(filter: ModelLiftFilterInput, limit: Int, nextToken: String): ModelLiftConnection @aws_api_key @aws_cognito_user_pools
+  getRecord(id: ID!): Record @aws_api_key @aws_cognito_user_pools
+  listRecords(filter: ModelRecordFilterInput, limit: Int, nextToken: String): ModelRecordConnection @aws_api_key @aws_cognito_user_pools
+}
+
+input CreateProgramInput {
+  id: ID
+  name: String!
+  summary: String
+  catergory: String
+}
+
+input UpdateProgramInput {
+  id: ID!
+  name: String
+  summary: String
+  catergory: String
+}
+
+input DeleteProgramInput {
+  id: ID!
+}
+
+type Mutation {
+  createProgram(input: CreateProgramInput!, condition: ModelProgramConditionInput): Program @aws_cognito_user_pools
+  updateProgram(input: UpdateProgramInput!, condition: ModelProgramConditionInput): Program @aws_cognito_user_pools
+  deleteProgram(input: DeleteProgramInput!, condition: ModelProgramConditionInput): Program @aws_cognito_user_pools
+  createDay(input: CreateDayInput!, condition: ModelDayConditionInput): Day @aws_cognito_user_pools
+  updateDay(input: UpdateDayInput!, condition: ModelDayConditionInput): Day @aws_cognito_user_pools
+  deleteDay(input: DeleteDayInput!, condition: ModelDayConditionInput): Day @aws_cognito_user_pools
+  createWorkout(input: CreateWorkoutInput!, condition: ModelWorkoutConditionInput): Workout @aws_cognito_user_pools
+  updateWorkout(input: UpdateWorkoutInput!, condition: ModelWorkoutConditionInput): Workout @aws_cognito_user_pools
+  deleteWorkout(input: DeleteWorkoutInput!, condition: ModelWorkoutConditionInput): Workout @aws_cognito_user_pools
+  createLiftWorkoutJoin(input: CreateLiftWorkoutJoinInput!, condition: ModelLiftWorkoutJoinConditionInput): LiftWorkoutJoin @aws_cognito_user_pools
+  updateLiftWorkoutJoin(input: UpdateLiftWorkoutJoinInput!, condition: ModelLiftWorkoutJoinConditionInput): LiftWorkoutJoin @aws_cognito_user_pools
+  deleteLiftWorkoutJoin(input: DeleteLiftWorkoutJoinInput!, condition: ModelLiftWorkoutJoinConditionInput): LiftWorkoutJoin @aws_cognito_user_pools
+  createLift(input: CreateLiftInput!, condition: ModelLiftConditionInput): Lift @aws_cognito_user_pools
+  updateLift(input: UpdateLiftInput!, condition: ModelLiftConditionInput): Lift @aws_cognito_user_pools
+  deleteLift(input: DeleteLiftInput!, condition: ModelLiftConditionInput): Lift @aws_cognito_user_pools
+  createRecord(input: CreateRecordInput!, condition: ModelRecordConditionInput): Record @aws_cognito_user_pools
+  updateRecord(input: UpdateRecordInput!, condition: ModelRecordConditionInput): Record @aws_cognito_user_pools
+  deleteRecord(input: DeleteRecordInput!, condition: ModelRecordConditionInput): Record @aws_cognito_user_pools
+}
+
+input ModelProgramConditionInput {
+  name: ModelStringInput
+  summary: ModelStringInput
+  catergory: ModelStringInput
+  and: [ModelProgramConditionInput]
+  or: [ModelProgramConditionInput]
+  not: ModelProgramConditionInput
+}
+
+type Subscription {
+  onCreateProgram: Program @aws_subscribe(mutations: ["createProgram"]) @aws_api_key @aws_cognito_user_pools
+  onUpdateProgram: Program @aws_subscribe(mutations: ["updateProgram"]) @aws_api_key @aws_cognito_user_pools
+  onDeleteProgram: Program @aws_subscribe(mutations: ["deleteProgram"]) @aws_api_key @aws_cognito_user_pools
+  onCreateDay: Day @aws_subscribe(mutations: ["createDay"]) @aws_api_key @aws_cognito_user_pools
+  onUpdateDay: Day @aws_subscribe(mutations: ["updateDay"]) @aws_api_key @aws_cognito_user_pools
+  onDeleteDay: Day @aws_subscribe(mutations: ["deleteDay"]) @aws_api_key @aws_cognito_user_pools
+  onCreateWorkout: Workout @aws_subscribe(mutations: ["createWorkout"]) @aws_api_key @aws_cognito_user_pools
+  onUpdateWorkout: Workout @aws_subscribe(mutations: ["updateWorkout"]) @aws_api_key @aws_cognito_user_pools
+  onDeleteWorkout: Workout @aws_subscribe(mutations: ["deleteWorkout"]) @aws_api_key @aws_cognito_user_pools
+  onCreateLiftWorkoutJoin: LiftWorkoutJoin @aws_subscribe(mutations: ["createLiftWorkoutJoin"]) @aws_api_key @aws_cognito_user_pools
+  onUpdateLiftWorkoutJoin: LiftWorkoutJoin @aws_subscribe(mutations: ["updateLiftWorkoutJoin"]) @aws_api_key @aws_cognito_user_pools
+  onDeleteLiftWorkoutJoin: LiftWorkoutJoin @aws_subscribe(mutations: ["deleteLiftWorkoutJoin"]) @aws_api_key @aws_cognito_user_pools
+  onCreateLift: Lift @aws_subscribe(mutations: ["createLift"]) @aws_api_key @aws_cognito_user_pools
+  onUpdateLift: Lift @aws_subscribe(mutations: ["updateLift"]) @aws_api_key @aws_cognito_user_pools
+  onDeleteLift: Lift @aws_subscribe(mutations: ["deleteLift"]) @aws_api_key @aws_cognito_user_pools
+  onCreateRecord: Record @aws_subscribe(mutations: ["createRecord"]) @aws_api_key @aws_cognito_user_pools
+  onUpdateRecord: Record @aws_subscribe(mutations: ["updateRecord"]) @aws_api_key @aws_cognito_user_pools
+  onDeleteRecord: Record @aws_subscribe(mutations: ["deleteRecord"]) @aws_api_key @aws_cognito_user_pools
+}
+
+type ModelDayConnection @aws_api_key @aws_cognito_user_pools {
+  items: [Day]
+  nextToken: String
+}
+
+input ModelDayFilterInput {
+  id: ModelIDInput
+  name: ModelStringInput
+  description: ModelStringInput
+  catergory: ModelStringInput
+  programID: ModelIDInput
+  and: [ModelDayFilterInput]
+  or: [ModelDayFilterInput]
+  not: ModelDayFilterInput
+}
+
+input CreateDayInput {
+  id: ID
+  name: String!
+  description: String
+  catergory: String
+  programID: ID!
+}
+
+input UpdateDayInput {
+  id: ID!
+  name: String
+  description: String
+  catergory: String
+  programID: ID
+}
+
+input DeleteDayInput {
+  id: ID!
+}
+
+input ModelDayConditionInput {
+  name: ModelStringInput
+  description: ModelStringInput
+  catergory: ModelStringInput
+  programID: ModelIDInput
+  and: [ModelDayConditionInput]
+  or: [ModelDayConditionInput]
+  not: ModelDayConditionInput
+}
+
+type ModelWorkoutConnection @aws_api_key @aws_cognito_user_pools {
+  items: [Workout]
+  nextToken: String
+}
+
+input ModelWorkoutFilterInput {
+  id: ModelIDInput
+  name: ModelStringInput
+  description: ModelStringInput
+  catergory: ModelStringInput
+  dayID: ModelIDInput
+  and: [ModelWorkoutFilterInput]
+  or: [ModelWorkoutFilterInput]
+  not: ModelWorkoutFilterInput
+}
+
+input CreateWorkoutInput {
+  id: ID
+  name: String!
+  description: String
+  catergory: [String!]!
+  dayID: ID!
+}
+
+input UpdateWorkoutInput {
+  id: ID!
+  name: String
+  description: String
+  catergory: [String!]
+  dayID: ID
+}
+
+input DeleteWorkoutInput {
+  id: ID!
+}
+
+input ModelWorkoutConditionInput {
+  name: ModelStringInput
+  description: ModelStringInput
+  catergory: ModelStringInput
+  dayID: ModelIDInput
+  and: [ModelWorkoutConditionInput]
+  or: [ModelWorkoutConditionInput]
+  not: ModelWorkoutConditionInput
+}
+
+type ModelLiftWorkoutJoinConnection @aws_api_key @aws_cognito_user_pools {
+  items: [LiftWorkoutJoin]
+  nextToken: String
+}
+
+input ModelLiftWorkoutJoinFilterInput {
+  id: ModelIDInput
+  liftID: ModelIDInput
+  workoutID: ModelIDInput
+  and: [ModelLiftWorkoutJoinFilterInput]
+  or: [ModelLiftWorkoutJoinFilterInput]
+  not: ModelLiftWorkoutJoinFilterInput
+}
+
+input CreateLiftWorkoutJoinInput {
+  id: ID
+  liftID: ID!
+  workoutID: ID!
+}
+
+input UpdateLiftWorkoutJoinInput {
+  id: ID!
+  liftID: ID
+  workoutID: ID
+}
+
+input DeleteLiftWorkoutJoinInput {
+  id: ID!
+}
+
+input ModelLiftWorkoutJoinConditionInput {
+  liftID: ModelIDInput
+  workoutID: ModelIDInput
+  and: [ModelLiftWorkoutJoinConditionInput]
+  or: [ModelLiftWorkoutJoinConditionInput]
+  not: ModelLiftWorkoutJoinConditionInput
+}
+
+type ModelLiftConnection @aws_api_key @aws_cognito_user_pools {
+  items: [Lift]
+  nextToken: String
+}
+
+input ModelLiftFilterInput {
+  id: ModelIDInput
+  name: ModelStringInput
+  description: ModelStringInput
+  category: ModelStringInput
+  favorite: ModelBooleanInput
+  and: [ModelLiftFilterInput]
+  or: [ModelLiftFilterInput]
+  not: ModelLiftFilterInput
+}
+
+input CreateLiftInput {
+  id: ID
+  name: String!
+  description: String
+  category: [String!]!
+  favorite: Boolean!
+}
+
+input UpdateLiftInput {
+  id: ID!
+  name: String
+  description: String
+  category: [String!]
+  favorite: Boolean
+}
+
+input DeleteLiftInput {
+  id: ID!
+}
+
+input ModelLiftConditionInput {
+  name: ModelStringInput
+  description: ModelStringInput
+  category: ModelStringInput
+  favorite: ModelBooleanInput
+  and: [ModelLiftConditionInput]
+  or: [ModelLiftConditionInput]
+  not: ModelLiftConditionInput
+}
+
+type ModelRecordConnection @aws_api_key @aws_cognito_user_pools {
+  items: [Record]
+  nextToken: String
+}
+
+input ModelRecordFilterInput {
+  id: ModelIDInput
+  load: ModelFloatInput
+  warmup: ModelIntInput
+  sets: ModelIntInput
+  reps: ModelIntInput
+  unit: ModelStringInput
+  rpe: ModelStringInput
+  percent: ModelStringInput
+  liftID: ModelIDInput
+  and: [ModelRecordFilterInput]
+  or: [ModelRecordFilterInput]
+  not: ModelRecordFilterInput
+}
+
+input CreateRecordInput {
+  id: ID
+  load: Float!
+  warmup: Int!
+  sets: Int!
+  reps: Int!
+  unit: String!
+  rpe: String!
+  percent: String!
+  liftID: ID!
+}
+
+input UpdateRecordInput {
+  id: ID!
+  load: Float
+  warmup: Int
+  sets: Int
+  reps: Int
+  unit: String
+  rpe: String
+  percent: String
+  liftID: ID
+}
+
+input DeleteRecordInput {
+  id: ID!
+}
+
+input ModelRecordConditionInput {
+  load: ModelFloatInput
+  warmup: ModelIntInput
+  sets: ModelIntInput
+  reps: ModelIntInput
+  unit: ModelStringInput
+  rpe: ModelStringInput
+  percent: ModelStringInput
+  liftID: ModelIDInput
+  and: [ModelRecordConditionInput]
+  or: [ModelRecordConditionInput]
+  not: ModelRecordConditionInput
+}
+
+input ModelStringKeyConditionInput {
+  eq: String
+  le: String
+  lt: String
+  ge: String
+  gt: String
+  between: [String]
+  beginsWith: String
+}
+
+input ModelIDKeyConditionInput {
+  eq: ID
+  le: ID
+  lt: ID
+  ge: ID
+  gt: ID
+  between: [ID]
+  beginsWith: ID
+}
+
+input ModelFloatKeyConditionInput {
+  eq: Float
+  le: Float
+  lt: Float
+  ge: Float
+  gt: Float
+  between: [Float]
+}
