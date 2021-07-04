@@ -43,8 +43,8 @@ export default function Home(): JSX.Element {
 		// <HeadFoot>
 		<>
 		
-				{/* <HomeVideo /> */}
-				<FeatureComponent/>
+				<HomeVideo />
+				{/* <FeatureComponent/> */}
 				
 			
 		</>

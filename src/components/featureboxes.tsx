@@ -1,4 +1,4 @@
-import { Box, SimpleGrid } from "@chakra-ui/react";
+import {Flex, Box, SimpleGrid } from "@chakra-ui/react";
 import * as React from "react";
 import {
 	FcDoughnutChart,
@@ -10,12 +10,12 @@ import { Feature } from "./feature";
 
 export const FeatureComponent = () => (
 	<Box
-	//as="section" maxW="5xl" mx="auto" py="12" px={{ base: "6", md: "8" }}
+	// as="section" maxW="5xl" mx="auto" py="12" px={{ base: "6", md: "8" }}
 	>
 		<SimpleGrid
 			columns={{ base: 1, md: 2 }}
 			spacingX="10"
-			// spacingY={{ base: "8", md: "14" }}
+			spacingY={{ base: "8", md: "14" }}
 			h="100vh"
 		>
 			<Feature title="Secure by default" icon={<FcPrivacy />}>

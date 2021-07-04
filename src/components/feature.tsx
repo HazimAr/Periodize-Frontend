@@ -1,4 +1,4 @@
-import { Box, Stack, Text, useColorModeValue as mode } from "@chakra-ui/react";
+import { Box, Stack, Text, Flex, useColorModeValue as mode } from "@chakra-ui/react";
 import * as React from "react";
 
 interface FeatureProps {
@@ -10,9 +10,10 @@ interface FeatureProps {
 export const Feature = (props: FeatureProps) => {
 	const { title, children, icon } = props;
 	return (
-		<Stack
+		<Flex
 			spacing={{ base: "3", md: "6" }}
 			direction={{ base: "column", md: "row" }}
+			align="center"
 		>
 			<Box fontSize="6xl">{icon}</Box>
 			<Stack spacing="1">
@@ -21,6 +22,6 @@ export const Feature = (props: FeatureProps) => {
 				</Text>
 				<Box color={mode("gray.600", "gray.400")}>{children}</Box>
 			</Stack>
-		</Stack>
+		</Flex>
 	);
 };
