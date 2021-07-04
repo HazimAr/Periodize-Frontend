@@ -44,7 +44,6 @@ export default function Layout({
 }
 
 export async function getServerSideProps({ req, res }: any): Promise<any> {
-	console.log("Server");
 	const sessionid = req.cookies.sessionid;
 	if (!sessionid) {
 		res.writeHead(307, {
