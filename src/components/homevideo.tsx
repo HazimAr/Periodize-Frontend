@@ -5,7 +5,7 @@ import {
 	HStack,
 	Icon,
 	Link,
-	Text,
+	Text
 } from "@chakra-ui/react";
 import { motion } from "framer-motion";
 import { FaGithub, FaInstagram } from "react-icons/fa";
@@ -102,6 +102,7 @@ export default function HomeVideo() {
 		hidden: { opacity: 0, x: 300 },
 	};
 	return (
+		<>
 		
 		<StyledSection>
 			{/* <header>
@@ -233,6 +234,8 @@ export default function HomeVideo() {
       <li><a href="#">Contact</a></li>
     </ul>
   </div>  */}
-		</StyledSection>
+			</StyledSection>
+			<Box h="100vh" />
+		</>
 	);
 }

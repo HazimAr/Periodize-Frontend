@@ -9,7 +9,7 @@ export default function Home(): JSX.Element {
 		// <HeadFoot>
 		<>
 			<HomeVideo />
-			<Box h="100vh" />
+			
 			<FeatureComponent />
 		</>
 		// </HeadFoot>
