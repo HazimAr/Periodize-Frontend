@@ -1,9 +1,8 @@
 /* eslint-disable no-void */
-import { getProfileData } from "@api/profile";
 import { Flex } from "@chakra-ui/react";
 import { MobileTopBar } from "@components/dash2/mobiletopbar";
 import { Sidebar } from "@components/dash2/sidebar";
-import { getCookie } from "@lib/cookie";
+import { useUser } from "@context/AuthContext";
 import axios from "axios";
 import { DB_URL } from "config";
 import React, { useEffect } from "react";
@@ -14,19 +13,10 @@ export default function Layout({
 }: {
 	children: React.ReactNode;
 }): JSX.Element {
+	const { user, setUser } = useUser();
 	useEffect(() => {
-		const sess = getCookie("sessionid");
-		if (!sess) {
-			window.location.href = "/login";
-			return;
-		}
-		getProfileData().then((data) => {
-			if (!data.data) {
-				window.location.href = "/login";
-				return;
-			}
-		});
-	}, []);
+		console.log(user);
+	}, [user]);
 	return (
 		<main id="main">
 			<Flex h="100vh" flexDirection="column" position="fixed" w="100%">

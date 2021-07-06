@@ -47,7 +47,7 @@ export default function Signup(): JSX.Element {
 		}
 	}, [signUpError]);
 
-	const onSubmit = async (data:any) => {
+	const onSubmit = async (data: any) => {
 		try {
 			if (showCode) {
 				confirmSignUp(data);
@@ -103,7 +103,7 @@ export default function Signup(): JSX.Element {
 					id="name"
 					isInvalid={errors.username ? true : false}
 				>
-					<FormLabel mb={1}>Name</FormLabel>
+					<FormLabel mb={1}>Username</FormLabel>
 					<Input
 						autoComplete="name"
 						{...register("username", {
