@@ -38,6 +38,7 @@ const StyledSection = styled.div`
 		padding: 40px;
 	}
 `;
+
 const StyledOverlay = styled.div`
 	position: absolute;
 	top: 0;
@@ -53,6 +54,7 @@ const StyledOverlay = styled.div`
 	box-shadow: 5px 5px 30px rgba(0, 0, 0, 0.2);
 	border-radius: 5px; */
 `;
+
 const StyledText = styled(motion.div)`
 	position: relative;
 	z-index: 10;
