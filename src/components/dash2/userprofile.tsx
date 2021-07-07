@@ -1,9 +1,10 @@
 import { Avatar, Flex, HStack, Link, Text } from "@chakra-ui/react";
-import useProfile from "@hooks/useProfile";
+import { useUser } from "@context/AuthContext";
 import * as React from "react";
 
 export const UserProfile = () => {
-	const user = useProfile();
+	const { user } = useUser();
+
 	const placeholder = {
 		username: "Loading...",
 	};
@@ -18,8 +19,8 @@ export const UserProfile = () => {
 			>
 				<Avatar
 					size="sm"
-					name={user ? user.username : placeholder.username}
-					src={user?.image}
+					// name={user ? user.getUsername : placeholder.username}
+					// src={user?.image}
 				/>
 				<Flex direction="column" fontWeight="medium">
 					<Text fontSize="sm">

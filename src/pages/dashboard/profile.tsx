@@ -9,10 +9,10 @@ import EditPassword from "@components/editpasswordmodal";
 import EditUsername from "@components/editusernamemodal";
 import GlassBgFlex from "@components/glassbg";
 import Button from "@components/styledbutton";
-import useProfile from "@hooks/useProfile";
+import { useUser } from "@context/AuthContext";
 
 export default function Profile(): JSX.Element {
-	const user: any = useProfile();
+	const { user } = useUser();
 	console.log(user);
 
 	return (
@@ -89,7 +89,7 @@ export default function Profile(): JSX.Element {
 							>
 								<Box>
 									<Text>Email:</Text>
-									<Text>{user.email}</Text>
+									<Text>{user.attributes.email}</Text>
 								</Box>
 								<BasicModal header="Edit">
 									<EditEmail />

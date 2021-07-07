@@ -24,7 +24,19 @@ export const createProgram = /* GraphQL */ `
           programID
           createdAt
           updatedAt
+          program {
+            id
+            name
+            summary
+            catergory
+            createdAt
+            updatedAt
+            owner
+          }
           owner
+          workout {
+            nextToken
+          }
         }
         nextToken
       }
@@ -53,7 +65,19 @@ export const updateProgram = /* GraphQL */ `
           programID
           createdAt
           updatedAt
+          program {
+            id
+            name
+            summary
+            catergory
+            createdAt
+            updatedAt
+            owner
+          }
           owner
+          workout {
+            nextToken
+          }
         }
         nextToken
       }
@@ -82,7 +106,19 @@ export const deleteProgram = /* GraphQL */ `
           programID
           createdAt
           updatedAt
+          program {
+            id
+            name
+            summary
+            catergory
+            createdAt
+            updatedAt
+            owner
+          }
           owner
+          workout {
+            nextToken
+          }
         }
         nextToken
       }
@@ -111,6 +147,16 @@ export const createDay = /* GraphQL */ `
         updatedAt
         owner
         days {
+          items {
+            id
+            name
+            description
+            catergory
+            programID
+            createdAt
+            updatedAt
+            owner
+          }
           nextToken
         }
       }
@@ -124,7 +170,20 @@ export const createDay = /* GraphQL */ `
           dayID
           createdAt
           updatedAt
+          day {
+            id
+            name
+            description
+            catergory
+            programID
+            createdAt
+            updatedAt
+            owner
+          }
           owner
+          lift {
+            nextToken
+          }
         }
         nextToken
       }
@@ -153,6 +212,16 @@ export const updateDay = /* GraphQL */ `
         updatedAt
         owner
         days {
+          items {
+            id
+            name
+            description
+            catergory
+            programID
+            createdAt
+            updatedAt
+            owner
+          }
           nextToken
         }
       }
@@ -166,7 +235,20 @@ export const updateDay = /* GraphQL */ `
           dayID
           createdAt
           updatedAt
+          day {
+            id
+            name
+            description
+            catergory
+            programID
+            createdAt
+            updatedAt
+            owner
+          }
           owner
+          lift {
+            nextToken
+          }
         }
         nextToken
       }
@@ -195,6 +277,16 @@ export const deleteDay = /* GraphQL */ `
         updatedAt
         owner
         days {
+          items {
+            id
+            name
+            description
+            catergory
+            programID
+            createdAt
+            updatedAt
+            owner
+          }
           nextToken
         }
       }
@@ -208,7 +300,20 @@ export const deleteDay = /* GraphQL */ `
           dayID
           createdAt
           updatedAt
+          day {
+            id
+            name
+            description
+            catergory
+            programID
+            createdAt
+            updatedAt
+            owner
+          }
           owner
+          lift {
+            nextToken
+          }
         }
         nextToken
       }
@@ -244,9 +349,22 @@ export const createWorkout = /* GraphQL */ `
           createdAt
           updatedAt
           owner
+          days {
+            nextToken
+          }
         }
         owner
         workout {
+          items {
+            id
+            name
+            description
+            catergory
+            dayID
+            createdAt
+            updatedAt
+            owner
+          }
           nextToken
         }
       }
@@ -258,7 +376,27 @@ export const createWorkout = /* GraphQL */ `
           workoutID
           createdAt
           updatedAt
+          workout {
+            id
+            name
+            description
+            catergory
+            dayID
+            createdAt
+            updatedAt
+            owner
+          }
           owner
+          lift {
+            id
+            name
+            description
+            category
+            favorite
+            createdAt
+            updatedAt
+            owner
+          }
         }
         nextToken
       }
@@ -294,9 +432,22 @@ export const updateWorkout = /* GraphQL */ `
           createdAt
           updatedAt
           owner
+          days {
+            nextToken
+          }
         }
         owner
         workout {
+          items {
+            id
+            name
+            description
+            catergory
+            dayID
+            createdAt
+            updatedAt
+            owner
+          }
           nextToken
         }
       }
@@ -308,7 +459,27 @@ export const updateWorkout = /* GraphQL */ `
           workoutID
           createdAt
           updatedAt
+          workout {
+            id
+            name
+            description
+            catergory
+            dayID
+            createdAt
+            updatedAt
+            owner
+          }
           owner
+          lift {
+            id
+            name
+            description
+            category
+            favorite
+            createdAt
+            updatedAt
+            owner
+          }
         }
         nextToken
       }
@@ -344,9 +515,22 @@ export const deleteWorkout = /* GraphQL */ `
           createdAt
           updatedAt
           owner
+          days {
+            nextToken
+          }
         }
         owner
         workout {
+          items {
+            id
+            name
+            description
+            catergory
+            dayID
+            createdAt
+            updatedAt
+            owner
+          }
           nextToken
         }
       }
@@ -358,7 +542,27 @@ export const deleteWorkout = /* GraphQL */ `
           workoutID
           createdAt
           updatedAt
+          workout {
+            id
+            name
+            description
+            catergory
+            dayID
+            createdAt
+            updatedAt
+            owner
+          }
           owner
+          lift {
+            id
+            name
+            description
+            category
+            favorite
+            createdAt
+            updatedAt
+            owner
+          }
         }
         nextToken
       }
@@ -392,10 +596,30 @@ export const createLiftWorkoutJoin = /* GraphQL */ `
           programID
           createdAt
           updatedAt
+          program {
+            id
+            name
+            summary
+            catergory
+            createdAt
+            updatedAt
+            owner
+          }
           owner
+          workout {
+            nextToken
+          }
         }
         owner
         lift {
+          items {
+            id
+            liftID
+            workoutID
+            createdAt
+            updatedAt
+            owner
+          }
           nextToken
         }
       }
@@ -409,10 +633,32 @@ export const createLiftWorkoutJoin = /* GraphQL */ `
         createdAt
         updatedAt
         workout {
+          items {
+            id
+            liftID
+            workoutID
+            createdAt
+            updatedAt
+            owner
+          }
           nextToken
         }
         owner
         records {
+          items {
+            id
+            load
+            warmup
+            sets
+            reps
+            unit
+            rpe
+            percent
+            liftID
+            createdAt
+            updatedAt
+            owner
+          }
           nextToken
         }
       }
@@ -446,10 +692,30 @@ export const updateLiftWorkoutJoin = /* GraphQL */ `
           programID
           createdAt
           updatedAt
+          program {
+            id
+            name
+            summary
+            catergory
+            createdAt
+            updatedAt
+            owner
+          }
           owner
+          workout {
+            nextToken
+          }
         }
         owner
         lift {
+          items {
+            id
+            liftID
+            workoutID
+            createdAt
+            updatedAt
+            owner
+          }
           nextToken
         }
       }
@@ -463,10 +729,32 @@ export const updateLiftWorkoutJoin = /* GraphQL */ `
         createdAt
         updatedAt
         workout {
+          items {
+            id
+            liftID
+            workoutID
+            createdAt
+            updatedAt
+            owner
+          }
           nextToken
         }
         owner
         records {
+          items {
+            id
+            load
+            warmup
+            sets
+            reps
+            unit
+            rpe
+            percent
+            liftID
+            createdAt
+            updatedAt
+            owner
+          }
           nextToken
         }
       }
@@ -500,10 +788,30 @@ export const deleteLiftWorkoutJoin = /* GraphQL */ `
           programID
           createdAt
           updatedAt
+          program {
+            id
+            name
+            summary
+            catergory
+            createdAt
+            updatedAt
+            owner
+          }
           owner
+          workout {
+            nextToken
+          }
         }
         owner
         lift {
+          items {
+            id
+            liftID
+            workoutID
+            createdAt
+            updatedAt
+            owner
+          }
           nextToken
         }
       }
@@ -517,10 +825,32 @@ export const deleteLiftWorkoutJoin = /* GraphQL */ `
         createdAt
         updatedAt
         workout {
+          items {
+            id
+            liftID
+            workoutID
+            createdAt
+            updatedAt
+            owner
+          }
           nextToken
         }
         owner
         records {
+          items {
+            id
+            load
+            warmup
+            sets
+            reps
+            unit
+            rpe
+            percent
+            liftID
+            createdAt
+            updatedAt
+            owner
+          }
           nextToken
         }
       }
@@ -547,7 +877,27 @@ export const createLift = /* GraphQL */ `
           workoutID
           createdAt
           updatedAt
+          workout {
+            id
+            name
+            description
+            catergory
+            dayID
+            createdAt
+            updatedAt
+            owner
+          }
           owner
+          lift {
+            id
+            name
+            description
+            category
+            favorite
+            createdAt
+            updatedAt
+            owner
+          }
         }
         nextToken
       }
@@ -565,6 +915,16 @@ export const createLift = /* GraphQL */ `
           liftID
           createdAt
           updatedAt
+          lift {
+            id
+            name
+            description
+            category
+            favorite
+            createdAt
+            updatedAt
+            owner
+          }
           owner
         }
         nextToken
@@ -592,7 +952,27 @@ export const updateLift = /* GraphQL */ `
           workoutID
           createdAt
           updatedAt
+          workout {
+            id
+            name
+            description
+            catergory
+            dayID
+            createdAt
+            updatedAt
+            owner
+          }
           owner
+          lift {
+            id
+            name
+            description
+            category
+            favorite
+            createdAt
+            updatedAt
+            owner
+          }
         }
         nextToken
       }
@@ -610,6 +990,16 @@ export const updateLift = /* GraphQL */ `
           liftID
           createdAt
           updatedAt
+          lift {
+            id
+            name
+            description
+            category
+            favorite
+            createdAt
+            updatedAt
+            owner
+          }
           owner
         }
         nextToken
@@ -637,7 +1027,27 @@ export const deleteLift = /* GraphQL */ `
           workoutID
           createdAt
           updatedAt
+          workout {
+            id
+            name
+            description
+            catergory
+            dayID
+            createdAt
+            updatedAt
+            owner
+          }
           owner
+          lift {
+            id
+            name
+            description
+            category
+            favorite
+            createdAt
+            updatedAt
+            owner
+          }
         }
         nextToken
       }
@@ -655,6 +1065,16 @@ export const deleteLift = /* GraphQL */ `
           liftID
           createdAt
           updatedAt
+          lift {
+            id
+            name
+            description
+            category
+            favorite
+            createdAt
+            updatedAt
+            owner
+          }
           owner
         }
         nextToken
@@ -688,10 +1108,32 @@ export const createRecord = /* GraphQL */ `
         createdAt
         updatedAt
         workout {
+          items {
+            id
+            liftID
+            workoutID
+            createdAt
+            updatedAt
+            owner
+          }
           nextToken
         }
         owner
         records {
+          items {
+            id
+            load
+            warmup
+            sets
+            reps
+            unit
+            rpe
+            percent
+            liftID
+            createdAt
+            updatedAt
+            owner
+          }
           nextToken
         }
       }
@@ -725,10 +1167,32 @@ export const updateRecord = /* GraphQL */ `
         createdAt
         updatedAt
         workout {
+          items {
+            id
+            liftID
+            workoutID
+            createdAt
+            updatedAt
+            owner
+          }
           nextToken
         }
         owner
         records {
+          items {
+            id
+            load
+            warmup
+            sets
+            reps
+            unit
+            rpe
+            percent
+            liftID
+            createdAt
+            updatedAt
+            owner
+          }
           nextToken
         }
       }
@@ -762,10 +1226,32 @@ export const deleteRecord = /* GraphQL */ `
         createdAt
         updatedAt
         workout {
+          items {
+            id
+            liftID
+            workoutID
+            createdAt
+            updatedAt
+            owner
+          }
           nextToken
         }
         owner
         records {
+          items {
+            id
+            load
+            warmup
+            sets
+            reps
+            unit
+            rpe
+            percent
+            liftID
+            createdAt
+            updatedAt
+            owner
+          }
           nextToken
         }
       }

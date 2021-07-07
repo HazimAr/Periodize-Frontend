@@ -21,7 +21,19 @@ export const getProgram = /* GraphQL */ `
           programID
           createdAt
           updatedAt
+          program {
+            id
+            name
+            summary
+            catergory
+            createdAt
+            updatedAt
+            owner
+          }
           owner
+          workout {
+            nextToken
+          }
         }
         nextToken
       }
@@ -44,6 +56,16 @@ export const listPrograms = /* GraphQL */ `
         updatedAt
         owner
         days {
+          items {
+            id
+            name
+            description
+            catergory
+            programID
+            createdAt
+            updatedAt
+            owner
+          }
           nextToken
         }
       }
@@ -70,6 +92,16 @@ export const getDay = /* GraphQL */ `
         updatedAt
         owner
         days {
+          items {
+            id
+            name
+            description
+            catergory
+            programID
+            createdAt
+            updatedAt
+            owner
+          }
           nextToken
         }
       }
@@ -83,7 +115,20 @@ export const getDay = /* GraphQL */ `
           dayID
           createdAt
           updatedAt
+          day {
+            id
+            name
+            description
+            catergory
+            programID
+            createdAt
+            updatedAt
+            owner
+          }
           owner
+          lift {
+            nextToken
+          }
         }
         nextToken
       }
@@ -113,9 +158,22 @@ export const listDays = /* GraphQL */ `
           createdAt
           updatedAt
           owner
+          days {
+            nextToken
+          }
         }
         owner
         workout {
+          items {
+            id
+            name
+            description
+            catergory
+            dayID
+            createdAt
+            updatedAt
+            owner
+          }
           nextToken
         }
       }
@@ -149,9 +207,22 @@ export const getWorkout = /* GraphQL */ `
           createdAt
           updatedAt
           owner
+          days {
+            nextToken
+          }
         }
         owner
         workout {
+          items {
+            id
+            name
+            description
+            catergory
+            dayID
+            createdAt
+            updatedAt
+            owner
+          }
           nextToken
         }
       }
@@ -163,7 +234,27 @@ export const getWorkout = /* GraphQL */ `
           workoutID
           createdAt
           updatedAt
+          workout {
+            id
+            name
+            description
+            catergory
+            dayID
+            createdAt
+            updatedAt
+            owner
+          }
           owner
+          lift {
+            id
+            name
+            description
+            category
+            favorite
+            createdAt
+            updatedAt
+            owner
+          }
         }
         nextToken
       }
@@ -193,10 +284,30 @@ export const listWorkouts = /* GraphQL */ `
           programID
           createdAt
           updatedAt
+          program {
+            id
+            name
+            summary
+            catergory
+            createdAt
+            updatedAt
+            owner
+          }
           owner
+          workout {
+            nextToken
+          }
         }
         owner
         lift {
+          items {
+            id
+            liftID
+            workoutID
+            createdAt
+            updatedAt
+            owner
+          }
           nextToken
         }
       }
@@ -228,10 +339,30 @@ export const getLiftWorkoutJoin = /* GraphQL */ `
           programID
           createdAt
           updatedAt
+          program {
+            id
+            name
+            summary
+            catergory
+            createdAt
+            updatedAt
+            owner
+          }
           owner
+          workout {
+            nextToken
+          }
         }
         owner
         lift {
+          items {
+            id
+            liftID
+            workoutID
+            createdAt
+            updatedAt
+            owner
+          }
           nextToken
         }
       }
@@ -245,10 +376,32 @@ export const getLiftWorkoutJoin = /* GraphQL */ `
         createdAt
         updatedAt
         workout {
+          items {
+            id
+            liftID
+            workoutID
+            createdAt
+            updatedAt
+            owner
+          }
           nextToken
         }
         owner
         records {
+          items {
+            id
+            load
+            warmup
+            sets
+            reps
+            unit
+            rpe
+            percent
+            liftID
+            createdAt
+            updatedAt
+            owner
+          }
           nextToken
         }
       }
@@ -280,7 +433,20 @@ export const listLiftWorkoutJoins = /* GraphQL */ `
           dayID
           createdAt
           updatedAt
+          day {
+            id
+            name
+            description
+            catergory
+            programID
+            createdAt
+            updatedAt
+            owner
+          }
           owner
+          lift {
+            nextToken
+          }
         }
         owner
         lift {
@@ -291,7 +457,13 @@ export const listLiftWorkoutJoins = /* GraphQL */ `
           favorite
           createdAt
           updatedAt
+          workout {
+            nextToken
+          }
           owner
+          records {
+            nextToken
+          }
         }
       }
       nextToken
@@ -315,7 +487,27 @@ export const getLift = /* GraphQL */ `
           workoutID
           createdAt
           updatedAt
+          workout {
+            id
+            name
+            description
+            catergory
+            dayID
+            createdAt
+            updatedAt
+            owner
+          }
           owner
+          lift {
+            id
+            name
+            description
+            category
+            favorite
+            createdAt
+            updatedAt
+            owner
+          }
         }
         nextToken
       }
@@ -333,6 +525,16 @@ export const getLift = /* GraphQL */ `
           liftID
           createdAt
           updatedAt
+          lift {
+            id
+            name
+            description
+            category
+            favorite
+            createdAt
+            updatedAt
+            owner
+          }
           owner
         }
         nextToken
@@ -356,10 +558,32 @@ export const listLifts = /* GraphQL */ `
         createdAt
         updatedAt
         workout {
+          items {
+            id
+            liftID
+            workoutID
+            createdAt
+            updatedAt
+            owner
+          }
           nextToken
         }
         owner
         records {
+          items {
+            id
+            load
+            warmup
+            sets
+            reps
+            unit
+            rpe
+            percent
+            liftID
+            createdAt
+            updatedAt
+            owner
+          }
           nextToken
         }
       }
@@ -390,10 +614,32 @@ export const getRecord = /* GraphQL */ `
         createdAt
         updatedAt
         workout {
+          items {
+            id
+            liftID
+            workoutID
+            createdAt
+            updatedAt
+            owner
+          }
           nextToken
         }
         owner
         records {
+          items {
+            id
+            load
+            warmup
+            sets
+            reps
+            unit
+            rpe
+            percent
+            liftID
+            createdAt
+            updatedAt
+            owner
+          }
           nextToken
         }
       }
@@ -428,7 +674,13 @@ export const listRecords = /* GraphQL */ `
           favorite
           createdAt
           updatedAt
+          workout {
+            nextToken
+          }
           owner
+          records {
+            nextToken
+          }
         }
         owner
       }

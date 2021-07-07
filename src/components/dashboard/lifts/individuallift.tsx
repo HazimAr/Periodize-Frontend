@@ -1,13 +1,14 @@
 import { Box, Heading } from "@chakra-ui/react";
-import { useEffect, useState } from "react";
+import { Lift } from "API";
+import { useEffect } from "react";
 // eslint-disable-next-line import/no-default-export
-export default function MyPrograms(): JSX.Element {
-	const [programs, setPrograms] = useState([]);
-	useEffect(() => {}, []);
-
+interface Props {
+	lift: Lift;
+}
+export default function IndividualLift({ lift }: Props): JSX.Element {
 	useEffect(() => {
-		console.log(programs);
-	}, [programs]);
+		console.log(lift);
+	}, []);
 	return (
 		<Box>
 			<Heading size="lg" mb={4}>
