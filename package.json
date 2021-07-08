@@ -48,7 +48,7 @@
 		"@types/bad-words": "^3.0.1",
 		"@types/email-validator": "^1.0.6",
 		"@types/jest": "^26.0.24",
-		"@types/mailgun-js": "^0.22.11",
+		"@types/mailgun-js": "^0.22.12",
 		"@types/next": "^9.0.0",
 		"@types/node": "^16.0.1",
 		"@types/react": "^17.0.14",
