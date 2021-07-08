@@ -47,7 +47,7 @@
 		"@types/babel__core": "^7.1.14",
 		"@types/bad-words": "^3.0.1",
 		"@types/email-validator": "^1.0.6",
-		"@types/jest": "^26.0.23",
+		"@types/jest": "^26.0.24",
 		"@types/mailgun-js": "^0.22.11",
 		"@types/next": "^9.0.0",
 		"@types/node": "^16.0.1",
