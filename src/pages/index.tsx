@@ -4,6 +4,7 @@ import { FeatureComponent } from "@components/featureboxes";
 import HomeVideo from "@components/homevideo";
 import HomeVideoComponent from "@components/homevideocomponent";
 // import HeadFoot from "@components/home/headfoot";
+import CreateRecordForm from "@components/dashboard/lifts/createrecordform";
 
 export default function Home(): JSX.Element {
 	return (
@@ -14,6 +15,8 @@ export default function Home(): JSX.Element {
 			<FeatureComponent />
 
 			<HomeVideoComponent />
+
+			<CreateRecordForm />
 		</>
 		// </HeadFoot>
 	);
