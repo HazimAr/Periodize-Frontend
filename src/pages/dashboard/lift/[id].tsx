@@ -40,7 +40,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 		data: ListLiftsQuery;
 		errors: any[];
 	};
-	const paths = response.data.listLifts.items.map((lift) => ({
+	const paths = response.data.listLifts.items.map((lift: any) => ({
 		params: { id: lift.id },
 	}));
 
