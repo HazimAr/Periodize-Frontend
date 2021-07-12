@@ -1,4 +1,4 @@
-import { Box, Heading } from "@chakra-ui/react";
+import { Box, Heading, Flex } from "@chakra-ui/react";
 import { Lift } from "API";
 import { useEffect } from "react";
 // eslint-disable-next-line import/no-default-export
@@ -10,10 +10,12 @@ export default function IndividualLift({ lift }: Props): JSX.Element {
 		console.log(lift);
 	}, []);
 	return (
-		<Box>
-			<Heading size="lg" mb={4}>
-				My Programs
-			</Heading>
-		</Box>
+		<Flex justify="left">
+			<Box>
+				<Heading size="lg" mb={4}>
+					{lift.name}
+				</Heading>
+			</Box>
+		</Flex>
 	);
 }

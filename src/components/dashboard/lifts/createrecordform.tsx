@@ -11,6 +11,13 @@ import {
 import * as Yup from "yup";
 import { Field, Form, Formik } from "formik";
 import FormikInput from "@components/formikinput";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+//import DatePicker from "react-datepicker/dist/react-datepicker";
+
+//invalid date
+//
+
 interface Props {}
 
 const formSchema = Yup.object().shape({
@@ -39,6 +46,7 @@ const formSchema = Yup.object().shape({
 		.min(1, "too short")
 		.required("Required")
 		.max(10, "Too long!"),
+		//validate date
 });
 interface formInput {
 	load: string;
@@ -46,6 +54,7 @@ interface formInput {
 	sets: string;
 	reps: string;
 	rpe: string;
+	datePerformed: string;
 }
 const initialValues: formInput = {
 	load: "",
@@ -53,10 +62,13 @@ const initialValues: formInput = {
 	sets: "",
 	reps: "",
 	rpe: "",
+	datePerformed: ""
 };
 
 export default function CreateRecordForm({}: Props): ReactElement {
 	const [name, setName] = useState("");
+	const [startDate, setStartDate] = useState(new Date());
+
 	useEffect(() => {
 		console.log(name);
 	}, [name]);
@@ -77,7 +89,12 @@ export default function CreateRecordForm({}: Props): ReactElement {
 				{({ values, errors, isSubmitting }) => (
 					<Form>
 						{/* <Input value={name} onChange={(e) => setName(e.currentTarget.value)} /> */}
-						<Box bg="brand.500" maxW="5xl" borderRadius="25px" py="30px">
+						<Box
+							bg="brand.500"
+							maxW="5xl"
+							borderRadius="25px"
+							py="30px"
+						>
 							<VStack spacing={2}>
 								<Heading size="lg" my="20px">
 									Create record
@@ -123,8 +140,27 @@ export default function CreateRecordForm({}: Props): ReactElement {
 									</VStack>
 								</Flex>
 
+								<Flex color="black">
+									<VStack mx="10px">
+										<FormLabel>Date </FormLabel>
+										<DatePicker
+											selected={startDate}
+											onChange={(date) =>
+												setStartDate(date)
+											}
+										/>
+									</VStack>
+								</Flex>
+
 								<Box>
-									<Button type="submit" my="10px" bg="brand.200" color="brand.600">Submit</Button>
+									<Button
+										type="submit"
+										my="10px"
+										bg="brand.200"
+										color="brand.600"
+									>
+										Submit
+									</Button>
 								</Box>
 							</VStack>
 						</Box>
