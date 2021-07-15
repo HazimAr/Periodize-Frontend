@@ -2,822 +2,159 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const onCreateProgram = /* GraphQL */ `
-  subscription OnCreateProgram {
-    onCreateProgram {
+export const onCreatePost = /* GraphQL */ `
+  subscription OnCreatePost {
+    onCreatePost {
       id
-      name
-      summary
-      catergory
+      title
+      contents
+      image
+      upvotes
+      downvotes
       createdAt
       updatedAt
       owner
-      days {
+      comments {
         items {
           id
-          name
-          description
-          catergory
-          programID
+          postID
+          content
           createdAt
           updatedAt
-          program {
-            id
-            name
-            summary
-            catergory
-            createdAt
-            updatedAt
-            owner
-          }
           owner
-          workout {
-            nextToken
-          }
         }
         nextToken
       }
     }
   }
 `;
-export const onUpdateProgram = /* GraphQL */ `
-  subscription OnUpdateProgram {
-    onUpdateProgram {
+export const onUpdatePost = /* GraphQL */ `
+  subscription OnUpdatePost {
+    onUpdatePost {
       id
-      name
-      summary
-      catergory
+      title
+      contents
+      image
+      upvotes
+      downvotes
       createdAt
       updatedAt
       owner
-      days {
+      comments {
         items {
           id
-          name
-          description
-          catergory
-          programID
+          postID
+          content
           createdAt
           updatedAt
-          program {
-            id
-            name
-            summary
-            catergory
-            createdAt
-            updatedAt
-            owner
-          }
           owner
-          workout {
-            nextToken
-          }
         }
         nextToken
       }
     }
   }
 `;
-export const onDeleteProgram = /* GraphQL */ `
-  subscription OnDeleteProgram {
-    onDeleteProgram {
+export const onDeletePost = /* GraphQL */ `
+  subscription OnDeletePost {
+    onDeletePost {
       id
-      name
-      summary
-      catergory
+      title
+      contents
+      image
+      upvotes
+      downvotes
       createdAt
       updatedAt
       owner
-      days {
+      comments {
         items {
           id
-          name
-          description
-          catergory
-          programID
+          postID
+          content
           createdAt
           updatedAt
-          program {
-            id
-            name
-            summary
-            catergory
-            createdAt
-            updatedAt
-            owner
-          }
           owner
-          workout {
-            nextToken
-          }
         }
         nextToken
       }
     }
   }
 `;
-export const onCreateDay = /* GraphQL */ `
-  subscription OnCreateDay {
-    onCreateDay {
+export const onCreateComment = /* GraphQL */ `
+  subscription OnCreateComment {
+    onCreateComment {
       id
-      name
-      description
-      catergory
-      programID
+      postID
+      content
       createdAt
       updatedAt
-      program {
+      post {
         id
-        name
-        summary
-        catergory
+        title
+        contents
+        image
+        upvotes
+        downvotes
         createdAt
         updatedAt
         owner
-        days {
-          items {
-            id
-            name
-            description
-            catergory
-            programID
-            createdAt
-            updatedAt
-            owner
-          }
+        comments {
           nextToken
         }
       }
       owner
-      workout {
-        items {
-          id
-          name
-          description
-          catergory
-          dayID
-          createdAt
-          updatedAt
-          day {
-            id
-            name
-            description
-            catergory
-            programID
-            createdAt
-            updatedAt
-            owner
-          }
-          owner
-          lift {
-            nextToken
-          }
-        }
-        nextToken
-      }
     }
   }
 `;
-export const onUpdateDay = /* GraphQL */ `
-  subscription OnUpdateDay {
-    onUpdateDay {
+export const onUpdateComment = /* GraphQL */ `
+  subscription OnUpdateComment {
+    onUpdateComment {
       id
-      name
-      description
-      catergory
-      programID
+      postID
+      content
       createdAt
       updatedAt
-      program {
+      post {
         id
-        name
-        summary
-        catergory
+        title
+        contents
+        image
+        upvotes
+        downvotes
         createdAt
         updatedAt
         owner
-        days {
-          items {
-            id
-            name
-            description
-            catergory
-            programID
-            createdAt
-            updatedAt
-            owner
-          }
+        comments {
           nextToken
         }
       }
       owner
-      workout {
-        items {
-          id
-          name
-          description
-          catergory
-          dayID
-          createdAt
-          updatedAt
-          day {
-            id
-            name
-            description
-            catergory
-            programID
-            createdAt
-            updatedAt
-            owner
-          }
-          owner
-          lift {
-            nextToken
-          }
-        }
-        nextToken
-      }
     }
   }
 `;
-export const onDeleteDay = /* GraphQL */ `
-  subscription OnDeleteDay {
-    onDeleteDay {
+export const onDeleteComment = /* GraphQL */ `
+  subscription OnDeleteComment {
+    onDeleteComment {
       id
-      name
-      description
-      catergory
-      programID
+      postID
+      content
       createdAt
       updatedAt
-      program {
+      post {
         id
-        name
-        summary
-        catergory
+        title
+        contents
+        image
+        upvotes
+        downvotes
         createdAt
         updatedAt
         owner
-        days {
-          items {
-            id
-            name
-            description
-            catergory
-            programID
-            createdAt
-            updatedAt
-            owner
-          }
+        comments {
           nextToken
         }
       }
       owner
-      workout {
-        items {
-          id
-          name
-          description
-          catergory
-          dayID
-          createdAt
-          updatedAt
-          day {
-            id
-            name
-            description
-            catergory
-            programID
-            createdAt
-            updatedAt
-            owner
-          }
-          owner
-          lift {
-            nextToken
-          }
-        }
-        nextToken
-      }
-    }
-  }
-`;
-export const onCreateWorkout = /* GraphQL */ `
-  subscription OnCreateWorkout {
-    onCreateWorkout {
-      id
-      name
-      description
-      catergory
-      dayID
-      createdAt
-      updatedAt
-      day {
-        id
-        name
-        description
-        catergory
-        programID
-        createdAt
-        updatedAt
-        program {
-          id
-          name
-          summary
-          catergory
-          createdAt
-          updatedAt
-          owner
-          days {
-            nextToken
-          }
-        }
-        owner
-        workout {
-          items {
-            id
-            name
-            description
-            catergory
-            dayID
-            createdAt
-            updatedAt
-            owner
-          }
-          nextToken
-        }
-      }
-      owner
-      lift {
-        items {
-          id
-          liftID
-          workoutID
-          createdAt
-          updatedAt
-          workout {
-            id
-            name
-            description
-            catergory
-            dayID
-            createdAt
-            updatedAt
-            owner
-          }
-          owner
-          lift {
-            id
-            name
-            description
-            category
-            favorite
-            createdAt
-            updatedAt
-            owner
-          }
-        }
-        nextToken
-      }
-    }
-  }
-`;
-export const onUpdateWorkout = /* GraphQL */ `
-  subscription OnUpdateWorkout {
-    onUpdateWorkout {
-      id
-      name
-      description
-      catergory
-      dayID
-      createdAt
-      updatedAt
-      day {
-        id
-        name
-        description
-        catergory
-        programID
-        createdAt
-        updatedAt
-        program {
-          id
-          name
-          summary
-          catergory
-          createdAt
-          updatedAt
-          owner
-          days {
-            nextToken
-          }
-        }
-        owner
-        workout {
-          items {
-            id
-            name
-            description
-            catergory
-            dayID
-            createdAt
-            updatedAt
-            owner
-          }
-          nextToken
-        }
-      }
-      owner
-      lift {
-        items {
-          id
-          liftID
-          workoutID
-          createdAt
-          updatedAt
-          workout {
-            id
-            name
-            description
-            catergory
-            dayID
-            createdAt
-            updatedAt
-            owner
-          }
-          owner
-          lift {
-            id
-            name
-            description
-            category
-            favorite
-            createdAt
-            updatedAt
-            owner
-          }
-        }
-        nextToken
-      }
-    }
-  }
-`;
-export const onDeleteWorkout = /* GraphQL */ `
-  subscription OnDeleteWorkout {
-    onDeleteWorkout {
-      id
-      name
-      description
-      catergory
-      dayID
-      createdAt
-      updatedAt
-      day {
-        id
-        name
-        description
-        catergory
-        programID
-        createdAt
-        updatedAt
-        program {
-          id
-          name
-          summary
-          catergory
-          createdAt
-          updatedAt
-          owner
-          days {
-            nextToken
-          }
-        }
-        owner
-        workout {
-          items {
-            id
-            name
-            description
-            catergory
-            dayID
-            createdAt
-            updatedAt
-            owner
-          }
-          nextToken
-        }
-      }
-      owner
-      lift {
-        items {
-          id
-          liftID
-          workoutID
-          createdAt
-          updatedAt
-          workout {
-            id
-            name
-            description
-            catergory
-            dayID
-            createdAt
-            updatedAt
-            owner
-          }
-          owner
-          lift {
-            id
-            name
-            description
-            category
-            favorite
-            createdAt
-            updatedAt
-            owner
-          }
-        }
-        nextToken
-      }
-    }
-  }
-`;
-export const onCreateLiftWorkoutJoin = /* GraphQL */ `
-  subscription OnCreateLiftWorkoutJoin {
-    onCreateLiftWorkoutJoin {
-      id
-      liftID
-      workoutID
-      createdAt
-      updatedAt
-      workout {
-        id
-        name
-        description
-        catergory
-        dayID
-        createdAt
-        updatedAt
-        day {
-          id
-          name
-          description
-          catergory
-          programID
-          createdAt
-          updatedAt
-          program {
-            id
-            name
-            summary
-            catergory
-            createdAt
-            updatedAt
-            owner
-          }
-          owner
-          workout {
-            nextToken
-          }
-        }
-        owner
-        lift {
-          items {
-            id
-            liftID
-            workoutID
-            createdAt
-            updatedAt
-            owner
-          }
-          nextToken
-        }
-      }
-      owner
-      lift {
-        id
-        name
-        description
-        category
-        favorite
-        createdAt
-        updatedAt
-        workout {
-          items {
-            id
-            liftID
-            workoutID
-            createdAt
-            updatedAt
-            owner
-          }
-          nextToken
-        }
-        owner
-        records {
-          items {
-            id
-            load
-            warmup
-            sets
-            reps
-            unit
-            rpe
-            percent
-            liftID
-            createdAt
-            updatedAt
-            owner
-          }
-          nextToken
-        }
-      }
-    }
-  }
-`;
-export const onUpdateLiftWorkoutJoin = /* GraphQL */ `
-  subscription OnUpdateLiftWorkoutJoin {
-    onUpdateLiftWorkoutJoin {
-      id
-      liftID
-      workoutID
-      createdAt
-      updatedAt
-      workout {
-        id
-        name
-        description
-        catergory
-        dayID
-        createdAt
-        updatedAt
-        day {
-          id
-          name
-          description
-          catergory
-          programID
-          createdAt
-          updatedAt
-          program {
-            id
-            name
-            summary
-            catergory
-            createdAt
-            updatedAt
-            owner
-          }
-          owner
-          workout {
-            nextToken
-          }
-        }
-        owner
-        lift {
-          items {
-            id
-            liftID
-            workoutID
-            createdAt
-            updatedAt
-            owner
-          }
-          nextToken
-        }
-      }
-      owner
-      lift {
-        id
-        name
-        description
-        category
-        favorite
-        createdAt
-        updatedAt
-        workout {
-          items {
-            id
-            liftID
-            workoutID
-            createdAt
-            updatedAt
-            owner
-          }
-          nextToken
-        }
-        owner
-        records {
-          items {
-            id
-            load
-            warmup
-            sets
-            reps
-            unit
-            rpe
-            percent
-            liftID
-            createdAt
-            updatedAt
-            owner
-          }
-          nextToken
-        }
-      }
-    }
-  }
-`;
-export const onDeleteLiftWorkoutJoin = /* GraphQL */ `
-  subscription OnDeleteLiftWorkoutJoin {
-    onDeleteLiftWorkoutJoin {
-      id
-      liftID
-      workoutID
-      createdAt
-      updatedAt
-      workout {
-        id
-        name
-        description
-        catergory
-        dayID
-        createdAt
-        updatedAt
-        day {
-          id
-          name
-          description
-          catergory
-          programID
-          createdAt
-          updatedAt
-          program {
-            id
-            name
-            summary
-            catergory
-            createdAt
-            updatedAt
-            owner
-          }
-          owner
-          workout {
-            nextToken
-          }
-        }
-        owner
-        lift {
-          items {
-            id
-            liftID
-            workoutID
-            createdAt
-            updatedAt
-            owner
-          }
-          nextToken
-        }
-      }
-      owner
-      lift {
-        id
-        name
-        description
-        category
-        favorite
-        createdAt
-        updatedAt
-        workout {
-          items {
-            id
-            liftID
-            workoutID
-            createdAt
-            updatedAt
-            owner
-          }
-          nextToken
-        }
-        owner
-        records {
-          items {
-            id
-            load
-            warmup
-            sets
-            reps
-            unit
-            rpe
-            percent
-            liftID
-            createdAt
-            updatedAt
-            owner
-          }
-          nextToken
-        }
-      }
     }
   }
 `;
@@ -826,43 +163,14 @@ export const onCreateLift = /* GraphQL */ `
     onCreateLift {
       id
       name
-      description
       category
+      bodypart
+      tags
       favorite
+      unit
+      owner
       createdAt
       updatedAt
-      workout {
-        items {
-          id
-          liftID
-          workoutID
-          createdAt
-          updatedAt
-          workout {
-            id
-            name
-            description
-            catergory
-            dayID
-            createdAt
-            updatedAt
-            owner
-          }
-          owner
-          lift {
-            id
-            name
-            description
-            category
-            favorite
-            createdAt
-            updatedAt
-            owner
-          }
-        }
-        nextToken
-      }
-      owner
       records {
         items {
           id
@@ -870,22 +178,12 @@ export const onCreateLift = /* GraphQL */ `
           warmup
           sets
           reps
-          unit
           rpe
           percent
+          performedDate
           liftID
           createdAt
           updatedAt
-          lift {
-            id
-            name
-            description
-            category
-            favorite
-            createdAt
-            updatedAt
-            owner
-          }
           owner
         }
         nextToken
@@ -898,43 +196,14 @@ export const onUpdateLift = /* GraphQL */ `
     onUpdateLift {
       id
       name
-      description
       category
+      bodypart
+      tags
       favorite
+      unit
+      owner
       createdAt
       updatedAt
-      workout {
-        items {
-          id
-          liftID
-          workoutID
-          createdAt
-          updatedAt
-          workout {
-            id
-            name
-            description
-            catergory
-            dayID
-            createdAt
-            updatedAt
-            owner
-          }
-          owner
-          lift {
-            id
-            name
-            description
-            category
-            favorite
-            createdAt
-            updatedAt
-            owner
-          }
-        }
-        nextToken
-      }
-      owner
       records {
         items {
           id
@@ -942,22 +211,12 @@ export const onUpdateLift = /* GraphQL */ `
           warmup
           sets
           reps
-          unit
           rpe
           percent
+          performedDate
           liftID
           createdAt
           updatedAt
-          lift {
-            id
-            name
-            description
-            category
-            favorite
-            createdAt
-            updatedAt
-            owner
-          }
           owner
         }
         nextToken
@@ -970,43 +229,14 @@ export const onDeleteLift = /* GraphQL */ `
     onDeleteLift {
       id
       name
-      description
       category
+      bodypart
+      tags
       favorite
+      unit
+      owner
       createdAt
       updatedAt
-      workout {
-        items {
-          id
-          liftID
-          workoutID
-          createdAt
-          updatedAt
-          workout {
-            id
-            name
-            description
-            catergory
-            dayID
-            createdAt
-            updatedAt
-            owner
-          }
-          owner
-          lift {
-            id
-            name
-            description
-            category
-            favorite
-            createdAt
-            updatedAt
-            owner
-          }
-        }
-        nextToken
-      }
-      owner
       records {
         items {
           id
@@ -1014,22 +244,12 @@ export const onDeleteLift = /* GraphQL */ `
           warmup
           sets
           reps
-          unit
           rpe
           percent
+          performedDate
           liftID
           createdAt
           updatedAt
-          lift {
-            id
-            name
-            description
-            category
-            favorite
-            createdAt
-            updatedAt
-            owner
-          }
           owner
         }
         nextToken
@@ -1045,47 +265,24 @@ export const onCreateRecord = /* GraphQL */ `
       warmup
       sets
       reps
-      unit
       rpe
       percent
+      performedDate
       liftID
       createdAt
       updatedAt
       lift {
         id
         name
-        description
         category
+        bodypart
+        tags
         favorite
+        unit
+        owner
         createdAt
         updatedAt
-        workout {
-          items {
-            id
-            liftID
-            workoutID
-            createdAt
-            updatedAt
-            owner
-          }
-          nextToken
-        }
-        owner
         records {
-          items {
-            id
-            load
-            warmup
-            sets
-            reps
-            unit
-            rpe
-            percent
-            liftID
-            createdAt
-            updatedAt
-            owner
-          }
           nextToken
         }
       }
@@ -1101,47 +298,24 @@ export const onUpdateRecord = /* GraphQL */ `
       warmup
       sets
       reps
-      unit
       rpe
       percent
+      performedDate
       liftID
       createdAt
       updatedAt
       lift {
         id
         name
-        description
         category
+        bodypart
+        tags
         favorite
+        unit
+        owner
         createdAt
         updatedAt
-        workout {
-          items {
-            id
-            liftID
-            workoutID
-            createdAt
-            updatedAt
-            owner
-          }
-          nextToken
-        }
-        owner
         records {
-          items {
-            id
-            load
-            warmup
-            sets
-            reps
-            unit
-            rpe
-            percent
-            liftID
-            createdAt
-            updatedAt
-            owner
-          }
           nextToken
         }
       }
@@ -1157,47 +331,24 @@ export const onDeleteRecord = /* GraphQL */ `
       warmup
       sets
       reps
-      unit
       rpe
       percent
+      performedDate
       liftID
       createdAt
       updatedAt
       lift {
         id
         name
-        description
         category
+        bodypart
+        tags
         favorite
+        unit
+        owner
         createdAt
         updatedAt
-        workout {
-          items {
-            id
-            liftID
-            workoutID
-            createdAt
-            updatedAt
-            owner
-          }
-          nextToken
-        }
-        owner
         records {
-          items {
-            id
-            load
-            warmup
-            sets
-            reps
-            unit
-            rpe
-            percent
-            liftID
-            createdAt
-            updatedAt
-            owner
-          }
           nextToken
         }
       }

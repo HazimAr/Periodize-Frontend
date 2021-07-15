@@ -1,10 +1,8 @@
-import { Text } from "@chakra-ui/react";
-import Layout from "@components/dashboard/layout";
+import React, { ReactElement } from "react";
+import Layout from "../../components/dashboard/layout";
 
-export default function Home(): JSX.Element {
-	return (
-		<Layout>
-			<Text>test</Text>
-		</Layout>
-	);
+interface Props {}
+
+export default function DashHome({}: Props): ReactElement {
+  return <Layout>Hello There</Layout>;
 }

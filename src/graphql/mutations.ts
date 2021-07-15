@@ -2,858 +2,177 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const createProgram = /* GraphQL */ `
-  mutation CreateProgram(
-    $input: CreateProgramInput!
-    $condition: ModelProgramConditionInput
+export const createPost = /* GraphQL */ `
+  mutation CreatePost(
+    $input: CreatePostInput!
+    $condition: ModelPostConditionInput
   ) {
-    createProgram(input: $input, condition: $condition) {
+    createPost(input: $input, condition: $condition) {
       id
-      name
-      summary
-      catergory
+      title
+      contents
+      image
+      upvotes
+      downvotes
       createdAt
       updatedAt
       owner
-      days {
+      comments {
         items {
           id
-          name
-          description
-          catergory
-          programID
+          postID
+          content
           createdAt
           updatedAt
-          program {
-            id
-            name
-            summary
-            catergory
-            createdAt
-            updatedAt
-            owner
-          }
           owner
-          workout {
-            nextToken
-          }
         }
         nextToken
       }
     }
   }
 `;
-export const updateProgram = /* GraphQL */ `
-  mutation UpdateProgram(
-    $input: UpdateProgramInput!
-    $condition: ModelProgramConditionInput
+export const updatePost = /* GraphQL */ `
+  mutation UpdatePost(
+    $input: UpdatePostInput!
+    $condition: ModelPostConditionInput
   ) {
-    updateProgram(input: $input, condition: $condition) {
+    updatePost(input: $input, condition: $condition) {
       id
-      name
-      summary
-      catergory
+      title
+      contents
+      image
+      upvotes
+      downvotes
       createdAt
       updatedAt
       owner
-      days {
+      comments {
         items {
           id
-          name
-          description
-          catergory
-          programID
+          postID
+          content
           createdAt
           updatedAt
-          program {
-            id
-            name
-            summary
-            catergory
-            createdAt
-            updatedAt
-            owner
-          }
           owner
-          workout {
-            nextToken
-          }
         }
         nextToken
       }
     }
   }
 `;
-export const deleteProgram = /* GraphQL */ `
-  mutation DeleteProgram(
-    $input: DeleteProgramInput!
-    $condition: ModelProgramConditionInput
+export const deletePost = /* GraphQL */ `
+  mutation DeletePost(
+    $input: DeletePostInput!
+    $condition: ModelPostConditionInput
   ) {
-    deleteProgram(input: $input, condition: $condition) {
+    deletePost(input: $input, condition: $condition) {
       id
-      name
-      summary
-      catergory
+      title
+      contents
+      image
+      upvotes
+      downvotes
       createdAt
       updatedAt
       owner
-      days {
+      comments {
         items {
           id
-          name
-          description
-          catergory
-          programID
+          postID
+          content
           createdAt
           updatedAt
-          program {
-            id
-            name
-            summary
-            catergory
-            createdAt
-            updatedAt
-            owner
-          }
           owner
-          workout {
-            nextToken
-          }
         }
         nextToken
       }
     }
   }
 `;
-export const createDay = /* GraphQL */ `
-  mutation CreateDay(
-    $input: CreateDayInput!
-    $condition: ModelDayConditionInput
+export const createComment = /* GraphQL */ `
+  mutation CreateComment(
+    $input: CreateCommentInput!
+    $condition: ModelCommentConditionInput
   ) {
-    createDay(input: $input, condition: $condition) {
+    createComment(input: $input, condition: $condition) {
       id
-      name
-      description
-      catergory
-      programID
+      postID
+      content
       createdAt
       updatedAt
-      program {
+      post {
         id
-        name
-        summary
-        catergory
+        title
+        contents
+        image
+        upvotes
+        downvotes
         createdAt
         updatedAt
         owner
-        days {
-          items {
-            id
-            name
-            description
-            catergory
-            programID
-            createdAt
-            updatedAt
-            owner
-          }
+        comments {
           nextToken
         }
       }
       owner
-      workout {
-        items {
-          id
-          name
-          description
-          catergory
-          dayID
-          createdAt
-          updatedAt
-          day {
-            id
-            name
-            description
-            catergory
-            programID
-            createdAt
-            updatedAt
-            owner
-          }
-          owner
-          lift {
-            nextToken
-          }
-        }
-        nextToken
-      }
     }
   }
 `;
-export const updateDay = /* GraphQL */ `
-  mutation UpdateDay(
-    $input: UpdateDayInput!
-    $condition: ModelDayConditionInput
+export const updateComment = /* GraphQL */ `
+  mutation UpdateComment(
+    $input: UpdateCommentInput!
+    $condition: ModelCommentConditionInput
   ) {
-    updateDay(input: $input, condition: $condition) {
+    updateComment(input: $input, condition: $condition) {
       id
-      name
-      description
-      catergory
-      programID
+      postID
+      content
       createdAt
       updatedAt
-      program {
+      post {
         id
-        name
-        summary
-        catergory
+        title
+        contents
+        image
+        upvotes
+        downvotes
         createdAt
         updatedAt
         owner
-        days {
-          items {
-            id
-            name
-            description
-            catergory
-            programID
-            createdAt
-            updatedAt
-            owner
-          }
+        comments {
           nextToken
         }
       }
       owner
-      workout {
-        items {
-          id
-          name
-          description
-          catergory
-          dayID
-          createdAt
-          updatedAt
-          day {
-            id
-            name
-            description
-            catergory
-            programID
-            createdAt
-            updatedAt
-            owner
-          }
-          owner
-          lift {
-            nextToken
-          }
-        }
-        nextToken
-      }
     }
   }
 `;
-export const deleteDay = /* GraphQL */ `
-  mutation DeleteDay(
-    $input: DeleteDayInput!
-    $condition: ModelDayConditionInput
+export const deleteComment = /* GraphQL */ `
+  mutation DeleteComment(
+    $input: DeleteCommentInput!
+    $condition: ModelCommentConditionInput
   ) {
-    deleteDay(input: $input, condition: $condition) {
+    deleteComment(input: $input, condition: $condition) {
       id
-      name
-      description
-      catergory
-      programID
+      postID
+      content
       createdAt
       updatedAt
-      program {
+      post {
         id
-        name
-        summary
-        catergory
+        title
+        contents
+        image
+        upvotes
+        downvotes
         createdAt
         updatedAt
         owner
-        days {
-          items {
-            id
-            name
-            description
-            catergory
-            programID
-            createdAt
-            updatedAt
-            owner
-          }
+        comments {
           nextToken
         }
       }
       owner
-      workout {
-        items {
-          id
-          name
-          description
-          catergory
-          dayID
-          createdAt
-          updatedAt
-          day {
-            id
-            name
-            description
-            catergory
-            programID
-            createdAt
-            updatedAt
-            owner
-          }
-          owner
-          lift {
-            nextToken
-          }
-        }
-        nextToken
-      }
-    }
-  }
-`;
-export const createWorkout = /* GraphQL */ `
-  mutation CreateWorkout(
-    $input: CreateWorkoutInput!
-    $condition: ModelWorkoutConditionInput
-  ) {
-    createWorkout(input: $input, condition: $condition) {
-      id
-      name
-      description
-      catergory
-      dayID
-      createdAt
-      updatedAt
-      day {
-        id
-        name
-        description
-        catergory
-        programID
-        createdAt
-        updatedAt
-        program {
-          id
-          name
-          summary
-          catergory
-          createdAt
-          updatedAt
-          owner
-          days {
-            nextToken
-          }
-        }
-        owner
-        workout {
-          items {
-            id
-            name
-            description
-            catergory
-            dayID
-            createdAt
-            updatedAt
-            owner
-          }
-          nextToken
-        }
-      }
-      owner
-      lift {
-        items {
-          id
-          liftID
-          workoutID
-          createdAt
-          updatedAt
-          workout {
-            id
-            name
-            description
-            catergory
-            dayID
-            createdAt
-            updatedAt
-            owner
-          }
-          owner
-          lift {
-            id
-            name
-            description
-            category
-            favorite
-            createdAt
-            updatedAt
-            owner
-          }
-        }
-        nextToken
-      }
-    }
-  }
-`;
-export const updateWorkout = /* GraphQL */ `
-  mutation UpdateWorkout(
-    $input: UpdateWorkoutInput!
-    $condition: ModelWorkoutConditionInput
-  ) {
-    updateWorkout(input: $input, condition: $condition) {
-      id
-      name
-      description
-      catergory
-      dayID
-      createdAt
-      updatedAt
-      day {
-        id
-        name
-        description
-        catergory
-        programID
-        createdAt
-        updatedAt
-        program {
-          id
-          name
-          summary
-          catergory
-          createdAt
-          updatedAt
-          owner
-          days {
-            nextToken
-          }
-        }
-        owner
-        workout {
-          items {
-            id
-            name
-            description
-            catergory
-            dayID
-            createdAt
-            updatedAt
-            owner
-          }
-          nextToken
-        }
-      }
-      owner
-      lift {
-        items {
-          id
-          liftID
-          workoutID
-          createdAt
-          updatedAt
-          workout {
-            id
-            name
-            description
-            catergory
-            dayID
-            createdAt
-            updatedAt
-            owner
-          }
-          owner
-          lift {
-            id
-            name
-            description
-            category
-            favorite
-            createdAt
-            updatedAt
-            owner
-          }
-        }
-        nextToken
-      }
-    }
-  }
-`;
-export const deleteWorkout = /* GraphQL */ `
-  mutation DeleteWorkout(
-    $input: DeleteWorkoutInput!
-    $condition: ModelWorkoutConditionInput
-  ) {
-    deleteWorkout(input: $input, condition: $condition) {
-      id
-      name
-      description
-      catergory
-      dayID
-      createdAt
-      updatedAt
-      day {
-        id
-        name
-        description
-        catergory
-        programID
-        createdAt
-        updatedAt
-        program {
-          id
-          name
-          summary
-          catergory
-          createdAt
-          updatedAt
-          owner
-          days {
-            nextToken
-          }
-        }
-        owner
-        workout {
-          items {
-            id
-            name
-            description
-            catergory
-            dayID
-            createdAt
-            updatedAt
-            owner
-          }
-          nextToken
-        }
-      }
-      owner
-      lift {
-        items {
-          id
-          liftID
-          workoutID
-          createdAt
-          updatedAt
-          workout {
-            id
-            name
-            description
-            catergory
-            dayID
-            createdAt
-            updatedAt
-            owner
-          }
-          owner
-          lift {
-            id
-            name
-            description
-            category
-            favorite
-            createdAt
-            updatedAt
-            owner
-          }
-        }
-        nextToken
-      }
-    }
-  }
-`;
-export const createLiftWorkoutJoin = /* GraphQL */ `
-  mutation CreateLiftWorkoutJoin(
-    $input: CreateLiftWorkoutJoinInput!
-    $condition: ModelLiftWorkoutJoinConditionInput
-  ) {
-    createLiftWorkoutJoin(input: $input, condition: $condition) {
-      id
-      liftID
-      workoutID
-      createdAt
-      updatedAt
-      workout {
-        id
-        name
-        description
-        catergory
-        dayID
-        createdAt
-        updatedAt
-        day {
-          id
-          name
-          description
-          catergory
-          programID
-          createdAt
-          updatedAt
-          program {
-            id
-            name
-            summary
-            catergory
-            createdAt
-            updatedAt
-            owner
-          }
-          owner
-          workout {
-            nextToken
-          }
-        }
-        owner
-        lift {
-          items {
-            id
-            liftID
-            workoutID
-            createdAt
-            updatedAt
-            owner
-          }
-          nextToken
-        }
-      }
-      owner
-      lift {
-        id
-        name
-        description
-        category
-        favorite
-        createdAt
-        updatedAt
-        workout {
-          items {
-            id
-            liftID
-            workoutID
-            createdAt
-            updatedAt
-            owner
-          }
-          nextToken
-        }
-        owner
-        records {
-          items {
-            id
-            load
-            warmup
-            sets
-            reps
-            unit
-            rpe
-            percent
-            liftID
-            createdAt
-            updatedAt
-            owner
-          }
-          nextToken
-        }
-      }
-    }
-  }
-`;
-export const updateLiftWorkoutJoin = /* GraphQL */ `
-  mutation UpdateLiftWorkoutJoin(
-    $input: UpdateLiftWorkoutJoinInput!
-    $condition: ModelLiftWorkoutJoinConditionInput
-  ) {
-    updateLiftWorkoutJoin(input: $input, condition: $condition) {
-      id
-      liftID
-      workoutID
-      createdAt
-      updatedAt
-      workout {
-        id
-        name
-        description
-        catergory
-        dayID
-        createdAt
-        updatedAt
-        day {
-          id
-          name
-          description
-          catergory
-          programID
-          createdAt
-          updatedAt
-          program {
-            id
-            name
-            summary
-            catergory
-            createdAt
-            updatedAt
-            owner
-          }
-          owner
-          workout {
-            nextToken
-          }
-        }
-        owner
-        lift {
-          items {
-            id
-            liftID
-            workoutID
-            createdAt
-            updatedAt
-            owner
-          }
-          nextToken
-        }
-      }
-      owner
-      lift {
-        id
-        name
-        description
-        category
-        favorite
-        createdAt
-        updatedAt
-        workout {
-          items {
-            id
-            liftID
-            workoutID
-            createdAt
-            updatedAt
-            owner
-          }
-          nextToken
-        }
-        owner
-        records {
-          items {
-            id
-            load
-            warmup
-            sets
-            reps
-            unit
-            rpe
-            percent
-            liftID
-            createdAt
-            updatedAt
-            owner
-          }
-          nextToken
-        }
-      }
-    }
-  }
-`;
-export const deleteLiftWorkoutJoin = /* GraphQL */ `
-  mutation DeleteLiftWorkoutJoin(
-    $input: DeleteLiftWorkoutJoinInput!
-    $condition: ModelLiftWorkoutJoinConditionInput
-  ) {
-    deleteLiftWorkoutJoin(input: $input, condition: $condition) {
-      id
-      liftID
-      workoutID
-      createdAt
-      updatedAt
-      workout {
-        id
-        name
-        description
-        catergory
-        dayID
-        createdAt
-        updatedAt
-        day {
-          id
-          name
-          description
-          catergory
-          programID
-          createdAt
-          updatedAt
-          program {
-            id
-            name
-            summary
-            catergory
-            createdAt
-            updatedAt
-            owner
-          }
-          owner
-          workout {
-            nextToken
-          }
-        }
-        owner
-        lift {
-          items {
-            id
-            liftID
-            workoutID
-            createdAt
-            updatedAt
-            owner
-          }
-          nextToken
-        }
-      }
-      owner
-      lift {
-        id
-        name
-        description
-        category
-        favorite
-        createdAt
-        updatedAt
-        workout {
-          items {
-            id
-            liftID
-            workoutID
-            createdAt
-            updatedAt
-            owner
-          }
-          nextToken
-        }
-        owner
-        records {
-          items {
-            id
-            load
-            warmup
-            sets
-            reps
-            unit
-            rpe
-            percent
-            liftID
-            createdAt
-            updatedAt
-            owner
-          }
-          nextToken
-        }
-      }
     }
   }
 `;
@@ -865,43 +184,14 @@ export const createLift = /* GraphQL */ `
     createLift(input: $input, condition: $condition) {
       id
       name
-      description
       category
+      bodypart
+      tags
       favorite
+      unit
+      owner
       createdAt
       updatedAt
-      workout {
-        items {
-          id
-          liftID
-          workoutID
-          createdAt
-          updatedAt
-          workout {
-            id
-            name
-            description
-            catergory
-            dayID
-            createdAt
-            updatedAt
-            owner
-          }
-          owner
-          lift {
-            id
-            name
-            description
-            category
-            favorite
-            createdAt
-            updatedAt
-            owner
-          }
-        }
-        nextToken
-      }
-      owner
       records {
         items {
           id
@@ -909,22 +199,12 @@ export const createLift = /* GraphQL */ `
           warmup
           sets
           reps
-          unit
           rpe
           percent
+          performedDate
           liftID
           createdAt
           updatedAt
-          lift {
-            id
-            name
-            description
-            category
-            favorite
-            createdAt
-            updatedAt
-            owner
-          }
           owner
         }
         nextToken
@@ -940,43 +220,14 @@ export const updateLift = /* GraphQL */ `
     updateLift(input: $input, condition: $condition) {
       id
       name
-      description
       category
+      bodypart
+      tags
       favorite
+      unit
+      owner
       createdAt
       updatedAt
-      workout {
-        items {
-          id
-          liftID
-          workoutID
-          createdAt
-          updatedAt
-          workout {
-            id
-            name
-            description
-            catergory
-            dayID
-            createdAt
-            updatedAt
-            owner
-          }
-          owner
-          lift {
-            id
-            name
-            description
-            category
-            favorite
-            createdAt
-            updatedAt
-            owner
-          }
-        }
-        nextToken
-      }
-      owner
       records {
         items {
           id
@@ -984,22 +235,12 @@ export const updateLift = /* GraphQL */ `
           warmup
           sets
           reps
-          unit
           rpe
           percent
+          performedDate
           liftID
           createdAt
           updatedAt
-          lift {
-            id
-            name
-            description
-            category
-            favorite
-            createdAt
-            updatedAt
-            owner
-          }
           owner
         }
         nextToken
@@ -1015,43 +256,14 @@ export const deleteLift = /* GraphQL */ `
     deleteLift(input: $input, condition: $condition) {
       id
       name
-      description
       category
+      bodypart
+      tags
       favorite
+      unit
+      owner
       createdAt
       updatedAt
-      workout {
-        items {
-          id
-          liftID
-          workoutID
-          createdAt
-          updatedAt
-          workout {
-            id
-            name
-            description
-            catergory
-            dayID
-            createdAt
-            updatedAt
-            owner
-          }
-          owner
-          lift {
-            id
-            name
-            description
-            category
-            favorite
-            createdAt
-            updatedAt
-            owner
-          }
-        }
-        nextToken
-      }
-      owner
       records {
         items {
           id
@@ -1059,22 +271,12 @@ export const deleteLift = /* GraphQL */ `
           warmup
           sets
           reps
-          unit
           rpe
           percent
+          performedDate
           liftID
           createdAt
           updatedAt
-          lift {
-            id
-            name
-            description
-            category
-            favorite
-            createdAt
-            updatedAt
-            owner
-          }
           owner
         }
         nextToken
@@ -1093,47 +295,24 @@ export const createRecord = /* GraphQL */ `
       warmup
       sets
       reps
-      unit
       rpe
       percent
+      performedDate
       liftID
       createdAt
       updatedAt
       lift {
         id
         name
-        description
         category
+        bodypart
+        tags
         favorite
+        unit
+        owner
         createdAt
         updatedAt
-        workout {
-          items {
-            id
-            liftID
-            workoutID
-            createdAt
-            updatedAt
-            owner
-          }
-          nextToken
-        }
-        owner
         records {
-          items {
-            id
-            load
-            warmup
-            sets
-            reps
-            unit
-            rpe
-            percent
-            liftID
-            createdAt
-            updatedAt
-            owner
-          }
           nextToken
         }
       }
@@ -1152,47 +331,24 @@ export const updateRecord = /* GraphQL */ `
       warmup
       sets
       reps
-      unit
       rpe
       percent
+      performedDate
       liftID
       createdAt
       updatedAt
       lift {
         id
         name
-        description
         category
+        bodypart
+        tags
         favorite
+        unit
+        owner
         createdAt
         updatedAt
-        workout {
-          items {
-            id
-            liftID
-            workoutID
-            createdAt
-            updatedAt
-            owner
-          }
-          nextToken
-        }
-        owner
         records {
-          items {
-            id
-            load
-            warmup
-            sets
-            reps
-            unit
-            rpe
-            percent
-            liftID
-            createdAt
-            updatedAt
-            owner
-          }
           nextToken
         }
       }
@@ -1211,47 +367,24 @@ export const deleteRecord = /* GraphQL */ `
       warmup
       sets
       reps
-      unit
       rpe
       percent
+      performedDate
       liftID
       createdAt
       updatedAt
       lift {
         id
         name
-        description
         category
+        bodypart
+        tags
         favorite
+        unit
+        owner
         createdAt
         updatedAt
-        workout {
-          items {
-            id
-            liftID
-            workoutID
-            createdAt
-            updatedAt
-            owner
-          }
-          nextToken
-        }
-        owner
         records {
-          items {
-            id
-            load
-            warmup
-            sets
-            reps
-            unit
-            rpe
-            percent
-            liftID
-            createdAt
-            updatedAt
-            owner
-          }
           nextToken
         }
       }

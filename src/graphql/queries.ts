@@ -2,70 +2,50 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const getProgram = /* GraphQL */ `
-  query GetProgram($id: ID!) {
-    getProgram(id: $id) {
+export const getPost = /* GraphQL */ `
+  query GetPost($id: ID!) {
+    getPost(id: $id) {
       id
-      name
-      summary
-      catergory
+      title
+      contents
+      image
+      upvotes
+      downvotes
       createdAt
       updatedAt
       owner
-      days {
+      comments {
         items {
           id
-          name
-          description
-          catergory
-          programID
+          postID
+          content
           createdAt
           updatedAt
-          program {
-            id
-            name
-            summary
-            catergory
-            createdAt
-            updatedAt
-            owner
-          }
           owner
-          workout {
-            nextToken
-          }
         }
         nextToken
       }
     }
   }
 `;
-export const listPrograms = /* GraphQL */ `
-  query ListPrograms(
-    $filter: ModelProgramFilterInput
+export const listPosts = /* GraphQL */ `
+  query ListPosts(
+    $filter: ModelPostFilterInput
     $limit: Int
     $nextToken: String
   ) {
-    listPrograms(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    listPosts(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
-        name
-        summary
-        catergory
+        title
+        contents
+        image
+        upvotes
+        downvotes
         createdAt
         updatedAt
         owner
-        days {
-          items {
-            id
-            name
-            description
-            catergory
-            programID
-            createdAt
-            updatedAt
-            owner
-          }
+        comments {
           nextToken
         }
       }
@@ -73,398 +53,57 @@ export const listPrograms = /* GraphQL */ `
     }
   }
 `;
-export const getDay = /* GraphQL */ `
-  query GetDay($id: ID!) {
-    getDay(id: $id) {
+export const getComment = /* GraphQL */ `
+  query GetComment($id: ID!) {
+    getComment(id: $id) {
       id
-      name
-      description
-      catergory
-      programID
+      postID
+      content
       createdAt
       updatedAt
-      program {
+      post {
         id
-        name
-        summary
-        catergory
+        title
+        contents
+        image
+        upvotes
+        downvotes
         createdAt
         updatedAt
         owner
-        days {
-          items {
-            id
-            name
-            description
-            catergory
-            programID
-            createdAt
-            updatedAt
-            owner
-          }
+        comments {
           nextToken
         }
       }
       owner
-      workout {
-        items {
-          id
-          name
-          description
-          catergory
-          dayID
-          createdAt
-          updatedAt
-          day {
-            id
-            name
-            description
-            catergory
-            programID
-            createdAt
-            updatedAt
-            owner
-          }
-          owner
-          lift {
-            nextToken
-          }
-        }
-        nextToken
-      }
     }
   }
 `;
-export const listDays = /* GraphQL */ `
-  query ListDays(
-    $filter: ModelDayFilterInput
+export const listComments = /* GraphQL */ `
+  query ListComments(
+    $filter: ModelCommentFilterInput
     $limit: Int
     $nextToken: String
   ) {
-    listDays(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    listComments(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
-        name
-        description
-        catergory
-        programID
+        postID
+        content
         createdAt
         updatedAt
-        program {
+        post {
           id
-          name
-          summary
-          catergory
+          title
+          contents
+          image
+          upvotes
+          downvotes
           createdAt
           updatedAt
           owner
-          days {
-            nextToken
-          }
         }
         owner
-        workout {
-          items {
-            id
-            name
-            description
-            catergory
-            dayID
-            createdAt
-            updatedAt
-            owner
-          }
-          nextToken
-        }
-      }
-      nextToken
-    }
-  }
-`;
-export const getWorkout = /* GraphQL */ `
-  query GetWorkout($id: ID!) {
-    getWorkout(id: $id) {
-      id
-      name
-      description
-      catergory
-      dayID
-      createdAt
-      updatedAt
-      day {
-        id
-        name
-        description
-        catergory
-        programID
-        createdAt
-        updatedAt
-        program {
-          id
-          name
-          summary
-          catergory
-          createdAt
-          updatedAt
-          owner
-          days {
-            nextToken
-          }
-        }
-        owner
-        workout {
-          items {
-            id
-            name
-            description
-            catergory
-            dayID
-            createdAt
-            updatedAt
-            owner
-          }
-          nextToken
-        }
-      }
-      owner
-      lift {
-        items {
-          id
-          liftID
-          workoutID
-          createdAt
-          updatedAt
-          workout {
-            id
-            name
-            description
-            catergory
-            dayID
-            createdAt
-            updatedAt
-            owner
-          }
-          owner
-          lift {
-            id
-            name
-            description
-            category
-            favorite
-            createdAt
-            updatedAt
-            owner
-          }
-        }
-        nextToken
-      }
-    }
-  }
-`;
-export const listWorkouts = /* GraphQL */ `
-  query ListWorkouts(
-    $filter: ModelWorkoutFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    listWorkouts(filter: $filter, limit: $limit, nextToken: $nextToken) {
-      items {
-        id
-        name
-        description
-        catergory
-        dayID
-        createdAt
-        updatedAt
-        day {
-          id
-          name
-          description
-          catergory
-          programID
-          createdAt
-          updatedAt
-          program {
-            id
-            name
-            summary
-            catergory
-            createdAt
-            updatedAt
-            owner
-          }
-          owner
-          workout {
-            nextToken
-          }
-        }
-        owner
-        lift {
-          items {
-            id
-            liftID
-            workoutID
-            createdAt
-            updatedAt
-            owner
-          }
-          nextToken
-        }
-      }
-      nextToken
-    }
-  }
-`;
-export const getLiftWorkoutJoin = /* GraphQL */ `
-  query GetLiftWorkoutJoin($id: ID!) {
-    getLiftWorkoutJoin(id: $id) {
-      id
-      liftID
-      workoutID
-      createdAt
-      updatedAt
-      workout {
-        id
-        name
-        description
-        catergory
-        dayID
-        createdAt
-        updatedAt
-        day {
-          id
-          name
-          description
-          catergory
-          programID
-          createdAt
-          updatedAt
-          program {
-            id
-            name
-            summary
-            catergory
-            createdAt
-            updatedAt
-            owner
-          }
-          owner
-          workout {
-            nextToken
-          }
-        }
-        owner
-        lift {
-          items {
-            id
-            liftID
-            workoutID
-            createdAt
-            updatedAt
-            owner
-          }
-          nextToken
-        }
-      }
-      owner
-      lift {
-        id
-        name
-        description
-        category
-        favorite
-        createdAt
-        updatedAt
-        workout {
-          items {
-            id
-            liftID
-            workoutID
-            createdAt
-            updatedAt
-            owner
-          }
-          nextToken
-        }
-        owner
-        records {
-          items {
-            id
-            load
-            warmup
-            sets
-            reps
-            unit
-            rpe
-            percent
-            liftID
-            createdAt
-            updatedAt
-            owner
-          }
-          nextToken
-        }
-      }
-    }
-  }
-`;
-export const listLiftWorkoutJoins = /* GraphQL */ `
-  query ListLiftWorkoutJoins(
-    $filter: ModelLiftWorkoutJoinFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    listLiftWorkoutJoins(
-      filter: $filter
-      limit: $limit
-      nextToken: $nextToken
-    ) {
-      items {
-        id
-        liftID
-        workoutID
-        createdAt
-        updatedAt
-        workout {
-          id
-          name
-          description
-          catergory
-          dayID
-          createdAt
-          updatedAt
-          day {
-            id
-            name
-            description
-            catergory
-            programID
-            createdAt
-            updatedAt
-            owner
-          }
-          owner
-          lift {
-            nextToken
-          }
-        }
-        owner
-        lift {
-          id
-          name
-          description
-          category
-          favorite
-          createdAt
-          updatedAt
-          workout {
-            nextToken
-          }
-          owner
-          records {
-            nextToken
-          }
-        }
       }
       nextToken
     }
@@ -475,43 +114,14 @@ export const getLift = /* GraphQL */ `
     getLift(id: $id) {
       id
       name
-      description
       category
+      bodypart
+      tags
       favorite
+      unit
+      owner
       createdAt
       updatedAt
-      workout {
-        items {
-          id
-          liftID
-          workoutID
-          createdAt
-          updatedAt
-          workout {
-            id
-            name
-            description
-            catergory
-            dayID
-            createdAt
-            updatedAt
-            owner
-          }
-          owner
-          lift {
-            id
-            name
-            description
-            category
-            favorite
-            createdAt
-            updatedAt
-            owner
-          }
-        }
-        nextToken
-      }
-      owner
       records {
         items {
           id
@@ -519,22 +129,12 @@ export const getLift = /* GraphQL */ `
           warmup
           sets
           reps
-          unit
           rpe
           percent
+          performedDate
           liftID
           createdAt
           updatedAt
-          lift {
-            id
-            name
-            description
-            category
-            favorite
-            createdAt
-            updatedAt
-            owner
-          }
           owner
         }
         nextToken
@@ -552,38 +152,49 @@ export const listLifts = /* GraphQL */ `
       items {
         id
         name
-        description
         category
+        bodypart
+        tags
         favorite
+        unit
+        owner
         createdAt
         updatedAt
-        workout {
-          items {
-            id
-            liftID
-            workoutID
-            createdAt
-            updatedAt
-            owner
-          }
+        records {
           nextToken
         }
+      }
+      nextToken
+    }
+  }
+`;
+export const liftsByUser = /* GraphQL */ `
+  query LiftsByUser(
+    $owner: String
+    $sortDirection: ModelSortDirection
+    $filter: ModelLiftFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    liftsByUser(
+      owner: $owner
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        name
+        category
+        bodypart
+        tags
+        favorite
+        unit
         owner
+        createdAt
+        updatedAt
         records {
-          items {
-            id
-            load
-            warmup
-            sets
-            reps
-            unit
-            rpe
-            percent
-            liftID
-            createdAt
-            updatedAt
-            owner
-          }
           nextToken
         }
       }
@@ -599,47 +210,24 @@ export const getRecord = /* GraphQL */ `
       warmup
       sets
       reps
-      unit
       rpe
       percent
+      performedDate
       liftID
       createdAt
       updatedAt
       lift {
         id
         name
-        description
         category
+        bodypart
+        tags
         favorite
+        unit
+        owner
         createdAt
         updatedAt
-        workout {
-          items {
-            id
-            liftID
-            workoutID
-            createdAt
-            updatedAt
-            owner
-          }
-          nextToken
-        }
-        owner
         records {
-          items {
-            id
-            load
-            warmup
-            sets
-            reps
-            unit
-            rpe
-            percent
-            liftID
-            createdAt
-            updatedAt
-            owner
-          }
           nextToken
         }
       }
@@ -660,27 +248,23 @@ export const listRecords = /* GraphQL */ `
         warmup
         sets
         reps
-        unit
         rpe
         percent
+        performedDate
         liftID
         createdAt
         updatedAt
         lift {
           id
           name
-          description
           category
+          bodypart
+          tags
           favorite
+          unit
+          owner
           createdAt
           updatedAt
-          workout {
-            nextToken
-          }
-          owner
-          records {
-            nextToken
-          }
         }
         owner
       }

@@ -1,31 +1,38 @@
-// import theme from "@styles/theme";
-import { Chakra } from "@styles/chakra";
-import "@styles/global.css";
 import Amplify from "aws-amplify";
-import { META } from "config";
-// import { ChakraProvider } from "@chakra-ui/react";
-import { AppProps } from "next/app";
+import type { AppProps } from "next/app";
 import Head from "next/head";
-import React from "react";
+import React, { useEffect } from "react";
+import { Chakra } from "../../styles/chakra";
+import "../../styles/global.css";
 import awsconfig from "../aws-exports";
 import AuthContext from "../context/AuthContext";
-// eslint-disable-next-line import/no-default-export
-
 Amplify.configure({ ...awsconfig, ssr: true });
-export default function MyApp({ Component, pageProps }: AppProps): JSX.Element {
-	return (
-		<>
-			<Head>
-				<title>{META.title}</title>
-				<link rel="icon" href="/favicon.ico" />
-			</Head>
-			{/* <ChakraProvider resetCSS theme={theme}> */}
-			<AuthContext>
-				<Chakra cookies={pageProps.cookies}>
-					<Component {...pageProps} />
-				</Chakra>
-			</AuthContext>
-			{/* </ChakraProvider> */}
-		</>
-	);
+
+function MyApp({ Component, pageProps }: AppProps) {
+  useEffect(() => {
+    // Remove the server-side injected CSS.
+    const jssStyles = document.querySelector("#jss-server-side");
+    if (jssStyles) {
+      jssStyles.parentElement.removeChild(jssStyles);
+    }
+  }, []);
+
+  return (
+    <React.Fragment>
+      <Head>
+        <title>Your Amplify App</title>
+        <meta
+          name="viewport"
+          content="minimum-scale=1, initial-scale=1, width=device-width"
+        />
+      </Head>
+      <AuthContext>
+        <Chakra cookies={pageProps.cookies}>
+          <Component {...pageProps} />
+        </Chakra>
+      </AuthContext>
+    </React.Fragment>
+  );
 }
+
+export default MyApp;
