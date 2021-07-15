@@ -1,3 +1,4 @@
+import { GRAPHQL_AUTH_MODE } from "@aws-amplify/api";
 import { CloseIcon } from "@chakra-ui/icons";
 import {
 	Box,
@@ -24,14 +25,16 @@ import {
 	useDisclosure,
 	VStack,
 } from "@chakra-ui/react";
+import { CreateRecordInput, CreateRecordMutation, Record } from "API";
+import { API } from "aws-amplify";
 import { Field, Form, Formik } from "formik";
+import { createRecord } from "graphql/mutations";
 import React, { ReactElement, useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { BsSearch } from "react-icons/bs";
 import * as Yup from "yup";
 import FormikNumberInput from "../formiknumberinput";
-
 const formSchema = Yup.object().shape({
 	load: Yup.number()
 		.min(1, "too short")
@@ -92,12 +95,42 @@ export default function CreateRecordFormModal(props: any): ReactElement {
 					<ModalBody>
 						<Formik
 							initialValues={initialValues}
-							onSubmit={(values, actions) => {
+							onSubmit={async (values, actions) => {
 								// onClose();
-								setTimeout(() => {
-									alert(JSON.stringify(values, null, 2));
+								try {
+									console.log(
+										"form values: ",
+										JSON.stringify(values, null, 2)
+									);
+									//set a valid date and iterate of the object for the input
+									const newRecordInput: CreateRecordInput = {
+										values,
+										liftID: props.lift.id,
+									};
+
+									const createNewRecord = (await API.graphql({
+										query: createRecord,
+										variables: {
+											input: newRecordInput,
+										},
+										authMode:
+											GRAPHQL_AUTH_MODE.AMAZON_COGNITO_USER_POOLS,
+									})) as { data: CreateRecordMutation };
+
+									console.log(createNewRecord);
+									//setLifts to remove the lift (only if this modal is on the lifts page)
+									props.setLifts([
+										...props.lifts,
+										createNewRecord.data
+											.createRecord as Record,
+									]);
 									actions.setSubmitting(false);
-								}, 1000);
+									onClose();
+								} catch (error) {
+									console.log("Create record error: ", error);
+								}
+
+								actions.setSubmitting(false);
 							}}
 							validationSchema={formSchema}
 							validateOnChange={false}
@@ -218,6 +251,7 @@ export default function CreateRecordFormModal(props: any): ReactElement {
 													my="10px"
 													bg="brand.200"
 													color="brand.600"
+													disabled={isSubmitting}
 												>
 													Submit
 												</Button>

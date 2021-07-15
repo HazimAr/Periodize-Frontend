@@ -6,6 +6,7 @@ import {
 	AccordionItem,
 	AccordionPanel,
 	Box,
+	Center,
 	Flex,
 	HStack,
 	IconButton,
@@ -15,6 +16,7 @@ import {
 	InputRightElement,
 	Link,
 	Text,
+	VStack,
 } from "@chakra-ui/react";
 import Fuse from "fuse.js";
 import React, { ReactElement, useState } from "react";
@@ -48,8 +50,9 @@ export default function LiftAccordion({
 		const { value } = currentTarget;
 		setQuery(value);
 	}
+
 	return (
-		<Box>
+		<Box h="100%">
 			<Flex justify="space-between" align="center">
 				<Box>
 					<InputGroup size="md">
@@ -80,103 +83,123 @@ export default function LiftAccordion({
 				<Flex>
 					<CreateLiftModal lifts={lifts} setLifts={setLifts} />
 
-					<CreateRecordModal lifts={lifts} setLifts={setLifts} />
+					{/* <CreateRecordModal lifts={lifts} setLifts={setLifts} /> */}
 				</Flex>
 			</Flex>
-			<Box border="1px solid white" p="12px" borderRadius="md" my={4}>
-				<Accordion allowToggle allowMultiple>
-					<Flex justify="space-between" my={2}>
-						<Text fontSize="2xl">Movement</Text>
-						<Box></Box>
-						<Box></Box>
-					</Flex>
-					{liftResults.map((lift) => (
-						<AccordionItem key={lift.id} py={2}>
-							<h2>
-								<Flex justify="space-between">
-									<Box textAlign="left">
-										<Link
-											href={`/dashboard/lifts/${lift.id}`}
-										>
-											<Text fontSize="xl">
-												{lift.name.replace(
-													/(^\w{1})|(\s+\w{1})/g,
-													(letter) =>
-														letter.toUpperCase()
-												)}
-											</Text>
-										</Link>
-									</Box>
-									<Box>
-										{lift.records.items ? (
-											"records to be here"
-										) : (
-											<i>No Records</i>
-										)}
-									</Box>
-									<Flex>
-										<Flex>
+
+			{!lifts[0] ? (
+				<Center h="75vh">
+					<VStack>
+						<Text fontSize="2xl">
+							You're not tracking any lifts...
+						</Text>
+						<Text fontSize="2xl">
+							Create a lift to get started 😤
+						</Text>
+						<CreateLiftModal lifts={lifts} setLifts={setLifts} />
+					</VStack>
+				</Center>
+			) : (
+				<Box border="1px solid white" p="12px" borderRadius="md" my={4}>
+					<Accordion allowToggle allowMultiple>
+						<Flex justify="space-between" my={2}>
+							<Text fontSize="2xl">Movement</Text>
+							<Box></Box>
+							<Box></Box>
+						</Flex>
+						{liftResults.map((lift) => (
+							<AccordionItem key={lift.id} py={2}>
+								<h2>
+									<Flex justify="space-between">
+										<Box textAlign="left">
 											<Link
 												href={`/dashboard/lifts/${lift.id}`}
 											>
+												<Text fontSize="xl">
+													{lift.name.replace(
+														/(^\w{1})|(\s+\w{1})/g,
+														(letter) =>
+															letter.toUpperCase()
+													)}
+												</Text>
+											</Link>
+										</Box>
+										<Box>
+											{lift.records.items ? (
+												"records to be here"
+											) : (
+												<i>No Records</i>
+											)}
+										</Box>
+										<Flex>
+											<Flex>
+												<Link
+													href={`/dashboard/lifts/${lift.id}`}
+												>
+													<IconButton
+														aria-label="edit lift"
+														size="sm"
+														icon={<EditIcon />}
+														_focus={{
+															outline: "none",
+														}}
+														variant="ghost"
+														zIndex={100}
+													/>
+												</Link>
+
 												<IconButton
-													aria-label="edit lift"
+													aria-label="create lift"
 													size="sm"
-													icon={<EditIcon />}
+													icon={<AddIcon />}
 													_focus={{ outline: "none" }}
 													variant="ghost"
 													zIndex={100}
 												/>
-											</Link>
+												<CreateRecordModal
+													lift={lift}
+												/>
+												<DeleteLiftModal lift={lift} />
+											</Flex>
 
-											<IconButton
-												aria-label="create lift"
-												size="sm"
-												icon={<AddIcon />}
+											<AccordionButton
+												w="25px"
+												p={0}
+												m={0}
 												_focus={{ outline: "none" }}
-												variant="ghost"
-												zIndex={100}
-											/>
-											<DeleteLiftModal lift={lift} />
+											>
+												<AccordionIcon />
+											</AccordionButton>
 										</Flex>
-
-										<AccordionButton
-											w="25px"
-											p={0}
-											m={0}
-											_focus={{ outline: "none" }}
-										>
-											<AccordionIcon />
-										</AccordionButton>
 									</Flex>
-								</Flex>
-							</h2>
-							<AccordionPanel pb={4}>
-								<HStack>
-									{lift.category && (
-										<Box
-											px={3}
-											py={0.5}
-											border="1px solid white"
-											borderRadius="md"
-										>
-											{lift.category}
-										</Box>
-									)}
+								</h2>
+								<AccordionPanel pb={4}>
 									<HStack>
-										{lift.bodypart.map((part) => (
-											<BodyPartTag
-												key={part}
-												part={part}
-											/>
-										))}
+										{lift.category && (
+											<Box
+												px={3}
+												py={0.5}
+												border="1px solid white"
+												borderRadius="md"
+											>
+												{lift.category}
+											</Box>
+										)}
+										<HStack>
+											{lift.bodypart.map((part) => (
+												<BodyPartTag
+													key={part}
+													part={part}
+												/>
+											))}
+										</HStack>
 									</HStack>
-								</HStack>
-							</AccordionPanel>
-						</AccordionItem>
-					))}
-				</Accordion>
-			</Box>
+								</AccordionPanel>
+							</AccordionItem>
+						))}
+					</Accordion>
+				</Box>
+			)}
 		</Box>
 	);
 }
