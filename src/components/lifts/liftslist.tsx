@@ -1,4 +1,4 @@
-import { Box, Container, Heading, Stack } from "@chakra-ui/react";
+import { Box, Container, Heading, Stack, Text } from "@chakra-ui/react";
 import { API } from "aws-amplify";
 import React, { ReactElement, useState } from "react";
 import { Lift, LiftsByUserQuery } from "../../API";
@@ -36,13 +36,13 @@ export default function LiftsList(): ReactElement {
   }
 
   console.log("current user: ", user);
-  console.log(lifts);
+  console.log("My lifts:" ,lifts);
   return (
     <Container maxW="container.md">
       <Heading>My Lifts</Heading>
 
       <Stack as="ul" spacing="4" my="4">
-        <LiftAccordion lifts={lifts} setLifts={setLifts} />
+        {lifts[0] ? <LiftAccordion lifts={lifts} setLifts={setLifts} />:<Text>No lifts found, create a lift to get started</Text>}
       </Stack>
     </Container>
   );
