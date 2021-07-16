@@ -2,113 +2,6 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const getPost = /* GraphQL */ `
-  query GetPost($id: ID!) {
-    getPost(id: $id) {
-      id
-      title
-      contents
-      image
-      upvotes
-      downvotes
-      createdAt
-      updatedAt
-      owner
-      comments {
-        items {
-          id
-          postID
-          content
-          createdAt
-          updatedAt
-          owner
-        }
-        nextToken
-      }
-    }
-  }
-`;
-export const listPosts = /* GraphQL */ `
-  query ListPosts(
-    $filter: ModelPostFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    listPosts(filter: $filter, limit: $limit, nextToken: $nextToken) {
-      items {
-        id
-        title
-        contents
-        image
-        upvotes
-        downvotes
-        createdAt
-        updatedAt
-        owner
-        comments {
-          nextToken
-        }
-      }
-      nextToken
-    }
-  }
-`;
-export const getComment = /* GraphQL */ `
-  query GetComment($id: ID!) {
-    getComment(id: $id) {
-      id
-      postID
-      content
-      createdAt
-      updatedAt
-      post {
-        id
-        title
-        contents
-        image
-        upvotes
-        downvotes
-        createdAt
-        updatedAt
-        owner
-        comments {
-          nextToken
-        }
-      }
-      owner
-    }
-  }
-`;
-export const listComments = /* GraphQL */ `
-  query ListComments(
-    $filter: ModelCommentFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    listComments(filter: $filter, limit: $limit, nextToken: $nextToken) {
-      items {
-        id
-        postID
-        content
-        createdAt
-        updatedAt
-        post {
-          id
-          title
-          contents
-          image
-          upvotes
-          downvotes
-          createdAt
-          updatedAt
-          owner
-        }
-        owner
-      }
-      nextToken
-    }
-  }
-`;
 export const getLift = /* GraphQL */ `
   query GetLift($id: ID!) {
     getLift(id: $id) {
@@ -130,11 +23,22 @@ export const getLift = /* GraphQL */ `
           sets
           reps
           rpe
-          percent
           performedDate
           liftID
           createdAt
           updatedAt
+          lift {
+            id
+            name
+            category
+            bodypart
+            tags
+            favorite
+            unit
+            owner
+            createdAt
+            updatedAt
+          }
           owner
         }
         nextToken
@@ -161,6 +65,19 @@ export const listLifts = /* GraphQL */ `
         createdAt
         updatedAt
         records {
+          items {
+            id
+            load
+            warmup
+            sets
+            reps
+            rpe
+            performedDate
+            liftID
+            createdAt
+            updatedAt
+            owner
+          }
           nextToken
         }
       }
@@ -195,6 +112,19 @@ export const liftsByUser = /* GraphQL */ `
         createdAt
         updatedAt
         records {
+          items {
+            id
+            load
+            warmup
+            sets
+            reps
+            rpe
+            performedDate
+            liftID
+            createdAt
+            updatedAt
+            owner
+          }
           nextToken
         }
       }
@@ -211,7 +141,6 @@ export const getRecord = /* GraphQL */ `
       sets
       reps
       rpe
-      percent
       performedDate
       liftID
       createdAt
@@ -228,6 +157,19 @@ export const getRecord = /* GraphQL */ `
         createdAt
         updatedAt
         records {
+          items {
+            id
+            load
+            warmup
+            sets
+            reps
+            rpe
+            performedDate
+            liftID
+            createdAt
+            updatedAt
+            owner
+          }
           nextToken
         }
       }
@@ -249,7 +191,6 @@ export const listRecords = /* GraphQL */ `
         sets
         reps
         rpe
-        percent
         performedDate
         liftID
         createdAt
@@ -265,6 +206,9 @@ export const listRecords = /* GraphQL */ `
           owner
           createdAt
           updatedAt
+          records {
+            nextToken
+          }
         }
         owner
       }

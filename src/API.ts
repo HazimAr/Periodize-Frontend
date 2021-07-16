@@ -2,24 +2,27 @@
 /* eslint-disable */
 //  This file was automatically generated and should not be edited.
 
-export type CreatePostInput = {
+export type CreateLiftInput = {
   id?: string | null,
-  title: string,
-  contents: string,
-  image?: string | null,
-  upvotes: number,
-  downvotes: number,
+  name: string,
+  category?: string | null,
+  bodypart: Array< string >,
+  tags?: Array< string > | null,
+  favorite: string,
+  unit: string,
+  owner?: string | null,
 };
 
-export type ModelPostConditionInput = {
-  title?: ModelStringInput | null,
-  contents?: ModelStringInput | null,
-  image?: ModelStringInput | null,
-  upvotes?: ModelIntInput | null,
-  downvotes?: ModelIntInput | null,
-  and?: Array< ModelPostConditionInput | null > | null,
-  or?: Array< ModelPostConditionInput | null > | null,
-  not?: ModelPostConditionInput | null,
+export type ModelLiftConditionInput = {
+  name?: ModelStringInput | null,
+  category?: ModelStringInput | null,
+  bodypart?: ModelStringInput | null,
+  tags?: ModelStringInput | null,
+  favorite?: ModelStringInput | null,
+  unit?: ModelStringInput | null,
+  and?: Array< ModelLiftConditionInput | null > | null,
+  or?: Array< ModelLiftConditionInput | null > | null,
+  not?: ModelLiftConditionInput | null,
 };
 
 export type ModelStringInput = {
@@ -62,125 +65,6 @@ export type ModelSizeInput = {
   between?: Array< number | null > | null,
 };
 
-export type ModelIntInput = {
-  ne?: number | null,
-  eq?: number | null,
-  le?: number | null,
-  lt?: number | null,
-  ge?: number | null,
-  gt?: number | null,
-  between?: Array< number | null > | null,
-  attributeExists?: boolean | null,
-  attributeType?: ModelAttributeTypes | null,
-};
-
-export type Post = {
-  __typename: "Post",
-  id: string,
-  title: string,
-  contents: string,
-  image?: string | null,
-  upvotes: number,
-  downvotes: number,
-  createdAt: string,
-  updatedAt: string,
-  owner?: string | null,
-  comments?: ModelCommentConnection | null,
-};
-
-export type ModelCommentConnection = {
-  __typename: "ModelCommentConnection",
-  items?:  Array<Comment | null > | null,
-  nextToken?: string | null,
-};
-
-export type Comment = {
-  __typename: "Comment",
-  id: string,
-  postID: string,
-  content: string,
-  createdAt: string,
-  updatedAt: string,
-  post?: Post | null,
-  owner?: string | null,
-};
-
-export type UpdatePostInput = {
-  id: string,
-  title?: string | null,
-  contents?: string | null,
-  image?: string | null,
-  upvotes?: number | null,
-  downvotes?: number | null,
-};
-
-export type DeletePostInput = {
-  id: string,
-};
-
-export type CreateCommentInput = {
-  id?: string | null,
-  postID: string,
-  content: string,
-};
-
-export type ModelCommentConditionInput = {
-  postID?: ModelIDInput | null,
-  content?: ModelStringInput | null,
-  and?: Array< ModelCommentConditionInput | null > | null,
-  or?: Array< ModelCommentConditionInput | null > | null,
-  not?: ModelCommentConditionInput | null,
-};
-
-export type ModelIDInput = {
-  ne?: string | null,
-  eq?: string | null,
-  le?: string | null,
-  lt?: string | null,
-  ge?: string | null,
-  gt?: string | null,
-  contains?: string | null,
-  notContains?: string | null,
-  between?: Array< string | null > | null,
-  beginsWith?: string | null,
-  attributeExists?: boolean | null,
-  attributeType?: ModelAttributeTypes | null,
-  size?: ModelSizeInput | null,
-};
-
-export type UpdateCommentInput = {
-  id: string,
-  postID?: string | null,
-  content?: string | null,
-};
-
-export type DeleteCommentInput = {
-  id: string,
-};
-
-export type CreateLiftInput = {
-  id?: string | null,
-  name: string,
-  category?: string | null,
-  bodypart: Array< string >,
-  tags?: Array< string > | null,
-  favorite: string,
-  unit: string,
-  owner?: string | null,
-};
-
-export type ModelLiftConditionInput = {
-  name?: ModelStringInput | null,
-  category?: ModelStringInput | null,
-  bodypart?: ModelStringInput | null,
-  tags?: ModelStringInput | null,
-  favorite?: ModelStringInput | null,
-  unit?: ModelStringInput | null,
-  and?: Array< ModelLiftConditionInput | null > | null,
-  or?: Array< ModelLiftConditionInput | null > | null,
-  not?: ModelLiftConditionInput | null,
-};
-
 export type Lift = {
   __typename: "Lift",
   id: string,
@@ -209,8 +93,7 @@ export type Record = {
   warmup?: number | null,
   sets: number,
   reps: number,
-  rpe?: string | null,
-  percent?: string | null,
+  rpe?: number | null,
   performedDate?: string | null,
   liftID: string,
   createdAt: string,
@@ -240,8 +123,7 @@ export type CreateRecordInput = {
   warmup?: number | null,
   sets: number,
   reps: number,
-  rpe?: string | null,
-  percent?: string | null,
+  rpe?: number | null,
   performedDate?: string | null,
   liftID: string,
 };
@@ -251,8 +133,7 @@ export type ModelRecordConditionInput = {
   warmup?: ModelIntInput | null,
   sets?: ModelIntInput | null,
   reps?: ModelIntInput | null,
-  rpe?: ModelStringInput | null,
-  percent?: ModelStringInput | null,
+  rpe?: ModelIntInput | null,
   performedDate?: ModelStringInput | null,
   liftID?: ModelIDInput | null,
   and?: Array< ModelRecordConditionInput | null > | null,
@@ -272,47 +153,47 @@ export type ModelFloatInput = {
   attributeType?: ModelAttributeTypes | null,
 };
 
+export type ModelIntInput = {
+  ne?: number | null,
+  eq?: number | null,
+  le?: number | null,
+  lt?: number | null,
+  ge?: number | null,
+  gt?: number | null,
+  between?: Array< number | null > | null,
+  attributeExists?: boolean | null,
+  attributeType?: ModelAttributeTypes | null,
+};
+
+export type ModelIDInput = {
+  ne?: string | null,
+  eq?: string | null,
+  le?: string | null,
+  lt?: string | null,
+  ge?: string | null,
+  gt?: string | null,
+  contains?: string | null,
+  notContains?: string | null,
+  between?: Array< string | null > | null,
+  beginsWith?: string | null,
+  attributeExists?: boolean | null,
+  attributeType?: ModelAttributeTypes | null,
+  size?: ModelSizeInput | null,
+};
+
 export type UpdateRecordInput = {
   id: string,
   load?: number | null,
   warmup?: number | null,
   sets?: number | null,
   reps?: number | null,
-  rpe?: string | null,
-  percent?: string | null,
+  rpe?: number | null,
   performedDate?: string | null,
   liftID?: string | null,
 };
 
 export type DeleteRecordInput = {
   id: string,
-};
-
-export type ModelPostFilterInput = {
-  id?: ModelIDInput | null,
-  title?: ModelStringInput | null,
-  contents?: ModelStringInput | null,
-  image?: ModelStringInput | null,
-  upvotes?: ModelIntInput | null,
-  downvotes?: ModelIntInput | null,
-  and?: Array< ModelPostFilterInput | null > | null,
-  or?: Array< ModelPostFilterInput | null > | null,
-  not?: ModelPostFilterInput | null,
-};
-
-export type ModelPostConnection = {
-  __typename: "ModelPostConnection",
-  items?:  Array<Post | null > | null,
-  nextToken?: string | null,
-};
-
-export type ModelCommentFilterInput = {
-  id?: ModelIDInput | null,
-  postID?: ModelIDInput | null,
-  content?: ModelStringInput | null,
-  and?: Array< ModelCommentFilterInput | null > | null,
-  or?: Array< ModelCommentFilterInput | null > | null,
-  not?: ModelCommentFilterInput | null,
 };
 
 export type ModelLiftFilterInput = {
@@ -347,211 +228,12 @@ export type ModelRecordFilterInput = {
   warmup?: ModelIntInput | null,
   sets?: ModelIntInput | null,
   reps?: ModelIntInput | null,
-  rpe?: ModelStringInput | null,
-  percent?: ModelStringInput | null,
+  rpe?: ModelIntInput | null,
   performedDate?: ModelStringInput | null,
   liftID?: ModelIDInput | null,
   and?: Array< ModelRecordFilterInput | null > | null,
   or?: Array< ModelRecordFilterInput | null > | null,
   not?: ModelRecordFilterInput | null,
-};
-
-export type CreatePostMutationVariables = {
-  input: CreatePostInput,
-  condition?: ModelPostConditionInput | null,
-};
-
-export type CreatePostMutation = {
-  createPost?:  {
-    __typename: "Post",
-    id: string,
-    title: string,
-    contents: string,
-    image?: string | null,
-    upvotes: number,
-    downvotes: number,
-    createdAt: string,
-    updatedAt: string,
-    owner?: string | null,
-    comments?:  {
-      __typename: "ModelCommentConnection",
-      items?:  Array< {
-        __typename: "Comment",
-        id: string,
-        postID: string,
-        content: string,
-        createdAt: string,
-        updatedAt: string,
-        owner?: string | null,
-      } | null > | null,
-      nextToken?: string | null,
-    } | null,
-  } | null,
-};
-
-export type UpdatePostMutationVariables = {
-  input: UpdatePostInput,
-  condition?: ModelPostConditionInput | null,
-};
-
-export type UpdatePostMutation = {
-  updatePost?:  {
-    __typename: "Post",
-    id: string,
-    title: string,
-    contents: string,
-    image?: string | null,
-    upvotes: number,
-    downvotes: number,
-    createdAt: string,
-    updatedAt: string,
-    owner?: string | null,
-    comments?:  {
-      __typename: "ModelCommentConnection",
-      items?:  Array< {
-        __typename: "Comment",
-        id: string,
-        postID: string,
-        content: string,
-        createdAt: string,
-        updatedAt: string,
-        owner?: string | null,
-      } | null > | null,
-      nextToken?: string | null,
-    } | null,
-  } | null,
-};
-
-export type DeletePostMutationVariables = {
-  input: DeletePostInput,
-  condition?: ModelPostConditionInput | null,
-};
-
-export type DeletePostMutation = {
-  deletePost?:  {
-    __typename: "Post",
-    id: string,
-    title: string,
-    contents: string,
-    image?: string | null,
-    upvotes: number,
-    downvotes: number,
-    createdAt: string,
-    updatedAt: string,
-    owner?: string | null,
-    comments?:  {
-      __typename: "ModelCommentConnection",
-      items?:  Array< {
-        __typename: "Comment",
-        id: string,
-        postID: string,
-        content: string,
-        createdAt: string,
-        updatedAt: string,
-        owner?: string | null,
-      } | null > | null,
-      nextToken?: string | null,
-    } | null,
-  } | null,
-};
-
-export type CreateCommentMutationVariables = {
-  input: CreateCommentInput,
-  condition?: ModelCommentConditionInput | null,
-};
-
-export type CreateCommentMutation = {
-  createComment?:  {
-    __typename: "Comment",
-    id: string,
-    postID: string,
-    content: string,
-    createdAt: string,
-    updatedAt: string,
-    post?:  {
-      __typename: "Post",
-      id: string,
-      title: string,
-      contents: string,
-      image?: string | null,
-      upvotes: number,
-      downvotes: number,
-      createdAt: string,
-      updatedAt: string,
-      owner?: string | null,
-      comments?:  {
-        __typename: "ModelCommentConnection",
-        nextToken?: string | null,
-      } | null,
-    } | null,
-    owner?: string | null,
-  } | null,
-};
-
-export type UpdateCommentMutationVariables = {
-  input: UpdateCommentInput,
-  condition?: ModelCommentConditionInput | null,
-};
-
-export type UpdateCommentMutation = {
-  updateComment?:  {
-    __typename: "Comment",
-    id: string,
-    postID: string,
-    content: string,
-    createdAt: string,
-    updatedAt: string,
-    post?:  {
-      __typename: "Post",
-      id: string,
-      title: string,
-      contents: string,
-      image?: string | null,
-      upvotes: number,
-      downvotes: number,
-      createdAt: string,
-      updatedAt: string,
-      owner?: string | null,
-      comments?:  {
-        __typename: "ModelCommentConnection",
-        nextToken?: string | null,
-      } | null,
-    } | null,
-    owner?: string | null,
-  } | null,
-};
-
-export type DeleteCommentMutationVariables = {
-  input: DeleteCommentInput,
-  condition?: ModelCommentConditionInput | null,
-};
-
-export type DeleteCommentMutation = {
-  deleteComment?:  {
-    __typename: "Comment",
-    id: string,
-    postID: string,
-    content: string,
-    createdAt: string,
-    updatedAt: string,
-    post?:  {
-      __typename: "Post",
-      id: string,
-      title: string,
-      contents: string,
-      image?: string | null,
-      upvotes: number,
-      downvotes: number,
-      createdAt: string,
-      updatedAt: string,
-      owner?: string | null,
-      comments?:  {
-        __typename: "ModelCommentConnection",
-        nextToken?: string | null,
-      } | null,
-    } | null,
-    owner?: string | null,
-  } | null,
 };
 
 export type CreateLiftMutationVariables = {
@@ -581,12 +263,24 @@ export type CreateLiftMutation = {
         warmup?: number | null,
         sets: number,
         reps: number,
-        rpe?: string | null,
-        percent?: string | null,
+        rpe?: number | null,
         performedDate?: string | null,
         liftID: string,
         createdAt: string,
         updatedAt: string,
+        lift?:  {
+          __typename: "Lift",
+          id: string,
+          name: string,
+          category?: string | null,
+          bodypart: Array< string >,
+          tags?: Array< string > | null,
+          favorite: string,
+          unit: string,
+          owner?: string | null,
+          createdAt: string,
+          updatedAt: string,
+        } | null,
         owner?: string | null,
       } | null > | null,
       nextToken?: string | null,
@@ -621,12 +315,24 @@ export type UpdateLiftMutation = {
         warmup?: number | null,
         sets: number,
         reps: number,
-        rpe?: string | null,
-        percent?: string | null,
+        rpe?: number | null,
         performedDate?: string | null,
         liftID: string,
         createdAt: string,
         updatedAt: string,
+        lift?:  {
+          __typename: "Lift",
+          id: string,
+          name: string,
+          category?: string | null,
+          bodypart: Array< string >,
+          tags?: Array< string > | null,
+          favorite: string,
+          unit: string,
+          owner?: string | null,
+          createdAt: string,
+          updatedAt: string,
+        } | null,
         owner?: string | null,
       } | null > | null,
       nextToken?: string | null,
@@ -661,12 +367,24 @@ export type DeleteLiftMutation = {
         warmup?: number | null,
         sets: number,
         reps: number,
-        rpe?: string | null,
-        percent?: string | null,
+        rpe?: number | null,
         performedDate?: string | null,
         liftID: string,
         createdAt: string,
         updatedAt: string,
+        lift?:  {
+          __typename: "Lift",
+          id: string,
+          name: string,
+          category?: string | null,
+          bodypart: Array< string >,
+          tags?: Array< string > | null,
+          favorite: string,
+          unit: string,
+          owner?: string | null,
+          createdAt: string,
+          updatedAt: string,
+        } | null,
         owner?: string | null,
       } | null > | null,
       nextToken?: string | null,
@@ -687,8 +405,7 @@ export type CreateRecordMutation = {
     warmup?: number | null,
     sets: number,
     reps: number,
-    rpe?: string | null,
-    percent?: string | null,
+    rpe?: number | null,
     performedDate?: string | null,
     liftID: string,
     createdAt: string,
@@ -707,6 +424,20 @@ export type CreateRecordMutation = {
       updatedAt: string,
       records?:  {
         __typename: "ModelRecordConnection",
+        items?:  Array< {
+          __typename: "Record",
+          id: string,
+          load: number,
+          warmup?: number | null,
+          sets: number,
+          reps: number,
+          rpe?: number | null,
+          performedDate?: string | null,
+          liftID: string,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null > | null,
         nextToken?: string | null,
       } | null,
     } | null,
@@ -727,8 +458,7 @@ export type UpdateRecordMutation = {
     warmup?: number | null,
     sets: number,
     reps: number,
-    rpe?: string | null,
-    percent?: string | null,
+    rpe?: number | null,
     performedDate?: string | null,
     liftID: string,
     createdAt: string,
@@ -747,6 +477,20 @@ export type UpdateRecordMutation = {
       updatedAt: string,
       records?:  {
         __typename: "ModelRecordConnection",
+        items?:  Array< {
+          __typename: "Record",
+          id: string,
+          load: number,
+          warmup?: number | null,
+          sets: number,
+          reps: number,
+          rpe?: number | null,
+          performedDate?: string | null,
+          liftID: string,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null > | null,
         nextToken?: string | null,
       } | null,
     } | null,
@@ -767,8 +511,7 @@ export type DeleteRecordMutation = {
     warmup?: number | null,
     sets: number,
     reps: number,
-    rpe?: string | null,
-    percent?: string | null,
+    rpe?: number | null,
     performedDate?: string | null,
     liftID: string,
     createdAt: string,
@@ -787,137 +530,24 @@ export type DeleteRecordMutation = {
       updatedAt: string,
       records?:  {
         __typename: "ModelRecordConnection",
+        items?:  Array< {
+          __typename: "Record",
+          id: string,
+          load: number,
+          warmup?: number | null,
+          sets: number,
+          reps: number,
+          rpe?: number | null,
+          performedDate?: string | null,
+          liftID: string,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null > | null,
         nextToken?: string | null,
       } | null,
     } | null,
     owner?: string | null,
-  } | null,
-};
-
-export type GetPostQueryVariables = {
-  id: string,
-};
-
-export type GetPostQuery = {
-  getPost?:  {
-    __typename: "Post",
-    id: string,
-    title: string,
-    contents: string,
-    image?: string | null,
-    upvotes: number,
-    downvotes: number,
-    createdAt: string,
-    updatedAt: string,
-    owner?: string | null,
-    comments?:  {
-      __typename: "ModelCommentConnection",
-      items?:  Array< {
-        __typename: "Comment",
-        id: string,
-        postID: string,
-        content: string,
-        createdAt: string,
-        updatedAt: string,
-        owner?: string | null,
-      } | null > | null,
-      nextToken?: string | null,
-    } | null,
-  } | null,
-};
-
-export type ListPostsQueryVariables = {
-  filter?: ModelPostFilterInput | null,
-  limit?: number | null,
-  nextToken?: string | null,
-};
-
-export type ListPostsQuery = {
-  listPosts?:  {
-    __typename: "ModelPostConnection",
-    items?:  Array< {
-      __typename: "Post",
-      id: string,
-      title: string,
-      contents: string,
-      image?: string | null,
-      upvotes: number,
-      downvotes: number,
-      createdAt: string,
-      updatedAt: string,
-      owner?: string | null,
-      comments?:  {
-        __typename: "ModelCommentConnection",
-        nextToken?: string | null,
-      } | null,
-    } | null > | null,
-    nextToken?: string | null,
-  } | null,
-};
-
-export type GetCommentQueryVariables = {
-  id: string,
-};
-
-export type GetCommentQuery = {
-  getComment?:  {
-    __typename: "Comment",
-    id: string,
-    postID: string,
-    content: string,
-    createdAt: string,
-    updatedAt: string,
-    post?:  {
-      __typename: "Post",
-      id: string,
-      title: string,
-      contents: string,
-      image?: string | null,
-      upvotes: number,
-      downvotes: number,
-      createdAt: string,
-      updatedAt: string,
-      owner?: string | null,
-      comments?:  {
-        __typename: "ModelCommentConnection",
-        nextToken?: string | null,
-      } | null,
-    } | null,
-    owner?: string | null,
-  } | null,
-};
-
-export type ListCommentsQueryVariables = {
-  filter?: ModelCommentFilterInput | null,
-  limit?: number | null,
-  nextToken?: string | null,
-};
-
-export type ListCommentsQuery = {
-  listComments?:  {
-    __typename: "ModelCommentConnection",
-    items?:  Array< {
-      __typename: "Comment",
-      id: string,
-      postID: string,
-      content: string,
-      createdAt: string,
-      updatedAt: string,
-      post?:  {
-        __typename: "Post",
-        id: string,
-        title: string,
-        contents: string,
-        image?: string | null,
-        upvotes: number,
-        downvotes: number,
-        createdAt: string,
-        updatedAt: string,
-        owner?: string | null,
-      } | null,
-      owner?: string | null,
-    } | null > | null,
-    nextToken?: string | null,
   } | null,
 };
 
@@ -947,12 +577,24 @@ export type GetLiftQuery = {
         warmup?: number | null,
         sets: number,
         reps: number,
-        rpe?: string | null,
-        percent?: string | null,
+        rpe?: number | null,
         performedDate?: string | null,
         liftID: string,
         createdAt: string,
         updatedAt: string,
+        lift?:  {
+          __typename: "Lift",
+          id: string,
+          name: string,
+          category?: string | null,
+          bodypart: Array< string >,
+          tags?: Array< string > | null,
+          favorite: string,
+          unit: string,
+          owner?: string | null,
+          createdAt: string,
+          updatedAt: string,
+        } | null,
         owner?: string | null,
       } | null > | null,
       nextToken?: string | null,
@@ -983,6 +625,20 @@ export type ListLiftsQuery = {
       updatedAt: string,
       records?:  {
         __typename: "ModelRecordConnection",
+        items?:  Array< {
+          __typename: "Record",
+          id: string,
+          load: number,
+          warmup?: number | null,
+          sets: number,
+          reps: number,
+          rpe?: number | null,
+          performedDate?: string | null,
+          liftID: string,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null > | null,
         nextToken?: string | null,
       } | null,
     } | null > | null,
@@ -1015,6 +671,20 @@ export type LiftsByUserQuery = {
       updatedAt: string,
       records?:  {
         __typename: "ModelRecordConnection",
+        items?:  Array< {
+          __typename: "Record",
+          id: string,
+          load: number,
+          warmup?: number | null,
+          sets: number,
+          reps: number,
+          rpe?: number | null,
+          performedDate?: string | null,
+          liftID: string,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null > | null,
         nextToken?: string | null,
       } | null,
     } | null > | null,
@@ -1034,8 +704,7 @@ export type GetRecordQuery = {
     warmup?: number | null,
     sets: number,
     reps: number,
-    rpe?: string | null,
-    percent?: string | null,
+    rpe?: number | null,
     performedDate?: string | null,
     liftID: string,
     createdAt: string,
@@ -1054,6 +723,20 @@ export type GetRecordQuery = {
       updatedAt: string,
       records?:  {
         __typename: "ModelRecordConnection",
+        items?:  Array< {
+          __typename: "Record",
+          id: string,
+          load: number,
+          warmup?: number | null,
+          sets: number,
+          reps: number,
+          rpe?: number | null,
+          performedDate?: string | null,
+          liftID: string,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null > | null,
         nextToken?: string | null,
       } | null,
     } | null,
@@ -1077,8 +760,7 @@ export type ListRecordsQuery = {
       warmup?: number | null,
       sets: number,
       reps: number,
-      rpe?: string | null,
-      percent?: string | null,
+      rpe?: number | null,
       performedDate?: string | null,
       liftID: string,
       createdAt: string,
@@ -1095,178 +777,14 @@ export type ListRecordsQuery = {
         owner?: string | null,
         createdAt: string,
         updatedAt: string,
+        records?:  {
+          __typename: "ModelRecordConnection",
+          nextToken?: string | null,
+        } | null,
       } | null,
       owner?: string | null,
     } | null > | null,
     nextToken?: string | null,
-  } | null,
-};
-
-export type OnCreatePostSubscription = {
-  onCreatePost?:  {
-    __typename: "Post",
-    id: string,
-    title: string,
-    contents: string,
-    image?: string | null,
-    upvotes: number,
-    downvotes: number,
-    createdAt: string,
-    updatedAt: string,
-    owner?: string | null,
-    comments?:  {
-      __typename: "ModelCommentConnection",
-      items?:  Array< {
-        __typename: "Comment",
-        id: string,
-        postID: string,
-        content: string,
-        createdAt: string,
-        updatedAt: string,
-        owner?: string | null,
-      } | null > | null,
-      nextToken?: string | null,
-    } | null,
-  } | null,
-};
-
-export type OnUpdatePostSubscription = {
-  onUpdatePost?:  {
-    __typename: "Post",
-    id: string,
-    title: string,
-    contents: string,
-    image?: string | null,
-    upvotes: number,
-    downvotes: number,
-    createdAt: string,
-    updatedAt: string,
-    owner?: string | null,
-    comments?:  {
-      __typename: "ModelCommentConnection",
-      items?:  Array< {
-        __typename: "Comment",
-        id: string,
-        postID: string,
-        content: string,
-        createdAt: string,
-        updatedAt: string,
-        owner?: string | null,
-      } | null > | null,
-      nextToken?: string | null,
-    } | null,
-  } | null,
-};
-
-export type OnDeletePostSubscription = {
-  onDeletePost?:  {
-    __typename: "Post",
-    id: string,
-    title: string,
-    contents: string,
-    image?: string | null,
-    upvotes: number,
-    downvotes: number,
-    createdAt: string,
-    updatedAt: string,
-    owner?: string | null,
-    comments?:  {
-      __typename: "ModelCommentConnection",
-      items?:  Array< {
-        __typename: "Comment",
-        id: string,
-        postID: string,
-        content: string,
-        createdAt: string,
-        updatedAt: string,
-        owner?: string | null,
-      } | null > | null,
-      nextToken?: string | null,
-    } | null,
-  } | null,
-};
-
-export type OnCreateCommentSubscription = {
-  onCreateComment?:  {
-    __typename: "Comment",
-    id: string,
-    postID: string,
-    content: string,
-    createdAt: string,
-    updatedAt: string,
-    post?:  {
-      __typename: "Post",
-      id: string,
-      title: string,
-      contents: string,
-      image?: string | null,
-      upvotes: number,
-      downvotes: number,
-      createdAt: string,
-      updatedAt: string,
-      owner?: string | null,
-      comments?:  {
-        __typename: "ModelCommentConnection",
-        nextToken?: string | null,
-      } | null,
-    } | null,
-    owner?: string | null,
-  } | null,
-};
-
-export type OnUpdateCommentSubscription = {
-  onUpdateComment?:  {
-    __typename: "Comment",
-    id: string,
-    postID: string,
-    content: string,
-    createdAt: string,
-    updatedAt: string,
-    post?:  {
-      __typename: "Post",
-      id: string,
-      title: string,
-      contents: string,
-      image?: string | null,
-      upvotes: number,
-      downvotes: number,
-      createdAt: string,
-      updatedAt: string,
-      owner?: string | null,
-      comments?:  {
-        __typename: "ModelCommentConnection",
-        nextToken?: string | null,
-      } | null,
-    } | null,
-    owner?: string | null,
-  } | null,
-};
-
-export type OnDeleteCommentSubscription = {
-  onDeleteComment?:  {
-    __typename: "Comment",
-    id: string,
-    postID: string,
-    content: string,
-    createdAt: string,
-    updatedAt: string,
-    post?:  {
-      __typename: "Post",
-      id: string,
-      title: string,
-      contents: string,
-      image?: string | null,
-      upvotes: number,
-      downvotes: number,
-      createdAt: string,
-      updatedAt: string,
-      owner?: string | null,
-      comments?:  {
-        __typename: "ModelCommentConnection",
-        nextToken?: string | null,
-      } | null,
-    } | null,
-    owner?: string | null,
   } | null,
 };
 
@@ -1292,12 +810,24 @@ export type OnCreateLiftSubscription = {
         warmup?: number | null,
         sets: number,
         reps: number,
-        rpe?: string | null,
-        percent?: string | null,
+        rpe?: number | null,
         performedDate?: string | null,
         liftID: string,
         createdAt: string,
         updatedAt: string,
+        lift?:  {
+          __typename: "Lift",
+          id: string,
+          name: string,
+          category?: string | null,
+          bodypart: Array< string >,
+          tags?: Array< string > | null,
+          favorite: string,
+          unit: string,
+          owner?: string | null,
+          createdAt: string,
+          updatedAt: string,
+        } | null,
         owner?: string | null,
       } | null > | null,
       nextToken?: string | null,
@@ -1327,12 +857,24 @@ export type OnUpdateLiftSubscription = {
         warmup?: number | null,
         sets: number,
         reps: number,
-        rpe?: string | null,
-        percent?: string | null,
+        rpe?: number | null,
         performedDate?: string | null,
         liftID: string,
         createdAt: string,
         updatedAt: string,
+        lift?:  {
+          __typename: "Lift",
+          id: string,
+          name: string,
+          category?: string | null,
+          bodypart: Array< string >,
+          tags?: Array< string > | null,
+          favorite: string,
+          unit: string,
+          owner?: string | null,
+          createdAt: string,
+          updatedAt: string,
+        } | null,
         owner?: string | null,
       } | null > | null,
       nextToken?: string | null,
@@ -1362,12 +904,24 @@ export type OnDeleteLiftSubscription = {
         warmup?: number | null,
         sets: number,
         reps: number,
-        rpe?: string | null,
-        percent?: string | null,
+        rpe?: number | null,
         performedDate?: string | null,
         liftID: string,
         createdAt: string,
         updatedAt: string,
+        lift?:  {
+          __typename: "Lift",
+          id: string,
+          name: string,
+          category?: string | null,
+          bodypart: Array< string >,
+          tags?: Array< string > | null,
+          favorite: string,
+          unit: string,
+          owner?: string | null,
+          createdAt: string,
+          updatedAt: string,
+        } | null,
         owner?: string | null,
       } | null > | null,
       nextToken?: string | null,
@@ -1383,8 +937,7 @@ export type OnCreateRecordSubscription = {
     warmup?: number | null,
     sets: number,
     reps: number,
-    rpe?: string | null,
-    percent?: string | null,
+    rpe?: number | null,
     performedDate?: string | null,
     liftID: string,
     createdAt: string,
@@ -1403,6 +956,20 @@ export type OnCreateRecordSubscription = {
       updatedAt: string,
       records?:  {
         __typename: "ModelRecordConnection",
+        items?:  Array< {
+          __typename: "Record",
+          id: string,
+          load: number,
+          warmup?: number | null,
+          sets: number,
+          reps: number,
+          rpe?: number | null,
+          performedDate?: string | null,
+          liftID: string,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null > | null,
         nextToken?: string | null,
       } | null,
     } | null,
@@ -1418,8 +985,7 @@ export type OnUpdateRecordSubscription = {
     warmup?: number | null,
     sets: number,
     reps: number,
-    rpe?: string | null,
-    percent?: string | null,
+    rpe?: number | null,
     performedDate?: string | null,
     liftID: string,
     createdAt: string,
@@ -1438,6 +1004,20 @@ export type OnUpdateRecordSubscription = {
       updatedAt: string,
       records?:  {
         __typename: "ModelRecordConnection",
+        items?:  Array< {
+          __typename: "Record",
+          id: string,
+          load: number,
+          warmup?: number | null,
+          sets: number,
+          reps: number,
+          rpe?: number | null,
+          performedDate?: string | null,
+          liftID: string,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null > | null,
         nextToken?: string | null,
       } | null,
     } | null,
@@ -1453,8 +1033,7 @@ export type OnDeleteRecordSubscription = {
     warmup?: number | null,
     sets: number,
     reps: number,
-    rpe?: string | null,
-    percent?: string | null,
+    rpe?: number | null,
     performedDate?: string | null,
     liftID: string,
     createdAt: string,
@@ -1473,6 +1052,20 @@ export type OnDeleteRecordSubscription = {
       updatedAt: string,
       records?:  {
         __typename: "ModelRecordConnection",
+        items?:  Array< {
+          __typename: "Record",
+          id: string,
+          load: number,
+          warmup?: number | null,
+          sets: number,
+          reps: number,
+          rpe?: number | null,
+          performedDate?: string | null,
+          liftID: string,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null > | null,
         nextToken?: string | null,
       } | null,
     } | null,

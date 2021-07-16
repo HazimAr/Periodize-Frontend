@@ -2,162 +2,6 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const onCreatePost = /* GraphQL */ `
-  subscription OnCreatePost {
-    onCreatePost {
-      id
-      title
-      contents
-      image
-      upvotes
-      downvotes
-      createdAt
-      updatedAt
-      owner
-      comments {
-        items {
-          id
-          postID
-          content
-          createdAt
-          updatedAt
-          owner
-        }
-        nextToken
-      }
-    }
-  }
-`;
-export const onUpdatePost = /* GraphQL */ `
-  subscription OnUpdatePost {
-    onUpdatePost {
-      id
-      title
-      contents
-      image
-      upvotes
-      downvotes
-      createdAt
-      updatedAt
-      owner
-      comments {
-        items {
-          id
-          postID
-          content
-          createdAt
-          updatedAt
-          owner
-        }
-        nextToken
-      }
-    }
-  }
-`;
-export const onDeletePost = /* GraphQL */ `
-  subscription OnDeletePost {
-    onDeletePost {
-      id
-      title
-      contents
-      image
-      upvotes
-      downvotes
-      createdAt
-      updatedAt
-      owner
-      comments {
-        items {
-          id
-          postID
-          content
-          createdAt
-          updatedAt
-          owner
-        }
-        nextToken
-      }
-    }
-  }
-`;
-export const onCreateComment = /* GraphQL */ `
-  subscription OnCreateComment {
-    onCreateComment {
-      id
-      postID
-      content
-      createdAt
-      updatedAt
-      post {
-        id
-        title
-        contents
-        image
-        upvotes
-        downvotes
-        createdAt
-        updatedAt
-        owner
-        comments {
-          nextToken
-        }
-      }
-      owner
-    }
-  }
-`;
-export const onUpdateComment = /* GraphQL */ `
-  subscription OnUpdateComment {
-    onUpdateComment {
-      id
-      postID
-      content
-      createdAt
-      updatedAt
-      post {
-        id
-        title
-        contents
-        image
-        upvotes
-        downvotes
-        createdAt
-        updatedAt
-        owner
-        comments {
-          nextToken
-        }
-      }
-      owner
-    }
-  }
-`;
-export const onDeleteComment = /* GraphQL */ `
-  subscription OnDeleteComment {
-    onDeleteComment {
-      id
-      postID
-      content
-      createdAt
-      updatedAt
-      post {
-        id
-        title
-        contents
-        image
-        upvotes
-        downvotes
-        createdAt
-        updatedAt
-        owner
-        comments {
-          nextToken
-        }
-      }
-      owner
-    }
-  }
-`;
 export const onCreateLift = /* GraphQL */ `
   subscription OnCreateLift {
     onCreateLift {
@@ -179,11 +23,22 @@ export const onCreateLift = /* GraphQL */ `
           sets
           reps
           rpe
-          percent
           performedDate
           liftID
           createdAt
           updatedAt
+          lift {
+            id
+            name
+            category
+            bodypart
+            tags
+            favorite
+            unit
+            owner
+            createdAt
+            updatedAt
+          }
           owner
         }
         nextToken
@@ -212,11 +67,22 @@ export const onUpdateLift = /* GraphQL */ `
           sets
           reps
           rpe
-          percent
           performedDate
           liftID
           createdAt
           updatedAt
+          lift {
+            id
+            name
+            category
+            bodypart
+            tags
+            favorite
+            unit
+            owner
+            createdAt
+            updatedAt
+          }
           owner
         }
         nextToken
@@ -245,11 +111,22 @@ export const onDeleteLift = /* GraphQL */ `
           sets
           reps
           rpe
-          percent
           performedDate
           liftID
           createdAt
           updatedAt
+          lift {
+            id
+            name
+            category
+            bodypart
+            tags
+            favorite
+            unit
+            owner
+            createdAt
+            updatedAt
+          }
           owner
         }
         nextToken
@@ -266,7 +143,6 @@ export const onCreateRecord = /* GraphQL */ `
       sets
       reps
       rpe
-      percent
       performedDate
       liftID
       createdAt
@@ -283,6 +159,19 @@ export const onCreateRecord = /* GraphQL */ `
         createdAt
         updatedAt
         records {
+          items {
+            id
+            load
+            warmup
+            sets
+            reps
+            rpe
+            performedDate
+            liftID
+            createdAt
+            updatedAt
+            owner
+          }
           nextToken
         }
       }
@@ -299,7 +188,6 @@ export const onUpdateRecord = /* GraphQL */ `
       sets
       reps
       rpe
-      percent
       performedDate
       liftID
       createdAt
@@ -316,6 +204,19 @@ export const onUpdateRecord = /* GraphQL */ `
         createdAt
         updatedAt
         records {
+          items {
+            id
+            load
+            warmup
+            sets
+            reps
+            rpe
+            performedDate
+            liftID
+            createdAt
+            updatedAt
+            owner
+          }
           nextToken
         }
       }
@@ -332,7 +233,6 @@ export const onDeleteRecord = /* GraphQL */ `
       sets
       reps
       rpe
-      percent
       performedDate
       liftID
       createdAt
@@ -349,6 +249,19 @@ export const onDeleteRecord = /* GraphQL */ `
         createdAt
         updatedAt
         records {
+          items {
+            id
+            load
+            warmup
+            sets
+            reps
+            rpe
+            performedDate
+            liftID
+            createdAt
+            updatedAt
+            owner
+          }
           nextToken
         }
       }

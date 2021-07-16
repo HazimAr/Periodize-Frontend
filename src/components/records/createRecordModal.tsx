@@ -17,19 +17,15 @@ import {
 	ModalContent,
 	ModalFooter,
 	ModalOverlay,
-	Slider,
-	SliderFilledTrack,
-	SliderThumb,
-	SliderTrack,
 	Text,
 	useDisclosure,
 	VStack,
 } from "@chakra-ui/react";
-import { CreateRecordInput, CreateRecordMutation, Record } from "API";
+import { CreateRecordInput, CreateRecordMutation } from "API";
 import { API } from "aws-amplify";
 import { Field, Form, Formik } from "formik";
 import { createRecord } from "graphql/mutations";
-import React, { ReactElement, useState } from "react";
+import React, { ReactElement, useEffect, useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { BsSearch } from "react-icons/bs";
@@ -58,9 +54,9 @@ const formSchema = Yup.object().shape({
 		.positive("Has to be positive")
 		.integer("Has to be an integer"),
 	rpe: Yup.number().min(1, "too short").max(10, "Too long!"),
-	percent: Yup.number()
-		.min(1, "Value must be between 1-100")
-		.max(100, "Value must be between 1-100"),
+	// percent: Yup.number()
+	// 	.min(1, "Value must be between 1-100")
+	// 	.max(100, "Value must be between 1-100"),
 	// validate date
 });
 interface formInput {
@@ -69,7 +65,6 @@ interface formInput {
 	sets: string;
 	reps: string;
 	rpe: string;
-	datePerformed: string;
 }
 const initialValues: formInput = {
 	load: "",
@@ -77,14 +72,15 @@ const initialValues: formInput = {
 	sets: "",
 	reps: "",
 	rpe: "5",
-	datePerformed: "",
 };
 
 export default function CreateRecordFormModal(props: any): ReactElement {
 	// const startD = new Date();
 	const [startDate, setStartDate] = useState(new Date());
 	const { isOpen, onOpen, onClose } = useDisclosure();
-
+	useEffect(() => {
+		console.log(startDate);
+	}, [startDate]);
 	return (
 		<>
 			<Button onClick={onOpen}>Create Record</Button>
@@ -104,7 +100,18 @@ export default function CreateRecordFormModal(props: any): ReactElement {
 									);
 									//set a valid date and iterate of the object for the input
 									const newRecordInput: CreateRecordInput = {
-										values,
+										load: parseFloat(values.load),
+										sets: parseInt(values.sets),
+										reps: parseInt(values.reps),
+										performedDate: startDate.toISOString(),
+										warmup:
+											values.warmup === ""
+												? null
+												: parseInt(values.warmup),
+										rpe:
+											values.rpe === ""
+												? null
+												: parseInt(values.rpe),
 										liftID: props.lift.id,
 									};
 
@@ -119,11 +126,11 @@ export default function CreateRecordFormModal(props: any): ReactElement {
 
 									console.log(createNewRecord);
 									//setLifts to remove the lift (only if this modal is on the lifts page)
-									props.setLifts([
-										...props.lifts,
-										createNewRecord.data
-											.createRecord as Record,
-									]);
+									// props.setLifts([
+									// 	...props.lifts,
+									// 	createNewRecord.data
+									// 		.createRecord as Record,
+									// ]);
 									actions.setSubmitting(false);
 									onClose();
 								} catch (error) {
@@ -213,7 +220,7 @@ export default function CreateRecordFormModal(props: any): ReactElement {
 													}
 												/>
 											</VStack>
-											<Slider
+											{/* <Slider
 												aria-label="rpe slider"
 												defaultValue={5}
 												min={1}
@@ -227,7 +234,7 @@ export default function CreateRecordFormModal(props: any): ReactElement {
 													<SliderFilledTrack />
 												</SliderTrack>
 												<SliderThumb />
-											</Slider>
+											</Slider> */}
 											<Flex>
 												<VStack>
 													<Text>Date </Text>
@@ -261,7 +268,7 @@ export default function CreateRecordFormModal(props: any): ReactElement {
 
 									<pre>{JSON.stringify(values, null, 2)}</pre>
 
-									{/* <pre>{JSON.stringify(errors, null, 2)}</pre> */}
+									<pre>{JSON.stringify(errors, null, 2)}</pre>
 								</Form>
 							)}
 						</Formik>

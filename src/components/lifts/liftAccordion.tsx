@@ -158,6 +158,7 @@ export default function LiftAccordion({
 												/>
 												<CreateRecordModal
 													lift={lift}
+													lifts={lifts}
 												/>
 												<DeleteLiftModal lift={lift} />
 											</Flex>
