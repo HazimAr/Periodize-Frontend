@@ -1,4 +1,4 @@
-import { AddIcon, CloseIcon, EditIcon } from "@chakra-ui/icons";
+import { CloseIcon, EditIcon } from "@chakra-ui/icons";
 import {
 	Accordion,
 	AccordionButton,
@@ -8,7 +8,6 @@ import {
 	Box,
 	Center,
 	Flex,
-	HStack,
 	IconButton,
 	Input,
 	InputGroup,
@@ -18,12 +17,13 @@ import {
 	Text,
 	VStack,
 } from "@chakra-ui/react";
+import formatDistanceToNow from "date-fns/formatDistanceToNow";
+import parseISO from "date-fns/parseISO";
 import Fuse from "fuse.js";
 import React, { ReactElement, useState } from "react";
 import { BsSearch } from "react-icons/bs";
 import { Lift } from "../../API";
 import CreateRecordModal from "../records/createRecordModal";
-import BodyPartTag from "./bodyparttag";
 import CreateLiftModal from "./createLiftModal";
 import DeleteLiftModal from "./deleteLiftModal";
 interface Props {
@@ -54,15 +54,15 @@ export default function LiftAccordion({
 	return (
 		<Box h="100%">
 			<Flex justify="space-between" align="center">
-				<Box>
-					<InputGroup size="md">
+				<Box w="85%">
+					<InputGroup size="lg">
 						<InputLeftElement pointerEvents="none">
 							<BsSearch opacity={0.5} />
 						</InputLeftElement>
 
 						<Input
 							rounded="md"
-							placeholder="Search your lifts"
+							placeholder="Search lifts by name, muscle group, tags, favorite"
 							_placeholder={{
 								opacity: 1,
 							}}
@@ -100,13 +100,13 @@ export default function LiftAccordion({
 					</VStack>
 				</Center>
 			) : (
-				<Box border="1px solid white" p="12px" borderRadius="md" my={4}>
+				<Box p="12px" borderRadius="md" my={4}>
 					<Accordion allowToggle allowMultiple>
-						<Flex justify="space-between" my={2}>
+						{/* <Flex justify="space-between" my={2}>
 							<Text fontSize="2xl">Movement</Text>
 							<Box></Box>
 							<Box></Box>
-						</Flex>
+						</Flex> */}
 						{liftResults.map((lift) => (
 							<AccordionItem key={lift.id} py={2}>
 								<h2>
@@ -124,13 +124,7 @@ export default function LiftAccordion({
 												</Text>
 											</Link>
 										</Box>
-										<Box>
-											{lift.records.items ? (
-												"records to be here"
-											) : (
-												<i>No Records</i>
-											)}
-										</Box>
+
 										<Flex>
 											<Flex>
 												<Link
@@ -148,14 +142,6 @@ export default function LiftAccordion({
 													/>
 												</Link>
 
-												<IconButton
-													aria-label="create lift"
-													size="sm"
-													icon={<AddIcon />}
-													_focus={{ outline: "none" }}
-													variant="ghost"
-													zIndex={100}
-												/>
 												<CreateRecordModal
 													lift={lift}
 													lifts={lifts}
@@ -175,7 +161,7 @@ export default function LiftAccordion({
 									</Flex>
 								</h2>
 								<AccordionPanel pb={4}>
-									<HStack>
+									{/* <HStack>
 										{lift.category && (
 											<Box
 												px={3}
@@ -194,7 +180,31 @@ export default function LiftAccordion({
 												/>
 											))}
 										</HStack>
-									</HStack>
+									</HStack> */}
+									{/* //format / parse date with date-fns */}
+									<Box>
+										{lift.records.items ? (
+											//get most recent 3 records
+											<Box>
+												{lift.records.items
+													.slice(1)
+													.slice(-3)
+													.map((record) => (
+														<Box key={record.id}>
+															{`${record.load}${
+																lift.unit
+															} ${record.sets} x 
+														${record.reps} @ 
+														${record.rpe} performed: ${formatDistanceToNow(
+																parseISO(
+																	record.performedDate
+																)
+															)} ago`}
+														</Box>
+													))}
+											</Box>
+										) : null}
+									</Box>
 								</AccordionPanel>
 							</AccordionItem>
 						))}

@@ -1,5 +1,5 @@
 import { GRAPHQL_AUTH_MODE } from "@aws-amplify/api";
-import { AddIcon } from "@chakra-ui/icons";
+import { EditIcon } from "@chakra-ui/icons";
 import {
 	Box,
 	Button,
@@ -17,14 +17,15 @@ import {
 	useDisclosure,
 	VStack,
 } from "@chakra-ui/react";
-import { CreateRecordInput, CreateRecordMutation } from "API";
+import { CreateRecordMutation, UpdateRecordInput } from "API";
 import { API } from "aws-amplify";
 import { Field, Form, Formik } from "formik";
-import { createRecord } from "graphql/mutations";
+import { updateRecord } from "graphql/mutations";
 import React, { ReactElement, useEffect, useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import * as Yup from "yup";
+import { Record } from "../../API";
 import FormikNumberInput from "../formiknumberinput";
 const formSchema = Yup.object().shape({
 	load: Yup.number()
@@ -56,34 +57,34 @@ const formSchema = Yup.object().shape({
 });
 interface formInput {
 	load: string;
-	warmup: string;
 	sets: string;
 	reps: string;
 	rpe: string;
 }
-const initialValues: formInput = {
-	load: "",
-	warmup: "",
-	sets: "",
-	reps: "",
-	rpe: "5",
-};
 
-export default function CreateRecordFormModal(props: any): ReactElement {
-	// const startD = new Date();
+interface Props {
+	record: Record;
+}
+export default function EditRecordFormModal({ record }: Props): ReactElement {
 	const { isOpen, onOpen, onClose } = useDisclosure();
 	const [startDate, setStartDate] = useState(new Date());
 
 	useEffect(() => {
 		console.log(startDate);
 	}, [startDate]);
+	const initialValues: formInput = {
+		load: record.load.toString(),
+		sets: record.sets.toString(),
+		reps: record.reps.toString(),
+		rpe: record.rpe.toString(),
+	};
 	return (
 		<>
 			<IconButton
 				aria-label="add record"
 				onClick={onOpen}
 				size="sm"
-				icon={<AddIcon />}
+				icon={<EditIcon />}
 				_focus={{ outline: "none" }}
 				variant="ghost"
 				zIndex={100}
@@ -103,24 +104,21 @@ export default function CreateRecordFormModal(props: any): ReactElement {
 										JSON.stringify(values, null, 2)
 									);
 									//set a valid date and iterate of the object for the input
-									const newRecordInput: CreateRecordInput = {
+									const newRecordInput: UpdateRecordInput = {
 										load: parseFloat(values.load),
 										sets: parseInt(values.sets),
 										reps: parseInt(values.reps),
 										performedDate: startDate.toISOString(),
-										warmup:
-											values.warmup === ""
-												? null
-												: parseInt(values.warmup),
 										rpe:
 											values.rpe === ""
 												? null
 												: parseInt(values.rpe),
-										liftID: props.lift.id,
+										liftID: record.liftID,
+										id: record.id,
 									};
 
-									const createNewRecord = (await API.graphql({
-										query: createRecord,
+									const editRecord = (await API.graphql({
+										query: updateRecord,
 										variables: {
 											input: newRecordInput,
 										},
@@ -128,7 +126,7 @@ export default function CreateRecordFormModal(props: any): ReactElement {
 											GRAPHQL_AUTH_MODE.AMAZON_COGNITO_USER_POOLS,
 									})) as { data: CreateRecordMutation };
 
-									console.log(createNewRecord);
+									console.log(editRecord);
 									//setLifts to remove the lift (only if this modal is on the lifts page)
 									// props.setLifts([
 									// 	...props.lifts,
@@ -156,35 +154,9 @@ export default function CreateRecordFormModal(props: any): ReactElement {
 									>
 										<VStack spacing={2}>
 											<Heading size="md" my="20px">
-												Create Record for{" "}
-												{props.lift.name}
+												Edit Record
 											</Heading>
-											{/* <InputGroup size="md">
-												<InputLeftElement pointerEvents="none">
-													<BsSearch opacity={0.5} />
-												</InputLeftElement>
 
-												<Input
-													rounded="md"
-													placeholder="Search your lifts"
-													_placeholder={{
-														opacity: 1,
-													}}
-													//   value={query}
-													//   onChange={handleOnSearch}
-												/>
-												<InputRightElement>
-													<IconButton
-														aria-label="clear search"
-														icon={<CloseIcon />}
-														// onClick={() => setQuery("")}
-														_focus={{
-															outline: "none",
-														}}
-														variant="ghost"
-													/>
-												</InputRightElement>
-											</InputGroup> */}
 											<Flex>
 												<VStack mx="10px">
 													<FormLabel>Load </FormLabel>
@@ -216,15 +188,7 @@ export default function CreateRecordFormModal(props: any): ReactElement {
 													/>
 												</VStack>
 											</Flex>
-											<VStack mx="10px">
-												<FormLabel>Warmup </FormLabel>
-												<Field
-													name="warmup"
-													component={
-														FormikNumberInput
-													}
-												/>
-											</VStack>
+
 											{/* <Slider
 												aria-label="rpe slider"
 												defaultValue={5}

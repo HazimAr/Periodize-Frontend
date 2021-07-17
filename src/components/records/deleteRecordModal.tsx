@@ -9,38 +9,35 @@ import {
 	ModalCloseButton,
 	ModalContent,
 	ModalFooter,
-	ModalHeader,
 	ModalOverlay,
 	useDisclosure,
 } from "@chakra-ui/react";
 import { API } from "aws-amplify";
-import { deleteLift } from "graphql/mutations";
-import { useRouter } from "next/router";
+import { deleteRecord } from "graphql/mutations";
 import React, { ReactElement } from "react";
-import { Lift } from "../../API";
+import { Record } from "../../API";
 interface Props {
-	lift: Lift;
+	record: Record;
 }
 
-export default function deleteLiftModal({ lift }: Props): ReactElement {
+export default function deleteLiftModal({ record }: Props): ReactElement {
 	const { isOpen, onOpen, onClose } = useDisclosure();
-	const router = useRouter();
-	console.log(lift);
+	// const router = useRouter();
 
 	async function obliderate() {
 		try {
-			const liftDetails = {
-				id: lift.id,
+			const recordDetails = {
+				id: record.id,
 			};
-			const deletedLift = await API.graphql({
-				query: deleteLift,
-				variables: { input: liftDetails },
+			const deletedRecord = await API.graphql({
+				query: deleteRecord,
+				variables: { input: recordDetails },
 				authMode: GRAPHQL_AUTH_MODE.AMAZON_COGNITO_USER_POOLS,
 			});
 
-			console.log(deletedLift);
+			console.log(deletedRecord);
 			onClose();
-			router.push("/dashboard/lifts");
+			// router.push("/dashboard/lifts");
 		} catch (error) {
 			console.error("Error deleting lift: ", error);
 		}
@@ -61,12 +58,11 @@ export default function deleteLiftModal({ lift }: Props): ReactElement {
 			<Modal onClose={onClose} isOpen={isOpen}>
 				<ModalOverlay />
 				<ModalContent>
-					<ModalHeader>Delete history of {lift.name}?</ModalHeader>
+					{/* <ModalHeader>Delete history of {lift.name}?</ModalHeader> */}
 					<ModalCloseButton />
 					<ModalBody>
 						<Box textAlign="left">
-							Deleting is unrecoverable and will erase all your
-							records for this lift
+							Delete this record permanently?
 						</Box>
 					</ModalBody>
 					<ModalFooter>

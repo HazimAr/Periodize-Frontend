@@ -1,3 +1,4 @@
+import { Container } from "@chakra-ui/react";
 import { withSSRContext } from "aws-amplify";
 import { GetStaticPaths, GetStaticProps } from "next";
 import React, { ReactElement } from "react";
@@ -13,10 +14,9 @@ export default function IndividualLift({ lift }: Props): ReactElement {
 	console.log(lift);
 	return (
 		<Layout>
-			<div>
-				Here is my lift izzy !! {lift.name} and its id: {lift.id}{" "}
-			</div>
-			<LiftComponent lift={lift} />
+			<Container maxW="md">
+				<LiftComponent lift={lift} />
+			</Container>
 		</Layout>
 	);
 }
