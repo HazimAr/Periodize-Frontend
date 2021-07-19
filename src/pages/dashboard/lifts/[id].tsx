@@ -14,7 +14,7 @@ export default function IndividualLift({ lift }: Props): ReactElement {
 	console.log(lift);
 	return (
 		<Layout>
-			<Container maxW="md">
+			<Container maxW={{base:"100vw"}}>
 				<LiftComponent lift={lift} />
 			</Container>
 		</Layout>

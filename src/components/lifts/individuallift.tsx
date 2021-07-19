@@ -25,47 +25,47 @@ export default function IndividualLift({ lift }: Props): ReactElement {
 	});
 
 	return (
-		<Box>
-			<Flex align="center">
+		<Box mt="20px">
+			<Flex align="center" justify="space-between">
 				<Heading>{lift.name}</Heading>
-				<CreateRecordFormModal lift={lift} />
-				<UpdateLiftModal lift={lift} />
+				<Flex>
+					<CreateRecordFormModal lift={lift} />
+					<UpdateLiftModal lift={lift} />
+				</Flex>
 			</Flex>
-			<VStack textAlign="left" align="flex-start">
+
+			<HStack justify="center" flexWrap="wrap">
 				{lift.category && (
-					<Box
+					<Flex
 						px={3}
 						py={0.5}
 						border="1px solid white"
 						borderRadius="md"
 					>
 						{lift.category}
-					</Box>
+					</Flex>
 				)}
-				<HStack>
-					{lift.bodypart.map((part) => (
-						<BodyPartTag key={part} part={part} />
-					))}
-				</HStack>
-				<HStack spacing={4}>
-					{lift.tags.map((tag) => (
-						<Tag
-							size="md"
-							key={tag}
-							variant="subtle"
-							colorScheme="cyan"
-						>
-							{/* <TagLeftIcon boxSize="12px" as={AddIcon} /> */}
-							<TagLabel>{tag}</TagLabel>
-						</Tag>
-					))}
-				</HStack>
-				{lift.records.items[0] ? (
-					<RecordTable records={lift.records.items} />
-				) : (
-					<Box>No Records "(</Box>
-				)}
-			</VStack>
+				{lift.bodypart.map((part) => (
+					<BodyPartTag key={part} part={part} />
+				))}
+
+				{lift.tags.map((tag) => (
+					<Tag
+						size="md"
+						key={tag}
+						variant="subtle"
+						colorScheme="cyan"
+					>
+						{/* <TagLeftIcon boxSize="12px" as={AddIcon} /> */}
+						<TagLabel>{tag}</TagLabel>
+					</Tag>
+				))}
+			</HStack>
+			{lift.records.items[0] ? (
+				<RecordTable records={lift.records.items} />
+			) : (
+				<Box>No Records "(</Box>
+			)}
 		</Box>
 	);
 }
