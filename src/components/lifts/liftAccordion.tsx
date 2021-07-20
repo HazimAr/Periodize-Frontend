@@ -26,6 +26,7 @@ import { Lift } from "../../API";
 import CreateRecordModal from "../records/createRecordModal";
 import CreateLiftModal from "./createLiftModal";
 import DeleteLiftModal from "./deleteLiftModal";
+import RecordsInAccordian from "@components/lifts/recordsInAccordian";
 interface Props {
 	lifts: Lift[];
 	setLifts: any;
@@ -186,22 +187,7 @@ export default function LiftAccordion({
 										{lift.records.items ? (
 											//get most recent 3 records
 											<Box>
-												<Text>Recent records</Text>
-												{lift.records.items
-													.slice(-3)
-													.map((record) => (
-														<Box key={record.id}>
-														{`${record.load}${
-															lift.unit
-														} ${record.sets} x 
-														${record.reps} @ 
-														${record.rpe} performed: ${formatDistanceToNow(
-																parseISO(
-																	record.performedDate
-																)
-															)} ago`}
-														</Box>
-													))}
+												<RecordsInAccordian lift={lift} />
 											</Box>
 										) : null}
 									</Box>
