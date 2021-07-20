@@ -1,18 +1,17 @@
 import { Box } from "@chakra-ui/react";
+import DashComponent from "@components/dashComponents/dashComponent";
+import Top5Lifts from "@components/dashComponents/top5lifts";
 import { useUser } from "@context/AuthContext";
 import { Lift, LiftsByUserQuery } from "API";
 import { API } from "aws-amplify";
 import { liftsByUser } from "graphql/queries";
 import React, { ReactElement, useState } from "react";
 import Layout from "../../components/dashboard/layout";
-import DashComponent from "@components/dashComponents/dashComponent";
 
 interface Props {}
 
-
-
 export default function DashHome({}: Props): ReactElement {
-  	const { user } = useUser();
+	const { user } = useUser();
 	const [lifts, setLifts] = useState<Lift[]>([]);
 	const [hasUser, setHasUser] = useState(false);
 
@@ -43,7 +42,10 @@ export default function DashHome({}: Props): ReactElement {
 
 	console.log("current user: ", user);
 	console.log("My lifts:", lifts);
-  return <Layout>
-    <DashComponent lifts={lifts} />
-  </Layout>;
+	return (
+		<Layout>
+			<DashComponent lifts={lifts} />
+			<Top5Lifts lifts={lifts} />
+		</Layout>
+	);
 }
