@@ -93,7 +93,12 @@ export const Sidebar = (props: FlexProps) => {
 
 				<UserProfile />
 			</Flex>
-			<Box h="100vh" w="225px" display={{ base: "none", md: "block" }} />
+			<Box
+				h="100vh"
+				w="300px"
+				bg="red"
+				display={{ base: "none", md: "block" }}
+			/>
 		</>
 	);
 };
