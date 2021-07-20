@@ -270,10 +270,6 @@ export default function CreateRecordFormModal(props: any): ReactElement {
 											</Box>
 										</VStack>
 									</Box>
-
-									<pre>{JSON.stringify(values, null, 2)}</pre>
-
-									<pre>{JSON.stringify(errors, null, 2)}</pre>
 								</Form>
 							)}
 						</Formik>

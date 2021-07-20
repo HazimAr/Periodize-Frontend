@@ -10,18 +10,14 @@ import {
 } from "@chakra-ui/react";
 import formatDistanceToNow from "date-fns/formatDistanceToNow";
 import parseISO from "date-fns/parseISO";
-import Fuse from "fuse.js";
-import React, { ReactElement, useState } from "react";
+import React, { ReactElement } from "react";
 import { Lift } from "../../API";
 
 interface Props {
 	lift: Lift;
 }
 
-export default function RecordsInAccordian({
-	lift
-}: Props): ReactElement {
-
+export default function RecordsInAccordian({ lift }: Props): ReactElement {
 	return (
 		<Box>
 			<Table variant="simple">
@@ -36,7 +32,7 @@ export default function RecordsInAccordian({
 					</Tr>
 				</Thead>
 				<Tbody>
-					{lift.records.items.slice(-3).map((record) => (
+					{/* {lift.records.items.slice(-3).map((record) => (
 						<Tr key={record.id}>
 							<Td>
 								{record.load} {lift.unit}
@@ -51,7 +47,31 @@ export default function RecordsInAccordian({
 								ago
 							</Td>
 						</Tr>
-					))}
+					))} */}
+					{lift.records.items
+						.sort(function (a, b) {
+							// Turn your strings into dates, and then subtract them
+							// to get a value that is either negative, positive, or zero.
+							const Date1 = Date.parse(b.performedDate);
+							const Date2 = Date.parse(a.performedDate);
+							return Date1 - Date2;
+						})
+						.map((record) => (
+							<Tr key={record.id}>
+								<Td>
+									{record.load} {lift.unit}
+								</Td>
+								<Td>{record.sets}</Td>
+								<Td>{record.reps}</Td>
+								<Td>{record.rpe}</Td>
+								<Td>
+									{formatDistanceToNow(
+										parseISO(record.performedDate)
+									)}{" "}
+									ago
+								</Td>
+							</Tr>
+						))}
 				</Tbody>
 			</Table>
 		</Box>
