@@ -1,21 +1,28 @@
-import { Flex } from "@chakra-ui/react";
+import { Center, Flex } from "@chakra-ui/react";
 import React from "react";
 import { MobileTopBar } from "./mobiletopbar";
 import { Sidebar } from "./sidebar";
 
 export default function Layout({
-  children,
+	children,
 }: {
-  children: React.ReactNode;
+	children: React.ReactNode;
 }): JSX.Element {
-  return (
-    <Flex h="100vh" flexDirection="column" position="fixed" w="100%">
-      <MobileTopBar />
-      <Flex flex="1">
-        <Sidebar display={{ base: "none", md: "flex" }} />
-
-        {children}
-      </Flex>
-    </Flex>
-  );
+	return (
+		<Flex
+			h="100vh"
+			flexDirection="column"
+			w="100%"
+			overflowY="auto"
+			overflowX="hidden"
+		>
+			<MobileTopBar />
+			<Flex flex="1">
+				<Sidebar display={{ base: "none", md: "flex" }} h="100vh" />
+				<Center h="100%" w="100%" mx={25} mt={15}>
+					{children}
+				</Center>
+			</Flex>
+		</Flex>
+	);
 }
