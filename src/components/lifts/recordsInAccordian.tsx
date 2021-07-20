@@ -56,6 +56,7 @@ export default function RecordsInAccordian({ lift }: Props): ReactElement {
 							const Date2 = Date.parse(a.performedDate);
 							return Date1 - Date2;
 						})
+						.slice(0, 3)
 						.map((record) => (
 							<Tr key={record.id}>
 								<Td>
