@@ -187,7 +187,6 @@ export default function LiftAccordion({
 											//get most recent 3 records
 											<Box>
 												{lift.records.items
-													.slice(1)
 													.slice(-3)
 													.map((record) => (
 														<Box key={record.id}>
