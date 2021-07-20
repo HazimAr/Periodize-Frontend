@@ -186,13 +186,14 @@ export default function LiftAccordion({
 										{lift.records.items ? (
 											//get most recent 3 records
 											<Box>
+												<Text>Recent records</Text>
 												{lift.records.items
 													.slice(-3)
 													.map((record) => (
 														<Box key={record.id}>
-															{`${record.load}${
-																lift.unit
-															} ${record.sets} x 
+														{`${record.load}${
+															lift.unit
+														} ${record.sets} x 
 														${record.reps} @ 
 														${record.rpe} performed: ${formatDistanceToNow(
 																parseISO(
