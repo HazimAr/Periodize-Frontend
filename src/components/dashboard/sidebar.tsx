@@ -96,7 +96,7 @@ export const Sidebar = (props: FlexProps) => {
 			<Box
 				h="100vh"
 				w="300px"
-				bg="red"
+				// bg="red"
 				display={{ base: "none", md: "block" }}
 			/>
 		</>
