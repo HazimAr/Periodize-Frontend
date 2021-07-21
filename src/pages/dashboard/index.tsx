@@ -1,12 +1,12 @@
 import { Box } from "@chakra-ui/react";
-import DashComponent from "@components/dashComponents/dashComponent";
+import DashComponent from "@components/dashComponents/welcome";
 import Top5Lifts from "@components/dashComponents/top5lifts";
 import { useUser } from "@context/AuthContext";
 import { Lift, LiftsByUserQuery } from "API";
 import { API } from "aws-amplify";
 import { liftsByUser } from "graphql/queries";
 import React, { ReactElement, useState } from "react";
-import Layout from "../../components/dashboard/layout";
+import Layout from "@components/dashboard/layout";
 
 interface Props {}
 

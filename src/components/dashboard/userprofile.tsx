@@ -20,7 +20,7 @@ export const UserProfile = () => {
     username: "Loading...",
   };
   if (user) {
-    console.log(user.getUsername());
+    console.log(user.getUsername()); 
   }
 
   const signUserOut = async () => {
