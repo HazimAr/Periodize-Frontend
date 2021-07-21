@@ -19,12 +19,12 @@ export const getLift = /* GraphQL */ `
         items {
           id
           load
-          warmup
           sets
           reps
           rpe
           performedDate
           liftID
+          owner
           createdAt
           updatedAt
           lift {
@@ -39,7 +39,6 @@ export const getLift = /* GraphQL */ `
             createdAt
             updatedAt
           }
-          owner
         }
         nextToken
       }
@@ -68,15 +67,14 @@ export const listLifts = /* GraphQL */ `
           items {
             id
             load
-            warmup
             sets
             reps
             rpe
             performedDate
             liftID
+            owner
             createdAt
             updatedAt
-            owner
           }
           nextToken
         }
@@ -115,15 +113,14 @@ export const liftsByUser = /* GraphQL */ `
           items {
             id
             load
-            warmup
             sets
             reps
             rpe
             performedDate
             liftID
+            owner
             createdAt
             updatedAt
-            owner
           }
           nextToken
         }
@@ -137,12 +134,12 @@ export const getRecord = /* GraphQL */ `
     getRecord(id: $id) {
       id
       load
-      warmup
       sets
       reps
       rpe
       performedDate
       liftID
+      owner
       createdAt
       updatedAt
       lift {
@@ -160,20 +157,18 @@ export const getRecord = /* GraphQL */ `
           items {
             id
             load
-            warmup
             sets
             reps
             rpe
             performedDate
             liftID
+            owner
             createdAt
             updatedAt
-            owner
           }
           nextToken
         }
       }
-      owner
     }
   }
 `;
@@ -187,12 +182,12 @@ export const listRecords = /* GraphQL */ `
       items {
         id
         load
-        warmup
         sets
         reps
         rpe
         performedDate
         liftID
+        owner
         createdAt
         updatedAt
         lift {
@@ -210,7 +205,52 @@ export const listRecords = /* GraphQL */ `
             nextToken
           }
         }
+      }
+      nextToken
+    }
+  }
+`;
+export const recordsByUser = /* GraphQL */ `
+  query RecordsByUser(
+    $owner: String
+    $sortDirection: ModelSortDirection
+    $filter: ModelRecordFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    recordsByUser(
+      owner: $owner
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        load
+        sets
+        reps
+        rpe
+        performedDate
+        liftID
         owner
+        createdAt
+        updatedAt
+        lift {
+          id
+          name
+          category
+          bodypart
+          tags
+          favorite
+          unit
+          owner
+          createdAt
+          updatedAt
+          records {
+            nextToken
+          }
+        }
       }
       nextToken
     }

@@ -33,10 +33,6 @@ const formSchema = Yup.object().shape({
 		.required("Required")
 		.positive("Provide a positive number")
 		.max(9999, "Too long!"),
-	warmup: Yup.number()
-		.min(1, "too short")
-		.positive("Provide a positive number")
-		.max(99, "Too long!"),
 	sets: Yup.number()
 		.min(1, "Atleast do one set!")
 		.required("Required")

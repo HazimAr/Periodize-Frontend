@@ -19,12 +19,12 @@ export const onCreateLift = /* GraphQL */ `
         items {
           id
           load
-          warmup
           sets
           reps
           rpe
           performedDate
           liftID
+          owner
           createdAt
           updatedAt
           lift {
@@ -39,7 +39,6 @@ export const onCreateLift = /* GraphQL */ `
             createdAt
             updatedAt
           }
-          owner
         }
         nextToken
       }
@@ -63,12 +62,12 @@ export const onUpdateLift = /* GraphQL */ `
         items {
           id
           load
-          warmup
           sets
           reps
           rpe
           performedDate
           liftID
+          owner
           createdAt
           updatedAt
           lift {
@@ -83,7 +82,6 @@ export const onUpdateLift = /* GraphQL */ `
             createdAt
             updatedAt
           }
-          owner
         }
         nextToken
       }
@@ -107,12 +105,12 @@ export const onDeleteLift = /* GraphQL */ `
         items {
           id
           load
-          warmup
           sets
           reps
           rpe
           performedDate
           liftID
+          owner
           createdAt
           updatedAt
           lift {
@@ -127,7 +125,6 @@ export const onDeleteLift = /* GraphQL */ `
             createdAt
             updatedAt
           }
-          owner
         }
         nextToken
       }
@@ -139,12 +136,12 @@ export const onCreateRecord = /* GraphQL */ `
     onCreateRecord {
       id
       load
-      warmup
       sets
       reps
       rpe
       performedDate
       liftID
+      owner
       createdAt
       updatedAt
       lift {
@@ -162,20 +159,18 @@ export const onCreateRecord = /* GraphQL */ `
           items {
             id
             load
-            warmup
             sets
             reps
             rpe
             performedDate
             liftID
+            owner
             createdAt
             updatedAt
-            owner
           }
           nextToken
         }
       }
-      owner
     }
   }
 `;
@@ -184,12 +179,12 @@ export const onUpdateRecord = /* GraphQL */ `
     onUpdateRecord {
       id
       load
-      warmup
       sets
       reps
       rpe
       performedDate
       liftID
+      owner
       createdAt
       updatedAt
       lift {
@@ -207,20 +202,18 @@ export const onUpdateRecord = /* GraphQL */ `
           items {
             id
             load
-            warmup
             sets
             reps
             rpe
             performedDate
             liftID
+            owner
             createdAt
             updatedAt
-            owner
           }
           nextToken
         }
       }
-      owner
     }
   }
 `;
@@ -229,12 +222,12 @@ export const onDeleteRecord = /* GraphQL */ `
     onDeleteRecord {
       id
       load
-      warmup
       sets
       reps
       rpe
       performedDate
       liftID
+      owner
       createdAt
       updatedAt
       lift {
@@ -252,20 +245,18 @@ export const onDeleteRecord = /* GraphQL */ `
           items {
             id
             load
-            warmup
             sets
             reps
             rpe
             performedDate
             liftID
+            owner
             createdAt
             updatedAt
-            owner
           }
           nextToken
         }
       }
-      owner
     }
   }
 `;

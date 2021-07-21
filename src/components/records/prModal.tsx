@@ -6,6 +6,7 @@ import {
 	Flex,
 	FormLabel,
 	Heading,
+	HStack,
 	IconButton,
 	Input,
 	InputGroup,
@@ -17,7 +18,6 @@ import {
 	ModalContent,
 	ModalOverlay,
 	Stack,
-	Text,
 	useDisclosure,
 	VStack,
 } from "@chakra-ui/react";
@@ -26,7 +26,7 @@ import { API } from "aws-amplify";
 import { Field, Form, Formik } from "formik";
 import Fuse from "fuse.js";
 import { createRecord } from "graphql/mutations";
-import React, { ReactElement, useEffect, useState } from "react";
+import React, { ReactElement, useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { BsSearch } from "react-icons/bs";
@@ -50,15 +50,11 @@ const initialValues: formInput = {
 interface Props {
 	lifts: Lift[];
 }
-export default function PRModal({ lifts }: any): ReactElement {
-	// const startD = new Date();
+export default function PRModal({ lifts }: Props): ReactElement {
 	const { isOpen, onOpen, onClose } = useDisclosure();
 	const [startDate, setStartDate] = useState(new Date());
 	const [selectedLift, setSelectedLift] = useState(null);
-	useEffect(() => {
-		console.log(startDate);
-	}, [startDate]);
-
+	const [displayOptions, setDisplayOptions] = useState(false);
 	const [query, setQuery] = useState("");
 
 	const fuse = new Fuse(lifts, {
@@ -80,6 +76,12 @@ export default function PRModal({ lifts }: any): ReactElement {
 		setQuery(lift.name);
 		setSelectedLift(lift);
 	};
+
+	// useEffect(() => {
+	// 	if (selectedLift.name === query) {
+	// 		setDisplayOptions(false);
+	// 	}
+	// }, [query]);
 	return (
 		<>
 			<IconButton
@@ -182,79 +184,92 @@ export default function PRModal({ lifts }: any): ReactElement {
 													/>
 												</InputRightElement>
 											</InputGroup>
-											{query.length > 1 ? (
-												<Stack as="ul">
-													{liftResults.map((lift) => (
-														<Box
-															as="button"
-															textAlign="left"
-															onClick={() =>
-																handleSelect(
-																	lift
+											{query.length > 0 &&
+											!selectedLift &&
+											selectedLift.name !== query ? (
+												<Box
+													border="1px solid white"
+													w="100%"
+												>
+													{liftResults.length > 0 ? (
+														<Stack
+															as="ul"
+															w="100%"
+															// textAlign="center"
+														>
+															{liftResults.map(
+																(lift) => (
+																	<Box
+																		py={1}
+																		as="button"
+																		_hover={{
+																			bg: "gray.600",
+																		}}
+																		textAlign="center"
+																		onClick={() =>
+																			handleSelect(
+																				lift
+																			)
+																		}
+																	>
+																		{
+																			lift.name
+																		}
+																	</Box>
 																)
-															}
-														>
-															{lift.name}
+															)}
+														</Stack>
+													) : (
+														<Box py={2}>
+															No lift found 🙄
 														</Box>
-													))}
-												</Stack>
-											) : null}
-
-											{selectedLift ? (
-												<Box>
-													<Flex align="center">
-														<VStack mx="10px">
-															<FormLabel>
-																Weight
-															</FormLabel>
-															<Field
-																name="load"
-																component={
-																	FormikNumberInput
-																}
-															/>
-														</VStack>
-														<Box>
-															{selectedLift.unit}
-														</Box>
-														<VStack>
-															<Text>Date </Text>
-															<Box color="black">
-																<DatePicker
-																	selected={
-																		startDate
-																	}
-																	onChange={(
-																		date
-																	) =>
-																		setStartDate(
-																			date
-																		)
-																	}
-																	maxDate={
-																		new Date()
-																	}
-																	showDisabledMonthNavigation
-																/>
-															</Box>
-														</VStack>
-													</Flex>
-
-													<Box>
-														<Button
-															type="submit"
-															my="10px"
-															bg="brand.200"
-															color="brand.600"
-															disabled={
-																isSubmitting
-															}
-														>
-															Submit
-														</Button>
-													</Box>
+													)}
 												</Box>
 											) : null}
+
+											<Box>
+												<Flex align="center">
+													<HStack mx="4px">
+														<FormLabel>
+															Weight
+														</FormLabel>
+														<Field
+															name="load"
+															component={
+																FormikNumberInput
+															}
+														/>
+													</HStack>
+
+													<Box w="120px">
+														<DatePicker
+															selected={startDate}
+															onChange={(date) =>
+																setStartDate(
+																	date
+																)
+															}
+															maxDate={new Date()}
+															showDisabledMonthNavigation
+															customInput={
+																<Input />
+															}
+														/>
+													</Box>
+												</Flex>
+
+												<Box>
+													<Button
+														type="submit"
+														my="10px"
+														bg="brand.200"
+														color="brand.600"
+														disabled={isSubmitting}
+													>
+														Submit
+													</Button>
+												</Box>
+											</Box>
 										</VStack>
 									</Box>
 								</Form>

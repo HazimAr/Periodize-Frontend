@@ -32,10 +32,6 @@ const formSchema = Yup.object().shape({
 		.required("Required")
 		.positive("Provide a positive number")
 		.max(9999, "Too long!"),
-	warmup: Yup.number()
-		.min(1, "too short")
-		.positive("Provide a positive number")
-		.max(99, "Too long!"),
 	sets: Yup.number()
 		.min(1, "Atleast do one set!")
 		.required("Required")
@@ -108,10 +104,6 @@ export default function CreateRecordFormModal(props: any): ReactElement {
 										sets: parseInt(values.sets),
 										reps: parseInt(values.reps),
 										performedDate: startDate.toISOString(),
-										warmup:
-											values.warmup === ""
-												? null
-												: parseInt(values.warmup),
 										rpe:
 											values.rpe === ""
 												? null
@@ -216,15 +208,7 @@ export default function CreateRecordFormModal(props: any): ReactElement {
 													/>
 												</VStack>
 											</Flex>
-											<VStack mx="10px">
-												<FormLabel>Warmup </FormLabel>
-												<Field
-													name="warmup"
-													component={
-														FormikNumberInput
-													}
-												/>
-											</VStack>
+
 											{/* <Slider
 												aria-label="rpe slider"
 												defaultValue={5}
