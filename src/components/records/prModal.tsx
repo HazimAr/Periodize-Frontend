@@ -53,7 +53,7 @@ interface Props {
 export default function PRModal({ lifts }: Props): ReactElement {
 	const { isOpen, onOpen, onClose } = useDisclosure();
 	const [startDate, setStartDate] = useState(new Date());
-	const [selectedLift, setSelectedLift] = useState(null);
+	const [selectedLift, setSelectedLift] = useState<Lift | null>(null);
 	const [displayOptions, setDisplayOptions] = useState(false);
 	const [query, setQuery] = useState("");
 
@@ -184,19 +184,16 @@ export default function PRModal({ lifts }: Props): ReactElement {
 													/>
 												</InputRightElement>
 											</InputGroup>
-											{query.length > 0 &&
-											!selectedLift &&
-											selectedLift.name !== query ? (
+											{(query.length > 0 &&
+												!selectedLift) ||
+											(selectedLift &&
+												selectedLift.name !== query) ? (
 												<Box
 													border="1px solid white"
 													w="100%"
 												>
 													{liftResults.length > 0 ? (
-														<Stack
-															as="ul"
-															w="100%"
-															// textAlign="center"
-														>
+														<Stack as="ul" w="100%">
 															{liftResults.map(
 																(lift) => (
 																	<Box
@@ -262,11 +259,14 @@ export default function PRModal({ lifts }: Props): ReactElement {
 													<Button
 														type="submit"
 														my="10px"
-														bg="brand.200"
-														color="brand.600"
+														// bg="brand.200"
+														color="brand.200"
+														borderColor="brand.200"
+														// colorScheme="purple.300"
 														disabled={isSubmitting}
+														variant="outline"
 													>
-														Submit
+														Add New 1RM
 													</Button>
 												</Box>
 											</Box>
