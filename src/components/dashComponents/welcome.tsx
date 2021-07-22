@@ -1,6 +1,7 @@
 import { useToast } from "@chakra-ui/react";
 import { useUser } from "@context/AuthContext";
 import { Lift } from "API";
+import {getCookie, setCookie} from "@lib/cookie"
 
 interface Props {
 	lifts: Lift[];
