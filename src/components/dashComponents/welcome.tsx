@@ -17,7 +17,7 @@ export default function dashComponent({ lifts }: Props): JSX.Element {
 		duration: 5000,
 		isClosable: true,
 	});
-
+if (typeof window !== "undefined") {
 	if (!getCookie("welcome")) {
 		toast({
 			title: "Welcome Back",
@@ -28,6 +28,7 @@ export default function dashComponent({ lifts }: Props): JSX.Element {
 
 		setCookie("welcome", "done", 1);
 	}
-
+}
+	
 	return <></>;
 }
