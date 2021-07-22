@@ -21,6 +21,8 @@ import { CreateRecordInput, CreateRecordMutation } from "API";
 import { API } from "aws-amplify";
 import { Field, Form, Formik } from "formik";
 import { createRecord } from "graphql/mutations";
+import Slider from "rc-slider";
+import "rc-slider/assets/index.css";
 import React, { ReactElement, useEffect, useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -70,6 +72,20 @@ export default function CreateRecordFormModal(props: any): ReactElement {
 	const { isOpen, onOpen, onClose } = useDisclosure();
 	const [startDate, setStartDate] = useState(new Date());
 
+	const marks = {
+		1: "1",
+		2: "2",
+		3: "3",
+		4: "4",
+		5: "5",
+		6: "6",
+		7: "7",
+		8: "8",
+		9: "9",
+		10: "10",
+	};
+	const [rpeValue, setRpeValue] = useState(5);
+
 	useEffect(() => {
 		console.log(startDate);
 	}, [startDate]);
@@ -104,10 +120,7 @@ export default function CreateRecordFormModal(props: any): ReactElement {
 										sets: parseInt(values.sets),
 										reps: parseInt(values.reps),
 										performedDate: startDate.toISOString(),
-										rpe:
-											values.rpe === ""
-												? null
-												: parseInt(values.rpe),
+										rpe: rpeValue,
 										liftID: props.lift.id,
 									};
 
@@ -209,21 +222,24 @@ export default function CreateRecordFormModal(props: any): ReactElement {
 												</VStack>
 											</Flex>
 
-											{/* <Slider
-												aria-label="rpe slider"
-												defaultValue={5}
-												min={1}
-												max={10}
-												step={1}
-												onChangeEnd={(val) =>
-													console.log(val)
-												}
+											<VStack
+												width="100%"
+												alignItems="stretch"
+												pb={5}
 											>
-												<SliderTrack>
-													<SliderFilledTrack />
-												</SliderTrack>
-												<SliderThumb />
-											</Slider> */}
+												<FormLabel>RPE </FormLabel>
+												<Slider
+													dots
+													min={1}
+													max={10}
+													marks={marks}
+													step={0.5}
+													value={rpeValue}
+													included={false}
+													onChange={setRpeValue}
+												/>
+											</VStack>
+
 											<Flex>
 												<VStack>
 													<Text>Date </Text>
