@@ -1,8 +1,9 @@
 import { Box } from "@chakra-ui/react";
 import Layout from "@components/dashboard/layout";
+import Charts from "@components/dashComponents/index/charts";
+import Welcome from "@components/dashComponents/index/welcome";
 import MostRecentRecords from "@components/dashComponents/mostRecentRecords";
 import Top5Lifts from "@components/dashComponents/top5lifts";
-import Welcome from "@components/dashComponents/welcome";
 import { useUser } from "@context/AuthContext";
 import { Lift, LiftsByUserQuery, Record, RecordsByUserQuery } from "API";
 import { API } from "aws-amplify";
@@ -60,9 +61,6 @@ export default function DashHome(): ReactElement {
 		setHasUser(true);
 	}
 
-	console.log("Current user: ", user);
-	console.log("My lifts:", lifts);
-	console.log("My records:", records);
 	return (
 		<Layout>
 			<Welcome />
@@ -70,6 +68,7 @@ export default function DashHome(): ReactElement {
 			<Box ml={10}>
 				<MostRecentRecords records={records} />
 			</Box>
+			<Charts />
 		</Layout>
 	);
 }

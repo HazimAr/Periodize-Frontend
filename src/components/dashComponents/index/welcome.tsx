@@ -1,17 +1,12 @@
 import { useToast } from "@chakra-ui/react";
 import { useUser } from "@context/AuthContext";
 import { getCookie, setCookie } from "@lib/cookie";
+import { useEffect } from "react";
 
-export default function welcome(): JSX.Element {
+export default function Welcome(): JSX.Element {
 	const toast = useToast();
 	const { user } = useUser();
-	toast({
-		title: "Welcome Back",
-		description: `Welcome back ${user.getUsername()}`,
-		duration: 5000,
-		isClosable: true,
-	});
-	if (typeof window !== "undefined") {
+	useEffect(() => {
 		if (!getCookie("welcome")) {
 			toast({
 				title: "Welcome Back",
@@ -22,7 +17,7 @@ export default function welcome(): JSX.Element {
 
 			setCookie("welcome", "done", 1);
 		}
-	}
+	});
 
 	return <></>;
 }
