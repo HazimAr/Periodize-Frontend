@@ -1,30 +1,28 @@
-import { Lift } from "API";
-
-import {useToast,} from "@chakra-ui/react";
+import { useToast } from "@chakra-ui/react";
 import { useUser } from "@context/AuthContext";
+import { getCookie, setCookie } from "@lib/cookie";
 
+export default function welcome(): JSX.Element {
+	const toast = useToast();
+	const { user } = useUser();
+	toast({
+		title: "Welcome Back",
+		description: `Welcome back ${user.getUsername()}`,
+		duration: 5000,
+		isClosable: true,
+	});
+	if (typeof window !== "undefined") {
+		if (!getCookie("welcome")) {
+			toast({
+				title: "Welcome Back",
+				description: `Welcome back ${user.getUsername()}`,
+				duration: 5000,
+				isClosable: true,
+			});
 
+			setCookie("welcome", "done", 1);
+		}
+	}
 
-interface Props {
-	lifts: Lift[];
+	return <></>;
 }
-
-export default function dashComponent({lifts}: Props): JSX.Element {
-    console.log("From my component:", lifts);
-    const toast = useToast();
-    const { user } = useUser();
-    toast({
-        title: "Welcome Back",
-        description: `Welcome back ${user.getUsername()}`,
-        duration: 5000,
-        isClosable: true,
-    })
-
-    return(
-        <>
-        </>
-    )
-}
-            
-    
-
