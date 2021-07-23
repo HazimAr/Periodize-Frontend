@@ -8,6 +8,7 @@ import {
 	TabPanels,
 	Tabs,
 } from "@chakra-ui/react";
+import ChakraTextField from "@components/chakraTextField";
 import { Lift } from "API";
 import React, { ReactElement } from "react";
 import PRModal from "./prModal";
@@ -35,6 +36,7 @@ export default function PersonalRecord({ lifts }: Props): ReactElement {
 	return (
 		<div>
 			<Heading>Personal Records</Heading>
+			<ChakraTextField />
 			<PRModal lifts={lifts} />
 			<Box>
 				<Tabs>
