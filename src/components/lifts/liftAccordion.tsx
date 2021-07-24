@@ -17,8 +17,7 @@ import {
 	Text,
 	VStack,
 } from "@chakra-ui/react";
-import formatDistanceToNow from "date-fns/formatDistanceToNow";
-import parseISO from "date-fns/parseISO";
+import RecordsInAccordian from "@components/lifts/recordsInAccordian";
 import Fuse from "fuse.js";
 import React, { ReactElement, useState } from "react";
 import { BsSearch } from "react-icons/bs";
@@ -26,7 +25,6 @@ import { Lift } from "../../API";
 import CreateRecordModal from "../records/createRecordModal";
 import CreateLiftModal from "./createLiftModal";
 import DeleteLiftModal from "./deleteLiftModal";
-import RecordsInAccordian from "@components/lifts/recordsInAccordian";
 interface Props {
 	lifts: Lift[];
 	setLifts: any;
@@ -83,8 +81,6 @@ export default function LiftAccordion({
 				</Box>
 				<Flex>
 					<CreateLiftModal lifts={lifts} setLifts={setLifts} />
-
-					{/* <CreateRecordModal lifts={lifts} setLifts={setLifts} /> */}
 				</Flex>
 			</Flex>
 
@@ -103,11 +99,6 @@ export default function LiftAccordion({
 			) : (
 				<Box p="12px" borderRadius="md" my={4}>
 					<Accordion allowToggle allowMultiple>
-						{/* <Flex justify="space-between" my={2}>
-							<Text fontSize="2xl">Movement</Text>
-							<Box></Box>
-							<Box></Box>
-						</Flex> */}
 						{liftResults.map((lift) => (
 							<AccordionItem key={lift.id} py={2}>
 								<h2>
@@ -162,34 +153,17 @@ export default function LiftAccordion({
 									</Flex>
 								</h2>
 								<AccordionPanel pb={4}>
-									{/* <HStack>
-										{lift.category && (
-											<Box
-												px={3}
-												py={0.5}
-												border="1px solid white"
-												borderRadius="md"
-											>
-												{lift.category}
-											</Box>
-										)}
-										<HStack>
-											{lift.bodypart.map((part) => (
-												<BodyPartTag
-													key={part}
-													part={part}
-												/>
-											))}
-										</HStack>
-									</HStack> */}
-									{/* //format / parse date with date-fns */}
 									<Box>
-										{lift.records.items ? (
+										{lift.records.items.length ? (
 											//get most recent 3 records
 											<Box>
-												<RecordsInAccordian lift={lift} />
+												<RecordsInAccordian
+													lift={lift}
+												/>
 											</Box>
-										) : null}
+										) : (
+											<Box>No records</Box>
+										)}
 									</Box>
 								</AccordionPanel>
 							</AccordionItem>

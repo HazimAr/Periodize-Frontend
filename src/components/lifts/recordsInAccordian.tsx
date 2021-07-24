@@ -32,22 +32,6 @@ export default function RecordsInAccordian({ lift }: Props): ReactElement {
 					</Tr>
 				</Thead>
 				<Tbody>
-					{/* {lift.records.items.slice(-3).map((record) => (
-						<Tr key={record.id}>
-							<Td>
-								{record.load} {lift.unit}
-							</Td>
-							<Td>{record.sets}</Td>
-							<Td>{record.reps}</Td>
-							<Td>{record.rpe}</Td>
-							<Td>
-								{formatDistanceToNow(
-									parseISO(record.performedDate)
-								)}{" "}
-								ago
-							</Td>
-						</Tr>
-					))} */}
 					{lift.records.items
 						.sort(function (a, b) {
 							// Turn your strings into dates, and then subtract them

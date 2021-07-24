@@ -26,8 +26,8 @@ import { FaHeart } from "react-icons/fa";
 import * as Yup from "yup";
 import { CreateLiftInput, CreateLiftMutation, Lift } from "../../API";
 import { createLift } from "../../graphql/mutations";
+import CFormikLabelInput from "../cFormikLabelInput";
 import FormikRadio from "../formikcheckbox";
-import FormikInput from "../formikinput";
 import FormikSelect from "../formikselect";
 export default function CreateLiftModal(props: any): ReactElement {
 	const [newTag, setnewTag] = useState("");
@@ -143,7 +143,8 @@ export default function CreateLiftModal(props: any): ReactElement {
 										<Flex>
 											<Field
 												name="name"
-												component={FormikInput}
+												component={CFormikLabelInput}
+												label="name"
 											/>
 											<IconButton
 												aria-label="favorite"
@@ -304,6 +305,9 @@ export default function CreateLiftModal(props: any): ReactElement {
 												Submit
 											</Button>
 										</Box>
+										<pre>
+											{JSON.stringify(errors, null, 2)}
+										</pre>
 									</VStack>
 								</Form>
 							)}
