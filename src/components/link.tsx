@@ -8,7 +8,13 @@ export default function nextChakraLink({
 }: any): JSX.Element {
 	return (
 		<NextLink href={href} passHref>
-			<Link {...props}>{children}</Link>
+			<Link
+				{...props}
+				_active={{ boxShadow: "none" }}
+				_focus={{ boxShadow: "none" }}
+			>
+				{children}
+			</Link>
 		</NextLink>
 	);
 }
