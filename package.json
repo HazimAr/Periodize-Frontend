@@ -48,7 +48,7 @@
 		"@types/babel__core": "^7.1.15",
 		"@types/bad-words": "^3.0.1",
 		"@types/email-validator": "^1.0.6",
-		"@types/node": "^16.0.1",
+		"@types/node": "^16.4.3",
 		"@types/react": "^17.0.14",
 		"@types/styled-components": "^5.1.11",
 		"babel-plugin-styled-components": "^1.13.1",
@@ -57,35 +57,5 @@
 		"jest": "^27.0.6",
 		"jest-watch-typeahead": "^0.6.4",
 		"prettier": "^2.3.2"
-	},
-	"jest": {
-		"collectCoverageFrom": [
-			"src/**/*.{js,jsx,ts,tsx}"
-		],
-		"setupFilesAfterEnv": [
-			"<rootDir>/scripts/jest/setupTests.js"
-		],
-		"transform": {
-			"^.+\\.(js|jsx|ts|tsx)$": "<rootDir>/node_modules/babel-jest",
-			"^.+\\.css$": "<rootDir>/scripts/jest/cssTransform.js"
-		},
-		"transformIgnorePatterns": [
-			"/node_modules/",
-			"^.+\\.module\\.(css|sass|scss)$"
-		],
-		"moduleNameMapper": {
-			"^.+\\.module\\.(css|sass|scss)$": "identity-obj-proxy"
-		},
-		"modulePaths": [
-			"<rootDir>"
-		],
-		"coverageDirectory": "coverage",
-		"watchPlugins": [
-			"jest-watch-typeahead/filename",
-			"jest-watch-typeahead/testname"
-		],
-		"clearMocks": true,
-		"restoreMocks": true,
-		"resetMocks": true
 	}
 }
