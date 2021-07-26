@@ -4,8 +4,8 @@ import Container from "./container";
 export default function header(): JSX.Element {
 	return (
 		<Container as="header">
-			<HStack justify="space-between">
-				<Image src="logo.png" w="50px" />
+			<HStack justify="space-between" align="center">
+				<Image src="logo.png" w="100px" />
 				<Heading>Periodize</Heading>
 				<HStack></HStack>
 			</HStack>
