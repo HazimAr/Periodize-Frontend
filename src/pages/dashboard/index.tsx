@@ -1,4 +1,4 @@
-import { Box } from "@chakra-ui/react";
+import { Box, GridItem, SimpleGrid, VisuallyHidden } from "@chakra-ui/react";
 import Layout from "@components/dashboard/layout";
 import Charts from "@components/dashComponents/index/charts";
 import Welcome from "@components/dashComponents/index/welcome";
@@ -63,12 +63,19 @@ export default function DashHome(): ReactElement {
 
 	return (
 		<Layout>
-			<Welcome />
-			<Top5Lifts lifts={lifts} />
-			<Box ml={10}>
-				<MostRecentRecords records={records} />
-			</Box>
-			<Charts />
+			<VisuallyHidden>
+				{/* put all your component classes that generate empty tags here */}
+				<Welcome />
+			</VisuallyHidden>
+			<SimpleGrid columns={2} spacing={5}>
+				<Top5Lifts lifts={lifts} />
+				<Box ml={10}>
+					<MostRecentRecords records={records} />
+				</Box>
+				<GridItem colSpan={2}>
+					<Charts />
+				</GridItem>
+			</SimpleGrid>
 		</Layout>
 	);
 }

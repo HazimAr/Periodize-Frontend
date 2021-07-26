@@ -1,3 +1,4 @@
+import { Box } from "@chakra-ui/react";
 import { Lift } from "API";
 
 interface Props {
@@ -14,10 +15,10 @@ export default function Top5Lifts({ lifts }: Props): JSX.Element {
 	//make top 5 list noa : )
 	//dont render a lift that has no records, so only return 2 lifts if only 2 lifts have records
 	return (
-		<div>
+		<Box>
 			{sorted.map((lift) => (
 				<div key={lift.id}>{lift.name}</div>
 			))}
-		</div>
+		</Box>
 	);
 }

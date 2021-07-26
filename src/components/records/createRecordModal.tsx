@@ -15,7 +15,7 @@ import {
 	ModalOverlay,
 	Text,
 	useDisclosure,
-	VStack,
+	VStack
 } from "@chakra-ui/react";
 import CLabelInput from "@components/cFormikLabelInput";
 import { CreateRecordInput, CreateRecordMutation } from "API";
@@ -53,7 +53,7 @@ interface formInput {
 	warmup: string;
 	sets: string;
 	reps: string;
-	rpe: string;
+	rpe?: string;
 }
 const initialValues: formInput = {
 	load: "",
