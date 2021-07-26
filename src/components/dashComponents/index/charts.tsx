@@ -82,9 +82,7 @@ const options = {
 			name: false,
 		},
 	},
-
 	credits: false,
-
 	series: [
 		{
 			showInLegend: false,
