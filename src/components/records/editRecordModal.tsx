@@ -36,7 +36,7 @@ const formSchema = Yup.object().shape({
 		.positive("Provide a positive number")
 		.max(9999, "Too long!"),
 	sets: Yup.number()
-		.min(1, "Atleast do one set!")
+		.min(1, "At least do one set!")
 		.required("Required")
 		.max(999, "Too long!")
 		.positive("Has to be positive")
@@ -57,7 +57,7 @@ interface formInput {
 	load: string;
 	sets: string;
 	reps: string;
-	rpe: string;
+	rpe?: string;
 }
 
 interface Props {
@@ -74,7 +74,7 @@ export default function EditRecordFormModal({ record }: Props): ReactElement {
 		load: record.load.toString(),
 		sets: record.sets.toString(),
 		reps: record.reps.toString(),
-		rpe: record.rpe.toString(),
+		rpe: record.rpe?.toString(),
 	};
 
 	const marks = {
@@ -210,7 +210,7 @@ export default function EditRecordFormModal({ record }: Props): ReactElement {
 													max={10}
 													marks={marks}
 													step={0.5}
-													value={rpeValue}
+													value={rpeValue ?? 5}
 													included={false}
 													onChange={setRpeValue}
 												/>

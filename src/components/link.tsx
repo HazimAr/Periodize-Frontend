@@ -1,10 +1,20 @@
 import { Link } from "@chakra-ui/react";
 import NextLink from "next/link";
 
-export default function CLink({ href, name, ...props }: any): JSX.Element {
+export default function nextChakraLink({
+	href,
+	children,
+	...props
+}: any): JSX.Element {
 	return (
-		<Link as={NextLink} href={href} {...props}>
-			{name}
-		</Link>
+		<NextLink href={href} passHref>
+			<Link
+				{...props}
+				_active={{ boxShadow: "none" }}
+				_focus={{ boxShadow: "none" }}
+			>
+				{children}
+			</Link>
+		</NextLink>
 	);
 }

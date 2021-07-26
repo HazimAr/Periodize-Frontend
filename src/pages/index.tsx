@@ -1,7 +1,11 @@
-// Amplify.configure({ ...awsExports, ssr: true });
-
-import { Box } from "@chakra-ui/react";
+import Footer from "@components/home/footer";
+import Header from "@components/home/header";
 
 export default function Home() {
-  return <Box>Hello World </Box>;
+	return (
+		<>
+			<Header />
+			<Footer />
+		</>
+	);
 }

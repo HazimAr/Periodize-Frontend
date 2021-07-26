@@ -23,6 +23,7 @@ export default function MostRecentRecords({ records }: Props): JSX.Element {
 				<Box key={record.id}>
 					Record:{" "}
 					{formatDistanceToNow(parseISO(record.performedDate))} ago
+					<br />
 					Lift: {record.lift.name}
 				</Box>
 			))}
