@@ -1,4 +1,13 @@
-import { Box } from "@chakra-ui/react";
+import {
+	Box,
+	Heading,
+	Table,
+	Tbody,
+	Td,
+	Th,
+	Thead,
+	Tr,
+} from "@chakra-ui/react";
 import { Record } from "API";
 import formatDistanceToNow from "date-fns/formatDistanceToNow";
 import parseISO from "date-fns/parseISO";
@@ -18,15 +27,31 @@ export default function MostRecentRecords({ records }: Props): JSX.Element {
 		.slice(0, 5);
 
 	return (
-		<div>
-			{sortedRecords.map((record) => (
-				<Box key={record.id}>
-					Record:{" "}
-					{formatDistanceToNow(parseISO(record.performedDate))} ago
-					<br />
-					Lift: {record.lift.name}
-				</Box>
-			))}
-		</div>
+		<Box borderRadius={25} borderColor="white" borderWidth={1} p={3}>
+			<Heading as="h2" size="lg" mb={3}>
+				Recent Records
+			</Heading>
+			<Table size="sm" variant="striped" colorScheme="purple">
+				<Thead>
+					<Tr>
+						<Th>Lift</Th>
+						<Th>Date</Th>
+					</Tr>
+				</Thead>
+				<Tbody>
+					{sortedRecords.map((record) => (
+						<Tr key={record.id}>
+							<Td>{record.lift.name}</Td>
+							<Td>
+								{formatDistanceToNow(
+									parseISO(record.performedDate)
+								)}{" "}
+								ago
+							</Td>
+						</Tr>
+					))}
+				</Tbody>
+			</Table>
+		</Box>
 	);
 }

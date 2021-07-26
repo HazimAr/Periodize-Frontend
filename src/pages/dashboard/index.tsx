@@ -67,11 +67,9 @@ export default function DashHome(): ReactElement {
 				{/* put all your component classes that generate empty tags here */}
 				<Welcome />
 			</VisuallyHidden>
-			<SimpleGrid columns={2} spacing={5}>
+			<SimpleGrid columns={2} spacing={5} width="100%">
 				<Top5Lifts lifts={lifts} />
-				<Box ml={10}>
-					<MostRecentRecords records={records} />
-				</Box>
+				<MostRecentRecords records={records} />
 				<GridItem colSpan={2}>
 					<Charts />
 				</GridItem>

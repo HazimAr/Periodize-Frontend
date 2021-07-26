@@ -1,3 +1,4 @@
+import { Heading } from "@chakra-ui/react";
 import { Lift } from "API";
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
@@ -20,9 +21,9 @@ const theme = {
 	axisLabelColors: "#3895D3",
 	axisLineColors: "WHITE",
 	daysAgoColor: "#58CCED",
-	YaxisPlotLineColor: "WHITE",
-	YaxisPlotLineWidth: 0.2,
-	YlineWidth: 0.17,
+	yAxisPlotLineColor: "WHITE",
+	yAxisPlotLineWidth: 0.2,
+	yLineWidth: 0.17,
 };
 
 const options = {
@@ -39,8 +40,8 @@ const options = {
 		allowDecimals: false,
 		lineWidth: 1,
 		lineColor: theme.axisLineColors,
-		gridLineColor: theme.YaxisPlotLineColor,
-		gridLineWidth: theme.YaxisPlotLineWidth,
+		gridLineColor: theme.yAxisPlotLineColor,
+		gridLineWidth: theme.yAxisPlotLineWidth,
 		tickWidth: 0,
 		title: { text: "" },
 		labels: {
@@ -100,5 +101,12 @@ const options = {
 };
 
 export default function charts(): JSX.Element {
-	return <HighchartsReact highcharts={Highcharts} options={options} />;
+	return (
+		<>
+			<Heading as="h2" size="lg" mb={3} textAlign="left">
+				Top Text
+			</Heading>
+			<HighchartsReact highcharts={Highcharts} options={options} />
+		</>
+	);
 }
