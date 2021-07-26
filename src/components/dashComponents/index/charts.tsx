@@ -24,6 +24,7 @@ const theme = {
 	YaxisPlotLineWidth: 0.2,
 	YlineWidth: 0.17,
 };
+
 const options = {
 	chart: {
 		type: "spline",
@@ -49,7 +50,6 @@ const options = {
 			overflow: "allow",
 			style: {
 				color: theme.axisLabelColors,
-
 				fontSize: 18,
 			},
 		},
@@ -68,7 +68,6 @@ const options = {
 			overflow: "allow",
 			style: {
 				color: theme.axisLabelColors,
-
 				fontSize: 18,
 			},
 		},
