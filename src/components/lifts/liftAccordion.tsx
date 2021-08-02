@@ -21,7 +21,7 @@ import RecordsInAccordian from "@components/lifts/recordsInAccordian";
 import Fuse from "fuse.js";
 import React, { ReactElement, useState } from "react";
 import { BsSearch } from "react-icons/bs";
-import { Lift } from "../../API";
+import { Lift } from "API";
 import CreateRecordModal from "../records/createRecordModal";
 import CreateLiftModal from "./createLiftModal";
 import DeleteLiftModal from "./deleteLiftModal";

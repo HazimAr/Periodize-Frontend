@@ -4,6 +4,7 @@ import Charts from "@components/dashComponents/index/charts";
 import Welcome from "@components/dashComponents/index/welcome";
 import MostRecentRecords from "@components/dashComponents/mostRecentRecords";
 import Top5Lifts from "@components/dashComponents/top5lifts";
+import RecentRecordVolumes from "@components/dashComponents/recentRecordVolumes";
 import { useUser } from "@context/AuthContext";
 import { Lift, LiftsByUserQuery, Record, RecordsByUserQuery } from "API";
 import { API } from "aws-amplify";
@@ -70,6 +71,7 @@ export default function DashHome(): ReactElement {
 			<SimpleGrid columns={2} spacing={5} width="100%">
 				<Top5Lifts lifts={lifts} />
 				<MostRecentRecords records={records} />
+				<RecentRecordVolumes records={records} />
 				<GridItem colSpan={2}>
 					<Charts />
 				</GridItem>
