@@ -13,24 +13,6 @@ import { useMemo } from "react";
 import { useSortBy, useTable } from "react-table";
 import DeleteRecordModal from "../records/deleteRecordModal";
 import EditRecordModal from "../records/editRecordModal";
-// {
-// 				load: "25",
-// 				sets: "millimetres (mm)",
-// 				reps: 8,
-// 				rpe: 10,
-// 			},
-// 			{
-// 				load: "100",
-// 				sets: "millimetres (mm)",
-// 				reps: 25.4,
-// 				rpe: 1,
-// 			},
-// 			{
-// 				load: "2300",
-// 				sets: "millimetres (mm)",
-// 				reps: 25.4,
-// 				rpe: 5,
-// 			},
 export default function DataTable({ records }: any) {
 	const data = useMemo(() => records, []);
 
@@ -58,9 +40,8 @@ export default function DataTable({ records }: any) {
 				// isNumeric: true,
 			},
 			{
-				// Make an expander cell
-				Header: () => null, // No header
-				id: "expander", // It needs an ID
+				Header: () => null,
+				id: "actions", // It needs an ID
 				Cell: ({ row }) => (
 					<Flex>
 						<EditRecordModal record={row.original} />

@@ -1,27 +1,30 @@
-import {
-	Box,
-	Flex,
-	Heading,
-	HStack,
-	Tag,
-	TagLabel,
-	VStack,
-} from "@chakra-ui/react";
+import { Box, Flex, Heading, HStack, Tag, TagLabel } from "@chakra-ui/react";
 import CreateRecordFormModal from "@components/records/createRecordModal";
 import { Lift } from "API";
-import React, { ReactElement, useState } from "react";
+import { format } from "date-fns";
+import parseISO from "date-fns/parseISO";
+import React, { ReactElement } from "react";
 import RecordTable from "../records/recordTable";
 import BodyPartTag from "./bodyparttag";
 import UpdateLiftModal from "./updateLiftModal";
+
 interface Props {
 	lift: Lift;
 }
 export default function IndividualLift({ lift }: Props): ReactElement {
-	console.log(lift);
-	const [state, setState] = useState({
-		data: lift.records.items,
-		loading: false,
-		sortedBy: null,
+	// console.log(lift);
+	// const [state, setState] = useState({
+	// 	data: lift.records.items,
+	// 	loading: false,
+	// 	sortedBy: null,
+	// });
+
+	const formattedRecords = lift.records.items?.map((record) => {
+		const formattedDate = format(
+			parseISO(record.performedDate),
+			"MM/dd/yyyy"
+		);
+		return { ...record, performedDate: formattedDate };
 	});
 
 	return (
@@ -62,7 +65,7 @@ export default function IndividualLift({ lift }: Props): ReactElement {
 				))}
 			</HStack>
 			{lift.records.items[0] ? (
-				<RecordTable records={lift.records.items} />
+				<RecordTable records={formattedRecords} />
 			) : (
 				<Box>No Records "(</Box>
 			)}

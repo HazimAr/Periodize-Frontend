@@ -1,5 +1,7 @@
 import {
 	Box,
+	Container,
+	Flex,
 	Heading,
 	Stack,
 	Tab,
@@ -7,66 +9,120 @@ import {
 	TabPanel,
 	TabPanels,
 	Tabs,
+	Text,
+	VStack,
 } from "@chakra-ui/react";
-import { Lift } from "API";
+import { Lift, Record } from "API";
 import React, { ReactElement } from "react";
 import PRModal from "./prModal";
-
 interface Props {
 	lifts: Lift[];
 }
-
-export default function PersonalRecord({ lifts }: Props): ReactElement {
-	let prs = [];
-	for (let i = 0; i < lifts.length; i++) {
-		if (!lifts[i].records.items || lifts[i].records.items == undefined) {
-			// return null;
-			return null;
-		} else {
-			const pr = lifts[i].records.items.sort(
-				(a, b) => b.load - a.load
-			)[0];
-			console.log(`${lifts[i].name} PR: `, pr);
-			prs.push({ lift: lifts[i], record: pr });
+const catArr = [
+	"main movement",
+	"accessory",
+	"warm up",
+	"cardio",
+	"rehab",
+	"sport",
+];
+function findPR(records: Record[]) {
+	// const indexes = []
+	//find record with highest load if tie priority: reps, sets
+	// let prIndex;
+	let greatest: Record;
+	for (let i = 0; i < records.length; i++) {
+		if (!greatest) {
+			greatest = records[i];
+		} else if (
+			records[i].load > greatest.load ||
+			(records[i].load === greatest.load &&
+				records[i].reps > greatest.reps)
+		) {
+			greatest = records[i];
 		}
 	}
+	console.log("PR record: ", greatest);
+	return greatest;
+}
+export default function PersonalRecord({ lifts }: Props): ReactElement {
+	//map a new array of lifts that have records based on categories / favorite / body part
 
-	console.log("records: ", prs);
+	//create an array of lifts that have records
+	const prList = lifts.filter(
+		(lift) =>
+			lift.records.items !== undefined && lift.records.items.length > 0
+	);
+	console.log(prList);
+
 	return (
-		<div>
+		<Container maxW={{ base: "lg" }}>
 			<Heading>Personal Records</Heading>
 
 			<PRModal lifts={lifts} />
 			<Box>
 				<Tabs>
 					<TabList>
-						<Tab>1RM</Tab>
-						<Tab>3RM</Tab>
-						<Tab>5RM</Tab>
+						<Tab>All</Tab>
+						<Tab>Cat</Tab>
+						<Tab>Movement</Tab>
+						<Tab></Tab>
 					</TabList>
 
 					<TabPanels>
 						<TabPanel>
 							<Box>
 								<Stack as="ul" spacing="4">
-									<Box>
-										<Heading></Heading>
-										<Stack as="ul" spacing="2"></Stack>
-									</Box>
-
-									{prs.map((pr) => {
-										return (
-											<Box key={pr.lift.id}>
-												{pr.record ? (
-													<Box textAlign="left">
-														{pr.lift.name}
-														{
-															pr.record.load
-														} reps: {pr.record.reps}
-													</Box>
-												) : null}
+									{catArr.map((cat) => {
+										return prList.filter(
+											(l) => l.category === cat
+										).length > 0 ? (
+											<Box textAlign="left">
+												<Heading>{cat}</Heading>
+												<VStack>
+													{prList
+														.filter(
+															(l) =>
+																l.category ===
+																cat
+														)
+														.map((lift) => {
+															const pr = findPR(
+																lift.records
+																	.items
+															);
+															return (
+																<Box
+																	flex="1"
+																	textAlign="left"
+																	w="100%"
+																>
+																	<Flex
+																		justify="space-between"
+																		textAlign="left"
+																		w="100%"
+																	>
+																		<Text>
+																			{
+																				lift.name
+																			}
+																		</Text>
+																		<Text>
+																			{
+																				pr.reps
+																			}{" "}
+																			x{" "}
+																			{
+																				pr.load
+																			}
+																		</Text>
+																	</Flex>
+																</Box>
+															);
+														})}
+												</VStack>
 											</Box>
-										);
+										) : null;
 									})}
 								</Stack>
 							</Box>
@@ -79,8 +135,7 @@ export default function PersonalRecord({ lifts }: Props): ReactElement {
 						</TabPanel>
 					</TabPanels>
 				</Tabs>
-				<Heading>1RM</Heading>
 			</Box>
-		</div>
+		</Container>
 	);
 }
