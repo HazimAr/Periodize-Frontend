@@ -1,4 +1,4 @@
-import { Heading, HStack, Image } from "@chakra-ui/react";
+import { Heading, HStack, Image, Button} from "@chakra-ui/react";
 import NextChakraLink from "@components/link";
 import Container from "./container";
 
@@ -9,7 +9,12 @@ export default function header(): JSX.Element {
 				<Image src="logo.png" w="100px" />
 				<Heading>Periodize</Heading>
 				<HStack>
-					<NextChakraLink href="/login">login</NextChakraLink>
+					<NextChakraLink href="/login">Login</NextChakraLink>
+					<NextChakraLink href="/register">
+						<Button>
+							Get Started
+						</Button>
+					</NextChakraLink>
 				</HStack>
 			</HStack>
 		</Container>
