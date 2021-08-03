@@ -13,6 +13,7 @@ export const getLift = /* GraphQL */ `
       favorite
       unit
       owner
+      discipline
       createdAt
       updatedAt
       records {
@@ -36,6 +37,7 @@ export const getLift = /* GraphQL */ `
             favorite
             unit
             owner
+            discipline
             createdAt
             updatedAt
           }
@@ -61,6 +63,7 @@ export const listLifts = /* GraphQL */ `
         favorite
         unit
         owner
+        discipline
         createdAt
         updatedAt
         records {
@@ -107,6 +110,7 @@ export const liftsByUser = /* GraphQL */ `
         favorite
         unit
         owner
+        discipline
         createdAt
         updatedAt
         records {
@@ -151,6 +155,7 @@ export const getRecord = /* GraphQL */ `
         favorite
         unit
         owner
+        discipline
         createdAt
         updatedAt
         records {
@@ -199,6 +204,7 @@ export const listRecords = /* GraphQL */ `
           favorite
           unit
           owner
+          discipline
           createdAt
           updatedAt
           records {
@@ -245,6 +251,7 @@ export const recordsByUser = /* GraphQL */ `
           favorite
           unit
           owner
+          discipline
           createdAt
           updatedAt
           records {

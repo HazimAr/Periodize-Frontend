@@ -3,7 +3,6 @@ import Layout from "@components/dashboard/layout";
 import Charts from "@components/dashComponents/index/charts";
 import Welcome from "@components/dashComponents/index/welcome";
 import MostRecentRecords from "@components/dashComponents/mostRecentRecords";
-import Top5Lifts from "@components/dashComponents/top5lifts";
 import RecentRecordVolumes from "@components/dashComponents/recentRecordVolumes";
 import { useUser } from "@context/AuthContext";
 import { Lift, LiftsByUserQuery, Record, RecordsByUserQuery } from "API";
@@ -61,7 +60,7 @@ export default function DashHome(): ReactElement {
 		fetchMyRecords();
 		setHasUser(true);
 	}
-
+	//display dashboard UI ( check if user has lifts / records => show data)
 	return (
 		<Layout>
 			<VisuallyHidden>
@@ -69,9 +68,15 @@ export default function DashHome(): ReactElement {
 				<Welcome />
 			</VisuallyHidden>
 			<SimpleGrid columns={2} spacing={5} width="100%">
-				<Top5Lifts lifts={lifts} />
-				<MostRecentRecords records={records} />
-				<RecentRecordVolumes records={records} />
+				{/* <Top5Lifts lifts={lifts} /> */}
+
+				{records.length > 0 ? (
+					<Box>
+						<MostRecentRecords records={records} />
+						<RecentRecordVolumes records={records} />
+					</Box>
+				) : null}
+
 				<GridItem colSpan={2}>
 					<Charts />
 				</GridItem>

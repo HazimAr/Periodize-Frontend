@@ -14,6 +14,11 @@ import {
 	InputLeftElement,
 	InputRightElement,
 	Link,
+	Tab,
+	TabList,
+	TabPanel,
+	TabPanels,
+	Tabs,
 	Text,
 	VStack,
 } from "@chakra-ui/react";
@@ -39,7 +44,7 @@ export default function LiftAccordion({
 	const [query, setQuery] = useState("");
 
 	const fuse = new Fuse(lifts, {
-		keys: ["name", "bodypart", "category", "tags"],
+		keys: ["name", "bodypart", "category", "tags", "discipline"],
 		includeScore: true,
 	});
 	const results = fuse.search(query);
@@ -57,7 +62,6 @@ export default function LiftAccordion({
 					<InputLeftElement pointerEvents="none">
 						<BsSearch opacity={0.5} />
 					</InputLeftElement>
-
 					<Input
 						rounded="md"
 						placeholder="Search lifts by name, muscle group, tags, favorite"
@@ -77,10 +81,6 @@ export default function LiftAccordion({
 						/>
 					</InputRightElement>
 				</InputGroup>
-
-				{/* <Flex>
-					<CreateLiftModal lifts={lifts} setLifts={setLifts} />
-				</Flex> */}
 			</Flex>
 
 			{!lifts[0] ? (
@@ -97,6 +97,23 @@ export default function LiftAccordion({
 				</Center>
 			) : (
 				<Box p="12px" borderRadius="md" my={4}>
+					<Tabs>
+						<TabList>
+							<Tab>All</Tab>
+							<Tab>Discipline</Tab>
+							<Tab>Category</Tab>
+							<Tab>Bodypart</Tab>
+							<Tab>Favorites</Tab>
+						</TabList>
+
+						<TabPanels>
+							<TabPanel></TabPanel>
+							<TabPanel></TabPanel>
+							<TabPanel></TabPanel>
+							<TabPanel></TabPanel>
+							<TabPanel></TabPanel>
+						</TabPanels>
+					</Tabs>
 					<Accordion allowToggle allowMultiple>
 						{liftResults.map((lift) => (
 							<AccordionItem key={lift.id} py={2}>

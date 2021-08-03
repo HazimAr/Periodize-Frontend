@@ -1,6 +1,14 @@
-import { Box, Flex, Heading, HStack, Tag, TagLabel } from "@chakra-ui/react";
+import {
+	Box,
+	Container,
+	Flex,
+	Heading,
+	HStack,
+	Tag,
+	TagLabel,
+} from "@chakra-ui/react";
 import CreateRecordFormModal from "@components/records/createRecordModal";
-import { Lift } from "API";
+import { Lift, Record } from "API";
 import { format } from "date-fns";
 import parseISO from "date-fns/parseISO";
 import React, { ReactElement } from "react";
@@ -26,10 +34,29 @@ export default function IndividualLift({ lift }: Props): ReactElement {
 		);
 		return { ...record, performedDate: formattedDate };
 	});
+	function findPR(records: Record[]) {
+		// const indexes = []
+		//find record with highest load if tie priority: reps, sets
+		// let prIndex;
+		let greatest: Record;
+		for (let i = 0; i < records.length; i++) {
+			if (!greatest) {
+				greatest = records[i];
+			} else if (
+				records[i].load > greatest.load ||
+				(records[i].load === greatest.load &&
+					records[i].reps > greatest.reps)
+			) {
+				greatest = records[i];
+			}
+		}
 
+		return greatest;
+	}
+	const pr = findPR(lift.records.items);
 	return (
-		<Box mt="20px">
-			<Flex align="center" justify="space-between">
+		<Container maxW={["md", "lg"]} mt="20px" justifyContent="center">
+			<Flex align="center" justify="center">
 				<Heading>{lift.name}</Heading>
 				<Flex>
 					<CreateRecordFormModal lift={lift} />
@@ -38,16 +65,14 @@ export default function IndividualLift({ lift }: Props): ReactElement {
 			</Flex>
 
 			<HStack justify="center" flexWrap="wrap">
-				{lift.category && (
-					<Flex
-						px={3}
-						py={0.5}
-						border="1px solid white"
-						borderRadius="md"
-					>
-						{lift.category}
-					</Flex>
-				)}
+				<Box px={3} py={0.5} border="1px solid white" borderRadius="md">
+					{lift.discipline}
+				</Box>
+
+				<Box px={3} py={0.5} border="1px solid white" borderRadius="md">
+					{lift.category}
+				</Box>
+
 				{lift.bodypart.map((part) => (
 					<BodyPartTag key={part} part={part} />
 				))}
@@ -64,11 +89,13 @@ export default function IndividualLift({ lift }: Props): ReactElement {
 					</Tag>
 				))}
 			</HStack>
+			{pr ? <Box>PR: {`${pr.sets}x${pr.reps} @ ${pr.load}`}</Box> : null}
+
 			{lift.records.items[0] ? (
 				<RecordTable records={formattedRecords} />
 			) : (
-				<Box>No Records "(</Box>
+				<Box>No Records</Box>
 			)}
-		</Box>
+		</Container>
 	);
 }

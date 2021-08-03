@@ -17,6 +17,7 @@ import {
 	Tag,
 	TagCloseButton,
 	TagLabel,
+	Text,
 	useDisclosure,
 	VStack,
 } from "@chakra-ui/react";
@@ -42,6 +43,7 @@ export default function CreateLiftModal(props: any): ReactElement {
 			.required("Required")
 			.max(25, "Too long!"),
 		category: Yup.string(),
+		discipline: Yup.string(),
 		favorite: Yup.string(),
 		bodypart: Yup.array()
 			.min(1, "Add atleast 1 focus")
@@ -54,6 +56,7 @@ export default function CreateLiftModal(props: any): ReactElement {
 	interface LiftFormInput {
 		name: string;
 		category: string;
+		discipline: string;
 		bodypart: string[];
 		tags: string[];
 		favorite: string;
@@ -63,6 +66,7 @@ export default function CreateLiftModal(props: any): ReactElement {
 	const initialValues: LiftFormInput = {
 		name: "",
 		category: "main movement",
+		discipline: "general",
 		bodypart: [],
 		tags: [],
 		favorite: "false",
@@ -149,13 +153,34 @@ export default function CreateLiftModal(props: any): ReactElement {
 								isSubmitting,
 							}) => (
 								<Form>
-									<VStack spacing={4}>
-										<Flex>
-											<Field
-												name="name"
-												component={CFormikLabelInput}
-												label="name"
-											/>
+									<VStack spacing={6}>
+										<Flex
+											align="center"
+											justify="space-around"
+										>
+											<Box w="50%">
+												<Field
+													name="name"
+													component={
+														CFormikLabelInput
+													}
+													label="name"
+												/>
+											</Box>
+											<Box>
+												<Field
+													name="unit"
+													component={FormikSelect}
+													choices={[
+														"lbs",
+														"kilo",
+														"meters",
+														"feet",
+														"laps",
+														"bodyweight",
+													]}
+												/>
+											</Box>
 											<IconButton
 												aria-label="favorite"
 												icon={
@@ -186,8 +211,24 @@ export default function CreateLiftModal(props: any): ReactElement {
 												}}
 											/>
 										</Flex>
-										<Flex w="100%" justify="space-around">
-											<Box w="45%">
+										<Flex w="100%" justify="flex-start">
+											<VStack align="flex-start" mr={4}>
+												<Text>Discipline</Text>
+												<Field
+													name="discipline"
+													component={FormikSelect}
+													choices={[
+														"gereral",
+														"bodybuilding",
+														"powerlifting",
+														"weightlifting",
+														"calisthenics",
+														"sport",
+													]}
+												/>
+											</VStack>
+											<VStack align="flex-start">
+												<Text>Variant</Text>
 												<Field
 													name="category"
 													component={FormikSelect}
@@ -197,41 +238,31 @@ export default function CreateLiftModal(props: any): ReactElement {
 														"warm up",
 														"cardio",
 														"rehab",
-														"sport",
 													]}
 												/>
-											</Box>
-											<Box w="40%">
-												<Field
-													name="unit"
-													component={FormikSelect}
-													choices={[
-														"lbs",
-														"kilo",
-														"meters",
-														"feet",
-														"laps",
-														"bodyweight",
-													]}
-												/>
-											</Box>
+											</VStack>
 										</Flex>
-
-										<HStack spacing={4} wrap="wrap">
-											{body.map((part) => {
-												return (
-													<Field
-														type="checkbox"
-														name="bodypart"
-														value={part.label}
-														component={FormikRadio}
-														part={part}
-														key={part.id}
-													/>
-												);
-											})}
-										</HStack>
-
+										<VStack align="flex-start">
+											<Text fontSize="lg">
+												Muscle Groups
+											</Text>
+											<HStack spacing={4} wrap="wrap">
+												{body.map((part) => {
+													return (
+														<Field
+															type="checkbox"
+															name="bodypart"
+															value={part.label}
+															component={
+																FormikRadio
+															}
+															part={part}
+															key={part.id}
+														/>
+													);
+												})}
+											</HStack>
+										</VStack>
 										<FieldArray
 											name="tags"
 											render={(arrayHelpers) => (
@@ -315,9 +346,9 @@ export default function CreateLiftModal(props: any): ReactElement {
 												Submit
 											</Button>
 										</Box>
-										<pre>
+										{/* <pre>
 											{JSON.stringify(errors, null, 2)}
-										</pre>
+										</pre> */}
 									</VStack>
 								</Form>
 							)}

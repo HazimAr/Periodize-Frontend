@@ -8,14 +8,7 @@ import {
 	useColorModeValue as mode,
 } from "@chakra-ui/react";
 import * as React from "react";
-import {
-	FaClipboardList,
-	FaDumbbell,
-	FaHeart,
-	FaPlus,
-	FaRegBell,
-	FaRegQuestionCircle,
-} from "react-icons/fa";
+import { FaDumbbell, FaPlus, FaRegBell } from "react-icons/fa";
 import { Logo } from "./logo";
 import { NavLink } from "./navlink";
 import { SearchField } from "./searchfield";
@@ -66,11 +59,11 @@ export const Sidebar = (props: FlexProps) => {
 								href="/dashboard/lifts"
 							/>
 							<NavLink
-								label="My Records"
+								label="Personal Records"
 								icon={FaDumbbell}
 								href="/dashboard/records"
 							/>
-							<NavLink
+							{/* <NavLink
 								label="Favorites"
 								icon={FaHeart}
 								href="/dashboard/favorites"
@@ -79,18 +72,18 @@ export const Sidebar = (props: FlexProps) => {
 								label="Public Programs"
 								icon={FaClipboardList}
 								href="/dashboard/publicprograms"
-							/>
+							/> */}
 						</Stack>
 
 						<Divider />
 
 						<Stack spacing="1">
 							<NavLink label="Notifications" icon={FaRegBell} />
-							<NavLink
+							{/* <NavLink
 								label="Help Center"
 								icon={FaRegQuestionCircle}
 								href="/faq"
-							/>
+							/> */}
 						</Stack>
 					</Stack>
 					<Spacer />
@@ -98,12 +91,7 @@ export const Sidebar = (props: FlexProps) => {
 
 				<UserProfile />
 			</Flex>
-			<Box
-				h="100vh"
-				w="320px"
-				// bg="red"
-				display={{ base: "none", md: "block" }}
-			/>
+			<Box h="100vh" w="320px" display={{ base: "none", md: "block" }} />
 		</>
 	);
 };

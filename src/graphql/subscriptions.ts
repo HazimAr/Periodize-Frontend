@@ -13,6 +13,7 @@ export const onCreateLift = /* GraphQL */ `
       favorite
       unit
       owner
+      discipline
       createdAt
       updatedAt
       records {
@@ -36,6 +37,7 @@ export const onCreateLift = /* GraphQL */ `
             favorite
             unit
             owner
+            discipline
             createdAt
             updatedAt
           }
@@ -56,6 +58,7 @@ export const onUpdateLift = /* GraphQL */ `
       favorite
       unit
       owner
+      discipline
       createdAt
       updatedAt
       records {
@@ -79,6 +82,7 @@ export const onUpdateLift = /* GraphQL */ `
             favorite
             unit
             owner
+            discipline
             createdAt
             updatedAt
           }
@@ -99,6 +103,7 @@ export const onDeleteLift = /* GraphQL */ `
       favorite
       unit
       owner
+      discipline
       createdAt
       updatedAt
       records {
@@ -122,6 +127,7 @@ export const onDeleteLift = /* GraphQL */ `
             favorite
             unit
             owner
+            discipline
             createdAt
             updatedAt
           }
@@ -153,6 +159,7 @@ export const onCreateRecord = /* GraphQL */ `
         favorite
         unit
         owner
+        discipline
         createdAt
         updatedAt
         records {
@@ -196,6 +203,7 @@ export const onUpdateRecord = /* GraphQL */ `
         favorite
         unit
         owner
+        discipline
         createdAt
         updatedAt
         records {
@@ -239,6 +247,7 @@ export const onDeleteRecord = /* GraphQL */ `
         favorite
         unit
         owner
+        discipline
         createdAt
         updatedAt
         records {

@@ -11,6 +11,7 @@ export type CreateLiftInput = {
   favorite: string,
   unit: string,
   owner?: string | null,
+  discipline: string,
 };
 
 export type ModelLiftConditionInput = {
@@ -20,6 +21,7 @@ export type ModelLiftConditionInput = {
   tags?: ModelStringInput | null,
   favorite?: ModelStringInput | null,
   unit?: ModelStringInput | null,
+  discipline?: ModelStringInput | null,
   and?: Array< ModelLiftConditionInput | null > | null,
   or?: Array< ModelLiftConditionInput | null > | null,
   not?: ModelLiftConditionInput | null,
@@ -75,6 +77,7 @@ export type Lift = {
   favorite: string,
   unit: string,
   owner?: string | null,
+  discipline: string,
   createdAt: string,
   updatedAt: string,
   records?: ModelRecordConnection | null,
@@ -110,6 +113,7 @@ export type UpdateLiftInput = {
   favorite?: string | null,
   unit?: string | null,
   owner?: string | null,
+  discipline?: string | null,
 };
 
 export type DeleteLiftInput = {
@@ -203,6 +207,7 @@ export type ModelLiftFilterInput = {
   favorite?: ModelStringInput | null,
   unit?: ModelStringInput | null,
   owner?: ModelStringInput | null,
+  discipline?: ModelStringInput | null,
   and?: Array< ModelLiftFilterInput | null > | null,
   or?: Array< ModelLiftFilterInput | null > | null,
   not?: ModelLiftFilterInput | null,
@@ -250,6 +255,7 @@ export type CreateLiftMutation = {
     favorite: string,
     unit: string,
     owner?: string | null,
+    discipline: string,
     createdAt: string,
     updatedAt: string,
     records?:  {
@@ -276,6 +282,7 @@ export type CreateLiftMutation = {
           favorite: string,
           unit: string,
           owner?: string | null,
+          discipline: string,
           createdAt: string,
           updatedAt: string,
         } | null,
@@ -301,6 +308,7 @@ export type UpdateLiftMutation = {
     favorite: string,
     unit: string,
     owner?: string | null,
+    discipline: string,
     createdAt: string,
     updatedAt: string,
     records?:  {
@@ -327,6 +335,7 @@ export type UpdateLiftMutation = {
           favorite: string,
           unit: string,
           owner?: string | null,
+          discipline: string,
           createdAt: string,
           updatedAt: string,
         } | null,
@@ -352,6 +361,7 @@ export type DeleteLiftMutation = {
     favorite: string,
     unit: string,
     owner?: string | null,
+    discipline: string,
     createdAt: string,
     updatedAt: string,
     records?:  {
@@ -378,6 +388,7 @@ export type DeleteLiftMutation = {
           favorite: string,
           unit: string,
           owner?: string | null,
+          discipline: string,
           createdAt: string,
           updatedAt: string,
         } | null,
@@ -415,6 +426,7 @@ export type CreateRecordMutation = {
       favorite: string,
       unit: string,
       owner?: string | null,
+      discipline: string,
       createdAt: string,
       updatedAt: string,
       records?:  {
@@ -466,6 +478,7 @@ export type UpdateRecordMutation = {
       favorite: string,
       unit: string,
       owner?: string | null,
+      discipline: string,
       createdAt: string,
       updatedAt: string,
       records?:  {
@@ -517,6 +530,7 @@ export type DeleteRecordMutation = {
       favorite: string,
       unit: string,
       owner?: string | null,
+      discipline: string,
       createdAt: string,
       updatedAt: string,
       records?:  {
@@ -555,6 +569,7 @@ export type GetLiftQuery = {
     favorite: string,
     unit: string,
     owner?: string | null,
+    discipline: string,
     createdAt: string,
     updatedAt: string,
     records?:  {
@@ -581,6 +596,7 @@ export type GetLiftQuery = {
           favorite: string,
           unit: string,
           owner?: string | null,
+          discipline: string,
           createdAt: string,
           updatedAt: string,
         } | null,
@@ -609,6 +625,7 @@ export type ListLiftsQuery = {
       favorite: string,
       unit: string,
       owner?: string | null,
+      discipline: string,
       createdAt: string,
       updatedAt: string,
       records?:  {
@@ -654,6 +671,7 @@ export type LiftsByUserQuery = {
       favorite: string,
       unit: string,
       owner?: string | null,
+      discipline: string,
       createdAt: string,
       updatedAt: string,
       records?:  {
@@ -705,6 +723,7 @@ export type GetRecordQuery = {
       favorite: string,
       unit: string,
       owner?: string | null,
+      discipline: string,
       createdAt: string,
       updatedAt: string,
       records?:  {
@@ -759,6 +778,7 @@ export type ListRecordsQuery = {
         favorite: string,
         unit: string,
         owner?: string | null,
+        discipline: string,
         createdAt: string,
         updatedAt: string,
         records?:  {
@@ -804,6 +824,7 @@ export type RecordsByUserQuery = {
         favorite: string,
         unit: string,
         owner?: string | null,
+        discipline: string,
         createdAt: string,
         updatedAt: string,
         records?:  {
@@ -827,6 +848,7 @@ export type OnCreateLiftSubscription = {
     favorite: string,
     unit: string,
     owner?: string | null,
+    discipline: string,
     createdAt: string,
     updatedAt: string,
     records?:  {
@@ -853,6 +875,7 @@ export type OnCreateLiftSubscription = {
           favorite: string,
           unit: string,
           owner?: string | null,
+          discipline: string,
           createdAt: string,
           updatedAt: string,
         } | null,
@@ -873,6 +896,7 @@ export type OnUpdateLiftSubscription = {
     favorite: string,
     unit: string,
     owner?: string | null,
+    discipline: string,
     createdAt: string,
     updatedAt: string,
     records?:  {
@@ -899,6 +923,7 @@ export type OnUpdateLiftSubscription = {
           favorite: string,
           unit: string,
           owner?: string | null,
+          discipline: string,
           createdAt: string,
           updatedAt: string,
         } | null,
@@ -919,6 +944,7 @@ export type OnDeleteLiftSubscription = {
     favorite: string,
     unit: string,
     owner?: string | null,
+    discipline: string,
     createdAt: string,
     updatedAt: string,
     records?:  {
@@ -945,6 +971,7 @@ export type OnDeleteLiftSubscription = {
           favorite: string,
           unit: string,
           owner?: string | null,
+          discipline: string,
           createdAt: string,
           updatedAt: string,
         } | null,
@@ -977,6 +1004,7 @@ export type OnCreateRecordSubscription = {
       favorite: string,
       unit: string,
       owner?: string | null,
+      discipline: string,
       createdAt: string,
       updatedAt: string,
       records?:  {
@@ -1023,6 +1051,7 @@ export type OnUpdateRecordSubscription = {
       favorite: string,
       unit: string,
       owner?: string | null,
+      discipline: string,
       createdAt: string,
       updatedAt: string,
       records?:  {
@@ -1069,6 +1098,7 @@ export type OnDeleteRecordSubscription = {
       favorite: string,
       unit: string,
       owner?: string | null,
+      discipline: string,
       createdAt: string,
       updatedAt: string,
       records?:  {
