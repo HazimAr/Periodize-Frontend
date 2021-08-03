@@ -18,6 +18,7 @@ import {
 	ModalContent,
 	ModalOverlay,
 	Stack,
+	Text,
 	useDisclosure,
 	VStack,
 } from "@chakra-ui/react";
@@ -26,7 +27,7 @@ import { API } from "aws-amplify";
 import { Field, Form, Formik } from "formik";
 import Fuse from "fuse.js";
 import { createRecord } from "graphql/mutations";
-import React, { ReactElement, useState } from "react";
+import React, { ReactElement, useEffect, useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { BsSearch } from "react-icons/bs";
@@ -54,6 +55,7 @@ export default function PRModal({ lifts }: Props): ReactElement {
 	const { isOpen, onOpen, onClose } = useDisclosure();
 	const [startDate, setStartDate] = useState(new Date());
 	const [selectedLift, setSelectedLift] = useState<Lift | null>(null);
+	const [error, showError] = useState(false);
 	const [displayOptions, setDisplayOptions] = useState(false);
 	const [query, setQuery] = useState("");
 
@@ -77,6 +79,11 @@ export default function PRModal({ lifts }: Props): ReactElement {
 		setSelectedLift(lift);
 	};
 
+	function handleError() {
+		showError(true);
+		setTimeout(() => showError(false), 3000);
+	}
+	useEffect(() => {}, [error]);
 	// useEffect(() => {
 	// 	if (selectedLift.name === query) {
 	// 		setDisplayOptions(false);
@@ -102,6 +109,10 @@ export default function PRModal({ lifts }: Props): ReactElement {
 							initialValues={initialValues}
 							onSubmit={async (values, actions) => {
 								// onClose();
+								if (!selectedLift) {
+									handleError();
+									return;
+								}
 								try {
 									console.log(
 										"form values: ",
@@ -156,7 +167,10 @@ export default function PRModal({ lifts }: Props): ReactElement {
 											<Heading size="md" my="20px">
 												Add 1RM
 											</Heading>
-											<InputGroup size="md">
+											<InputGroup
+												size="md"
+												borderColor={error ? "red" : ""}
+											>
 												<InputLeftElement pointerEvents="none">
 													<BsSearch opacity={0.5} />
 												</InputLeftElement>
@@ -197,6 +211,9 @@ export default function PRModal({ lifts }: Props): ReactElement {
 															{liftResults.map(
 																(lift) => (
 																	<Box
+																		key={
+																			lift.id
+																		}
 																		py={1}
 																		as="button"
 																		_hover={{
@@ -270,6 +287,13 @@ export default function PRModal({ lifts }: Props): ReactElement {
 													</Button>
 												</Box>
 											</Box>
+											{error ? (
+												<Box>
+													<Text color="red">
+														Chose a lift
+													</Text>
+												</Box>
+											) : null}
 										</VStack>
 									</Box>
 								</Form>

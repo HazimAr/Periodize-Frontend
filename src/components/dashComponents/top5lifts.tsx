@@ -1,4 +1,4 @@
-import { Box, Heading } from "@chakra-ui/react";
+import { Box, Heading, Link } from "@chakra-ui/react";
 import { Lift } from "API";
 
 interface Props {
@@ -22,7 +22,9 @@ export default function Top5Lifts({ lifts }: Props): JSX.Element {
 			</Heading>
 			{sorted.map((lift, idx: number) => (
 				<Box key={lift.id}>
-					#{idx + 1}: {lift.name}
+					<Link href={`/dashboard/lifts/${lift.id}`}>
+						{lift.name}
+					</Link>
 				</Box>
 			))}
 		</Box>

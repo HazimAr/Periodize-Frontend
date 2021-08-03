@@ -26,6 +26,22 @@ const catArr = [
 	"rehab",
 	"sport",
 ];
+
+const bodyArr = [
+	"full body",
+	"upper",
+	"lower",
+	"legs",
+	"back",
+	"chest",
+	"arms",
+	"biceps",
+	"triceps",
+	"abs",
+	"glutes",
+	"forearms",
+	"cardio",
+];
 function findPR(records: Record[]) {
 	// const indexes = []
 	//find record with highest load if tie priority: reps, sets
@@ -42,7 +58,7 @@ function findPR(records: Record[]) {
 			greatest = records[i];
 		}
 	}
-	console.log("PR record: ", greatest);
+
 	return greatest;
 }
 export default function PersonalRecord({ lifts }: Props): ReactElement {
@@ -53,33 +69,35 @@ export default function PersonalRecord({ lifts }: Props): ReactElement {
 		(lift) =>
 			lift.records.items !== undefined && lift.records.items.length > 0
 	);
-	console.log(prList);
-
+	// console.log(prList);
+	const favList = prList.filter((lift) => lift.favorite === "true");
 	return (
 		<Container maxW={{ base: "lg" }}>
-			<Heading>Personal Records</Heading>
+			<Flex align="center" justify="center" mb="16px">
+				<Heading mr="16px">Personal Records</Heading>
 
-			<PRModal lifts={lifts} />
+				<PRModal lifts={lifts} />
+			</Flex>
+
 			<Box>
 				<Tabs>
 					<TabList>
-						<Tab>All</Tab>
-						<Tab>Cat</Tab>
-						<Tab>Movement</Tab>
-						<Tab></Tab>
+						<Tab>Category</Tab>
+						<Tab>Bodypart</Tab>
+						<Tab>Favorites</Tab>
 					</TabList>
 
 					<TabPanels>
 						<TabPanel>
 							<Box>
-								<Stack as="ul" spacing="4">
+								<Stack as="ul" spacing="3">
 									{catArr.map((cat) => {
 										return prList.filter(
 											(l) => l.category === cat
 										).length > 0 ? (
 											<Box textAlign="left">
-												<Heading>{cat}</Heading>
-												<VStack>
+												<Heading my={3}>{cat}</Heading>
+												<VStack spacing={3}>
 													{prList
 														.filter(
 															(l) =>
@@ -96,6 +114,70 @@ export default function PersonalRecord({ lifts }: Props): ReactElement {
 																	flex="1"
 																	textAlign="left"
 																	w="100%"
+																	key={
+																		lift.id
+																	}
+																>
+																	<Flex
+																		justify="space-between"
+																		textAlign="left"
+																		w="100%"
+																	>
+																		<Text>
+																			{
+																				lift.name
+																			}
+																		</Text>
+																		<Text>
+																			{
+																				pr.reps
+																			}{" "}
+																			x{" "}
+																			{
+																				pr.load
+																			}
+																		</Text>
+																	</Flex>
+																</Box>
+															);
+														})}
+												</VStack>
+											</Box>
+										) : null;
+									})}
+								</Stack>
+							</Box>
+						</TabPanel>
+
+						<TabPanel>
+							<Box>
+								<Stack as="ul" spacing="3">
+									{bodyArr.map((body) => {
+										return prList.filter((l) =>
+											l.bodypart.includes(body)
+										).length > 0 ? (
+											<Box textAlign="left">
+												<Heading my={3}>{body}</Heading>
+												<VStack spacing={3}>
+													{prList
+														.filter((l) =>
+															l.bodypart.includes(
+																body
+															)
+														)
+														.map((lift) => {
+															const pr = findPR(
+																lift.records
+																	.items
+															);
+															return (
+																<Box
+																	flex="1"
+																	textAlign="left"
+																	w="100%"
+																	key={
+																		lift.id
+																	}
 																>
 																	<Flex
 																		justify="space-between"
@@ -128,10 +210,43 @@ export default function PersonalRecord({ lifts }: Props): ReactElement {
 							</Box>
 						</TabPanel>
 						<TabPanel>
-							<p>two!</p>
-						</TabPanel>
-						<TabPanel>
-							<p>three!</p>
+							<Box>
+								<Stack as="ul" spacing="3">
+									{favList.length > 0 ? (
+										<Box>
+											{favList.map((lift) => {
+												const pr = findPR(
+													lift.records.items
+												);
+												return (
+													<Box
+														flex="1"
+														textAlign="left"
+														w="100%"
+														key={lift.id}
+													>
+														<Flex
+															justify="space-between"
+															textAlign="left"
+															w="100%"
+														>
+															<Text>
+																{lift.name}
+															</Text>
+															<Text>
+																{pr.reps} x{" "}
+																{pr.load}
+															</Text>
+														</Flex>
+													</Box>
+												);
+											})}
+										</Box>
+									) : (
+										<Box>no favorites</Box>
+									)}
+								</Stack>
+							</Box>
 						</TabPanel>
 					</TabPanels>
 				</Tabs>

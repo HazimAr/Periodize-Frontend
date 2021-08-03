@@ -18,10 +18,10 @@ import {
 	VStack,
 } from "@chakra-ui/react";
 import RecordsInAccordian from "@components/lifts/recordsInAccordian";
+import { Lift } from "API";
 import Fuse from "fuse.js";
 import React, { ReactElement, useState } from "react";
 import { BsSearch } from "react-icons/bs";
-import { Lift } from "API";
 import CreateRecordModal from "../records/createRecordModal";
 import CreateLiftModal from "./createLiftModal";
 import DeleteLiftModal from "./deleteLiftModal";
@@ -53,35 +53,34 @@ export default function LiftAccordion({
 	return (
 		<Box h="100%">
 			<Flex justify="space-between" align="center">
-				<Box w="85%">
-					<InputGroup size="lg">
-						<InputLeftElement pointerEvents="none">
-							<BsSearch opacity={0.5} />
-						</InputLeftElement>
+				<InputGroup size="lg">
+					<InputLeftElement pointerEvents="none">
+						<BsSearch opacity={0.5} />
+					</InputLeftElement>
 
-						<Input
-							rounded="md"
-							placeholder="Search lifts by name, muscle group, tags, favorite"
-							_placeholder={{
-								opacity: 1,
-							}}
-							value={query}
-							onChange={handleOnSearch}
+					<Input
+						rounded="md"
+						placeholder="Search lifts by name, muscle group, tags, favorite"
+						_placeholder={{
+							opacity: 1,
+						}}
+						value={query}
+						onChange={handleOnSearch}
+					/>
+					<InputRightElement>
+						<IconButton
+							aria-label="clear search"
+							icon={<CloseIcon />}
+							onClick={() => setQuery("")}
+							_focus={{ outline: "none" }}
+							variant="ghost"
 						/>
-						<InputRightElement>
-							<IconButton
-								aria-label="clear search"
-								icon={<CloseIcon />}
-								onClick={() => setQuery("")}
-								_focus={{ outline: "none" }}
-								variant="ghost"
-							/>
-						</InputRightElement>
-					</InputGroup>
-				</Box>
-				<Flex>
+					</InputRightElement>
+				</InputGroup>
+
+				{/* <Flex>
 					<CreateLiftModal lifts={lifts} setLifts={setLifts} />
-				</Flex>
+				</Flex> */}
 			</Flex>
 
 			{!lifts[0] ? (

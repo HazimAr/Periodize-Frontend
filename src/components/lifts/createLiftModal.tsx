@@ -1,4 +1,5 @@
 import { GRAPHQL_AUTH_MODE } from "@aws-amplify/api";
+import { AddIcon } from "@chakra-ui/icons";
 import {
 	Box,
 	Button,
@@ -83,7 +84,16 @@ export default function CreateLiftModal(props: any): ReactElement {
 	console.log(props.lifts);
 	return (
 		<>
-			<Button onClick={onOpen}>Add Lift</Button>
+			{/* <Button onClick={onOpen}>Add Lift</Button> */}
+			<IconButton
+				aria-label="add lift"
+				onClick={onOpen}
+				size="sm"
+				icon={<AddIcon />}
+				_focus={{ outline: "none" }}
+				variant="ghost"
+				zIndex={100}
+			/>
 			<Modal onClose={onClose} isOpen={isOpen}>
 				<ModalOverlay />
 				<ModalContent>

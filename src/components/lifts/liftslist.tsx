@@ -1,9 +1,10 @@
-import { Box, Container, Heading, Stack } from "@chakra-ui/react";
+import { Box, Container, Flex, Heading, Stack } from "@chakra-ui/react";
 import { API } from "aws-amplify";
 import React, { ReactElement, useState } from "react";
 import { Lift, LiftsByUserQuery } from "../../API";
 import { useUser } from "../../context/AuthContext";
 import { liftsByUser } from "../../graphql/queries";
+import CreateLiftModal from "./createLiftModal";
 import LiftAccordion from "./liftAccordion";
 export default function LiftsList(): ReactElement {
 	const { user } = useUser();
@@ -39,7 +40,10 @@ export default function LiftsList(): ReactElement {
 	console.log("My lifts:", lifts);
 	return (
 		<Container maxW="container.md">
-			<Heading>My Lifts</Heading>
+			<Flex align="center" justify="center">
+				<Heading mr="16px">My Lifts</Heading>
+				<CreateLiftModal lifts={lifts} setLifts={setLifts} />
+			</Flex>
 
 			<Stack as="ul" spacing="4" my="4">
 				<LiftAccordion lifts={lifts} setLifts={setLifts} />
