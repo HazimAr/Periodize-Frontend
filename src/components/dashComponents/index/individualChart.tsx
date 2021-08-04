@@ -33,7 +33,7 @@ export default function IndividualChart({ lift }: { lift: Lift }): JSX.Element {
 		return Date.parse(b.performedDate) - Date.parse(a.performedDate);
 	});
 
-	const data = lift.records.items.map((record: Record) => {
+	const data = recordsByDate.map((record: Record) => {
 		return [
 			formatDistanceToNowStrict(parseISO(record.performedDate)),
 			record.load,
@@ -108,7 +108,7 @@ export default function IndividualChart({ lift }: { lift: Lift }): JSX.Element {
 	return (
 		<>
 			<Heading as="h2" size="lg" mb={3} textAlign="left">
-				Top Text
+				Load x Time
 			</Heading>
 			<HighchartsReact highcharts={Highcharts} options={options} />
 		</>
