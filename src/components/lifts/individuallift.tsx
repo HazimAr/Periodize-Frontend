@@ -16,6 +16,7 @@ import RecordTable from "../records/recordTable";
 import BodyPartTag from "./bodyparttag";
 import UpdateLiftModal from "./updateLiftModal";
 import LoadXTimeChart from "@components/dashComponents/index/loadXTimeChart";
+import VolumeXTimeChart from "@components/dashComponents/index/volumeXTimeChart";
 interface Props {
 	lift: Lift;
 }
@@ -98,6 +99,7 @@ export default function IndividualLift({ lift }: Props): ReactElement {
 			)}
 
 			<LoadXTimeChart lift={lift} />
+			<VolumeXTimeChart lift={lift} />
 		</Container>
 	);
 }
