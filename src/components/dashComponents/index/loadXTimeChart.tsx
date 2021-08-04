@@ -28,7 +28,7 @@ const theme = {
 	yLineWidth: 0.17,
 };
 
-export default function IndividualChart({ lift }: { lift: Lift }): JSX.Element {
+export default function LoadXTimeChart({ lift }: { lift: Lift }): JSX.Element {
 	const recordsByDate = lift.records.items.sort((a: Record, b: Record) => {
 		return Date.parse(b.performedDate) - Date.parse(a.performedDate);
 	});
