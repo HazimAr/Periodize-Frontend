@@ -79,6 +79,7 @@ export default function DashHome(): ReactElement {
 
 				<GridItem colSpan={2}>
 					<Charts />
+					
 				</GridItem>
 			</SimpleGrid>
 		</Layout>

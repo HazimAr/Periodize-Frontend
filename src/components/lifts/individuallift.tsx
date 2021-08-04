@@ -15,7 +15,7 @@ import React, { ReactElement } from "react";
 import RecordTable from "../records/recordTable";
 import BodyPartTag from "./bodyparttag";
 import UpdateLiftModal from "./updateLiftModal";
-
+import IndividualChart from "@components/dashComponents/index/individualChart";
 interface Props {
 	lift: Lift;
 }
@@ -96,6 +96,8 @@ export default function IndividualLift({ lift }: Props): ReactElement {
 			) : (
 				<Box>No Records</Box>
 			)}
+
+			<IndividualChart lift={lift}/>
 		</Container>
 	);
 }
