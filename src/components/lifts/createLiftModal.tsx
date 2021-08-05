@@ -79,6 +79,7 @@ export default function CreateLiftModal(props: any): ReactElement {
 		{ label: "legs", e: "🦵🏻", id: "4" },
 		{ label: "back", e: "🦍", id: "5" },
 		{ label: "chest", e: "🐄", id: "6" },
+		{ label: "shoulders", e: "🐄", id: "12" },
 		{ label: "arms", e: "💪🏻", id: "7" },
 		{ label: "glutes", e: "🍑", id: "8" },
 		{ label: "abs", e: "😳", id: "9" },
@@ -218,7 +219,7 @@ export default function CreateLiftModal(props: any): ReactElement {
 													name="discipline"
 													component={FormikSelect}
 													choices={[
-														"gereral",
+														"general",
 														"bodybuilding",
 														"powerlifting",
 														"weightlifting",

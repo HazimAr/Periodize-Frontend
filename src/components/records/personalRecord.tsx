@@ -3,6 +3,7 @@ import {
 	Container,
 	Flex,
 	Heading,
+	Icon,
 	Stack,
 	Tab,
 	TabList,
@@ -14,6 +15,7 @@ import {
 } from "@chakra-ui/react";
 import { Lift, Record } from "API";
 import React, { ReactElement } from "react";
+import { BiBody, BiListUl } from "react-icons/bi";
 import PRModal from "./prModal";
 interface Props {
 	lifts: Lift[];
@@ -82,9 +84,15 @@ export default function PersonalRecord({ lifts }: Props): ReactElement {
 			<Box>
 				<Tabs>
 					<TabList>
-						<Tab>Category</Tab>
-						<Tab>Bodypart</Tab>
-						<Tab>Favorites</Tab>
+						<TabList>
+							<Tab>
+								<Icon as={BiListUl} />
+							</Tab>
+							<Tab>
+								<Icon as={BiBody} />
+							</Tab>
+							<Tab>All</Tab>
+						</TabList>
 					</TabList>
 
 					<TabPanels>

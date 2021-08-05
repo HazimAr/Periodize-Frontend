@@ -1,19 +1,14 @@
-import { CloseIcon, EditIcon } from "@chakra-ui/icons";
+import { CloseIcon } from "@chakra-ui/icons";
 import {
-	Accordion,
-	AccordionButton,
-	AccordionIcon,
-	AccordionItem,
-	AccordionPanel,
 	Box,
 	Center,
 	Flex,
+	Icon,
 	IconButton,
 	Input,
 	InputGroup,
 	InputLeftElement,
 	InputRightElement,
-	Link,
 	Tab,
 	TabList,
 	TabPanel,
@@ -22,14 +17,15 @@ import {
 	Text,
 	VStack,
 } from "@chakra-ui/react";
-import RecordsInAccordian from "@components/lifts/recordsInAccordian";
 import { Lift } from "API";
 import Fuse from "fuse.js";
 import React, { ReactElement, useState } from "react";
+import { BiBody, BiListUl } from "react-icons/bi";
 import { BsSearch } from "react-icons/bs";
-import CreateRecordModal from "../records/createRecordModal";
+import BodyAccordion from "./bodyAccordion";
+import CategoryAccordion from "./categoryAccordion";
 import CreateLiftModal from "./createLiftModal";
-import DeleteLiftModal from "./deleteLiftModal";
+import FullLiftAccordion from "./fullLiftAccordion";
 interface Props {
 	lifts: Lift[];
 	setLifts: any;
@@ -40,7 +36,39 @@ export default function LiftAccordion({
 	setLifts,
 }: Props): ReactElement {
 	console.log(lifts);
+	const catArr = [
+		"main movement",
+		"accessory",
+		"warm up",
+		"cardio",
+		"rehab",
+		"sport",
+	];
 
+	const bodyArr = [
+		"full body",
+		"upper",
+		"lower",
+		"legs",
+		"back",
+		"chest",
+		"arms",
+		"biceps",
+		"triceps",
+		"abs",
+		"glutes",
+		"forearms",
+		"cardio",
+	];
+
+	const discArr = [
+		"bodybuilding",
+		"powerlifting",
+		"weightlifting",
+		"general",
+		"calisthenics",
+		"sport",
+	];
 	const [query, setQuery] = useState("");
 
 	const fuse = new Fuse(lifts, {
@@ -96,95 +124,31 @@ export default function LiftAccordion({
 					</VStack>
 				</Center>
 			) : (
-				<Box p="12px" borderRadius="md" my={4}>
+				<Box borderRadius="md" mt={2}>
 					<Tabs>
 						<TabList>
+							<Tab>
+								<Icon as={BiListUl} />
+							</Tab>
+							<Tab>
+								<Icon as={BiBody} />
+							</Tab>
 							<Tab>All</Tab>
-							<Tab>Discipline</Tab>
-							<Tab>Category</Tab>
-							<Tab>Bodypart</Tab>
-							<Tab>Favorites</Tab>
 						</TabList>
 
-						<TabPanels>
-							<TabPanel></TabPanel>
-							<TabPanel></TabPanel>
-							<TabPanel></TabPanel>
-							<TabPanel></TabPanel>
-							<TabPanel></TabPanel>
+						<TabPanels p={0}>
+							<TabPanel p={0}>
+								<CategoryAccordion lifts={liftResults} />
+							</TabPanel>
+							<TabPanel p={0}>
+								<BodyAccordion lifts={liftResults} />
+							</TabPanel>
+
+							<TabPanel p={0}>
+								<FullLiftAccordion lifts={liftResults} />
+							</TabPanel>
 						</TabPanels>
 					</Tabs>
-					<Accordion allowToggle allowMultiple>
-						{liftResults.map((lift) => (
-							<AccordionItem key={lift.id} py={2}>
-								<h2>
-									<Flex justify="space-between">
-										<Box textAlign="left">
-											<Link
-												href={`/dashboard/lifts/${lift.id}`}
-											>
-												<Text fontSize="xl">
-													{lift.name.replace(
-														/(^\w{1})|(\s+\w{1})/g,
-														(letter) =>
-															letter.toUpperCase()
-													)}
-												</Text>
-											</Link>
-										</Box>
-
-										<Flex>
-											<Flex>
-												<Link
-													href={`/dashboard/lifts/${lift.id}`}
-												>
-													<IconButton
-														aria-label="edit lift"
-														size="sm"
-														icon={<EditIcon />}
-														_focus={{
-															outline: "none",
-														}}
-														variant="ghost"
-														zIndex={100}
-													/>
-												</Link>
-
-												<CreateRecordModal
-													lift={lift}
-													lifts={lifts}
-												/>
-												<DeleteLiftModal lift={lift} />
-											</Flex>
-
-											<AccordionButton
-												w="25px"
-												p={0}
-												m={0}
-												_focus={{ outline: "none" }}
-											>
-												<AccordionIcon />
-											</AccordionButton>
-										</Flex>
-									</Flex>
-								</h2>
-								<AccordionPanel pb={4}>
-									<Box>
-										{lift.records.items.length ? (
-											//get most recent 3 records
-											<Box>
-												<RecordsInAccordian
-													lift={lift}
-												/>
-											</Box>
-										) : (
-											<Box>No records</Box>
-										)}
-									</Box>
-								</AccordionPanel>
-							</AccordionItem>
-						))}
-					</Accordion>
 				</Box>
 			)}
 		</Box>
