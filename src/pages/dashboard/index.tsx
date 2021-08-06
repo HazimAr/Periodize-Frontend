@@ -1,9 +1,10 @@
-import { Box, GridItem, SimpleGrid, VisuallyHidden } from "@chakra-ui/react";
+import { Box, HStack, Stack, VisuallyHidden } from "@chakra-ui/react";
 import Layout from "@components/dashboard/layout";
 import Charts from "@components/dashComponents/index/charts";
 import Welcome from "@components/dashComponents/index/welcome";
 import MostRecentRecords from "@components/dashComponents/mostRecentRecords";
 import RecentRecordVolumes from "@components/dashComponents/recentRecordVolumes";
+import GraphsForTopLift from "@components/dashComponents/index/graphsForTopLift";
 import { useUser } from "@context/AuthContext";
 import { Lift, LiftsByUserQuery, Record, RecordsByUserQuery } from "API";
 import { API } from "aws-amplify";
@@ -26,6 +27,7 @@ export default function DashHome(): ReactElement {
 			data: LiftsByUserQuery;
 			errors: any;
 		};
+		console.log(myLifts)
 		if (myLifts.data) {
 			setLifts(myLifts.data.liftsByUser.items as Lift[]);
 			return myLifts.data.liftsByUser.items as Lift[];
@@ -61,27 +63,28 @@ export default function DashHome(): ReactElement {
 		setHasUser(true);
 	}
 	//display dashboard UI ( check if user has lifts / records => show data)
+	console.log(lifts)
 	return (
 		<Layout>
-			<VisuallyHidden>
-				{/* put all your component classes that generate empty tags here */}
-				<Welcome />
-			</VisuallyHidden>
-			<SimpleGrid columns={2} spacing={5} width="100%">
+			<Stack w="100%">
+				<VisuallyHidden>
+					{/* put all your component classes that generate empty tags here */}
+					<Welcome />
+				</VisuallyHidden>
+
 				{/* <Top5Lifts lifts={lifts} /> */}
 
 				{records.length > 0 ? (
-					<Box>
+					<HStack>
 						<MostRecentRecords records={records} />
 						<RecentRecordVolumes records={records} />
-					</Box>
+					</HStack>
 				) : null}
+				
+				{lifts?<GraphsForTopLift lifts={lifts}/>:null}
 
-				<GridItem colSpan={2}>
-					<Charts />
-					
-				</GridItem>
-			</SimpleGrid>
+				<Charts />
+			</Stack>
 		</Layout>
 	);
 }

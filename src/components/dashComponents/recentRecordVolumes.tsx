@@ -28,38 +28,42 @@ export default function recentRecordVolumes({ records }: Props): JSX.Element {
 	});
 
 	return (
-		<Box borderRadius={25} borderColor="white" borderWidth={1} p={3}>
-			<Box>
-				<Heading as="h2" size="lg" mb={3}>
-					Volumes from the past week
-				</Heading>
-				<Table size="sm" variant="striped" colorScheme="purple">
-					<Thead>
-						<Tr>
-							<Th>Lift</Th>
-							<Th>Date</Th>
-							<Th>Volume</Th>
+		<Box
+			borderRadius={25}
+			borderColor="white"
+			borderWidth={1}
+			p={3}
+			w="100%"
+		>
+			<Heading as="h2" size="lg" mb={3}>
+				Volumes from the past week
+			</Heading>
+			<Table size="sm" variant="striped" colorScheme="purple">
+				<Thead>
+					<Tr>
+						<Th>Lift</Th>
+						<Th>Date</Th>
+						<Th>Volume</Th>
+					</Tr>
+				</Thead>
+				<Tbody>
+					{recordsPastWeek.map((record) => (
+						<Tr key={record.id}>
+							<Td>{record.lift.name}</Td>
+							<Td>
+								{formatDistanceToNow(
+									parseISO(record.performedDate)
+								)}{" "}
+								ago
+							</Td>
+							<Td>
+								{record.sets * record.reps * record.load}{" "}
+								{record.lift.unit}
+							</Td>
 						</Tr>
-					</Thead>
-					<Tbody>
-						{recordsPastWeek.map((record) => (
-							<Tr key={record.id}>
-								<Td>{record.lift.name}</Td>
-								<Td>
-									{formatDistanceToNow(
-										parseISO(record.performedDate)
-									)}{" "}
-									ago
-								</Td>
-								<Td>
-									{record.sets * record.reps * record.load}{" "}
-									{record.lift.unit}
-								</Td>
-							</Tr>
-						))}
-					</Tbody>
-				</Table>
-			</Box>
+					))}
+				</Tbody>
+			</Table>
 		</Box>
 	);
 }

@@ -1,4 +1,4 @@
-import { Heading } from "@chakra-ui/react";
+import { Heading, Stack } from "@chakra-ui/react";
 import { Lift, Record } from "API";
 import formatDistanceToNowStrict from "date-fns/formatDistanceToNowStrict";
 import parseISO from "date-fns/parseISO";
@@ -106,11 +106,11 @@ export default function LoadXTimeChart({ lift }: { lift: Lift }): JSX.Element {
 	};
 
 	return (
-		<>
+		<Stack minW="100%">
 			<Heading as="h2" size="lg" mb={3} textAlign="left">
 				Load x Time
 			</Heading>
 			<HighchartsReact highcharts={Highcharts} options={options} />
-		</>
+		</Stack>
 	);
 }

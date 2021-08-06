@@ -6,7 +6,10 @@ import {
 	HStack,
 	Tag,
 	TagLabel,
+	VStack,
 } from "@chakra-ui/react";
+import LoadXTimeChart from "@components/dashComponents/index/loadXTimeChart";
+import VolumeXTimeChart from "@components/dashComponents/index/volumeXTimeChart";
 import CreateRecordFormModal from "@components/records/createRecordModal";
 import { Lift, Record } from "API";
 import { format } from "date-fns";
@@ -15,8 +18,6 @@ import React, { ReactElement } from "react";
 import RecordTable from "../records/recordTable";
 import BodyPartTag from "./bodyparttag";
 import UpdateLiftModal from "./updateLiftModal";
-import LoadXTimeChart from "@components/dashComponents/index/loadXTimeChart";
-import VolumeXTimeChart from "@components/dashComponents/index/volumeXTimeChart";
 interface Props {
 	lift: Lift;
 }
@@ -92,14 +93,18 @@ export default function IndividualLift({ lift }: Props): ReactElement {
 			</HStack>
 			{pr ? <Box>PR: {`${pr.sets}x${pr.reps} @ ${pr.load}`}</Box> : null}
 
-			{lift.records.items[0] ? (
-				<RecordTable records={formattedRecords} />
-			) : (
-				<Box>No Records</Box>
-			)}
+			<VStack>
+				{lift.records.items[0] ? (
+					<RecordTable records={formattedRecords} />
+				) : (
+					<Box>No Records</Box>
+				)}
+			</VStack>
 
-			<LoadXTimeChart lift={lift} />
-			<VolumeXTimeChart lift={lift} />
+			<HStack justify="center">
+				<LoadXTimeChart lift={lift} />
+				<VolumeXTimeChart lift={lift} />
+			</HStack>
 		</Container>
 	);
 }

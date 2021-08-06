@@ -27,33 +27,37 @@ export default function MostRecentRecords({ records }: Props): JSX.Element {
 		.slice(0, 5);
 	console.log(records);
 	return (
-		<Box>
-			<Box borderRadius={25} borderColor="white" borderWidth={1} p={3}>
-				<Heading as="h2" size="lg" mb={3}>
-					Recent Records
-				</Heading>
-				<Table size="sm" variant="striped" colorScheme="purple">
-					<Thead>
-						<Tr>
-							<Th>Lift</Th>
-							<Th>Date</Th>
+		<Box
+			borderRadius={25}
+			borderColor="white"
+			borderWidth={1}
+			p={3}
+			w="100%"
+		>
+			<Heading as="h2" size="lg" mb={3}>
+				Recent Records
+			</Heading>
+			<Table size="sm" variant="striped" colorScheme="purple">
+				<Thead>
+					<Tr>
+						<Th>Lift</Th>
+						<Th>Date</Th>
+					</Tr>
+				</Thead>
+				<Tbody>
+					{sortedRecords.map((record) => (
+						<Tr key={record.id}>
+							<Td>{record.lift.name}</Td>
+							<Td>
+								{formatDistanceToNow(
+									parseISO(record.performedDate)
+								)}{" "}
+								ago
+							</Td>
 						</Tr>
-					</Thead>
-					<Tbody>
-						{sortedRecords.map((record) => (
-							<Tr key={record.id}>
-								<Td>{record.lift.name}</Td>
-								<Td>
-									{formatDistanceToNow(
-										parseISO(record.performedDate)
-									)}{" "}
-									ago
-								</Td>
-							</Tr>
-						))}
-					</Tbody>
-				</Table>
-			</Box>
+					))}
+				</Tbody>
+			</Table>
 		</Box>
 	);
 }

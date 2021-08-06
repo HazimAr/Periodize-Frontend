@@ -1,13 +1,9 @@
-import { Heading } from "@chakra-ui/react";
+import { Heading, Stack } from "@chakra-ui/react";
 import { Lift, Record } from "API";
 import formatDistanceToNowStrict from "date-fns/formatDistanceToNowStrict";
 import parseISO from "date-fns/parseISO";
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
-
-interface Props {
-	lifts: Lift[];
-}
 
 const theme = {
 	// Blue Theme
@@ -106,11 +102,11 @@ export default function VolumeXTimeChart({ lift }: { lift: Lift }): JSX.Element 
 	};
 
 	return (
-		<>
+		<Stack minW="100%">
 			<Heading as="h2" size="lg" mb={3} textAlign="left">
 				Volume x Time
 			</Heading>
 			<HighchartsReact highcharts={Highcharts} options={options} />
-		</>
+		</Stack>
 	);
 }
