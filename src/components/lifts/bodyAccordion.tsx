@@ -18,8 +18,12 @@ import CreateRecordModal from "../records/createRecordModal";
 import DeleteLiftModal from "./deleteLiftModal";
 interface Props {
 	lifts: Lift[];
+	fetchMyLifts: any;
 }
-export default function BodyAccordion({ lifts }: Props): ReactElement {
+export default function BodyAccordion({
+	lifts,
+	fetchMyLifts,
+}: Props): ReactElement {
 	const bodyArr = [
 		"fullbody",
 		"upper",
@@ -131,6 +135,9 @@ export default function BodyAccordion({ lifts }: Props): ReactElement {
 																				<DeleteLiftModal
 																					lift={
 																						lift
+																					}
+																					fetchMyLifts={
+																						fetchMyLifts
 																					}
 																				/>
 																			</Flex>

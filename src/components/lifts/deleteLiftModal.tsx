@@ -15,16 +15,19 @@ import {
 } from "@chakra-ui/react";
 import { API } from "aws-amplify";
 import { deleteLift } from "graphql/mutations";
-import { useRouter } from "next/router";
 import React, { ReactElement } from "react";
 import { Lift } from "../../API";
 interface Props {
 	lift: Lift;
+	fetchMyLifts: any;
 }
 
-export default function deleteLiftModal({ lift }: Props): ReactElement {
+export default function deleteLiftModal({
+	lift,
+	fetchMyLifts,
+}: Props): ReactElement {
 	const { isOpen, onOpen, onClose } = useDisclosure();
-	const router = useRouter();
+	// const router = useRouter();
 	console.log(lift);
 
 	async function obliderate() {
@@ -39,8 +42,9 @@ export default function deleteLiftModal({ lift }: Props): ReactElement {
 			});
 
 			console.log(deletedLift);
+			fetchMyLifts();
 			onClose();
-			router.push("/dashboard/lifts");
+			// router.push("/dashboard/lifts");
 		} catch (error) {
 			console.error("Error deleting lift: ", error);
 		}

@@ -29,46 +29,15 @@ import FullLiftAccordion from "./fullLiftAccordion";
 interface Props {
 	lifts: Lift[];
 	setLifts: any;
+	fetchMyLifts: any;
 }
 
 export default function LiftAccordion({
 	lifts,
 	setLifts,
+	fetchMyLifts,
 }: Props): ReactElement {
 	console.log(lifts);
-	const catArr = [
-		"main movement",
-		"accessory",
-		"warm up",
-		"cardio",
-		"rehab",
-		"sport",
-	];
-
-	const bodyArr = [
-		"full body",
-		"upper",
-		"lower",
-		"legs",
-		"back",
-		"chest",
-		"arms",
-		"biceps",
-		"triceps",
-		"abs",
-		"glutes",
-		"forearms",
-		"cardio",
-	];
-
-	const discArr = [
-		"bodybuilding",
-		"powerlifting",
-		"weightlifting",
-		"general",
-		"calisthenics",
-		"sport",
-	];
 	const [query, setQuery] = useState("");
 
 	const fuse = new Fuse(lifts, {
@@ -138,14 +107,23 @@ export default function LiftAccordion({
 
 						<TabPanels p={0}>
 							<TabPanel p={0}>
-								<CategoryAccordion lifts={liftResults} />
+								<CategoryAccordion
+									lifts={liftResults}
+									fetchMyLifts={fetchMyLifts}
+								/>
 							</TabPanel>
 							<TabPanel p={0}>
-								<BodyAccordion lifts={liftResults} />
+								<BodyAccordion
+									lifts={liftResults}
+									fetchMyLifts={fetchMyLifts}
+								/>
 							</TabPanel>
 
 							<TabPanel p={0}>
-								<FullLiftAccordion lifts={liftResults} />
+								<FullLiftAccordion
+									lifts={liftResults}
+									fetchMyLifts={fetchMyLifts}
+								/>
 							</TabPanel>
 						</TabPanels>
 					</Tabs>

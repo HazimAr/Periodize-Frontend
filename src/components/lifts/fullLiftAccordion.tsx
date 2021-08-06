@@ -19,9 +19,13 @@ import DeleteLiftModal from "./deleteLiftModal";
 
 interface Props {
 	lifts: Lift[];
+	fetchMyLifts: any;
 }
 
-export default function FullLiftAccordion({ lifts }: Props): ReactElement {
+export default function FullLiftAccordion({
+	lifts,
+	fetchMyLifts,
+}: Props): ReactElement {
 	return (
 		<Accordion allowToggle allowMultiple>
 			{lifts.map((lift) => (
@@ -58,7 +62,10 @@ export default function FullLiftAccordion({ lifts }: Props): ReactElement {
 										lift={lift}
 										lifts={lifts}
 									/>
-									<DeleteLiftModal lift={lift} />
+									<DeleteLiftModal
+										lift={lift}
+										fetchMyLifts={fetchMyLifts}
+									/>
 								</Flex>
 
 								<AccordionButton

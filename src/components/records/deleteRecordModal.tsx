@@ -18,9 +18,13 @@ import React, { ReactElement } from "react";
 import { Record } from "../../API";
 interface Props {
 	record: Record;
+	fetchMyLifts: any;
 }
 
-export default function deleteLiftModal({ record }: Props): ReactElement {
+export default function deleteLiftModal({
+	record,
+	fetchMyLifts,
+}: Props): ReactElement {
 	const { isOpen, onOpen, onClose } = useDisclosure();
 	// const router = useRouter();
 

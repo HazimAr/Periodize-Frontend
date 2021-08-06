@@ -1,5 +1,5 @@
 import { GRAPHQL_AUTH_MODE } from "@aws-amplify/api";
-import { AddIcon } from "@chakra-ui/icons";
+import { AddIcon, CloseIcon } from "@chakra-ui/icons";
 import {
 	Box,
 	Button,
@@ -8,25 +8,32 @@ import {
 	Heading,
 	HStack,
 	IconButton,
+	Input,
+	InputGroup,
+	InputLeftElement,
+	InputRightElement,
 	Modal,
 	ModalBody,
 	ModalCloseButton,
 	ModalContent,
 	ModalOverlay,
+	Stack,
 	Text,
 	useDisclosure,
 	VStack,
 } from "@chakra-ui/react";
 import CLabelInput from "@components/cFormikLabelInput";
-import { CreateRecordInput, CreateRecordMutation } from "API";
+import { CreateRecordInput, CreateRecordMutation, Lift } from "API";
 import { API } from "aws-amplify";
 import { Field, Form, Formik } from "formik";
+import Fuse from "fuse.js";
 import { createRecord } from "graphql/mutations";
 import Slider from "rc-slider";
 import "rc-slider/assets/index.css";
 import React, { ReactElement, useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { BsSearch } from "react-icons/bs";
 import * as Yup from "yup";
 const formSchema = Yup.object().shape({
 	load: Yup.number()
@@ -62,12 +69,49 @@ const initialValues: formInput = {
 	reps: "",
 	rpe: "5",
 };
-
-export default function CreateRecordFormModal(props: any): ReactElement {
-	// const startD = new Date();
+interface Props {
+	lifts: Lift[];
+	fetchMyLifts: any;
+}
+export default function CreateRecordSearchLiftModal({
+	lifts,
+	fetchMyLifts,
+}: Props): ReactElement {
 	const { isOpen, onOpen, onClose } = useDisclosure();
 	const [startDate, setStartDate] = useState(new Date());
+	const [selectedLift, setSelectedLift] = useState<Lift | null>(null);
+	const [error, showError] = useState(false);
+	const [displayOptions, setDisplayOptions] = useState(false);
+	const [query, setQuery] = useState("");
 
+	const fuse = new Fuse(lifts, {
+		keys: ["name"],
+		includeScore: true,
+	});
+	const results = fuse.search(query);
+	const liftResults = query ? results.map((result) => result.item) : lifts;
+
+	const options = [];
+	for (let i = 0; i < lifts.length; i++) {
+		options.push({ value: lifts[i].name, label: lifts[i].name });
+	}
+	function handleOnSearch({ currentTarget }) {
+		const { value } = currentTarget;
+		setQuery(value);
+	}
+	const handleSelect = (lift) => {
+		setQuery(lift.name);
+		setSelectedLift(lift);
+	};
+
+	const handleClearQuery = () => {
+		setQuery("");
+		setSelectedLift(null);
+	};
+	function handleError() {
+		showError(true);
+		setTimeout(() => showError(false), 3000);
+	}
 	const marks = {
 		1: "1",
 		2: "2",
@@ -114,7 +158,7 @@ export default function CreateRecordFormModal(props: any): ReactElement {
 										reps: parseInt(values.reps),
 										performedDate: startDate.toISOString(),
 										rpe: rpeValue,
-										liftID: props.lift.id,
+										liftID: selectedLift.id,
 									};
 
 									const createNewRecord = (await API.graphql({
@@ -124,7 +168,9 @@ export default function CreateRecordFormModal(props: any): ReactElement {
 										},
 										authMode:
 											GRAPHQL_AUTH_MODE.AMAZON_COGNITO_USER_POOLS,
-									})) as { data: CreateRecordMutation };
+									})) as {
+										data: CreateRecordMutation;
+									};
 
 									console.log(createNewRecord);
 									//setLifts to remove the lift (only if this modal is on the lifts page)
@@ -133,7 +179,8 @@ export default function CreateRecordFormModal(props: any): ReactElement {
 									// 	createNewRecord.data
 									// 		.createRecord as Record,
 									// ]);
-									props.fetchMyLifts();
+									fetchMyLifts();
+									setQuery("");
 									actions.setSubmitting(false);
 									onClose();
 								} catch (error) {
@@ -155,10 +202,12 @@ export default function CreateRecordFormModal(props: any): ReactElement {
 									>
 										<VStack spacing={2}>
 											<Heading size="md" my="20px">
-												Create Record for{" "}
-												{props.lift.name}
+												Create Record
 											</Heading>
-											{/* <InputGroup size="md">
+											<InputGroup
+												size="md"
+												borderColor={error ? "red" : ""}
+											>
 												<InputLeftElement pointerEvents="none">
 													<BsSearch opacity={0.5} />
 												</InputLeftElement>
@@ -169,21 +218,66 @@ export default function CreateRecordFormModal(props: any): ReactElement {
 													_placeholder={{
 														opacity: 1,
 													}}
-													//   value={query}
-													//   onChange={handleOnSearch}
+													value={query}
+													onChange={handleOnSearch}
 												/>
 												<InputRightElement>
 													<IconButton
 														aria-label="clear search"
 														icon={<CloseIcon />}
-														// onClick={() => setQuery("")}
+														onClick={
+															handleClearQuery
+														}
 														_focus={{
 															outline: "none",
 														}}
 														variant="ghost"
 													/>
 												</InputRightElement>
-											</InputGroup> */}
+											</InputGroup>
+											{(query.length > 0 &&
+												!selectedLift) ||
+											(selectedLift &&
+												selectedLift.name !== query) ? (
+												<Box
+													border="1px solid white"
+													w="100%"
+												>
+													{liftResults.length > 0 ? (
+														<Stack as="ul" w="100%">
+															{liftResults.map(
+																(lift) => (
+																	<Box
+																		key={
+																			lift.id
+																		}
+																		py={1}
+																		as="button"
+																		_hover={{
+																			bg: "gray.600",
+																		}}
+																		textAlign="center"
+																		onClick={() =>
+																			handleSelect(
+																				lift
+																			)
+																		}
+																	>
+																		{
+																			lift.name
+																		}
+																	</Box>
+																)
+															)}
+														</Stack>
+													) : (
+														<Box py={2}>
+															No lift found 🙄
+														</Box>
+													)}
+												</Box>
+											) : null}
+
 											<HStack spacing={1}>
 												<Field
 													name="load"

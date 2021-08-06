@@ -19,8 +19,12 @@ import CreateRecordModal from "../records/createRecordModal";
 import DeleteLiftModal from "./deleteLiftModal";
 interface Props {
 	lifts: Lift[];
+	fetchMyLifts: any;
 }
-export default function CategoryAccordion({ lifts }: Props): ReactElement {
+export default function CategoryAccordion({
+	lifts,
+	fetchMyLifts,
+}: Props): ReactElement {
 	const catArr = [
 		"main movement",
 		"accessory",
@@ -182,10 +186,16 @@ export default function CategoryAccordion({ lifts }: Props): ReactElement {
 																														lifts={
 																															lifts
 																														}
+																														fetchMyLifts={
+																															fetchMyLifts
+																														}
 																													/>
 																													<DeleteLiftModal
 																														lift={
 																															lift
+																														}
+																														fetchMyLifts={
+																															fetchMyLifts
 																														}
 																													/>
 																												</Flex>

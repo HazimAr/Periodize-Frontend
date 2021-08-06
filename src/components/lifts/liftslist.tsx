@@ -1,4 +1,5 @@
 import { Box, Container, Flex, Heading, Stack } from "@chakra-ui/react";
+import CreateRecordSearchLiftModal from "@components/records/createRecordSearchLiftModal";
 import { API } from "aws-amplify";
 import React, { ReactElement, useState } from "react";
 import { Lift, LiftsByUserQuery } from "../../API";
@@ -43,10 +44,18 @@ export default function LiftsList(): ReactElement {
 			<Flex align="center" justify="center">
 				<Heading mr="16px">My Lifts</Heading>
 				<CreateLiftModal lifts={lifts} setLifts={setLifts} />
+				<CreateRecordSearchLiftModal
+					lifts={lifts}
+					fetchMyLifts={fetchMyLifts}
+				/>
 			</Flex>
 
 			<Stack as="ul" spacing="4" my="4">
-				<LiftAccordion lifts={lifts} setLifts={setLifts} />
+				<LiftAccordion
+					lifts={lifts}
+					setLifts={setLifts}
+					fetchMyLifts={fetchMyLifts}
+				/>
 			</Stack>
 		</Container>
 	);
