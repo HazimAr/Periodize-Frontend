@@ -3,7 +3,6 @@ import { DeleteIcon } from "@chakra-ui/icons";
 import {
 	Box,
 	Button,
-	IconButton,
 	Modal,
 	ModalBody,
 	ModalCloseButton,
@@ -22,7 +21,7 @@ interface Props {
 	fetchMyLifts: any;
 }
 
-export default function deleteLiftModal({
+export default function DeleteLiftModal({
 	lift,
 	fetchMyLifts,
 }: Props): ReactElement {
@@ -52,16 +51,16 @@ export default function deleteLiftModal({
 
 	return (
 		<>
-			{/* <Button onClick={onOpen}>Delete</Button> */}
-			<IconButton
-				aria-label="delete lift"
+			<Button
+				leftIcon={<DeleteIcon />}
+				colorScheme="red"
+				variant="outline"
 				onClick={onOpen}
 				size="sm"
-				icon={<DeleteIcon />}
 				_focus={{ outline: "none" }}
-				variant="ghost"
-				zIndex={100}
-			/>
+			>
+				Lift
+			</Button>
 			<Modal onClose={onClose} isOpen={isOpen}>
 				<ModalOverlay />
 				<ModalContent>

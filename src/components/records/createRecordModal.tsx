@@ -7,7 +7,6 @@ import {
 	FormLabel,
 	Heading,
 	HStack,
-	IconButton,
 	Modal,
 	ModalBody,
 	ModalCloseButton,
@@ -18,7 +17,7 @@ import {
 	VStack,
 } from "@chakra-ui/react";
 import CLabelInput from "@components/cFormikLabelInput";
-import { CreateRecordInput, CreateRecordMutation } from "API";
+import { CreateRecordInput, CreateRecordMutation, Lift } from "API";
 import { API } from "aws-amplify";
 import { Field, Form, Formik } from "formik";
 import { createRecord } from "graphql/mutations";
@@ -63,7 +62,14 @@ const initialValues: formInput = {
 	rpe: "5",
 };
 
-export default function CreateRecordFormModal(props: any): ReactElement {
+interface Props {
+	lift: Lift;
+	fetchMyLifts: any;
+}
+export default function CreateRecordModal({
+	lift,
+	fetchMyLifts,
+}: Props): ReactElement {
 	// const startD = new Date();
 	const { isOpen, onOpen, onClose } = useDisclosure();
 	const [startDate, setStartDate] = useState(new Date());
@@ -84,7 +90,17 @@ export default function CreateRecordFormModal(props: any): ReactElement {
 
 	return (
 		<>
-			<IconButton
+			<Button
+				leftIcon={<AddIcon />}
+				colorScheme="teal"
+				variant="outline"
+				onClick={onOpen}
+				size="sm"
+				_focus={{ outline: "none" }}
+			>
+				Record
+			</Button>
+			{/* <IconButton
 				aria-label="add record"
 				onClick={onOpen}
 				size="sm"
@@ -92,7 +108,7 @@ export default function CreateRecordFormModal(props: any): ReactElement {
 				_focus={{ outline: "none" }}
 				variant="ghost"
 				zIndex={100}
-			/>
+			/> */}
 			<Modal isOpen={isOpen} onClose={onClose}>
 				<ModalOverlay />
 				<ModalContent>
@@ -114,7 +130,7 @@ export default function CreateRecordFormModal(props: any): ReactElement {
 										reps: parseInt(values.reps),
 										performedDate: startDate.toISOString(),
 										rpe: rpeValue,
-										liftID: props.lift.id,
+										liftID: lift.id,
 									};
 
 									const createNewRecord = (await API.graphql({
@@ -133,7 +149,7 @@ export default function CreateRecordFormModal(props: any): ReactElement {
 									// 	createNewRecord.data
 									// 		.createRecord as Record,
 									// ]);
-									props.fetchMyLifts();
+									fetchMyLifts();
 									actions.setSubmitting(false);
 									onClose();
 								} catch (error) {
@@ -155,8 +171,7 @@ export default function CreateRecordFormModal(props: any): ReactElement {
 									>
 										<VStack spacing={2}>
 											<Heading size="md" my="20px">
-												Create Record for{" "}
-												{props.lift.name}
+												Create Record for {lift.name}
 											</Heading>
 											{/* <InputGroup size="md">
 												<InputLeftElement pointerEvents="none">

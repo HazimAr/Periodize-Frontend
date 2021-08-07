@@ -1,8 +1,11 @@
-import { Box, Text, VStack } from "@chakra-ui/react";
+import { Box, HStack, Text, VStack } from "@chakra-ui/react";
+import DeleteLiftModal from "@components/lifts/deleteLiftModal";
 import { Lift, Record } from "API";
 import React, { ReactElement } from "react";
+import CreateRecordModal from "./createRecordModal";
 interface Props {
 	lift: Lift;
+	fetchMyLifts: any;
 }
 
 function findPR(records: Record[]) {
@@ -23,7 +26,10 @@ function findPR(records: Record[]) {
 
 	return greatest;
 }
-export default function LiftRecordSummary({ lift }: Props): ReactElement {
+export default function LiftRecordSummary({
+	lift,
+	fetchMyLifts,
+}: Props): ReactElement {
 	// console.log(records);
 	const pr = findPR(lift.records.items);
 	const sortedRecords = lift.records.items
@@ -34,7 +40,12 @@ export default function LiftRecordSummary({ lift }: Props): ReactElement {
 		})
 		.slice(0, 3);
 	return (
-		<Box textAlign="left">
+		<Box textAlign="left" pt={2}>
+			<HStack justify="flex-end" spacing={2}>
+				<CreateRecordModal lift={lift} fetchMyLifts={fetchMyLifts} />
+				<DeleteLiftModal lift={lift} fetchMyLifts={fetchMyLifts} />
+			</HStack>
+
 			<Text
 				color="gold"
 				fontSize="lg"
