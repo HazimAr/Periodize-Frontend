@@ -81,7 +81,7 @@ export default function DashHome(): ReactElement {
 					</HStack>
 				) : null}
 				
-				{lifts?<GraphsForTopLift lifts={lifts}/>:null}
+				{/* FIX {lifts?<GraphsForTopLift lifts={lifts}/>:null} */}
 
 				<Charts />
 			</Stack>
