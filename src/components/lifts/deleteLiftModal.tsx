@@ -59,7 +59,7 @@ export default function DeleteLiftModal({
 				size="sm"
 				_focus={{ outline: "none" }}
 			>
-				Lift
+				Delete
 			</Button>
 			<Modal onClose={onClose} isOpen={isOpen}>
 				<ModalOverlay />

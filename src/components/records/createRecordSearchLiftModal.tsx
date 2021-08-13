@@ -128,15 +128,16 @@ export default function CreateRecordSearchLiftModal({
 
 	return (
 		<>
-			<IconButton
-				aria-label="add record"
+			<Button
+				leftIcon={<AddIcon />}
+				colorScheme="teal"
+				variant="outline"
 				onClick={onOpen}
 				size="sm"
-				icon={<AddIcon />}
 				_focus={{ outline: "none" }}
-				variant="ghost"
-				zIndex={100}
-			/>
+			>
+				Record
+			</Button>
 			<Modal isOpen={isOpen} onClose={onClose}>
 				<ModalOverlay />
 				<ModalContent>

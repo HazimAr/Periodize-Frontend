@@ -1,4 +1,4 @@
-import { Box, Container, Flex, Heading, Stack } from "@chakra-ui/react";
+import { Box, Container, Flex, Heading, HStack, Stack } from "@chakra-ui/react";
 import CreateRecordSearchLiftModal from "@components/records/createRecordSearchLiftModal";
 import { API } from "aws-amplify";
 import React, { ReactElement, useState } from "react";
@@ -41,13 +41,15 @@ export default function LiftsList(): ReactElement {
 	console.log("My lifts:", lifts);
 	return (
 		<Container maxW="container.md">
-			<Flex align="center" justify="center">
-				<Heading mr="16px">My Lifts</Heading>
-				<CreateLiftModal lifts={lifts} setLifts={setLifts} />
-				<CreateRecordSearchLiftModal
-					lifts={lifts}
-					fetchMyLifts={fetchMyLifts}
-				/>
+			<Flex align="center" justify="space-between">
+				<Heading size="2xl">My Lifts</Heading>
+				<HStack spacing={2}>
+					<CreateLiftModal lifts={lifts} setLifts={setLifts} />
+					<CreateRecordSearchLiftModal
+						lifts={lifts}
+						fetchMyLifts={fetchMyLifts}
+					/>
+				</HStack>
 			</Flex>
 
 			<Stack as="ul" spacing="4" my="4">

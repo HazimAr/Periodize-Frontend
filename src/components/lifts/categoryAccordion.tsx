@@ -7,7 +7,9 @@ import {
 	Box,
 	Flex,
 	Heading,
+	HStack,
 	Link,
+	Spacer,
 	Text,
 } from "@chakra-ui/react";
 import LiftRecordSummary from "@components/records/liftRecordSummary";
@@ -62,11 +64,12 @@ export default function CategoryAccordion({
 										my={isExpanded ? "2" : ""}
 										bgColor="brand.600"
 										borderRadius="md"
+										border="1px solid grey"
 									>
 										<h2>
 											<AccordionButton px={4}>
 												<Box flex="1" textAlign="left">
-													<Heading size="md">
+													<Heading size="lg">
 														{disc}
 													</Heading>
 												</Box>
@@ -155,12 +158,21 @@ export default function CategoryAccordion({
 																											border="none"
 																										>
 																											<h2>
-																												<Flex justify="space-between">
-																													<Box textAlign="left">
+																												<HStack>
+																													<Box
+																														textAlign="left"
+																														flex="1"
+																														whiteSpace="nowrap"
+																														display="inline-block"
+																													>
 																														<Link
 																															href={`/dashboard/lifts/${lift.id}`}
+																															flex="1"
 																														>
-																															<Text fontSize="xl">
+																															<Text
+																																fontSize="xl"
+																																flex="1"
+																															>
 																																{lift.name.replace(
 																																	/(^\w{1})|(\s+\w{1})/g,
 																																	(
@@ -171,24 +183,22 @@ export default function CategoryAccordion({
 																															</Text>
 																														</Link>
 																													</Box>
-
+																													<Spacer />
 																													<AccordionButton
-																														w="25px"
-																														p={
-																															0
-																														}
-																														m={
-																															0
-																														}
 																														_focus={{
-																															outline:
-																																"none",
+																															border: "none",
 																														}}
 																													>
-																														<AccordionIcon />
+																														<Flex
+																															justify="flex-end"
+																															w="100%"
+																														>
+																															<AccordionIcon />
+																														</Flex>
 																													</AccordionButton>
-																												</Flex>
+																												</HStack>
 																											</h2>
+
 																											<AccordionPanel
 																												py={
 																													1

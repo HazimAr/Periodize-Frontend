@@ -1,4 +1,4 @@
-import { Box, HStack, Text, VStack } from "@chakra-ui/react";
+import { Box, HStack, Spacer, Text, VStack } from "@chakra-ui/react";
 import DeleteLiftModal from "@components/lifts/deleteLiftModal";
 import { Lift, Record } from "API";
 import React, { ReactElement } from "react";
@@ -42,18 +42,21 @@ export default function LiftRecordSummary({
 	return (
 		<Box textAlign="left" pt={2}>
 			<HStack justify="flex-end" spacing={2}>
+				<Text
+					color="gold"
+					fontSize="lg"
+					as="b"
+				>{`PR: ${pr.load}${lift.unit}  ${pr.sets}x${pr.reps}`}</Text>
+
+				<Spacer />
 				<CreateRecordModal lift={lift} fetchMyLifts={fetchMyLifts} />
 				<DeleteLiftModal lift={lift} fetchMyLifts={fetchMyLifts} />
 			</HStack>
 
-			<Text
-				color="gold"
-				fontSize="lg"
-			>{`PR: ${pr.load}${lift.unit}  ${pr.sets}x${pr.reps}`}</Text>
-			<Text mt={2} as="u">
-				Recent
-			</Text>
 			<VStack align="flex-start" spacing={0}>
+				<Text mt={2} as="u">
+					Recent
+				</Text>
 				{sortedRecords.map((record) => (
 					<Text key={record.id}>
 						{`${record.load}${lift.unit} ${record.sets}x${record.reps}`}

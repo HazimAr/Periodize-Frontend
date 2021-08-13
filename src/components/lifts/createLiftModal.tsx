@@ -89,16 +89,16 @@ export default function CreateLiftModal(props: any): ReactElement {
 	console.log(props.lifts);
 	return (
 		<>
-			{/* <Button onClick={onOpen}>Add Lift</Button> */}
-			<IconButton
-				aria-label="add lift"
+			<Button
+				leftIcon={<AddIcon />}
+				colorScheme="pink"
+				variant="outline"
 				onClick={onOpen}
 				size="sm"
-				icon={<AddIcon />}
 				_focus={{ outline: "none" }}
-				variant="ghost"
-				zIndex={100}
-			/>
+			>
+				Lift
+			</Button>
 			<Modal onClose={onClose} isOpen={isOpen}>
 				<ModalOverlay />
 				<ModalContent>
